@@ -25,7 +25,7 @@
 - Merge lên `master` bằng **Pull Requests**
 #### Commit
 - **Ưu tiên dùng tên tiếng anh**
-- Cấu trúc: `<thao tác> + <đối tượng>`
+- Cấu trúc: `<thao tác> + <đối tượng> + <loại đối tượng (tuỳ chọn)>`
 - Đối tượng: tên **File**, tên **Thư mục**, **Chức năng**, tên **Lỗi**, tên **Yêu cầu**,..
 - Thao tác thường dùng: Các loại commit theo phạm vi
 <details>
