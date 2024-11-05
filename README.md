@@ -19,7 +19,7 @@
 ### Hướng dẫn sử dụng:
 #### Branch
 - Đặt tên bằng họ tên, vd: `PhamLeTruongVu`
-- Mỗi người 1 _branch_ theo tên mình, nếu thêm branch phụ cần có tiền tố họ tên, vd: `PhamLeTruongVu/admin/dang-nhap`
+- Mỗi người 1 _branch_ theo tên mình
 ##### :warning: _LƯU Ý_:
 - Chỉ nên _commit_ lên (các) branch cá nhân
 - Merge lên `master` bằng **Pull Requests**
