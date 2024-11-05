@@ -1,0 +1,58 @@
+.order-status .detail-list-item .item-desc:before {
+    content: "";
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border: 2px solid #B5BBC6;
+    top: 13px;
+    left: -16px;
+    border-radius: 50%;
+    background: #FFF;
+}
+
+.status-tag {
+    /*display: inline-block;*/
+    font-size: 1rem;
+    padding: .25rem .75rem;
+    border-radius: .25rem;
+    text-wrap: nowrap;
+}
+.item-date, .item-desc {
+    color: #959ba4;
+}
+.item-date {
+    width: 135px;
+}
+.item-desc {
+    position: relative;
+    margin-left: 16px;
+    line-height: 2rem;
+}
+.item-desc .item-text-box {
+    margin-left: 8px;
+}
+.order-status .detail-list-item .item-desc:after {
+    content: "";
+    position: absolute;
+    width: 1px;
+    height: 100%;
+    top: 26px;
+    left: -13px;
+    border-radius: 2px;
+    background: #B5BBC6;
+}
+.order-status .detail-list-item:nth-child(1) .item-desc,
+.order-status .detail-list-item:nth-child(1) .item-date {
+    color: #555555;
+    font-weight: bold;
+}
+.order-status .detail-list-item:nth-child(1) .item-desc:before {
+    background: #ff3e41;
+    box-shadow: rgba(196, 27, 27, 0.3) 0 0 0 2px;
+    border: 0 none;
+    left: -16px;
+}
+
+.order-status .detail-list-item:nth-child(11) .item-desc:after {
+    display: none;
+}
