@@ -93,8 +93,11 @@
     <div class="container">
         <div class="bg-light text-center p-3">
             <div class="row">
-                <div class="col-12 col-sm-9"><input aria-label="" placeholder="Nhập mã vận đơn để tìm kiếm" class="form-control border-0" type="text"></div>
-                <div class="col-12 col-sm-3"><button class="btn btn-primary w-100">search</button></div>
+                <div class="col-12 col-sm-9"><input aria-label="" placeholder="Nhập mã vận đơn để tìm kiếm"
+                                                    class="form-control border-0" type="text"></div>
+                <div class="col-12 col-sm-3">
+                    <button class="btn btn-primary w-100">search</button>
+                </div>
             </div>
         </div>
     </div>
@@ -105,9 +108,9 @@
 <div class="container-xxl ">
     <div class="container py-5">
         <div class="mb-3">
-            <h2>Mã Vận Đơn: REXVN04276830906B
+            <h2>Mã Vận Đơn: REXVN04276830906B</h2>
             <span class="status-tag alert-success align-middle">Đã giao hàng</span>
-<!--                <span class="status-tag alert-warning align-middle">Đang giao hàng</span></h2>-->
+            <!--                <span class="status-tag alert-warning align-middle">Đang giao hàng</span></h2>-->
             <h5 hidden="hidden">Ngày giao dự kiến 01/01/2023</h5>
         </div>
         <div class="order-status">
@@ -183,6 +186,180 @@
     </div>
 </div>
 <!--Order Status End-->
+
+<!-- Cost Estimate Start-->
+<div class="container-xxl" id="cost-estimate">
+    <div class="container py-5 service-item">
+        <div class="form-title mb-3">Biểu phí dịch vụ</div>
+        <form>
+            <div class="row">
+                <!-- Cột trái -->
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="py-3" for="senderAddress">* Địa chỉ người gửi:</label>
+                        <select id="senderAddress" class="form-control">
+                            <option selected>Chọn tỉnh/thành phố</option>
+                        </select>
+                    </div>
+                    <div class="form-group py-3">
+                        <label class="py-3" for="weight">* Tổng khối lượng:</label>
+                        <i class="bi bi-question-circle" id="weight-info"></i>
+                        <div class="input-group">
+                            <input type="text" id="weight" class="form-control" placeholder="Vui lòng nhập thông tin">
+                            <div class="input-group-append">
+                                <span class="input-group-text">KG</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" id="unknownWeight">
+                        <label class="form-check-label" for="unknownWeight">Tôi không biết cân nặng chính xác của bưu
+                            gửi</label>
+                    </div>
+                </div>
+
+                <!-- Cột phải -->
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="py-3" for="receiverAddress">* Địa chỉ người nhận:</label>
+                        <select id="receiverAddress" class="form-control">
+                            <option selected>Chọn tỉnh/thành phố</option>
+                        </select>
+                    </div>
+                    <div class="form-group py-3">
+                        <label class="py-3">Kích thước đơn hàng:</label>
+                        <i class="bi bi-question-circle"></i>
+                        <div class="form-row d-flex flex-wrap">
+                            <div class="col">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Dài">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">CM</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-x "></i>
+                            </div>
+                            <div class="col">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Rộng">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">CM</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-x "></i>
+                            </div>
+                            <div class="col">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Cao">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">CM</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-outline-primary btn-block mt-4">Tính Phí Giao Hàng</button>
+        </form>
+    </div>
+</div>
+<!-- Cost Estimate End-->
+
+<!-- Result costs Start -->
+<div id="shippingResult" class="mt-4 container-xxl">
+    <div class="container py-5 service-item">
+        <h5 class="text-center">Phí vận chuyển ước tính sẽ bao gồm phụ phí và trừ đi các khoản chiến khấu/giảm giá bởi khuyến mãi.</h5>
+        <!-- Bảng cho trường hợp không biết cân nặng -->
+        <div id="unknownWeightResult" class="table-responsive">
+            <table class="table table-bordered mt-3 text-center">
+                <thead class="table-light">
+                <tr>
+                    <th>Sản phẩm</th>
+                    <th colspan="6">Phí vận chuyển ước tính sẽ bao gồm phụ phí và trừ đi các khoản chiến khấu/giảm giá
+                        bởi khuyến mãi. (VNĐ)
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Cân nặng của Bưu gửi</td>
+                    <td>0.5kg</td>
+                    <td>1kg</td>
+                    <td>2kg</td>
+                    <td>3kg</td>
+                    <td>4kg</td>
+                    <td>5kg</td>
+                </tr>
+                <tr>
+                    <td>Giao hàng Tiêu Chuẩn</td>
+                    <td>Không có sẵn</td>
+                    <td>Không có sẵn</td>
+                    <td>Không có sẵn</td>
+                    <td>Không có sẵn</td>
+                    <td>Không có sẵn</td>
+                    <td>Không có sẵn</td>
+                </tr>
+                <tr>
+                    <td>Giao hàng Nhanh</td>
+                    <td>Không có sẵn</td>
+                    <td>Không có sẵn</td>
+                    <td>Không có sẵn</td>
+                    <td>Không có sẵn</td>
+                    <td>Không có sẵn</td>
+                    <td>Không có sẵn</td>
+                </tr>
+                <tr>
+                    <td>Giao hàng Hỏa Tốc</td>
+                    <td>Không có sẵn</td>
+                    <td>Không có sẵn</td>
+                    <td>Không có sẵn</td>
+                    <td>Không có sẵn</td>
+                    <td>Không có sẵn</td>
+                    <td>Không có sẵn</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Bảng cho trường hợp biết cân nặng -->
+        <div id="knownWeightResult" class="table-responsive">
+            <table class="table table-bordered mt-3 text-center">
+                <thead class="table-light">
+                <tr>
+                    <th>Sản phẩm</th>
+                    <th>Phí vận chuyển ước tính sẽ bao gồm phụ phí và trừ đi các khoản chiến khấu/giảm giá bởi khuyến
+                        mãi. (VNĐ)
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Cân nặng của Bưu gửi</td>
+                    <td>12kg</td>
+                </tr>
+                <tr>
+                    <td>Giao hàng Tiêu Chuẩn</td>
+                    <td>Không có sẵn</td>
+                </tr>
+                <tr>
+                    <td>Giao hàng Nhanh</td>
+                    <td>Không có sẵn</td>
+                </tr>
+                <tr>
+                    <td>Giao hàng Hỏa Tốc</td>
+                    <td>Không có sẵn</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- Result costs End -->
 
 <!-- Footer Start -->
 <div class="container-fluid bg-dark text-light footer pt-5 wow fadeIn" data-wow-delay="0.1s" style="margin-top: 6rem;">
