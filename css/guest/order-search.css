@@ -1,0 +1,27 @@
+#header_order {
+    box-shadow: 0 0 45px rgba(0, 0, 0, .07);
+    padding: 1rem;
+}
+#header_order .text-bold {
+    font-weight: bold;
+}
+
+#header_order .header-order {
+
+}
+#header_order .header-order .table-row,
+#header_order .header-order .title{
+    padding: .5rem;
+}
+#header_order .header-order .title {
+    background-color: var(--light);
+}
+#header_order .header-order .table-row,
+#order_history .header-order .table-row{
+    display: flex;
+    flex-direction: row;
+}
+#header_order .table-row .label,
+#header_order .table-row .value {
+    width: 50%;
+}
