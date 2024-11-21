@@ -19,13 +19,13 @@
 ### Hướng dẫn sử dụng:
 #### Branch
 - Đặt tên bằng họ tên, vd: `PhamLeTruongVu`
-- Mỗi người 1 _branch_ theo tên mình, nếu thêm branch phụ cần có tiền tố họ tên, vd: `PhamLeTruongVu/admin/dang-nhap`
+- Mỗi người 1 _branch_ theo tên mình
 ##### :warning: _LƯU Ý_:
 - Chỉ nên _commit_ lên (các) branch cá nhân
 - Merge lên `master` bằng **Pull Requests**
 #### Commit
 - **Ưu tiên dùng tên tiếng anh**
-- Cấu trúc: `<thao tác> + <đối tượng>`
+- Cấu trúc: `<thao tác> + <đối tượng> + <loại đối tượng (tuỳ chọn)>`
 - Đối tượng: tên **File**, tên **Thư mục**, **Chức năng**, tên **Lỗi**, tên **Yêu cầu**,..
 - Thao tác thường dùng: Các loại commit theo phạm vi
 <details>
