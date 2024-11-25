@@ -61,6 +61,7 @@ class AddressDropdown {
             })
         }
 
+
         if (this.selectedDistrict) {
             values.push(this.selectedDistrict.name)
             console.log(this.selectedDistrict)
@@ -88,13 +89,13 @@ class AddressDropdown {
             values.push(this.selectedWard.name)
 
         const inputEl = document.querySelector(`${this.selector} ${this.input}`);
-        inputEl.value = values.join("/")
+        inputEl.value = values.join(" / ")
 
     }
 
     init() {
         const container = document.querySelector(this.selector);
-        container.innerHTML = this.template;
+        container.innerHTML = this.template();
         const element = document.querySelector(this.selector + ' .dropdown-toggle');
         const instance = new mdb.Dropdown(element);
         const triggerTabList = [].slice.call(document.querySelectorAll(this.selector + ' .nav-tabs a'));
@@ -116,19 +117,20 @@ class AddressDropdown {
 
     }
 
-
-    template = `<input class="form-control dropdown-toggle address-input" data-mdb-dropdown-init  data-mdb-auto-close="outside" aria-expanded="false">
+    template(){
+        let id = this.selector.replaceAll("#", '')
+        return `<input class="form-control dropdown-toggle address-input" data-mdb-dropdown-init  data-mdb-auto-close="outside" aria-expanded="false">
                        <div class="dropdown-menu dropdown-menu-xl-start" style="width: 100%">
                             <div class="">
-                                <ul class="nav nav-tabs nav-fill mb-3" id="ex1" role="tablist">
+                                <ul class="nav nav-tabs nav-fill mb-3" id="${id}-tab" role="tablist">
                                                             <li class="nav-item" role="presentation">
                                                                 <a
                                                                         data-mdb-tab-init
                                                                         class="nav-link active"
-                                                                        id="ex1-tab-1"
-                                                                        href="#ex1-tabs-1"
+                                                                        id="${id}-tab-1"
+                                                                        href="#${id}-tabs-1"
                                                                         role="tab"
-                                                                        aria-controls="ex1-tabs-1"
+                                                                        aria-controls="${id}-tabs-1"
                                                                         aria-selected="true"
                                                                 >Tỉnh</a
                                                                 >
@@ -137,10 +139,10 @@ class AddressDropdown {
                                                                 <a
                                                                         data-mdb-tab-init
                                                                         class="nav-link"
-                                                                        id="ex1-tab-2"
-                                                                        href="#ex1-tabs-2"
+                                                                        id="${id}-tab-2"
+                                                                        href="#${id}-tabs-2"
                                                                         role="tab"
-                                                                        aria-controls="ex1-tabs-2"
+                                                                        aria-controls="${id}-tabs-2"
                                                                         aria-selected="false"
                                                                 >Quận-Huyện</a
                                                                 >
@@ -149,32 +151,32 @@ class AddressDropdown {
                                                                 <a
                                                                         data-mdb-tab-init
                                                                         class="nav-link"
-                                                                        id="ex1-tab-3"
-                                                                        href="#ex1-tabs-3"
+                                                                        id="${id}-tab-3"
+                                                                        href="#${id}-tabs-3"
                                                                         role="tab"
-                                                                        aria-controls="ex1-tabs-3"
+                                                                        aria-controls="${id}-tabs-3"
                                                                         aria-selected="false"
                                                                 >Phường-Xã</a
                                                                 >
                                                             </li>
                                                         </ul>
-                                                        <div class="tab-content p-2" id="ex1-content">
+                                                        <div class="tab-content p-2" id="${id}-content">
                                                             <div
                                                                     class="tab-pane fade show active"
-                                                                    id="ex1-tabs-1"
+                                                                    id="${id}-tabs-1"
                                                                     role="tabpanel"
-                                                                    aria-labelledby="ex1-tab-1"
+                                                                    aria-labelledby="${id}-tabs-1"
                                                             >
                                                             <div class="list-group list-group-light overflow-y-scroll province-content" style="max-height: 320px">
                                                                 
                                                             </div>
                                                             </div>
-                                                            <div class="tab-pane fade" id="ex1-tabs-2" role="tabpanel" aria-labelledby="ex1-tab-2">
+                                                            <div class="tab-pane fade" id="${id}-tabs-2" role="tabpanel" aria-labelledby="${id}-tabs-2">
                                                             <div class="list-group list-group-light overflow-y-scroll district-content" style="max-height: 320px">
                                                                 
                                                             </div>
                                                             </div>
-                                                            <div class="tab-pane fade" id="ex1-tabs-3" role="tabpanel" aria-labelledby="ex1-tab-3">
+                                                            <div class="tab-pane fade" id="${id}-tabs-3" role="tabpanel" aria-labelledby="${id}-tabs-3">
                                                             <div class="list-group list-group-light overflow-y-scroll ward-content" style="max-height: 320px">
                                                                 
                                                             </div>
@@ -186,5 +188,8 @@ class AddressDropdown {
 
 
 `
+    }
+
+
 
 }
