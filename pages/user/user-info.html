@@ -1,202 +1,261 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title></title>
-  <link rel="stylesheet" href="/css/mdb.min.css">
-  <link rel="stylesheet" href="/css/admin.css">
-  <link rel="stylesheet" href="/css/themify-icons.css">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet"/>
-  <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet"/>
-  <link
-          rel="stylesheet"
-          data-purpose="Layout StyleSheet"
-          title="Web Awesome"
-          href="/css/app-wa-d53d10572a0e0d37cb8d614a3f177a0c.css?vsn=d"
-  >
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="/css/mdb.min.css">
+    <link rel="stylesheet" href="/css/admin.css">
+    <link rel="stylesheet" href="/css/themify-icons.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet"/>
+    <link
+            rel="stylesheet"
+            data-purpose="Layout StyleSheet"
+            title="Web Awesome"
+            href="/css/app-wa-d53d10572a0e0d37cb8d614a3f177a0c.css?vsn=d"
+    >
 
-  <link
-          rel="stylesheet"
-          href="https://site-assets.fontawesome.com/releases/v6.5.2/css/all.css"
-  >
+    <link
+            rel="stylesheet"
+            href="https://site-assets.fontawesome.com/releases/v6.5.2/css/all.css"
+    >
 
-  <link
-          rel="stylesheet"
-          href="https://site-assets.fontawesome.com/releases/v6.5.2/css/sharp-thin.css"
-  >
+    <link
+            rel="stylesheet"
+            href="https://site-assets.fontawesome.com/releases/v6.5.2/css/sharp-thin.css"
+    >
 
-  <link
-          rel="stylesheet"
-          href="https://site-assets.fontawesome.com/releases/v6.5.2/css/sharp-solid.css"
-  >
+    <link
+            rel="stylesheet"
+            href="https://site-assets.fontawesome.com/releases/v6.5.2/css/sharp-solid.css"
+    >
 
-  <link
-          rel="stylesheet"
-          href="https://site-assets.fontawesome.com/releases/v6.5.2/css/sharp-regular.css"
-  >
+    <link
+            rel="stylesheet"
+            href="https://site-assets.fontawesome.com/releases/v6.5.2/css/sharp-regular.css"
+    >
 
-  <link
-          rel="stylesheet"
-          href="https://site-assets.fontawesome.com/releases/v6.5.2/css/sharp-light.css"
-  >
-  <style>
-    .dt-search {
-      display: none;
-    }
-  </style>
+    <link
+            rel="stylesheet"
+            href="https://site-assets.fontawesome.com/releases/v6.5.2/css/sharp-light.css"
+    >
+    <style>
+        .dt-search {
+            display: none;
+        }
+
+        .avatar-container:hover .avatar-overlay {
+            background: rgba(0, 0, 0, 0.5) !important;
+            cursor: pointer;
+        }
+
+        .avatar-container:hover .fa-pencil-alt {
+            opacity: 1 !important;
+        }
+
+        .edit-btn {
+            position: absolute !important;
+            top: 5px;
+            right: 5px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            width: 35px;
+            height: 35px;
+        }
+
+        .avatar-container:hover .edit-btn {
+            opacity: 1;
+        }
+
+        .preview-img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+        }
+
+        /* Animation cho modal */
+        .modal.fade .modal-dialog {
+            transform: scale(0.8);
+            transition: transform 0.3s ease;
+        }
+
+        .modal.show .modal-dialog {
+            transform: scale(1);
+        }
+
+        /* Loading spinner container */
+        .loading-spinner {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Toast notification styles */
+        .toast-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1060;
+        }
+
+        .avatar-container .fa-pencil-alt .avatar-container:hover {
+            display: block;
+
+        }
+    </style>
 </head>
 <body>
 <!--nav bar-->
 <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-1">
-  <!-- Container wrapper -->
-  <div class="container-fluid">
-    <!-- Toggler -->
-    <button data-mdb-toggle="sidenav" data-mdb-target="#main-sidenav"
-            class="btn shadow-0 p-0 me-3 d-block d-xxl-none" data-mdb-ripple-init aria-controls="#main-sidenav"
-            aria-haspopup="true">
-      <i class="fas fa-bars fa-lg"></i>
-    </button>
+    <!-- Container wrapper -->
+    <div class="container-fluid">
+        <!-- Toggler -->
+        <button data-mdb-toggle="sidenav" data-mdb-target="#main-sidenav"
+                class="btn shadow-0 p-0 me-3 d-block d-xxl-none" data-mdb-ripple-init aria-controls="#main-sidenav"
+                aria-haspopup="true">
+            <i class="fas fa-bars fa-lg"></i>
+        </button>
 
-    <!-- Search form -->
-    <form class="d-none d-md-flex input-group w-auto my-auto">
-      <input id="search-focus" autocomplete="off" type="search" class="form-control rounded"
-             placeholder='Search (ctrl + alt to focus)' style="min-width: 225px"/>
-      <span class="input-group-text border-0"><i class="fas fa-search text-secondary"></i></span>
-    </form>
+        <!-- Search form -->
+        <form class="d-none d-md-flex input-group w-auto my-auto">
+            <input id="search-focus" autocomplete="off" type="search" class="form-control rounded"
+                   placeholder='Search (ctrl + alt to focus)' style="min-width: 225px"/>
+            <span class="input-group-text border-0"><i class="fas fa-search text-secondary"></i></span>
+        </form>
 
-    <!-- Right links -->
-    <ul class="navbar-nav ms-auto d-flex flex-row align-items-center ">
-      <li class="nav-item me-4">
-        <a class="btn btn-outline-primary" href="">
-          <i class="fas fa-plus fa-fw me-3"></i>Tạo Đơn</a>
-      </li>
-      <!-- Notification dropdown -->
-      <li class="nav-item dropdown">
-        <a class="nav-link me-3 me-lg-0 dropdown-toggle hidden-arrow" href="#" id="navbarDropdownMenuLink2"
-           role="button" data-mdb-dropdown-init aria-expanded="false">
-          <i class="fas fa-bell link-secondary"></i>
-          <span class="badge rounded-pill badge-notification bg-danger">1</span>
-        </a>
-        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink2">
-          <li><a class="dropdown-item" href="#">Some news</a></li>
-          <li><a class="dropdown-item" href="#">Another news</a></li>
-          <li>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </li>
+        <!-- Right links -->
+        <ul class="navbar-nav ms-auto d-flex flex-row align-items-center ">
+            <li class="nav-item me-4">
+                <a class="btn btn-outline-primary" href="">
+                    <i class="fas fa-plus fa-fw me-3"></i>Tạo Đơn</a>
+            </li>
+            <!-- Notification dropdown -->
+            <li class="nav-item dropdown">
+                <a class="nav-link me-3 me-lg-0 dropdown-toggle hidden-arrow" href="#" id="navbarDropdownMenuLink2"
+                   role="button" data-mdb-dropdown-init aria-expanded="false">
+                    <i class="fas fa-bell link-secondary"></i>
+                    <span class="badge rounded-pill badge-notification bg-danger">1</span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink2">
+                    <li><a class="dropdown-item" href="#">Some news</a></li>
+                    <li><a class="dropdown-item" href="#">Another news</a></li>
+                    <li>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </li>
+                </ul>
+            </li>
+
+            <!-- Icon dropdown -->
+            <li class="nav-item dropdown">
+                <a class="nav-link me-3 me-lg-0 dropdown-toggle hidden-arrow" href="#" id="navbarDropdown" role="button"
+                   data-mdb-dropdown-init aria-expanded="false">
+                    <i class="flag flag-united-kingdom m-0"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    <li>
+                        <a class="dropdown-item" href="#"><i class="flag flag-united-kingdom"></i>English
+                            <i class="fa fa-check text-success ms-2"></i></a>
+                    </li>
+                    <li>
+                        <hr class="dropdown-divider"/>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="#"><i class="flag flag-poland"></i>Polski</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="#"><i class="flag flag-china"></i>中文</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="#"><i class="flag flag-japan"></i>日本語</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="#"><i class="flag flag-germany"></i>Deutsch</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="#"><i class="flag flag-france"></i>Français</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="#"><i class="flag flag-spain"></i>Español</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="#"><i class="flag flag-russia"></i>Русский</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="#"><i class="flag flag-portugal"></i>Português</a>
+                    </li>
+                </ul>
+            </li>
+
+            <!-- Avatar -->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle hidden-arrow d-flex align-items-center" href="#"
+                   id="navbarDropdownMenuLink" role="button" data-mdb-dropdown-init aria-expanded="false">
+                    <img src="/img/default-avatar-icon-of-social-media-user-vector.jpg" class="rounded-circle"
+                         height="32" alt="Avatar"
+                         loading="lazy"/>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+                    <li><a class="dropdown-item " href="#">My profile</a></li>
+                    <li><a class="dropdown-item" href="#">Settings</a></li>
+                    <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                </ul>
+            </li>
         </ul>
-      </li>
-
-      <!-- Icon dropdown -->
-      <li class="nav-item dropdown">
-        <a class="nav-link me-3 me-lg-0 dropdown-toggle hidden-arrow" href="#" id="navbarDropdown" role="button"
-           data-mdb-dropdown-init aria-expanded="false">
-          <i class="flag flag-united-kingdom m-0"></i>
-        </a>
-        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-          <li>
-            <a class="dropdown-item" href="#"><i class="flag flag-united-kingdom"></i>English
-              <i class="fa fa-check text-success ms-2"></i></a>
-          </li>
-          <li>
-            <hr class="dropdown-divider"/>
-          </li>
-          <li>
-            <a class="dropdown-item" href="#"><i class="flag flag-poland"></i>Polski</a>
-          </li>
-          <li>
-            <a class="dropdown-item" href="#"><i class="flag flag-china"></i>中文</a>
-          </li>
-          <li>
-            <a class="dropdown-item" href="#"><i class="flag flag-japan"></i>日本語</a>
-          </li>
-          <li>
-            <a class="dropdown-item" href="#"><i class="flag flag-germany"></i>Deutsch</a>
-          </li>
-          <li>
-            <a class="dropdown-item" href="#"><i class="flag flag-france"></i>Français</a>
-          </li>
-          <li>
-            <a class="dropdown-item" href="#"><i class="flag flag-spain"></i>Español</a>
-          </li>
-          <li>
-            <a class="dropdown-item" href="#"><i class="flag flag-russia"></i>Русский</a>
-          </li>
-          <li>
-            <a class="dropdown-item" href="#"><i class="flag flag-portugal"></i>Português</a>
-          </li>
-        </ul>
-      </li>
-
-      <!-- Avatar -->
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle hidden-arrow d-flex align-items-center" href="#"
-           id="navbarDropdownMenuLink" role="button" data-mdb-dropdown-init aria-expanded="false">
-          <img src="/img/default-avatar-icon-of-social-media-user-vector.jpg" class="rounded-circle"
-               height="32" alt="Avatar"
-               loading="lazy"/>
-        </a>
-        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
-          <li><a class="dropdown-item " href="#">My profile</a></li>
-          <li><a class="dropdown-item" href="#">Settings</a></li>
-          <li><a class="dropdown-item" href="/logout">Logout</a></li>
-        </ul>
-      </li>
-    </ul>
-  </div>
-  <!-- Container wrapper -->
+    </div>
+    <!-- Container wrapper -->
 </nav>
 <!--nav bar-->
 
 <nav id="main-sidenav" data-mdb-sidenav-init class="sidenav sidenav-sm shadow-1" data-mdb-hidden="false"
      data-mdb-accordion="true">
-  <a class="d-flex justify-content-center pt-4 pb-2" href="#" data-mdb-ripple-init data-mdb-ripple-color="primary">
-    <img id="MDB-logo" src="/img/img.png"
-         alt="MDB Logo" draggable="false"/>
-  </a>
+    <a class="d-flex justify-content-center pt-4 pb-2" href="#" data-mdb-ripple-init data-mdb-ripple-color="primary">
+        <img id="MDB-logo" src="/img/img.png"
+             alt="MDB Logo" draggable="false"/>
+    </a>
 
-  <hr class="hr">
+    <hr class="hr">
 
-  <ul class="sidenav-menu px-2 pb-5">
+    <ul class="sidenav-menu px-2 pb-5">
 
 
+        <li class="sidenav-item pt-3">
+            <span class="sidenav-subheading text-muted text-uppercase fw-bold">Dashboard</span>
+        </li>
+        <li class="sidenav-item">
+            <a class="sidenav-link" href="">
+                <i class="fas fa-plus fa-fw me-3"></i><span>Dashboard</span></a>
+        </li>
 
-    <li class="sidenav-item pt-3">
-      <span class="sidenav-subheading text-muted text-uppercase fw-bold">Dashboard</span>
-    </li>
-    <li class="sidenav-item">
-      <a class="sidenav-link" href="">
-        <i class="fas fa-plus fa-fw me-3"></i><span>Dashboard</span></a>
-    </li>
+        <li class="sidenav-item pt-3">
+            <span class="sidenav-subheading text-muted text-uppercase fw-bold">Quản lý đơn hàng</span>
+        </li>
+        <li class="sidenav-item">
+            <a class="sidenav-link" href="/admin/products">
+                <i class="fas fa-cubes fa-fw me-3"></i><span>Theo dõi đơn hàng</span></a>
+        </li>
+        <li class="sidenav-item">
+            <a class="sidenav-link" href="/admin/product-categories">
+                <i class="fas fa-list-alt fa-fw me-3"></i><span>Lịch sử đơn hàng</span></a>
+        </li>
+        <li class="sidenav-item pt-3">
+            <span class="sidenav-subheading text-muted text-uppercase fw-bold">Quản lý taì khoản</span>
+        </li>
+        <li class="sidenav-item">
+            <a class="sidenav-link" href="">
+                <i class="fas fa-plus fa-fw me-3 active"></i><span>Hồ sơ người dùng</span></a>
+        </li>
 
-    <li class="sidenav-item pt-3">
-      <span class="sidenav-subheading text-muted text-uppercase fw-bold">Quản lý đơn hàng</span>
-    </li>
-    <li class="sidenav-item">
-      <a class="sidenav-link" href="/admin/products">
-        <i class="fas fa-cubes fa-fw me-3"></i><span>Theo dõi đơn hàng</span></a>
-    </li>
-    <li class="sidenav-item">
-      <a class="sidenav-link" href="/admin/product-categories">
-        <i class="fas fa-list-alt fa-fw me-3"></i><span>Lịch sử đơn hàng</span></a>
-    </li>
-    <li class="sidenav-item pt-3">
-      <span class="sidenav-subheading text-muted text-uppercase fw-bold">Quản lý taì khoản</span>
-    </li>
-    <li class="sidenav-item">
-      <a class="sidenav-link" href="">
-        <i class="fas fa-plus fa-fw me-3 active"></i><span>Hồ sơ người dùng</span></a>
-    </li>
-
-  </ul>
+    </ul>
 </nav>
 
 <!-- Heading -->
 <section class="text-center text-md-start">
-  <!-- Background gradient -->
-  <div style="height: 60px;">
-  </div>
-  <!-- Background gradient -->
+    <!-- Background gradient -->
+    <div style="height: 60px;">
+    </div>
+    <!-- Background gradient -->
 
 </section>
 <!-- Heading -->
@@ -220,15 +279,64 @@
             <div class="row">
                 <!-- Profile Card -->
                 <div class="col-md-4 mb-3">
-                    <div class="card">
-                        <div class="card-body text-center">
-                            <img src="../../img/testimonial-1.jpg"
-                                 class="rounded-circle img-fluid mb-3"
-                                 style="width: 150px;"
-                                 alt="User Avatar">
+                    <div class="card h-100">
+                        <div class="card-body text-center ">
+                            <div class="avatar-container position-relative">
+                                <img src="../../img/testimonial-1.jpg" class="rounded-circle img-fluid mb-3 avatar-img"
+                                     style="width: 150px;" alt="User Avatar">
+                                <!-- Thẻ <a> bao phủ overlay -->
+                                <a class="btn avatar-overlay d-flex justify-content-center align-items-center position-absolute rounded-circle"
+                                   data-mdb-toggle="modal"
+                                   data-mdb-target="#profileEditModal"
+                                   style="width: 150px; height: 150px; background: rgba(0,0,0,0); transition: all 0.3s ease;">
+                                    <i class="fas fa-pencil-alt fs-3 text-white" style="font-size: 24px; opacity: 0; transition: all 0.3s ease;"></i>
+                                </a>
+                            </div>
                             <h5 class="card-title mb-2">Nguyễn Văn A</h5>
                             <p class="text-muted mb-1">Khách hàng</p>
                             <p class="text-muted">Thành viên từ 12/2023</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Profile Card Modal -->
+                <div class="modal fade" id="profileEditModal" tabindex="-1" aria-labelledby="profileEditModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="profileEditModalLabel">Chỉnh sửa ảnh đại diện</h5>
+                                <button type="button" class="btn-close" data-mdb-dismiss="modal"
+                                        aria-label="Close"></button>
+                            </div>
+
+                            <!-- Modal Body -->
+                            <div class="modal-body">
+                                <form id="profileEditForm">
+                                    <!-- Avatar -->
+                                    <div class="mb-4">
+                                        <label class="form-label" for="avatarUpload">Ảnh đại diện</label>
+                                        <input type="file" id="avatarUpload" class="form-control" accept="image/*"/>
+                                        <div class="form-text">Chọn ảnh định dạng: JPG, PNG, GIF (tối đa 2MB)</div>
+                                        <div class="text-center mt-3">
+                                            <img id="avatarPreview" src="../../img/testimonial-1.jpg"
+                                                 class="rounded-circle preview-img" alt="Avatar Preview"/>
+
+                                            <!-- Loading spinner (ẩn mặc định) -->
+                                            <div class="spinner-border text-primary loading-spinner d-none"
+                                                 role="status">
+                                                <span class="visually-hidden">Loading...</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <!-- Modal Footer -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Đóng</button>
+                                <button type="button" class="btn btn-primary" id="saveChanges">Lưu thay đổi</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -274,9 +382,16 @@
                             </div>
                             <hr>
                             <div class="row">
-                                <div class="col-sm-12">
-                                    <a class="btn btn-outline-primary" href="#" data-mdb-ripple-init data-mdb-modal-init data-mdb-target="#profile-edit">
+                                <div class="col-sm-6">
+                                    <a class="btn btn-outline-primary" href="#" data-mdb-ripple-init data-mdb-modal-init
+                                       data-mdb-target="#profile-edit">
                                         <i class="fas fa-edit me-2"></i>Chỉnh sửa hồ sơ
+                                    </a>
+                                </div>
+                                <div class="col-sm-6 d-flex justify-content-end">
+                                    <a class="btn btn-outline-danger" href="#" data-mdb-ripple-init data-mdb-modal-init
+                                       data-mdb-target="#profile-changePass">
+                                        <i class=""></i>Đổi mật khẩu
                                     </a>
                                 </div>
                             </div>
@@ -301,24 +416,27 @@
                             <!-- Họ và tên -->
                             <div class="mb-4">
                                 <label class="form-label" for="user-name">Họ và tên</label>
-                                <input type="text" id="user-name" class="form-control" placeholder="Nhập họ và tên" value=""/>
+                                <input type="text" id="user-name" class="form-control" placeholder="Nhập họ và tên"
+                                       value=""/>
                             </div>
                             <!-- Email -->
                             <div class="mb-4">
                                 <label class="form-label" for="user-email">Email</label>
-                                <input type="email" id="user-email" class="form-control" placeholder="nguyenvana@example.com" value=""/>
+                                <input type="email" id="user-email" class="form-control"
+                                       placeholder="nguyenvana@example.com" value=""/>
                             </div>
 
                             <!-- Điện thoại -->
                             <div class="mb-4">
                                 <label class="form-label" for="user-phone">Điện thoại</label>
-                                <input type="tel" id="user-phone" class="form-control" placeholder="0123 456 789" value=""/>
+                                <input type="tel" id="user-phone" class="form-control" placeholder="0123 456 789"
+                                       value=""/>
                             </div>
 
                             <!-- Địa chỉ -->
                             <div class="mb-4">
                                 <label class="form-label" for="user-addr">Địa chỉ</label>
-                                <textarea id="user-addr" class="form-control" rows="3" placeholder="Nhập địa chỉ" >123 Đường ABC, Phường XYZ, Quận 1, TP.HCM</textarea>
+                                <textarea id="user-addr" class="form-control" rows="3" placeholder="Nhập địa chỉ">123 Đường ABC, Phường XYZ, Quận 1, TP.HCM</textarea>
                             </div>
                         </form>
                     </div>
@@ -327,6 +445,51 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Đóng</button>
                         <button type="button" class="btn btn-primary" id="save-profile">Lưu thay đổi</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Password Change Modal -->
+        <div class="modal fade" id="profile-changePass" tabindex="-1" aria-labelledby="profile-changePass"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="profile-changePass-label">Đổi mật khẩu</h5>
+                        <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <!-- Modal Body -->
+                    <div class="modal-body">
+                        <form id="password-change-form">
+                            <!-- Mật khẩu hiện tại -->
+                            <div class="form-text mb-4">
+                                <input type="password" id="current-password" class="form-control"/>
+                                <label class="form-label" for="current-password">Mật khẩu hiện tại</label>
+                            </div>
+
+                            <!-- Mật khẩu mới -->
+                            <div class="form-text mb-4">
+                                <input type="password" id="new-password" class="form-control"/>
+                                <label class="form-label" for="new-password">Mật khẩu mới</label>
+                                <div class="form-helper">Mật khẩu phải có ít nhất 8 ký tự, bao gồm chữ hoa, chữ thường
+                                    và số
+                                </div>
+                            </div>
+
+                            <!-- Xác nhận mật khẩu mới -->
+                            <div class="form-text mb-4">
+                                <input type="password" id="confirm-password" class="form-control"/>
+                                <label class="form-label" for="confirm-password">Xác nhận mật khẩu mới</label>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Modal Footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Đóng</button>
+                        <button type="button" class="btn btn-danger" id="save-password">Đổi mật khẩu</button>
                     </div>
                 </div>
             </div>
@@ -376,7 +539,8 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-12 d-flex justify-content-end">
-                            <a class="btn btn-outline-primary" href="#" data-mdb-ripple-init data-mdb-modal-init data-mdb-target="#shop-info">
+                            <a class="btn btn-outline-primary" href="#" data-mdb-ripple-init data-mdb-modal-init
+                               data-mdb-target="#shop-info">
                                 <i class="fas fa-edit me-2"></i>Cập nhật
                             </a>
                         </div>
@@ -384,7 +548,6 @@
                 </div>
             </div>
         </section>
-
         <!-- Shop edit modal -->
         <div class="modal fade" id="shop-info" tabindex="-1" aria-labelledby="shop-info" aria-hidden="true">
             <div class="modal-dialog">
@@ -401,19 +564,22 @@
                             <!-- Tên Công Ty -->
                             <div class="mb-3">
                                 <label for="company-name" class="form-label">Tên Công Ty</label>
-                                <input type="text" id="company-name" class="form-control" placeholder="Nhập tên công ty" value="Công Ty TNHH Rabex">
+                                <input type="text" id="company-name" class="form-control" placeholder="Nhập tên công ty"
+                                       value="Công Ty TNHH Rabex">
                             </div>
 
                             <!-- Ngành hàng -->
                             <div class="mb-3">
                                 <label for="industry" class="form-label">Ngành hàng</label>
-                                <input type="text" id="industry" class="form-control" placeholder="Nhập ngành hàng" value="">
+                                <input type="text" id="industry" class="form-control" placeholder="Nhập ngành hàng"
+                                       value="">
                             </div>
 
                             <!-- Kênh bán hàng -->
                             <div class="mb-3">
                                 <label for="sales-channel" class="form-label">Kênh bán hàng</label>
-                                <input type="text" id="sales-channel" class="form-control" placeholder="Nhập kênh bán hàng" value="Tiktok">
+                                <input type="text" id="sales-channel" class="form-control"
+                                       placeholder="Nhập kênh bán hàng" value="Tiktok">
                             </div>
                         </form>
                     </div>
@@ -435,97 +601,217 @@
 <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
 <script src="/js/main.admin.js"></script>
 <script>
-  const sidenav = document.getElementById("main-sidenav");
+    const sidenav = document.getElementById("main-sidenav");
 
-  const sidenavInstance = mdb.Sidenav.getInstance(sidenav);
+    const sidenavInstance = mdb.Sidenav.getInstance(sidenav);
 
-  const currencyFormat = Intl.NumberFormat("vi-VN", {style: 'currency', currency: 'VND'})
+    const currencyFormat = Intl.NumberFormat("vi-VN", {style: 'currency', currency: 'VND'})
 
 
-  let innerWidth = null;
+    let innerWidth = null;
 
-  //
+    //
 
-  const setMode = (e) => {
-    // Check necessary for Android devices
-    if (window.innerWidth === innerWidth) {
-      return;
-    }
+    const setMode = (e) => {
+        // Check necessary for Android devices
+        if (window.innerWidth === innerWidth) {
+            return;
+        }
 
-    innerWidth = window.innerWidth;
+        innerWidth = window.innerWidth;
 
-    if (window.innerWidth < 1400) {
-      sidenavInstance.changeMode("over");
-      sidenavInstance.hide();
-    } else {
-      sidenavInstance.changeMode("side");
-      sidenavInstance.show();
-    }
-  };
+        if (window.innerWidth < 1400) {
+            sidenavInstance.changeMode("over");
+            sidenavInstance.hide();
+        } else {
+            sidenavInstance.changeMode("side");
+            sidenavInstance.show();
+        }
+    };
 
-  setMode();
+    setMode();
 
-  // Event listeners
-  window.addEventListener("resize", setMode);
+    // Event listeners
+    window.addEventListener("resize", setMode);
 
-  const searchFocus = document.getElementById('search-focus');
-  const keys = [
-    {keyCode: 'AltLeft', isTriggered: false},
-    {keyCode: 'ControlLeft', isTriggered: false},
-  ];
+    const searchFocus = document.getElementById('search-focus');
+    const keys = [
+        {keyCode: 'AltLeft', isTriggered: false},
+        {keyCode: 'ControlLeft', isTriggered: false},
+    ];
 
-  window.addEventListener('keydown', (e) => {
-    keys.forEach((obj) => {
-      if (obj.keyCode === e.code) {
-        obj.isTriggered = true;
-      }
+    window.addEventListener('keydown', (e) => {
+        keys.forEach((obj) => {
+            if (obj.keyCode === e.code) {
+                obj.isTriggered = true;
+            }
+        });
+
+        const shortcutTriggered = keys.filter((obj) => obj.isTriggered).length === keys.length;
+
+        if (shortcutTriggered) {
+            searchFocus.focus();
+        }
     });
 
-    const shortcutTriggered = keys.filter((obj) => obj.isTriggered).length === keys.length;
-
-    if (shortcutTriggered) {
-      searchFocus.focus();
-    }
-  });
-
-  window.addEventListener('keyup', (e) => {
-    keys.forEach((obj) => {
-      if (obj.keyCode === e.code) {
-        obj.isTriggered = false;
-      }
+    window.addEventListener('keyup', (e) => {
+        keys.forEach((obj) => {
+            if (obj.keyCode === e.code) {
+                obj.isTriggered = false;
+            }
+        });
     });
-  });
+    document.addEventListener('DOMContentLoaded', function () {
+        // Khởi tạo các components của MDB
+        document.querySelectorAll('.toast').forEach(toastElement => {
+            new mdb.Toast(toastElement);
+        });
 
-  document.getElementById('save-shop-info').addEventListener('click', function() {
-      // Lấy giá trị từ các input
-      const companyName = document.getElementById('company-name').value;
-      const industry = document.getElementById('industry').value;
-      const salesChannel = document.getElementById('sales-channel').value;
+        const avatarUpload = document.getElementById('avatarUpload');
+        const avatarPreview = document.getElementById('avatarPreview');
+        const saveChanges = document.getElementById('saveChanges');
+        const profileEditForm = document.getElementById('profileEditForm');
+        const avatarImg = document.querySelector('.avatar-img');
+        const loadingSpinner = document.querySelector('.loading-spinner');
+        const modal = new mdb.Modal(document.getElementById('profileEditModal'));
 
-      // Cập nhật dữ liệu hiển thị trong phần Thông Tin Kinh Doanh
-      document.querySelector('[data-field="company-name"]').textContent = companyName || '-';
-      document.querySelector('[data-field="industry"]').textContent = industry || '-';
-      document.querySelector('[data-field="sales-channel"]').textContent = salesChannel || '-';
+        // Function để hiển thị thông báo
+        function showNotification(message, type = 'success') {
+            const toastHTML = `
+      <div class="toast align-items-center text-white bg-${type} border-0" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+          <div class="toast-body">${message}</div>
+          <button type="button" class="btn-close btn-close-white me-2 m-auto" data-mdb-dismiss="toast"></button>
+        </div>
+      </div>
+    `;
 
-      // Tạo container cho toast nếu chưa tồn tại
-      let toastContainer = document.querySelector('.toast-container');
-      if (!toastContainer) {
-          toastContainer = document.createElement('div');
-          toastContainer.className = 'toast-container position-fixed bottom-0 end-0 p-3';
-          document.body.appendChild(toastContainer);
-      }
+            const toastContainer = document.querySelector('.toast-container') || createToastContainer();
+            const toastElement = createElementFromHTML(toastHTML);
+            toastContainer.appendChild(toastElement);
 
-      // Tạo toast element
-      const toastDiv = document.createElement('div');
-      toastDiv.className = 'toast fade';
-      toastDiv.setAttribute('role', 'alert');
-      toastDiv.setAttribute('aria-live', 'assertive');
-      toastDiv.setAttribute('aria-atomic', 'true');
-      toastDiv.setAttribute('data-mdb-autohide', 'true');
-      toastDiv.setAttribute('data-mdb-delay', '3000');
-      toastDiv.setAttribute('data-mdb-position', 'top-center');
+            const toast = new mdb.Toast(toastElement);
+            toast.show();
 
-      toastDiv.innerHTML = `
+            // Tự động xóa toast sau khi ẩn
+            toastElement.addEventListener('hidden.mdb.toast', () => {
+                toastElement.remove();
+            });
+        }
+
+        // Tạo container cho toast nếu chưa tồn tại
+        function createToastContainer() {
+            const container = document.createElement('div');
+            container.className = 'toast-container';
+            document.body.appendChild(container);
+            return container;
+        }
+
+        // Helper function để tạo element từ HTML string
+        function createElementFromHTML(htmlString) {
+            const div = document.createElement('div');
+            div.innerHTML = htmlString.trim();
+            return div.firstChild;
+        }
+
+        // Xem trước ảnh khi chọn file
+        avatarUpload.addEventListener('change', function (e) {
+            const file = e.target.files[0];
+            if (file) {
+                // Kiểm tra kích thước file
+                if (file.size > 2 * 1024 * 1024) {
+                    showNotification('Kích thước file không được vượt quá 2MB', 'danger');
+                    this.value = '';
+                    return;
+                }
+
+                // Kiểm tra định dạng file
+                const validTypes = ['image/jpeg', 'image/png', 'image/gif'];
+                if (!validTypes.includes(file.type)) {
+                    showNotification('Vui lòng chọn file ảnh định dạng JPG, PNG hoặc GIF', 'danger');
+                    this.value = '';
+                    return;
+                }
+
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    avatarPreview.src = e.target.result;
+                    avatarPreview.style.display = 'block';
+                    loadingSpinner.classList.add('d-none');
+                };
+
+                // Hiển thị loading khi đang đọc file
+                avatarPreview.style.display = 'none';
+                loadingSpinner.classList.remove('d-none');
+
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Xử lý khi nhấn nút lưu
+        saveChanges.addEventListener('click', function () {
+            const fileInput = avatarUpload.files[0];
+            if (fileInput) {
+                // Hiển thị loading
+                loadingSpinner.classList.remove('d-none');
+                avatarPreview.style.display = 'none';
+                saveChanges.disabled = true;
+
+                // Giả lập việc upload file (thay thế bằng API call thực tế)
+                setTimeout(() => {
+                    avatarImg.src = avatarPreview.src;
+
+                    // Ẩn loading
+                    loadingSpinner.classList.add('d-none');
+                    avatarPreview.style.display = 'block';
+                    saveChanges.disabled = false;
+
+                    // Đóng modal
+                    modal.hide();
+
+                    // Reset form
+                    profileEditForm.reset();
+
+                    // Hiển thị thông báo thành công
+                    showNotification('Cập nhật ảnh đại diện thành công!');
+                }, 1500);
+            } else {
+                showNotification('Vui lòng chọn ảnh để upload', 'warning');
+            }
+        });
+    });
+
+    // Nút cập nhật
+    document.getElementById('save-shop-info').addEventListener('click', function () {
+        // Lấy giá trị từ các input
+        const companyName = document.getElementById('company-name').value;
+        const industry = document.getElementById('industry').value;
+        const salesChannel = document.getElementById('sales-channel').value;
+
+        // Cập nhật dữ liệu hiển thị trong phần Thông Tin Kinh Doanh
+        document.querySelector('[data-field="company-name"]').textContent = companyName || '-';
+        document.querySelector('[data-field="industry"]').textContent = industry || '-';
+        document.querySelector('[data-field="sales-channel"]').textContent = salesChannel || '-';
+
+        // Tạo container cho toast nếu chưa tồn tại
+        let toastContainer = document.querySelector('.toast-container');
+        if (!toastContainer) {
+            toastContainer = document.createElement('div');
+            toastContainer.className = 'toast-container position-fixed bottom-0 end-0 p-3';
+            document.body.appendChild(toastContainer);
+        }
+
+        // Tạo toast element
+        const toastDiv = document.createElement('div');
+        toastDiv.className = 'toast fade';
+        toastDiv.setAttribute('role', 'alert');
+        toastDiv.setAttribute('aria-live', 'assertive');
+        toastDiv.setAttribute('aria-atomic', 'true');
+        toastDiv.setAttribute('data-mdb-autohide', 'true');
+        toastDiv.setAttribute('data-mdb-delay', '3000');
+        toastDiv.setAttribute('data-mdb-position', 'top-center');
+
+        toastDiv.innerHTML = `
         <div class="toast-header">
             <i class="fas fa-check me-2 text-success"></i>
             <strong class="me-auto">Thông báo</strong>
@@ -536,70 +822,70 @@
         </div>
     `;
 
-      toastContainer.appendChild(toastDiv);
+        toastContainer.appendChild(toastDiv);
 
-      // Khởi tạo và hiển thị toast sử dụng MDB
-      const toast = new mdb.Toast(toastDiv);
-      toast.show();
+        // Khởi tạo và hiển thị toast sử dụng MDB
+        const toast = new mdb.Toast(toastDiv);
+        toast.show();
 
-      // Xóa toast element sau khi ẩn
-      toastDiv.addEventListener('hidden.mdb.toast', function() {
-          toastDiv.remove();
-      });
+        // Xóa toast element sau khi ẩn
+        toastDiv.addEventListener('hidden.mdb.toast', function () {
+            toastDiv.remove();
+        });
 
-      // Đóng modal
-      const shopModal = mdb.Modal.getInstance(document.getElementById('shop-info'));
-      if (shopModal) {
-          shopModal.hide();
-      }
-  });
+        // Đóng modal
+        const shopModal = mdb.Modal.getInstance(document.getElementById('shop-info'));
+        if (shopModal) {
+            shopModal.hide();
+        }
+    });
 
-  // Thêm sự kiện click cho nút chỉnh sửa hồ sơ
-  document.querySelector('a.btn-outline-primary').addEventListener('click', function(e) {
-      e.preventDefault();
-      const profileModal = new mdb.Modal(document.getElementById('profile-edit'));
-      profileModal.show();
-  });
+    // Thêm sự kiện click cho nút chỉnh sửa hồ sơ
+    document.querySelector('a.btn-outline-primary').addEventListener('click', function (e) {
+        e.preventDefault();
+        const profileModal = new mdb.Modal(document.getElementById('profile-edit'));
+        profileModal.show();
+    });
 
-  // Khởi tạo các form-outline của MDB
-  document.querySelectorAll('.form-outline').forEach((formOutline) => {
-      new mdb.Input(formOutline).init();
-  });
+    // Khởi tạo các form-outline của MDB
+    document.querySelectorAll('.form-outline').forEach((formOutline) => {
+        new mdb.Input(formOutline).init();
+    });
 
-  // Xử lý sự kiện lưu thông tin
-  document.getElementById('save-profile').addEventListener('click', function() {
-      // Lấy giá trị từ các input
-      const userName = document.getElementById('user-name').value;
-      const userEmail = document.getElementById('user-email').value;
-      const userPhone = document.getElementById('user-phone').value;
-      const userAddr = document.getElementById('user-addr').value;
+    // Xử lý sự kiện lưu thông tin
+    document.getElementById('save-profile').addEventListener('click', function () {
+        // Lấy giá trị từ các input
+        const userName = document.getElementById('user-name').value;
+        const userEmail = document.getElementById('user-email').value;
+        const userPhone = document.getElementById('user-phone').value;
+        const userAddr = document.getElementById('user-addr').value;
 
-      // Cập nhật thông tin trên trang
-      document.querySelector('[data-field="user-name"]').textContent = userName;
-      document.querySelector('.card-title').textContent = userName;
-      document.querySelector('[data-field="user-email"]').textContent = userEmail;
-      document.querySelector('[data-field="user-phone"]').textContent = userPhone;
-      document.querySelector('[data-field="user-addr"]').textContent = userAddr;
+        // Cập nhật thông tin trên trang
+        document.querySelector('[data-field="user-name"]').textContent = userName;
+        document.querySelector('.card-title').textContent = userName;
+        document.querySelector('[data-field="user-email"]').textContent = userEmail;
+        document.querySelector('[data-field="user-phone"]').textContent = userPhone;
+        document.querySelector('[data-field="user-addr"]').textContent = userAddr;
 
-      // Tạo container cho toast nếu chưa tồn tại
-      let toastContainer = document.querySelector('.toast-container');
-      if (!toastContainer) {
-          toastContainer = document.createElement('div');
-          toastContainer.className = 'toast-container position-fixed bottom-0 end-0 p-3';
-          document.body.appendChild(toastContainer);
-      }
+        // Tạo container cho toast nếu chưa tồn tại
+        let toastContainer = document.querySelector('.toast-container');
+        if (!toastContainer) {
+            toastContainer = document.createElement('div');
+            toastContainer.className = 'toast-container position-fixed bottom-0 end-0 p-3';
+            document.body.appendChild(toastContainer);
+        }
 
-      // Tạo toast element
-      const toastDiv = document.createElement('div');
-      toastDiv.className = 'toast fade';
-      toastDiv.setAttribute('role', 'alert');
-      toastDiv.setAttribute('aria-live', 'assertive');
-      toastDiv.setAttribute('aria-atomic', 'true');
-      toastDiv.setAttribute('data-mdb-autohide', 'true');
-      toastDiv.setAttribute('data-mdb-delay', '3000');
-      toastDiv.setAttribute('data-mdb-position', 'top-center');
+        // Tạo toast element
+        const toastDiv = document.createElement('div');
+        toastDiv.className = 'toast fade';
+        toastDiv.setAttribute('role', 'alert');
+        toastDiv.setAttribute('aria-live', 'assertive');
+        toastDiv.setAttribute('aria-atomic', 'true');
+        toastDiv.setAttribute('data-mdb-autohide', 'true');
+        toastDiv.setAttribute('data-mdb-delay', '3000');
+        toastDiv.setAttribute('data-mdb-position', 'top-center');
 
-      toastDiv.innerHTML = `
+        toastDiv.innerHTML = `
         <div class="toast-header">
             <i class="fas fa-check me-2 text-success"></i>
             <strong class="me-auto">Thông báo</strong>
@@ -610,23 +896,126 @@
         </div>
     `;
 
-      toastContainer.appendChild(toastDiv);
+        toastContainer.appendChild(toastDiv);
 
-      // Khởi tạo và hiển thị toast
-      const toast = new mdb.Toast(toastDiv);
-      toast.show();
+        // Khởi tạo và hiển thị toast
+        const toast = new mdb.Toast(toastDiv);
+        toast.show();
 
-      // Xóa toast element sau khi ẩn
-      toastDiv.addEventListener('hidden.mdb.toast', function() {
-          toastDiv.remove();
-      });
+        // Xóa toast element sau khi ẩn
+        toastDiv.addEventListener('hidden.mdb.toast', function () {
+            toastDiv.remove();
+        });
 
-      // Đóng modal
-      const profileModal = mdb.Modal.getInstance(document.getElementById('profile-edit'));
-      if (profileModal) {
-          profileModal.hide();
-      }
-  });
+        // Đóng modal
+        const profileModal = mdb.Modal.getInstance(document.getElementById('profile-edit'));
+        if (profileModal) {
+            profileModal.hide();
+        }
+    });
+
+    // Khởi tạo các form-outline của MDB cho modal đổi mật khẩu
+    document.querySelectorAll('.form-text').forEach((formOutline) => {
+        new mdb.Input(formOutline).init();
+    });
+
+    // Xử lý sự kiện đổi mật khẩu
+    document.getElementById('save-password').addEventListener('click', function () {
+        // Lấy giá trị từ các input
+        const currentPassword = document.getElementById('current-password').value;
+        const newPassword = document.getElementById('new-password').value;
+        const confirmPassword = document.getElementById('confirm-password').value;
+
+        // Validate form
+        let isValid = true;
+        let errorMessage = '';
+
+        // Kiểm tra mật khẩu hiện tại
+        if (!currentPassword) {
+            isValid = false;
+            errorMessage = 'Vui lòng nhập mật khẩu hiện tại';
+        }
+
+        // Kiểm tra mật khẩu mới
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+        if (!passwordRegex.test(newPassword)) {
+            isValid = false;
+            errorMessage = 'Mật khẩu mới phải có ít nhất 8 ký tự, bao gồm chữ hoa, chữ thường và số';
+        }
+
+        // Kiểm tra xác nhận mật khẩu
+        if (newPassword !== confirmPassword) {
+            isValid = false;
+            errorMessage = 'Xác nhận mật khẩu không khớp';
+        }
+
+        // Nếu có lỗi, hiển thị thông báo và dừng xử lý
+        if (!isValid) {
+            // Tạo và hiển thị toast error
+            showToast('Lỗi', errorMessage, 'error');
+            return;
+        }
+
+        // Nếu form hợp lệ, xử lý đổi mật khẩu
+        // TODO: Thêm API call để đổi mật khẩu ở đây
+
+        // Reset form
+        document.getElementById('password-change-form').reset();
+
+        // Hiển thị thông báo thành công
+        showToast('Thành công', 'Mật khẩu đã được thay đổi thành công', 'success');
+
+        // Đóng modal
+        const passwordModal = mdb.Modal.getInstance(document.getElementById('profile-changePass'));
+        if (passwordModal) {
+            passwordModal.hide();
+        }
+    });
+
+    // Hàm hiển thị toast
+    function showToast(title, message, type = 'success') {
+        // Tạo container cho toast nếu chưa tồn tại
+        let toastContainer = document.querySelector('.toast-container');
+        if (!toastContainer) {
+            toastContainer = document.createElement('div');
+            toastContainer.className = 'toast-container position-fixed bottom-0 end-0 p-3';
+            document.body.appendChild(toastContainer);
+        }
+
+        // Tạo toast element
+        const toastDiv = document.createElement('div');
+        toastDiv.className = 'toast fade';
+        toastDiv.setAttribute('role', 'alert');
+        toastDiv.setAttribute('aria-live', 'assertive');
+        toastDiv.setAttribute('aria-atomic', 'true');
+        toastDiv.setAttribute('data-mdb-autohide', 'true');
+        toastDiv.setAttribute('data-mdb-delay', '3000');
+        toastDiv.setAttribute('data-mdb-position', 'top-right');
+
+        const icon = type === 'success' ? 'fa-check text-success' : 'fa-exclamation-circle text-danger';
+
+        toastDiv.innerHTML = `
+        <div class="toast-header">
+            <i class="fas ${icon} me-2"></i>
+            <strong class="me-auto">${title}</strong>
+            <button type="button" class="btn-close" data-mdb-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+            ${message}
+        </div>
+    `;
+
+        toastContainer.appendChild(toastDiv);
+
+        // Khởi tạo và hiển thị toast
+        const toast = new mdb.Toast(toastDiv);
+        toast.show();
+
+        // Xóa toast element sau khi ẩn
+        toastDiv.addEventListener('hidden.mdb.toast', function () {
+            toastDiv.remove();
+        });
+    }
 </script>
 
 </body>
