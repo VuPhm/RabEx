@@ -72,59 +72,45 @@
 </nav>
 <!-- Navbar End -->
 
-
-<!-- Page Header Start -->
-<div class="container-fluid page-header mb-5 py-5" style="margin-bottom: 6rem;">
-    <div class="container py-5">
-        <h1 class="display-3 text-white mb-3 animated slideInDown">Pricing</h1>
-        <nav aria-label="breadcrumb animated slideInDown">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a class="text-white" href="#">Home</a></li>
-                <li class="breadcrumb-item"><a class="text-white" href="#">Pages</a></li>
-                <li class="breadcrumb-item text-white active" aria-current="page">Pricing</li>
-            </ol>
-        </nav>
-    </div>
-</div>
-<!-- Page Header End -->
-
-<!--Thin Search Start-->
-<div class="container-fluid">
+<!-- Header Start-->
+<div class="bg-primary container-fluid pb-3 pt-5 wow slideInDown" style="margin-bottom: 35px; visibility: visible; animation-name: slideInDown;">
     <div class="container">
-        <div class="bg-light text-center p-3">
-            <div class="row">
-                <div class="col-12 col-sm-9"><input aria-label="" placeholder="Nhập mã vận đơn để tìm kiếm"
-                                                    class="form-control border-0" type="text"></div>
-                <div class="col-12 col-sm-3">
-                    <button class="btn btn-primary w-100">search</button>
-                </div>
-            </div>
-        </div>
+        <div class="h2 text-white text-uppercase">Tra phí dịch vụ</div>
     </div>
 </div>
-<!--Thin Search End-->
+<!-- Header End -->
 
 <!-- Cost Estimate Start-->
-<div class="container-xxl" id="cost-estimate">
-    <div class="container py-5 service-item">
-        <div class="form-title mb-3">Biểu phí dịch vụ</div>
+<div class="container-xxl mt-5 mb-3 wow fadeInDown" id="cost-estimate">
+    <div class="container py-3 px-5 service-item">
         <form>
             <div class="row">
-                <!-- Cột trái -->
                 <div class="col-md-6">
                     <div class="form-group">
                         <label class="py-3" for="senderAddress">* Địa chỉ người gửi:</label>
-                        <select id="senderAddress" class="form-control">
+                        <select id="senderAddress" class="form-control bg-light">
                             <option selected>Chọn tỉnh/thành phố</option>
                         </select>
                     </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="py-3" for="receiverAddress">* Địa chỉ người nhận:</label>
+                        <select id="receiverAddress" class="form-control bg-light">
+                            <option selected>Chọn tỉnh/thành phố</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
                     <div class="form-group py-3">
                         <label class="py-3" for="weight">* Tổng khối lượng:</label>
                         <i class="bi bi-question-circle" id="weight-info"></i>
                         <div class="input-group">
                             <input type="text" id="weight" class="form-control" placeholder="Vui lòng nhập thông tin">
                             <div class="input-group-append">
-                                <span class="input-group-text">KG</span>
+                                <span class="input-group-text bg-light">KG</span>
                             </div>
                         </div>
                     </div>
@@ -134,15 +120,7 @@
                             gửi</label>
                     </div>
                 </div>
-
-                <!-- Cột phải -->
                 <div class="col-md-6">
-                    <div class="form-group">
-                        <label class="py-3" for="receiverAddress">* Địa chỉ người nhận:</label>
-                        <select id="receiverAddress" class="form-control">
-                            <option selected>Chọn tỉnh/thành phố</option>
-                        </select>
-                    </div>
                     <div class="form-group py-3">
                         <label class="py-3">Kích thước đơn hàng:</label>
                         <i class="bi bi-question-circle"></i>
@@ -151,7 +129,7 @@
                                 <div class="input-group">
                                     <input type="text" class="form-control" placeholder="Dài">
                                     <div class="input-group-append">
-                                        <span class="input-group-text">CM</span>
+                                        <span class="input-group-text bg-light">CM</span>
                                     </div>
                                 </div>
                             </div>
@@ -162,7 +140,7 @@
                                 <div class="input-group">
                                     <input type="text" class="form-control" placeholder="Rộng">
                                     <div class="input-group-append">
-                                        <span class="input-group-text">CM</span>
+                                        <span class="input-group-text bg-light">CM</span>
                                     </div>
                                 </div>
                             </div>
@@ -173,7 +151,7 @@
                                 <div class="input-group">
                                     <input type="text" class="form-control" placeholder="Cao">
                                     <div class="input-group-append">
-                                        <span class="input-group-text">CM</span>
+                                        <span class="input-group-text bg-light">CM</span>
                                     </div>
                                 </div>
                             </div>
@@ -181,18 +159,21 @@
                     </div>
                 </div>
             </div>
-            <button type="submit" class="btn btn-outline-primary btn-block mt-4">Tính Phí Giao Hàng</button>
+            <div class="d-flex justify-content-between">
+                <button type="submit" class="btn btn-primary mt-4">Tính Phí Giao Hàng</button>
+                <a type="submit" class="text-primary text-decoration-underline mt-4">Xem toàn bộ biểu phí</a>
+            </div>
         </form>
     </div>
 </div>
 <!-- Cost Estimate End-->
 
 <!-- Result costs Start -->
-<div id="shippingResult" class="mt-4 container-xxl">
-    <div class="container py-5 service-item">
+<div id="shippingResult" class="container-xxl wow fadeIn">
+    <div class="container py-5 px-5 service-item">
         <h5 class="text-center">Phí vận chuyển ước tính sẽ bao gồm phụ phí và trừ đi các khoản chiến khấu/giảm giá bởi khuyến mãi.</h5>
         <!-- Bảng cho trường hợp không biết cân nặng -->
-        <div id="unknownWeightResult" class="table-responsive">
+        <div id="unknownWeightResult" class="table-responsive ">
             <table class="table table-bordered mt-3 text-center">
                 <thead class="table-light">
                 <tr>
@@ -244,7 +225,7 @@
         </div>
 
         <!-- Bảng cho trường hợp biết cân nặng -->
-        <div id="knownWeightResult" class="table-responsive">
+        <div id="knownWeightResult" class="table-responsive d-none">
             <table class="table table-bordered mt-3 text-center">
                 <thead class="table-light">
                 <tr>
