@@ -241,7 +241,7 @@
                                 <div class="col-sm-3">
                                     <h6 class="mb-0">Họ và tên</h6>
                                 </div>
-                                <div class="col-sm-9 text-secondary">
+                                <div class="col-sm-9 text-secondary" data-field="user-name">
                                     Nguyễn Văn A
                                 </div>
                             </div>
@@ -250,7 +250,7 @@
                                 <div class="col-sm-3">
                                     <h6 class="mb-0">Email</h6>
                                 </div>
-                                <div class="col-sm-9 text-secondary">
+                                <div class="col-sm-9 text-secondary" data-field="user-email">
                                     nguyenvana@example.com
                                 </div>
                             </div>
@@ -259,7 +259,7 @@
                                 <div class="col-sm-3">
                                     <h6 class="mb-0">Điện thoại</h6>
                                 </div>
-                                <div class="col-sm-9 text-secondary">
+                                <div class="col-sm-9 text-secondary" data-field="user-phone">
                                     0123 456 789
                                 </div>
                             </div>
@@ -268,14 +268,14 @@
                                 <div class="col-sm-3">
                                     <h6 class="mb-0">Địa chỉ</h6>
                                 </div>
-                                <div class="col-sm-9 text-secondary">
+                                <div class="col-sm-9 text-secondary" data-field="user-addr">
                                     123 Đường ABC, Phường XYZ, Quận 1, TP.HCM
                                 </div>
                             </div>
                             <hr>
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <a class="btn btn-outline-primary" href="#">
+                                    <a class="btn btn-outline-primary" href="#" data-mdb-ripple-init data-mdb-modal-init data-mdb-target="#profile-edit">
                                         <i class="fas fa-edit me-2"></i>Chỉnh sửa hồ sơ
                                     </a>
                                 </div>
@@ -285,6 +285,54 @@
                 </div>
             </div>
         </section>
+        <!-- Profile Edit Modal -->
+        <div class="modal fade" id="profile-edit" tabindex="-1" aria-labelledby="profile-edit" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="profile-edit-label">Chỉnh sửa hồ sơ</h5>
+                        <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <!-- Modal Body -->
+                    <div class="modal-body">
+                        <form id="profile-edit-form">
+                            <!-- Họ và tên -->
+                            <div class="mb-4">
+                                <label class="form-label" for="user-name">Họ và tên</label>
+                                <input type="text" id="user-name" class="form-control" placeholder="Nhập họ và tên" value=""/>
+                            </div>
+                            <!-- Email -->
+                            <div class="mb-4">
+                                <label class="form-label" for="user-email">Email</label>
+                                <input type="email" id="user-email" class="form-control" placeholder="nguyenvana@example.com" value=""/>
+                            </div>
+
+                            <!-- Điện thoại -->
+                            <div class="mb-4">
+                                <label class="form-label" for="user-phone">Điện thoại</label>
+                                <input type="tel" id="user-phone" class="form-control" placeholder="0123 456 789" value=""/>
+                            </div>
+
+                            <!-- Địa chỉ -->
+                            <div class="mb-4">
+                                <label class="form-label" for="user-addr">Địa chỉ</label>
+                                <textarea id="user-addr" class="form-control" rows="3" placeholder="Nhập địa chỉ" >123 Đường ABC, Phường XYZ, Quận 1, TP.HCM</textarea>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Modal Footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Đóng</button>
+                        <button type="button" class="btn btn-primary" id="save-profile">Lưu thay đổi</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Shop section -->
         <section class="mb-4">
             <div class="card">
                 <div class="card-header text-black">
@@ -295,7 +343,7 @@
                         <div class="col-sm-3">
                             <h6 class="mb-0">Tên Công Ty</h6>
                         </div>
-                        <div class="col-sm-9 text-secondary">
+                        <div class="col-sm-9 text-secondary" data-field="company-name">
                             Công Ty TNHH Rabex
                         </div>
                     </div>
@@ -313,7 +361,7 @@
                         <div class="col-sm-3">
                             <h6 class="mb-0">Ngành hàng</h6>
                         </div>
-                        <div class="col-sm-9 text-secondary">
+                        <div class="col-sm-9 text-secondary" data-field="industry">
                             -
                         </div>
                     </div>
@@ -322,13 +370,13 @@
                         <div class="col-sm-3">
                             <h6 class="mb-0">Kênh bán hàng</h6>
                         </div>
-                        <div class="col-sm-9 text-secondary">
+                        <div class="col-sm-9 text-secondary" data-field="sales-channel">
                             Tiktok
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-12 d-flex justify-content-end">
-                            <a class="btn btn-outline-primary" href="#">
+                            <a class="btn btn-outline-primary" href="#" data-mdb-ripple-init data-mdb-modal-init data-mdb-target="#shop-info">
                                 <i class="fas fa-edit me-2"></i>Cập nhật
                             </a>
                         </div>
@@ -336,6 +384,48 @@
                 </div>
             </div>
         </section>
+
+        <!-- Shop edit modal -->
+        <div class="modal fade" id="shop-info" tabindex="-1" aria-labelledby="shop-info" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="shop-info-label">Cập nhật Thông Tin Kinh Doanh</h5>
+                        <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <!-- Modal Body -->
+                    <div class="modal-body">
+                        <form id="shop-info-form">
+                            <!-- Tên Công Ty -->
+                            <div class="mb-3">
+                                <label for="company-name" class="form-label">Tên Công Ty</label>
+                                <input type="text" id="company-name" class="form-control" placeholder="Nhập tên công ty" value="Công Ty TNHH Rabex">
+                            </div>
+
+                            <!-- Ngành hàng -->
+                            <div class="mb-3">
+                                <label for="industry" class="form-label">Ngành hàng</label>
+                                <input type="text" id="industry" class="form-control" placeholder="Nhập ngành hàng" value="">
+                            </div>
+
+                            <!-- Kênh bán hàng -->
+                            <div class="mb-3">
+                                <label for="sales-channel" class="form-label">Kênh bán hàng</label>
+                                <input type="text" id="sales-channel" class="form-control" placeholder="Nhập kênh bán hàng" value="Tiktok">
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Modal Footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Đóng</button>
+                        <button type="button" class="btn btn-primary" id="save-shop-info">Lưu thay đổi</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
 </main>
@@ -406,7 +496,137 @@
     });
   });
 
+  document.getElementById('save-shop-info').addEventListener('click', function() {
+      // Lấy giá trị từ các input
+      const companyName = document.getElementById('company-name').value;
+      const industry = document.getElementById('industry').value;
+      const salesChannel = document.getElementById('sales-channel').value;
 
+      // Cập nhật dữ liệu hiển thị trong phần Thông Tin Kinh Doanh
+      document.querySelector('[data-field="company-name"]').textContent = companyName || '-';
+      document.querySelector('[data-field="industry"]').textContent = industry || '-';
+      document.querySelector('[data-field="sales-channel"]').textContent = salesChannel || '-';
+
+      // Tạo container cho toast nếu chưa tồn tại
+      let toastContainer = document.querySelector('.toast-container');
+      if (!toastContainer) {
+          toastContainer = document.createElement('div');
+          toastContainer.className = 'toast-container position-fixed bottom-0 end-0 p-3';
+          document.body.appendChild(toastContainer);
+      }
+
+      // Tạo toast element
+      const toastDiv = document.createElement('div');
+      toastDiv.className = 'toast fade';
+      toastDiv.setAttribute('role', 'alert');
+      toastDiv.setAttribute('aria-live', 'assertive');
+      toastDiv.setAttribute('aria-atomic', 'true');
+      toastDiv.setAttribute('data-mdb-autohide', 'true');
+      toastDiv.setAttribute('data-mdb-delay', '3000');
+      toastDiv.setAttribute('data-mdb-position', 'top-center');
+
+      toastDiv.innerHTML = `
+        <div class="toast-header">
+            <i class="fas fa-check me-2 text-success"></i>
+            <strong class="me-auto">Thông báo</strong>
+            <button type="button" class="btn-close" data-mdb-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+            Thông tin đã được cập nhật thành công!
+        </div>
+    `;
+
+      toastContainer.appendChild(toastDiv);
+
+      // Khởi tạo và hiển thị toast sử dụng MDB
+      const toast = new mdb.Toast(toastDiv);
+      toast.show();
+
+      // Xóa toast element sau khi ẩn
+      toastDiv.addEventListener('hidden.mdb.toast', function() {
+          toastDiv.remove();
+      });
+
+      // Đóng modal
+      const shopModal = mdb.Modal.getInstance(document.getElementById('shop-info'));
+      if (shopModal) {
+          shopModal.hide();
+      }
+  });
+
+  // Thêm sự kiện click cho nút chỉnh sửa hồ sơ
+  document.querySelector('a.btn-outline-primary').addEventListener('click', function(e) {
+      e.preventDefault();
+      const profileModal = new mdb.Modal(document.getElementById('profile-edit'));
+      profileModal.show();
+  });
+
+  // Khởi tạo các form-outline của MDB
+  document.querySelectorAll('.form-outline').forEach((formOutline) => {
+      new mdb.Input(formOutline).init();
+  });
+
+  // Xử lý sự kiện lưu thông tin
+  document.getElementById('save-profile').addEventListener('click', function() {
+      // Lấy giá trị từ các input
+      const userName = document.getElementById('user-name').value;
+      const userEmail = document.getElementById('user-email').value;
+      const userPhone = document.getElementById('user-phone').value;
+      const userAddr = document.getElementById('user-addr').value;
+
+      // Cập nhật thông tin trên trang
+      document.querySelector('[data-field="user-name"]').textContent = userName;
+      document.querySelector('.card-title').textContent = userName;
+      document.querySelector('[data-field="user-email"]').textContent = userEmail;
+      document.querySelector('[data-field="user-phone"]').textContent = userPhone;
+      document.querySelector('[data-field="user-addr"]').textContent = userAddr;
+
+      // Tạo container cho toast nếu chưa tồn tại
+      let toastContainer = document.querySelector('.toast-container');
+      if (!toastContainer) {
+          toastContainer = document.createElement('div');
+          toastContainer.className = 'toast-container position-fixed bottom-0 end-0 p-3';
+          document.body.appendChild(toastContainer);
+      }
+
+      // Tạo toast element
+      const toastDiv = document.createElement('div');
+      toastDiv.className = 'toast fade';
+      toastDiv.setAttribute('role', 'alert');
+      toastDiv.setAttribute('aria-live', 'assertive');
+      toastDiv.setAttribute('aria-atomic', 'true');
+      toastDiv.setAttribute('data-mdb-autohide', 'true');
+      toastDiv.setAttribute('data-mdb-delay', '3000');
+      toastDiv.setAttribute('data-mdb-position', 'top-center');
+
+      toastDiv.innerHTML = `
+        <div class="toast-header">
+            <i class="fas fa-check me-2 text-success"></i>
+            <strong class="me-auto">Thông báo</strong>
+            <button type="button" class="btn-close" data-mdb-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+            Thông tin hồ sơ đã được cập nhật thành công!
+        </div>
+    `;
+
+      toastContainer.appendChild(toastDiv);
+
+      // Khởi tạo và hiển thị toast
+      const toast = new mdb.Toast(toastDiv);
+      toast.show();
+
+      // Xóa toast element sau khi ẩn
+      toastDiv.addEventListener('hidden.mdb.toast', function() {
+          toastDiv.remove();
+      });
+
+      // Đóng modal
+      const profileModal = mdb.Modal.getInstance(document.getElementById('profile-edit'));
+      if (profileModal) {
+          profileModal.hide();
+      }
+  });
 </script>
 
 </body>
