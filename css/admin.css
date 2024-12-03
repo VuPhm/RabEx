@@ -1,0 +1,10 @@
+body {
+    background-color: hsl(0, 0%, 97%);
+}
+@media (min-width: 1400px) {
+    header,
+    main,
+    #main-navbar {
+        padding-left: 240px;
+    }
+}
