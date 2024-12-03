@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../../css/mdb.min.css">
+    <link rel="stylesheet" href="../../css/admin.css">
+    <link rel="stylesheet" href="../../css/themify-icons.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet"/>
+    <link
+            rel="stylesheet"
+            data-purpose="Layout StyleSheet"
+            title="Web Awesome"
+            href="/css/app-wa-d53d10572a0e0d37cb8d614a3f177a0c.css?vsn=d"
+    >
+
+    <link
+            rel="stylesheet"
+            href="https://site-assets.fontawesome.com/releases/v6.5.2/css/all.css"
+    >
+
+    <link
+            rel="stylesheet"
+            href="https://site-assets.fontawesome.com/releases/v6.5.2/css/sharp-thin.css"
+    >
+
+    <link
+            rel="stylesheet"
+            href="https://site-assets.fontawesome.com/releases/v6.5.2/css/sharp-solid.css"
+    >
+
+    <link
+            rel="stylesheet"
+            href="https://site-assets.fontawesome.com/releases/v6.5.2/css/sharp-regular.css"
+    >
+
+    <link
+            rel="stylesheet"
+            href="https://site-assets.fontawesome.com/releases/v6.5.2/css/sharp-light.css"
+    >
+    <style>
+        .dt-search {
+            display: none;
+        }
+
+        .avatar-container {
+            position: relative;
+            display: inline-block;
+            width: 150px;
+            height: 150px;
+        }
+
+        .avatar-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 150px;
+            height: 150px;
+            border-radius: 4%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+        .avatar-overlay i {
+            color: #dfe1e5;
+            font-size: 24px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .img-preview {
+            width: 150px;
+            height: 150px;
+            overflow: hidden;
+        }
+
+        .preview-container {
+            text-align: center;
+        }
+
+        #previewArea {
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+<!--nav bar-->
+<nav id="main-navbar" class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-1">
+    <!-- Container wrapper -->
+    <div class="container-fluid">
+        <!-- Toggler -->
+        <button data-mdb-toggle="sidenav" data-mdb-target="#main-sidenav"
+                class="btn shadow-0 p-0 me-3 d-block d-xxl-none" data-mdb-ripple-init aria-controls="#main-sidenav"
+                aria-haspopup="true">
+            <i class="fas fa-bars fa-lg"></i>
+        </button>
+
+        <!-- Search form -->
+        <form class="d-none d-md-flex input-group w-auto my-auto">
+            <input id="search-focus" autocomplete="off" type="search" class="form-control rounded"
+                   placeholder='Search (ctrl + alt to focus)' style="min-width: 225px"/>
+            <span class="input-group-text border-0"><i class="fas fa-search text-secondary"></i></span>
+        </form>
+
+        <!-- Right links -->
+        <ul class="navbar-nav ms-auto d-flex flex-row align-items-center ">
+
+            <!-- Notification dropdown -->
+            <li class="nav-item dropdown">
+                <a class="nav-link me-3 me-lg-0 dropdown-toggle hidden-arrow" href="#" id="navbarDropdownMenuLink2"
+                   role="button" data-mdb-dropdown-init aria-expanded="false">
+                    <i class="fas fa-bell link-secondary"></i>
+                    <span class="badge rounded-pill badge-notification bg-danger">1</span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink2">
+                    <li><a class="dropdown-item" href="#">Some news</a></li>
+                    <li><a class="dropdown-item" href="#">Another news</a></li>
+                    <li>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </li>
+                </ul>
+            </li>
+
+            <!-- Icon dropdown -->
+            <li class="nav-item dropdown">
+                <a class="nav-link me-3 me-lg-0 dropdown-toggle hidden-arrow" href="#" id="navbarDropdown" role="button"
+                   data-mdb-dropdown-init aria-expanded="false">
+                    <i class="flag flag-united-kingdom m-0"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    <li>
+                        <a class="dropdown-item" href="#"><i class="flag flag-united-kingdom"></i>English
+                            <i class="fa fa-check text-success ms-2"></i></a>
+                    </li>
+                    <li>
+                        <hr class="dropdown-divider"/>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="#"><i class="flag flag-poland"></i>Polski</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="#"><i class="flag flag-china"></i>中文</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="#"><i class="flag flag-japan"></i>日本語</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="#"><i class="flag flag-germany"></i>Deutsch</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="#"><i class="flag flag-france"></i>Français</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="#"><i class="flag flag-spain"></i>Español</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="#"><i class="flag flag-russia"></i>Русский</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="#"><i class="flag flag-portugal"></i>Português</a>
+                    </li>
+                </ul>
+            </li>
+
+            <!-- Avatar -->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle hidden-arrow d-flex align-items-center" href="#"
+                   id="navbarDropdownMenuLink" role="button" data-mdb-dropdown-init aria-expanded="false">
+                    <img src="../../img/default-avatar-icon-of-social-media-user-vector.jpg" class="rounded-circle"
+                         height="32" alt="Avatar"
+                         loading="lazy"/>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+                    <li><a class="dropdown-item " href="#">My profile</a></li>
+                    <li><a class="dropdown-item" href="#">Settings</a></li>
+                    <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <!-- Container wrapper -->
+</nav>
+<!--nav bar-->
+
+<nav id="main-sidenav" data-mdb-sidenav-init class="sidenav sidenav-sm shadow-1" data-mdb-hidden="false"
+     data-mdb-accordion="true">
+    <a class="d-flex justify-content-center pt-4 pb-2" href="#" data-mdb-ripple-init data-mdb-ripple-color="primary">
+        <img id="MDB-logo" src="/img/img.png"
+             alt="MDB Logo" draggable="false"/>
+    </a>
+
+    <hr class="hr">
+
+    <ul class="sidenav-menu px-2 pb-5">
+
+
+        <li class="sidenav-item pt-3">
+            <span class="sidenav-subheading text-muted text-uppercase fw-bold">Dashboard</span>
+        </li>
+        <li class="sidenav-item">
+            <a class="sidenav-link" href="">
+                <i class="fas fa-plus fa-fw me-3"></i><span>Dashboard</span></a>
+        </li>
+
+        <li class="sidenav-item pt-3">
+            <span class="sidenav-subheading text-muted text-uppercase fw-bold">Quản lý đơn hàng</span>
+        </li>
+        <li class="sidenav-item">
+            <a class="sidenav-link" href="/admin/products">
+                <i class="fas fa-cubes fa-fw me-3"></i><span>Theo dõi đơn hàng</span></a>
+        </li>
+        <li class="sidenav-item">
+            <a class="sidenav-link" href="/admin/product-categories">
+                <i class="fas fa-list-alt fa-fw me-3"></i><span>Lịch sử đơn hàng</span></a>
+        </li>
+        <li class="sidenav-item pt-3">
+            <span class="sidenav-subheading text-muted text-uppercase fw-bold">Quản lý taì khoản</span>
+        </li>
+
+        <li class="sidenav-item">
+            <a class="sidenav-link" href="">
+                <i class="fas fa-user fa-fw me-3 active"></i><span>Danh sách người dùng</span></a>
+        </li>
+        <li class="sidenav-item pt-3">
+            <span class="sidenav-subheading text-muted text-uppercase fw-bold">Cài đặt</span>
+        </li>
+        <li class="sidenav-item">
+            <a class="sidenav-link" href="">
+                <i class="fas fa-plus fa-fw me-3 active"></i><span>Cài đặt hệ thống</span></a>
+        </li>
+
+    </ul>
+</nav>
+
+<!-- Heading -->
+<section class="text-center text-md-start">
+    <!-- Background gradient -->
+    <div style="height: 60px;">
+    </div>
+    <!-- Background gradient -->
+
+</section>
+<!-- Heading -->
+
+
+<!-- content  -->
+<main id="content">
+    <div class="container p-4 ">
+        <section class="mb-1">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Posts</li>
+                </ol>
+            </nav>
+        </section>
+        <section class="mb-4">
+            <div class="row">
+                <!-- Profile Card -->
+                <div class="col-md-4 mb-3">
+                    <div class="card h-100">
+                        <div class="card-body text-center ">
+                            <div class=" position-relative">
+                                <img src="../../img/feature.jpg" class="     img-fluid mb-3 avatar-img"
+                                     style="width: 150px; border-radius: 4%" alt="User Avatar">
+
+                            </div>
+                            <h5 class="card-title mb-2 mt-3">Bưu cục Linh Trung</h5>
+                            <p class="text-muted mb-1">#143521</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Profile Card Modal -->
+                <div class="modal fade" id="profileEditModal" tabindex="-1" aria-labelledby="profileEditModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="profileEditModalLabel">Chỉnh sửa ảnh đại diện</h5>
+                                <button type="button" class="btn-close" data-mdb-dismiss="modal"
+                                        aria-label="Close"></button>
+                            </div>
+
+                            <!-- Modal Body -->
+                            <div class="modal-body">
+                                <form id="profileEditForm">
+                                    <!-- Avatar -->
+                                    <div class="mb-4">
+                                        <label class="form-label" for="avatarUpload">Ảnh đại diện</label>
+                                        <input type="file" id="avatarUpload" class="form-control" accept="image/*"/>
+                                        <div class="form-text">Chọn ảnh định dạng: JPG, PNG, GIF (tối đa 2MB)</div>
+                                        <div class="text-center mt-3">
+                                            <img id="avatarPreview" src="../../img/testimonial-1.jpg"
+                                                 class=" rounded-circle preview-img"
+                                                 style="width: 150px; height: 150px;" alt="Avatar Preview"/>
+
+                                            <!-- Loading spinner (ẩn mặc định) -->
+                                            <div class="spinner-border text-primary loading-spinner d-none"
+                                                 role="status">
+                                                <span class="visually-hidden">Loading...</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <!-- Modal Footer -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Đóng</button>
+                                <button type="button" class="btn btn-primary" id="saveChanges">Lưu thay đổi</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Profile Details -->
+                <div class="col-md-8">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Tên</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary" data-field="user-name">
+                                    Bưu cục Linh Trung
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Email</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary" data-field="user-email">
+                                    linhtrungrebexpost@rebex.com
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Điện thoại</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary" data-field="user-phone">
+                                    0123 456 789
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Địa chỉ</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary" data-field="user-addr">
+                                    Đại học Nông Lâm - Khu phố 8 - Linh Trung - Quận Thủ Đức - TP HCM
+                                </div>
+                            </div>
+                            <hr>
+
+                            <div class=" d-flex justify-content-end">
+                                <a class="btn btn-outline-primary" href="#" data-mdb-ripple-init data-mdb-modal-init
+                                   data-mdb-target="#shop-info">
+                                    <i class="fas fa-edit me-2"></i>Cập nhật
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Shop section -->
+        <section class="mb-4">
+            <div class="card">
+                <div class="card-header text-black">
+                    <h5 class="mb-0">Thông tin</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-3">
+                        <div class="col-sm-3">
+                            <h6 class="mb-0">Quản lý</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary" data-field="company-name">
+                            Nguyễn Văn A
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row mb-3">
+                        <div class="col-sm-3">
+                            <h6 class="mb-0">Nhân viên trực</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                            Hoàng Văn Trí
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row mb-3">
+                        <div class="col-sm-3">
+                            <h6 class="mb-0">Nhân viên</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary" data-field="industry">
+                            20
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row mb-3">
+                        <div class="col-sm-3">
+                            <h6 class="mb-0">Bưu kiện</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary" data-field="sales-channel">
+                            450
+                        </div>
+                    </div>
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-sm-12 d-flex justify-content-end">
+                            <a class="btn btn-outline-primary" href="#" data-mdb-ripple-init data-mdb-modal-init
+                               data-mdb-target="#post-info">
+                                <i class="fas fa-edit me-2"></i>Nhân Viên
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Shop edit modal -->
+    </div>
+</main>
+<!--content -->
+
+<script src="/js/mdb.umd.min.js"></script>
+<script src="/js/address.dropdown.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
+<script src="/js/main.admin.js"></script>
+<script>
+    const sidenav = document.getElementById("main-sidenav");
+
+    const sidenavInstance = mdb.Sidenav.getInstance(sidenav);
+
+    const currencyFormat = Intl.NumberFormat("vi-VN", {style: 'currency', currency: 'VND'})
+
+
+    let innerWidth = null;
+
+    //
+
+    const setMode = (e) => {
+        // Check necessary for Android devices
+        if (window.innerWidth === innerWidth) {
+            return;
+        }
+
+        innerWidth = window.innerWidth;
+
+        if (window.innerWidth < 1400) {
+            sidenavInstance.changeMode("over");
+            sidenavInstance.hide();
+        } else {
+            sidenavInstance.changeMode("side");
+            sidenavInstance.show();
+        }
+    };
+
+    setMode();
+
+    // Event listeners
+    window.addEventListener("resize", setMode);
+
+    const searchFocus = document.getElementById('search-focus');
+    const keys = [
+        {keyCode: 'AltLeft', isTriggered: false},
+        {keyCode: 'ControlLeft', isTriggered: false},
+    ];
+
+    window.addEventListener('keydown', (e) => {
+        keys.forEach((obj) => {
+            if (obj.keyCode === e.code) {
+                obj.isTriggered = true;
+            }
+        });
+
+        const shortcutTriggered = keys.filter((obj) => obj.isTriggered).length === keys.length;
+
+        if (shortcutTriggered) {
+            searchFocus.focus();
+        }
+    });
+
+    window.addEventListener('keyup', (e) => {
+        keys.forEach((obj) => {
+            if (obj.keyCode === e.code) {
+                obj.isTriggered = false;
+            }
+        });
+    });
+
+    const addressDropdown = new AddressDropdown("#address-selector", {
+        placeholder: "Address"
+    });
+    addressDropdown.init();
+</script>
+
+</body>
+</html>
