@@ -193,9 +193,10 @@
 
                     <div class="d-flex gap-4">
                         <div id="address-selector" class="position-relative" style="width: 400px"></div>
-                        <a class="btn btn-primary shadow-2-soft" data-mdb-ripple-init href="#!" role="button">
+                        <button class="btn btn-primary shadow-2-soft" data-mdb-ripple-init data-mdb-modal-init
+                                data-mdb-target="#post-form-modal">
                             <i class="fab fa-plus me-2"></i>Tạo
-                        </a>
+                        </button>
                     </div>
                     <div class="d-flex gap-4 ">
 
@@ -479,6 +480,49 @@
             </div>
         </section>
 
+        <!-- Modal -->
+        <div class="modal top fade" id="post-form-modal" tabindex="-1" aria-labelledby="post-form-modal"
+             aria-hidden="true" data-mdb-backdrop="static" data-mdb-keyboard="true">
+            <div class="modal-dialog modal-lg  modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Tạo Bưu Cục</h5>
+                        <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Name input -->
+                        <div data-mdb-input-init class="form-outline mb-4">
+                            <input type="text" id="form4Example1" class="form-control"/>
+                            <label class="form-label" for="form4Example1">Tên</label>
+                        </div>
+
+
+
+                        <div id="address-form-selector" class="mb-4">
+
+                        </div>
+
+                        <div data-mdb-input-init class="form-outline mb-4">
+                            <input type="email" id="form4Example2" class="form-control"/>
+                            <label class="form-label" for="form4Example2">Email</label>
+                        </div>
+
+                        <div data-mdb-input-init class="form-outline mb-4">
+                            <input type="text" id="phone" class="form-control"/>
+                            <label class="form-label" for="phone">Số điện thoại</label>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">
+                            Close
+                        </button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </main>
 <!--content -->
@@ -554,6 +598,10 @@
         placeholder: "Địa chỉ"
     });
     addressDropdown.init();
+    const addressDropdown1 = new AddressDropdown("#address-form-selector", {
+        placeholder: "Địa chỉ"
+    });
+    addressDropdown1.init();
 </script>
 
 </body>
