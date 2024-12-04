@@ -69,13 +69,16 @@
         <!-- Search form -->
         <form class="d-none d-md-flex input-group w-auto my-auto">
             <input id="search-focus" autocomplete="off" type="search" class="form-control rounded"
-                   placeholder='Search (ctrl + alt to focus)' style="min-width: 225px"/>
+                   placeholder='Tìm kiếm (ctrl + alt)' style="min-width: 225px"/>
             <span class="input-group-text border-0"><i class="fas fa-search text-secondary"></i></span>
         </form>
 
         <!-- Right links -->
         <ul class="navbar-nav ms-auto d-flex flex-row align-items-center ">
-
+            <li class="nav-item me-4">
+                <a class="btn btn-outline-primary" href="order-details.html">
+                    <i class="fas fa-plus fa-fw me-3"></i>Tạo Đơn</a>
+            </li>
             <!-- Notification dropdown -->
             <li class="nav-item dropdown">
                 <a class="nav-link me-3 me-lg-0 dropdown-toggle hidden-arrow" href="#" id="navbarDropdownMenuLink2"
@@ -93,51 +96,12 @@
             </li>
 
             <!-- Icon dropdown -->
-            <li class="nav-item dropdown">
-                <a class="nav-link me-3 me-lg-0 dropdown-toggle hidden-arrow" href="#" id="navbarDropdown" role="button"
-                   data-mdb-dropdown-init aria-expanded="false">
-                    <i class="flag flag-united-kingdom m-0"></i>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                    <li>
-                        <a class="dropdown-item" href="#"><i class="flag flag-united-kingdom"></i>English
-                            <i class="fa fa-check text-success ms-2"></i></a>
-                    </li>
-                    <li>
-                        <hr class="dropdown-divider"/>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="#"><i class="flag flag-poland"></i>Polski</a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="#"><i class="flag flag-china"></i>中文</a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="#"><i class="flag flag-japan"></i>日本語</a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="#"><i class="flag flag-germany"></i>Deutsch</a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="#"><i class="flag flag-france"></i>Français</a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="#"><i class="flag flag-spain"></i>Español</a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="#"><i class="flag flag-russia"></i>Русский</a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="#"><i class="flag flag-portugal"></i>Português</a>
-                    </li>
-                </ul>
-            </li>
 
             <!-- Avatar -->
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle hidden-arrow d-flex align-items-center" href="#"
                    id="navbarDropdownMenuLink" role="button" data-mdb-dropdown-init aria-expanded="false">
-                    <img src="../../img/default-avatar-icon-of-social-media-user-vector.jpg" class="rounded-circle"
+                    <img src="./../../img/testimonial-1.jpg" class="rounded-circle"
                          height="32" alt="Avatar"
                          loading="lazy"/>
                 </a>
@@ -156,8 +120,7 @@
 <nav id="main-sidenav" data-mdb-sidenav-init class="sidenav sidenav-sm shadow-1" data-mdb-hidden="false"
      data-mdb-accordion="true">
     <a class="d-flex justify-content-center pt-4 pb-2" href="#" data-mdb-ripple-init data-mdb-ripple-color="primary">
-        <img id="MDB-logo" src="/img/img.png"
-             alt="MDB Logo" draggable="false"/>
+        <h2 class="mb-2 text-primary">RabEx</h2>
     </a>
 
     <hr class="hr">
@@ -169,37 +132,36 @@
             <span class="sidenav-subheading text-muted text-uppercase fw-bold">Dashboard</span>
         </li>
         <li class="sidenav-item">
-            <a class="sidenav-link" href="">
+            <a class="sidenav-link" href="dashboard.html">
                 <i class="fas fa-plus fa-fw me-3"></i><span>Dashboard</span></a>
         </li>
 
         <li class="sidenav-item pt-3">
-            <span class="sidenav-subheading text-muted text-uppercase fw-bold">Quản lý đơn hàng</span>
+            <span class="sidenav-subheading text-muted text-uppercase fw-bold">Quản lý</span>
+        </li>
+        <li class="sidenav-item active">
+            <a class="sidenav-link" href="post-manager.html">
+                <i class="fas fa-building fa-fw me-3"></i><span>Bưu cục</span></a>
         </li>
         <li class="sidenav-item">
-            <a class="sidenav-link" href="/admin/products">
-                <i class="fas fa-cubes fa-fw me-3"></i><span>Theo dõi đơn hàng</span></a>
+            <a class="sidenav-link" href="order-manager.html">
+                <i class="fas fa-cubes fa-fw me-3"></i><span>Bưu phẩm</span></a>
         </li>
         <li class="sidenav-item">
-            <a class="sidenav-link" href="/admin/product-categories">
-                <i class="fas fa-list-alt fa-fw me-3"></i><span>Lịch sử đơn hàng</span></a>
+            <a class="sidenav-link" href="post-staff.html">
+                <i class="fas fa-clipboard-user fa-fw me-3"></i><span>Nhân viên</span></a>
         </li>
-        <li class="sidenav-item pt-3">
-            <span class="sidenav-subheading text-muted text-uppercase fw-bold">Quản lý taì khoản</span>
-        </li>
-
         <li class="sidenav-item">
-            <a class="sidenav-link" href="">
-                <i class="fas fa-user fa-fw me-3 active"></i><span>Danh sách người dùng</span></a>
+            <a class="sidenav-link" href="user-manager.html">
+                <i class="fas fa-users fa-fw me-3"></i><span>Tài khoản</span></a>
         </li>
         <li class="sidenav-item pt-3">
             <span class="sidenav-subheading text-muted text-uppercase fw-bold">Cài đặt</span>
         </li>
         <li class="sidenav-item">
-            <a class="sidenav-link" href="">
-                <i class="fas fa-plus fa-fw me-3 active"></i><span>Cài đặt hệ thống</span></a>
+            <a class="sidenav-link" href="account.html">
+                <i class="fas fa-user fa-fw me-3 active"></i><span>Tài khoản</span></a>
         </li>
-
     </ul>
 </nav>
 
@@ -220,28 +182,28 @@
         <section class="mb-1">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Posts</li>
+                    <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Bưu cục</li>
                 </ol>
             </nav>
         </section>
-        '
         <section class="mb-1">
             <div class="card shadow-0 shadow-0 mb-4 p-4 rounded-1">
                 <div class="d-flex justify-content-between">
 
                     <div class="d-flex gap-4">
                         <div id="address-selector" class="position-relative" style="width: 400px"></div>
-                        <a class="btn btn-primary shadow-2-soft" data-mdb-ripple-init href="#!" role="button">
-                            <i class="fab fa-plus me-2"></i>New
-                        </a>
+                        <button class="btn btn-primary shadow-2-soft" data-mdb-ripple-init data-mdb-modal-init
+                                data-mdb-target="#post-form-modal">
+                            <i class="fab fa-plus me-2"></i>Tạo
+                        </button>
                     </div>
                     <div class="d-flex gap-4 ">
 
                         <div class="input-group">
                             <div class="form-outline" data-mdb-input-init>
                                 <input type="search" id="form1" class="form-control" />
-                                <label class="form-label" for="form1">Search</label>
+                                <label class="form-label" for="form1">Tìm kiếm</label>
                             </div>
                             <button type="button" class="btn btn-primary shadow-1" data-mdb-ripple-init>
                                 <i class="fas fa-search"></i>
@@ -254,70 +216,313 @@
             </div>
         </section>
 
-        <table class="table align-middle mb-0 bg-white">
-            <thead class="bg-light">
-            <tr>
-                <th>Code</th>
-                <th>Name</th>
-                <th>Staffs</th>
-                <th>Parcels</th>
-                <th>Manager</th>
-                <th>Actions</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>
-                    <div class="d-flex align-items-center">
-                        #143521
+        <section class="mt-4">
+            <div class="card shadow-0 shadow-0 p-4 rounded-1">
+                <table class="table align-middle mb-0 bg-white">
+                    <thead class="bg-light">
+                    <tr>
+                        <th>Mã Bưu Cục</th>
+                        <th>Tên</th>
+                        <th>Nhân viên</th>
+                        <th>Bưu Kiện</th>
+                        <th>Quản lý</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>
+                            <div class="d-flex align-items-center">#143523</div>
+                        </td>
+                        <td>
+                            <p class="fw-normal mb-1">Bưu Cục Tân Bình - TP HCM</p>
+                        </td>
+                        <td>
+                            <p class="fw-normal mb-1">20</p>
+                        </td>
+                        <td>
+                            <a href="#" class="text-primary">500</a>
+                        </td>
+                        <td>
+                            <a href="#" class="text-primary">Lê Văn Bình</a>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-outline-primary btn-floating shadow-1" aria-label="View">
+                                <i class="fas fa-eye fa-fw"></i>
+                            </button>
+                            <button type="button" class="btn btn-outline-primary btn-floating shadow-1" aria-label="Edit">
+                                <i class="fas fa-edit fa-fw"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="d-flex align-items-center">#143524</div>
+                        </td>
+                        <td>
+                            <p class="fw-normal mb-1">Bưu Cục Gò Vấp - TP HCM</p>
+                        </td>
+                        <td>
+                            <p class="fw-normal mb-1">30</p>
+                        </td>
+                        <td>
+                            <a href="#" class="text-primary">700</a>
+                        </td>
+                        <td>
+                            <a href="#" class="text-primary">Phạm Thị Hoa</a>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-outline-primary btn-floating shadow-1" aria-label="View">
+                                <i class="fas fa-eye fa-fw"></i>
+                            </button>
+                            <button type="button" class="btn btn-outline-primary btn-floating shadow-1" aria-label="Edit">
+                                <i class="fas fa-edit fa-fw"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="d-flex align-items-center">#143525</div>
+                        </td>
+                        <td>
+                            <p class="fw-normal mb-1">Bưu Cục Quận 1 - TP HCM</p>
+                        </td>
+                        <td>
+                            <p class="fw-normal mb-1">12</p>
+                        </td>
+                        <td>
+                            <a href="#" class="text-primary">450</a>
+                        </td>
+                        <td>
+                            <a href="#" class="text-primary">Nguyễn Văn An</a>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-outline-primary btn-floating shadow-1" aria-label="View">
+                                <i class="fas fa-eye fa-fw"></i>
+                            </button>
+                            <button type="button" class="btn btn-outline-primary btn-floating shadow-1" aria-label="Edit">
+                                <i class="fas fa-edit fa-fw"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="d-flex align-items-center">#143526</div>
+                        </td>
+                        <td>
+                            <p class="fw-normal mb-1">Bưu Cục Thủ Đức - TP HCM</p>
+                        </td>
+                        <td>
+                            <p class="fw-normal mb-1">18</p>
+                        </td>
+                        <td>
+                            <a href="#" class="text-primary">350</a>
+                        </td>
+                        <td>
+                            <a href="#" class="text-primary">Trần Thị Hằng</a>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-outline-primary btn-floating shadow-1" aria-label="View">
+                                <i class="fas fa-eye fa-fw"></i>
+                            </button>
+                            <button type="button" class="btn btn-outline-primary btn-floating shadow-1" aria-label="Edit">
+                                <i class="fas fa-edit fa-fw"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="d-flex align-items-center">#143527</div>
+                        </td>
+                        <td>
+                            <p class="fw-normal mb-1">Bưu Cục Bình Tân - TP HCM</p>
+                        </td>
+                        <td>
+                            <p class="fw-normal mb-1">25</p>
+                        </td>
+                        <td>
+                            <a href="#" class="text-primary">600</a>
+                        </td>
+                        <td>
+                            <a href="#" class="text-primary">Đặng Văn Tuấn</a>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-outline-primary btn-floating shadow-1" aria-label="View">
+                                <i class="fas fa-eye fa-fw"></i>
+                            </button>
+                            <button type="button" class="btn btn-outline-primary btn-floating shadow-1" aria-label="Edit">
+                                <i class="fas fa-edit fa-fw"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="d-flex align-items-center">#143528</div>
+                        </td>
+                        <td>
+                            <p class="fw-normal mb-1">Bưu Cục Quận 3 - TP HCM</p>
+                        </td>
+                        <td>
+                            <p class="fw-normal mb-1">22</p>
+                        </td>
+                        <td>
+                            <a href="#" class="text-primary">550</a>
+                        </td>
+                        <td>
+                            <a href="#" class="text-primary">Lý Thu Hằng</a>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-outline-primary btn-floating shadow-1" aria-label="View">
+                                <i class="fas fa-eye fa-fw"></i>
+                            </button>
+                            <button type="button" class="btn btn-outline-primary btn-floating shadow-1" aria-label="Edit">
+                                <i class="fas fa-edit fa-fw"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="d-flex align-items-center">#143529</div>
+                        </td>
+                        <td>
+                            <p class="fw-normal mb-1">Bưu Cục Phú Nhuận - TP HCM</p>
+                        </td>
+                        <td>
+                            <p class="fw-normal mb-1">14</p>
+                        </td>
+                        <td>
+                            <a href="#" class="text-primary">380</a>
+                        </td>
+                        <td>
+                            <a href="#" class="text-primary">Nguyễn Văn Khải</a>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-outline-primary btn-floating shadow-1" aria-label="View">
+                                <i class="fas fa-eye fa-fw"></i>
+                            </button>
+                            <button type="button" class="btn btn-outline-primary btn-floating shadow-1" aria-label="Edit">
+                                <i class="fas fa-edit fa-fw"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="d-flex align-items-center">#143530</div>
+                        </td>
+                        <td>
+                            <p class="fw-normal mb-1">Bưu Cục Tân Phú - TP HCM</p>
+                        </td>
+                        <td>
+                            <p class="fw-normal mb-1">19</p>
+                        </td>
+                        <td>
+                            <a href="#" class="text-primary">520</a>
+                        </td>
+                        <td>
+                            <a href="#" class="text-primary">Hoàng Thị Lan</a>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-outline-primary btn-floating shadow-1" aria-label="View">
+                                <i class="fas fa-eye fa-fw"></i>
+                            </button>
+                            <button type="button" class="btn btn-outline-primary btn-floating shadow-1" aria-label="Edit">
+                                <i class="fas fa-edit fa-fw"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="d-flex align-items-center">#143531</div>
+                        </td>
+                        <td>
+                            <p class="fw-normal mb-1">Bưu Cục Quận 10 - TP HCM</p>
+                        </td>
+                        <td>
+                            <p class="fw-normal mb-1">27</p>
+                        </td>
+                        <td>
+                            <a href="#" class="text-primary">680</a>
+                        </td>
+                        <td>
+                            <a href="#" class="text-primary">Ngô Thị Mỹ</a>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-outline-primary btn-floating shadow-1" aria-label="View">
+                                <i class="fas fa-eye fa-fw"></i>
+                            </button>
+                            <button type="button" class="btn btn-outline-primary btn-floating shadow-1" aria-label="Edit">
+                                <i class="fas fa-edit fa-fw"></i>
+                            </button>
+                        </td>
+                    </tr>
+
+                    </tbody>
+                </table>
+
+            </div>
+        </section>
+
+        <section class="mt-4">
+            <div class="card shadow-0 shadow-0 p-4 rounded-1">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item disabled">
+                            <a class="page-link">Previous</a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">Next</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </section>
+
+        <!-- Modal -->
+        <div class="modal top fade" id="post-form-modal" tabindex="-1" aria-labelledby="post-form-modal"
+             aria-hidden="true" data-mdb-backdrop="static" data-mdb-keyboard="true">
+            <div class="modal-dialog modal-lg  modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Tạo Bưu Cục</h5>
+                        <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
                     </div>
-                </td>
-                <td>
-                    <p class="fw-normal mb-1">Bưu Cục Linh Trung - TP HCM</p>
-                </td>
-                <td>
-                    <p class="fw-normal mb-1">20</p>
+                    <div class="modal-body">
+                        <!-- Name input -->
+                        <div data-mdb-input-init class="form-outline mb-4">
+                            <input type="text" id="form4Example1" class="form-control"/>
+                            <label class="form-label" for="form4Example1">Tên</label>
+                        </div>
 
-                </td>
-                <td><a>450</a></td>
-                <td><a>Nguyễn Văn Bé</a></td>
 
-                <td>
-                    <button type="button" class="btn btn-outline-primary btn-primary btn-floating shadow-1">
-                        <i class="fas fa-eye fa-fw "></i></button>
 
-                    <button type="button" class="btn  btn-outline-primary btn-floating shadow-1">
-                        <i class="fas fa-edit fa-fw"></i>
-                    </button>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="d-flex align-items-center">
-                        #143522
+                        <div id="address-form-selector" class="mb-4">
+
+                        </div>
+
+                        <div data-mdb-input-init class="form-outline mb-4">
+                            <input type="email" id="form4Example2" class="form-control"/>
+                            <label class="form-label" for="form4Example2">Email</label>
+                        </div>
+
+                        <div data-mdb-input-init class="form-outline mb-4">
+                            <input type="text" id="phone" class="form-control"/>
+                            <label class="form-label" for="phone">Số điện thoại</label>
+                        </div>
+
                     </div>
-                </td>
-                <td>
-                    <p class="fw-normal mb-1">Bưu Cục Linh Xuân - TP HCM</p>
-                </td>
-                <td>
-                    <p class="fw-normal mb-1">15</p>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">
+                            Close
+                        </button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-                </td>
-                <td><a>300</a></td>
-                <td><a>Nguyễn Hoàng Xuân</a></td>
-
-                <td>
-                    <button type="button" class="btn btn-outline-primary btn-primary btn-floating shadow-1">
-                        <i class="fas fa-eye fa-fw "></i></button>
-
-                    <button type="button" class="btn  btn-outline-primary btn-floating shadow-1">
-                        <i class="fas fa-edit fa-fw"></i>
-                    </button>
-                </td>
-            </tr>
-            </tbody>
-        </table>
     </div>
 </main>
 <!--content -->
@@ -390,9 +595,13 @@
     });
 
     const addressDropdown = new AddressDropdown("#address-selector", {
-        placeholder: "Address"
+        placeholder: "Địa chỉ"
     });
     addressDropdown.init();
+    const addressDropdown1 = new AddressDropdown("#address-form-selector", {
+        placeholder: "Địa chỉ"
+    });
+    addressDropdown1.init();
 </script>
 
 </body>
