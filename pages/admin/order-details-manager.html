@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../../css/mdb.min.css">
+    <link rel="stylesheet" href="../../css/admin.css">
+    <link rel="stylesheet" href="../../css/themify-icons.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet"/>
+    <link
+            rel="stylesheet"
+            data-purpose="Layout StyleSheet"
+            title="Web Awesome"
+            href="/css/app-wa-d53d10572a0e0d37cb8d614a3f177a0c.css?vsn=d"
+    >
+
+    <link
+            rel="stylesheet"
+            href="https://site-assets.fontawesome.com/releases/v6.5.2/css/all.css"
+    >
+
+    <link
+            rel="stylesheet"
+            href="https://site-assets.fontawesome.com/releases/v6.5.2/css/sharp-thin.css"
+    >
+
+    <link
+            rel="stylesheet"
+            href="https://site-assets.fontawesome.com/releases/v6.5.2/css/sharp-solid.css"
+    >
+
+    <link
+            rel="stylesheet"
+            href="https://site-assets.fontawesome.com/releases/v6.5.2/css/sharp-regular.css"
+    >
+
+    <link
+            rel="stylesheet"
+            href="https://site-assets.fontawesome.com/releases/v6.5.2/css/sharp-light.css"
+    >
+    <style>
+        .dt-search {
+            display: none;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .visible {
+            display: table;
+        }</style>
+    <link rel="stylesheet" href="./../../css/custom-color.css">
+</head>
+<body>
+<!--nav bar-->
+<nav id="main-navbar" class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-1">
+    <!-- Container wrapper -->
+    <div class="container-fluid">
+        <!-- Toggler -->
+        <button data-mdb-toggle="sidenav" data-mdb-target="#main-sidenav"
+                class="btn shadow-0 p-0 me-3 d-block d-xxl-none" data-mdb-ripple-init aria-controls="#main-sidenav"
+                aria-haspopup="true">
+            <i class="fas fa-bars fa-lg"></i>
+        </button>
+
+        <!-- Search form -->
+        <form class="d-none d-md-flex input-group w-auto my-auto">
+            <input id="search-focus" autocomplete="off" type="search" class="form-control rounded"
+                   placeholder='Tìm kiếm (ctrl + alt)' style="min-width: 225px"/>
+            <span class="input-group-text border-0"><i class="fas fa-search text-secondary"></i></span>
+        </form>
+
+        <!-- Right links -->
+        <ul class="navbar-nav ms-auto d-flex flex-row align-items-center ">
+            <li class="nav-item me-4">
+                <a class="btn btn-outline-primary" href="order-details.html">
+                    <i class="fas fa-plus fa-fw me-3"></i>Tạo Đơn</a>
+            </li>
+            <!-- Notification dropdown -->
+            <li class="nav-item dropdown">
+                <a class="nav-link me-3 me-lg-0 dropdown-toggle hidden-arrow" href="#" id="navbarDropdownMenuLink2"
+                   role="button" data-mdb-dropdown-init aria-expanded="false">
+                    <i class="fas fa-bell link-secondary"></i>
+                    <span class="badge rounded-pill badge-notification bg-danger">1</span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink2">
+                    <li><a class="dropdown-item" href="#">Some news</a></li>
+                    <li><a class="dropdown-item" href="#">Another news</a></li>
+                    <li>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </li>
+                </ul>
+            </li>
+
+            <!-- Icon dropdown -->
+
+            <!-- Avatar -->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle hidden-arrow d-flex align-items-center" href="#"
+                   id="navbarDropdownMenuLink" role="button" data-mdb-dropdown-init aria-expanded="false">
+                    <img src="./../../img/testimonial-1.jpg" class="rounded-circle"
+                         height="32" alt="Avatar"
+                         loading="lazy"/>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+                    <li><a class="dropdown-item " href="#">My profile</a></li>
+                    <li><a class="dropdown-item" href="#">Settings</a></li>
+                    <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <!-- Container wrapper -->
+</nav>
+<!--nav bar-->
+
+<nav id="main-sidenav" data-mdb-sidenav-init class="sidenav sidenav-sm shadow-1" data-mdb-hidden="false"
+     data-mdb-accordion="true">
+    <a class="d-flex justify-content-center pt-4 pb-2" href="#" data-mdb-ripple-init data-mdb-ripple-color="primary">
+        <h2 class="mb-2 text-primary">RabEx</h2>
+    </a>
+
+    <hr class="hr">
+
+    <ul class="sidenav-menu px-2 pb-5">
+
+
+        <li class="sidenav-item pt-3">
+            <span class="sidenav-subheading text-muted text-uppercase fw-bold">Dashboard</span>
+        </li>
+        <li class="sidenav-item">
+            <a class="sidenav-link" href="dashboard.html">
+                <i class="fas fa-plus fa-fw me-3"></i><span>Dashboard</span></a>
+        </li>
+
+        <li class="sidenav-item pt-3">
+            <span class="sidenav-subheading text-muted text-uppercase fw-bold">Quản lý</span>
+        </li>
+        <li class="sidenav-item active">
+            <a class="sidenav-link" href="post-manager.html">
+                <i class="fas fa-building fa-fw me-3"></i><span>Bưu cục</span></a>
+        </li>
+        <li class="sidenav-item">
+            <a class="sidenav-link" href="order-manager.html">
+                <i class="fas fa-cubes fa-fw me-3"></i><span>Bưu phẩm</span></a>
+        </li>
+        <li class="sidenav-item">
+            <a class="sidenav-link" href="post-staff.html">
+                <i class="fas fa-clipboard-user fa-fw me-3"></i><span>Nhân viên</span></a>
+        </li>
+        <li class="sidenav-item">
+            <a class="sidenav-link" href="user-manager.html">
+                <i class="fas fa-users fa-fw me-3"></i><span>Tài khoản</span></a>
+        </li>
+        <li class="sidenav-item pt-3">
+            <span class="sidenav-subheading text-muted text-uppercase fw-bold">Cài đặt</span>
+        </li>
+        <li class="sidenav-item">
+            <a class="sidenav-link" href="account.html">
+                <i class="fas fa-user fa-fw me-3 active"></i><span>Tài khoản</span></a>
+        </li>
+    </ul>
+</nav>
+
+<!-- Heading -->
+<section class="text-center text-md-start">
+    <!-- Background gradient -->
+    <div style="height: 60px;">
+    </div>
+    <!-- Background gradient -->
+
+</section>
+<!-- Heading -->
+
+
+<!-- content  -->
+<main id="content">
+    <div class="container p-4 ">
+        <!-- Header -->
+        <div class="d-flex align-items-center mb-4">
+            <a href="order-manager.html" class="text-danger me-3 " style="font-size: 1.5rem;">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+            <h4>Thông tin bưu phẩm</h4>
+        </div>
+        <div class="container mt-3">
+            <div class="row">
+                <!-- Thông tin vận đơn -->
+                <div class="col-md-4 mb-2">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title text-danger">Mã bưu phẩm: 12498270313VN</h5>
+                            <p><strong>Mã đơn hàng:</strong> #BP12345</p>
+                            <p><strong>Ngày lập:</strong> 03/12/2024 05:05:23</p>
+                            <p><strong>Ngày nhận hàng dự kiến:</strong> Đơn cập nhật</p>
+                            <p><strong>Trạng thái:</strong> Hỏa tốc, hẹn giờ</p>
+                            <p><strong>Dịch vụ cộng thêm:</strong> Zalo thông báo đơn hàng</p>
+                            <hr>
+                            <h6 class="card-title text-danger"> Người gửi</h6>
+                            <p>Ngô Văn - 0385874145</p>
+                            <p>214B Đường Tân Bình Khu phố 2, P.Tam Phú, TP.Thủ Đức, TP.Hồ Chí Minh</p>
+                            <p class="text-secondary">Thời gian hẹn lấy: 04/12/2024, Tối (18h30 - 21h00)</p>
+                            <hr>
+                            <h6 class="card-title text-danger"> Người nhận</h6>
+                            <p>Ngô Kinh - 0989888912</p>
+                            <p>123 Hẻm 1236 Đường Lê Văn Lương, X.Phước Kiển, H.Nhà Bè, TP.Hồ Chí Minh</p>
+                            <p class="text-secondary">Thời gian hẹn giao: Tối</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Thông tin hàng hóa và ghi chú vận đơn -->
+                <div class="col-md-4 mb-2">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title text-danger">Thông tin hàng hóa</h5>
+                            <p><strong>Tên hàng:</strong> Bưu phẩm 1</p>
+                            <p><strong>Số lượng:</strong> 1</p>
+                            <p><strong>Khối lượng:</strong> 1 g</p>
+                            <p><strong>Giá trị:</strong> 1.001 đ</p>
+                            <hr>
+                            <p><strong>Tổng khối lượng:</strong> 1 g</p>
+                            <p><strong>Tổng giá trị:</strong> 1.001 đ</p>
+                            <p><strong>Loại hàng hóa:</strong> Bưu kiện</p>
+                            <hr>
+                            <h6><strong>Ghi chú vận đơn:</strong></h6>
+                            <p><strong>Yêu cầu lấy hàng:</strong> Đến lấy hàng tại nhà</p>
+                            <p><strong>Yêu cầu khác:</strong> ehehe</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ảnh bưu phẩm -->
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title text-danger">Hình ảnh bưu phẩm</h5>
+                            <ul class="nav nav-tabs">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-mdb-toggle="tab" href="#tab-image">Ảnh báo phát</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-mdb-toggle="tab" href="#tab-tracking">????????</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-mdb-toggle="tab" href="#tab-history">Lịch sử tác động</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane fade show active" id="tab-image">
+                                    <img class="img-fluid" src="./../../img/service-5.jpg">
+                                    <div class="text-center my-3">
+                                        <button class="btn btn-outline-primary">Xem ảnh</button>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="tab-tracking">
+                                    <p class="text-center my-3">Không có thông tin hiển thị</p>
+                                </div>
+                                <div class="tab-pane fade" id="tab-history">
+                                    <p class="text-center my-3">Không có thông tin hiển thị</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<!--content -->
+
+<script src="./../../js/mdb.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
+<script src="./../../js/main.admin.js"></script>
+<script>
+    const sidenav = document.getElementById("main-sidenav");
+
+    const sidenavInstance = mdb.Sidenav.getInstance(sidenav);
+
+    const currencyFormat = Intl.NumberFormat("vi-VN", {style: 'currency', currency: 'VND'})
+
+
+    let innerWidth = null;
+
+    //
+
+    const setMode = (e) => {
+        // Check necessary for Android devices
+        if (window.innerWidth === innerWidth) {
+            return;
+        }
+
+        innerWidth = window.innerWidth;
+
+        if (window.innerWidth < 1400) {
+            sidenavInstance.changeMode("over");
+            sidenavInstance.hide();
+        } else {
+            sidenavInstance.changeMode("side");
+            sidenavInstance.show();
+        }
+    };
+
+    setMode();
+
+    // Event listeners
+    window.addEventListener("resize", setMode);
+
+    const searchFocus = document.getElementById('search-focus');
+    const keys = [
+        {keyCode: 'AltLeft', isTriggered: false},
+        {keyCode: 'ControlLeft', isTriggered: false},
+    ];
+
+    window.addEventListener('keydown', (e) => {
+        keys.forEach((obj) => {
+            if (obj.keyCode === e.code) {
+                obj.isTriggered = true;
+            }
+        });
+
+        const shortcutTriggered = keys.filter((obj) => obj.isTriggered).length === keys.length;
+
+        if (shortcutTriggered) {
+            searchFocus.focus();
+        }
+    });
+
+    window.addEventListener('keyup', (e) => {
+        keys.forEach((obj) => {
+            if (obj.keyCode === e.code) {
+                obj.isTriggered = false;
+            }
+        });
+    });
+
+    const dataChartShares = {
+        type: 'pie',
+        data: {
+            labels: ['Bitcoin', 'Ethereum', 'Fantom', 'Avalanche', 'Solana'],
+            datasets: [
+                {
+                    label: 'In USD',
+                    data: [34000, 43500, 66200, 65500, 62100],
+                    backgroundColor: [
+                        'hsl(32, 54%, 71%)',
+                        'hsl(230, 17%, 61%)',
+                        'hsl(196, 52%, 63%)',
+                        'hsl(360, 59%, 68%)',
+                        'hsl(265, 25%, 55%)',
+                    ],
+                },
+            ],
+        },
+    };
+
+    // Options
+    const optionsChartDataLabelsExample = {
+        options: {
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        label: function (context) {
+                            return " $ " + context.formattedValue;
+                        },
+                    },
+                },
+            },
+        },
+    };
+
+    new mdb.Chart(
+        document.getElementById('chart-shares'),
+        dataChartShares,
+        optionsChartDataLabelsExample
+    );
+
+    // Chart
+    const dataChartChange = {
+        type: 'line',
+        data: {
+            labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday '],
+            datasets: [
+                {
+                    label: 'Portfolio balance in USD',
+                    data: [731112, 725112, 731112, 745112, 751112, 768112, 770112],
+                },
+            ],
+        },
+    };
+
+    const optionsChartChange = {
+        options: {
+            interaction: {
+                intersect: false,
+            },
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        label: function (context) {
+                            return " $ " + context.formattedValue;
+                        },
+                    },
+                },
+            },
+        },
+    };
+
+    new mdb.Chart(document.getElementById('chart-change'), dataChartChange, optionsChartChange);
+</script>
+
+</body>
+</html>

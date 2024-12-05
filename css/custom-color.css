@@ -1,0 +1,10 @@
+:root {
+    --primary: #FF3E41;
+    --secondary: #51CFED;
+    --light: #F8F2F0;
+    --dark: #060315;
+}
+
+.text-primary {
+    color: #FF3E41!important;
+}
