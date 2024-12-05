@@ -44,6 +44,7 @@
         .dt-search {
             display: none;
         }
+
         .hidden {
             display: none;
         }
@@ -76,7 +77,7 @@
         <!-- Right links -->
         <ul class="navbar-nav ms-auto d-flex flex-row align-items-center ">
             <li class="nav-item me-4">
-                <a class="btn btn-outline-primary" href="order-details.html">
+                <a class="btn btn-outline-primary" href="order-create.html">
                     <i class="fas fa-plus fa-fw me-3"></i>Tạo Đơn</a>
             </li>
             <!-- Notification dropdown -->
@@ -106,7 +107,7 @@
                          loading="lazy"/>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
-                    <li><a class="dropdown-item " href="#">My profile</a></li>
+                    <li><a class="dropdown-item " href="user-info.html">My profile</a></li>
                     <li><a class="dropdown-item" href="#">Settings</a></li>
                     <li><a class="dropdown-item" href="/logout">Logout</a></li>
                 </ul>
@@ -132,7 +133,7 @@
             <span class="sidenav-subheading text-muted text-uppercase fw-bold">Dashboard</span>
         </li>
         <li class="sidenav-item">
-            <a class="sidenav-link" href="">
+            <a class="sidenav-link" href="./../dashboard.html">
                 <i class="fas fa-plus fa-fw me-3"></i><span>Dashboard</span></a>
         </li>
 
@@ -140,19 +141,12 @@
             <span class="sidenav-subheading text-muted text-uppercase fw-bold">Quản lý đơn hàng</span>
         </li>
         <li class="sidenav-item">
-            <a class="sidenav-link" href="/admin/products">
+            <a class="sidenav-link" href="order-manager.html">
                 <i class="fas fa-cubes fa-fw me-3"></i><span>Theo dõi đơn hàng</span></a>
         </li>
         <li class="sidenav-item">
-            <a class="sidenav-link" href="/admin/product-categories">
+            <a class="sidenav-link" href="order-history.html">
                 <i class="fas fa-list-alt fa-fw me-3"></i><span>Lịch sử đơn hàng</span></a>
-        </li>
-        <li class="sidenav-item pt-3">
-            <span class="sidenav-subheading text-muted text-uppercase fw-bold">Quản lý taì khoản</span>
-        </li>
-        <li class="sidenav-item">
-            <a class="sidenav-link" href="">
-                <i class="fas fa-plus fa-fw me-3 active"></i><span>Hồ sơ người dùng</span></a>
         </li>
 
     </ul>
@@ -197,7 +191,8 @@
                             <td>2 kg</td>
                             <td><span class="badge bg-success">Đã giao</span></td>
                             <td>
-                                <button class="btn btn-sm btn-outline-primary">Chi tiết</button>
+                                <a class="btn btn-sm btn-outline-primary" href="order-details.html">Chi
+                                    tiết</a>
                             </td>
                         </tr>
                         <tr>
@@ -207,7 +202,8 @@
                             <td>1.5 kg</td>
                             <td><span class="badge bg-warning">Đang vận chuyển</span></td>
                             <td>
-                                <button class="btn btn-sm btn-outline-primary">Chi tiết</button>
+                                <a class="btn btn-sm btn-outline-primary" href="order-details.html">Chi
+                                    tiết</a>
                             </td>
                         </tr>
                         <tr>
@@ -217,7 +213,8 @@
                             <td>2 kg</td>
                             <td><span class="badge bg-success">Đã giao</span></td>
                             <td>
-                                <button class="btn btn-sm btn-outline-primary">Chi tiết</button>
+                                <a class="btn btn-sm btn-outline-primary" href="order-details.html">Chi
+                                    tiết</a>
                             </td>
                         </tr>
                         <tr>
@@ -227,7 +224,8 @@
                             <td>1.5 kg</td>
                             <td><span class="badge bg-warning">Đang vận chuyển</span></td>
                             <td>
-                                <button class="btn btn-sm btn-outline-primary">Chi tiết</button>
+                                <a class="btn btn-sm btn-outline-primary" href="order-details.html">Chi
+                                    tiết</a>
                             </td>
                         </tr>
                         <tr>
@@ -237,7 +235,8 @@
                             <td>2 kg</td>
                             <td><span class="badge bg-success">Đã giao</span></td>
                             <td>
-                                <button class="btn btn-sm btn-outline-primary">Chi tiết</button>
+                                <a class="btn btn-sm btn-outline-primary" href="order-details.html">Chi
+                                    tiết</a>
                             </td>
                         </tr>
                         <tr>
@@ -247,7 +246,8 @@
                             <td>1.5 kg</td>
                             <td><span class="badge bg-warning">Đang vận chuyển</span></td>
                             <td>
-                                <button class="btn btn-sm btn-outline-primary">Chi tiết</button>
+                                <a class="btn btn-sm btn-outline-primary" href="order-details.html">Chi
+                                    tiết</a>
                             </td>
                         </tr>
                         </tbody>
@@ -271,7 +271,8 @@
                             <td>3 kg</td>
                             <td><span class="badge bg-danger">Chờ xử lý</span></td>
                             <td>
-                                <button class="btn btn-sm btn-outline-primary">Chi tiết</button>
+                                <a class="btn btn-sm btn-outline-primary" href="order-details.html">Chi
+                                    tiết</a>
                             </td>
                         </tr>
                         <tr>
@@ -281,7 +282,8 @@
                             <td>5 kg</td>
                             <td><span class="badge bg-secondary">Hủy</span></td>
                             <td>
-                                <button class="btn btn-sm btn-outline-primary">Chi tiết</button>
+                                <a class="btn btn-sm btn-outline-primary" href="order-details.html">Chi
+                                    tiết</a>
                             </td>
                         </tr>
                         </tbody>
@@ -305,7 +307,8 @@
                             <td>5 kg</td>
                             <td><span class="badge bg-secondary">Hủy</span></td>
                             <td>
-                                <button class="btn btn-sm btn-outline-primary">Chi tiết</button>
+                                <a class="btn btn-sm btn-outline-primary" href="order-details.html">Chi
+                                    tiết</a>
                             </td>
                         </tr>
                         <tr>
@@ -315,7 +318,8 @@
                             <td>3 kg</td>
                             <td><span class="badge bg-danger">Chờ xử lý</span></td>
                             <td>
-                                <button class="btn btn-sm btn-outline-primary">Chi tiết</button>
+                                <a class="btn btn-sm btn-outline-primary" href="order-details.html">Chi
+                                    tiết</a>
                             </td>
                         </tr>
                         </tbody>
