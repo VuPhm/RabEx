@@ -52,6 +52,9 @@
         .visible {
             display: table;
         }
+        .w-35{
+            width: 35% !important;
+        }
     </style>
     <link rel="stylesheet" href="./../../css/custom-color.css">
 </head>
@@ -169,8 +172,8 @@
         <section class="mb-1">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Orders</li>
+                    <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Đơn</li>
                 </ol>
             </nav>
         </section>
@@ -178,13 +181,13 @@
 
             <!--/*@thymesVar id="productForm" type="com.group.sshop.models.dto.ProductForm"*/-->
             <div class="row">
-                <div class="col-md-9 mb-4">
+                <div class="col-md-8 mb-4">
                     <div class="card rounded-1 shadow-0 rounded-1  mb-4">
                         <div class="card-header">
                             <div class="d-flex justify-content-between align-items-center align-content-center">
                                 <b>#31029253</b>
                                 <div>
-                                    <span class="badge badge-info">Shipping</span>
+                                    <span class="badge badge-info">Đang Vận Chuyên</span>
                                 </div>
                             </div>
 
@@ -238,7 +241,7 @@
                                 </div>
                                 <div class="col-5">
                                     <table class="table table-borderless text-right table-sm"
-                                           th:with="summary=${order.getSummary()}">
+                                    >
                                         <thead>
                                         <tr>
                                             <th></th>
@@ -247,19 +250,19 @@
                                         </thead>
                                         <tbody class="text-right">
                                         <tr>
-                                            <td>Quantity</td>
+                                            <td>Số Lượng</td>
                                             <td>1</td>
                                         </tr>
                                         <tr>
-                                            <td>Weight</td>
+                                            <td>Khối Lượng</td>
                                             <td>12 kg</td>
                                         </tr>
                                         <tr>
                                             <td>Cost</td>
-                                            <td>200kg</td>
+                                            <td>40.000đ</td>
                                         </tr>
                                         <tr>
-                                            <td>Voucher</td>
+                                            <td>Giảm Giá</td>
                                             <td>0</td>
                                         </tr>
                                         <tr>
@@ -267,7 +270,7 @@
                                             <td>100.000 vnd</td>
                                         </tr>
                                         <tr>
-                                            <td>tax</td>
+                                            <td>Thuế</td>
                                             <td>5.000vnd</td>
                                         </tr>
 
@@ -276,15 +279,30 @@
 
                                 </div>
                             </div>
+                            <hr/>
+                            <div class="row">
+                                <div class="col-6">
+                                    <h6 class="card-title text-danger"> Người gửi</h6>
+                                    <p>Ngô Văn - 0385874145</p>
+                                    <p>214B Đường Tân Bình Khu phố 2, P.Tam Phú, TP.Thủ Đức, TP.Hồ Chí Minh</p>
+                                    <p class="text-secondary">Thời gian hẹn lấy: 04/12/2024, Tối (18h30 - 21h00)</p>
+
+                                </div>
+                                <div class="col-6">
+                                    <h6 class="card-title text-danger"> Người nhận</h6>
+                                    <p>Ngô Kinh - 0989888912</p>
+                                    <p>123 Hẻm 1236 Đường Lê Văn Lương, X.Phước Kiển, H.Nhà Bè, TP.Hồ Chí Minh</p>
+                                    <p class="text-secondary">Thời gian hẹn giao: Tối</p>
+                                </div>
+                            </div>
+
                         </div>
                         <hr class="hr m-0"/>
                         <div class="card-body">
-                            <div class="d-flex justify-content-between align-items-center"
-                                 th:if="${order.status.toString() ne 'WAIT'}">
+                            <div class="d-flex justify-content-between align-items-center">
                                 <span>
                                     <i class="fa fa-check text-success me-2"></i>
-                                    Confirmed
-                                </span>
+Đã Xác Nhận                                </span>
                                 <div>
 
                                 </div>
@@ -320,11 +338,11 @@
                             >
                                 <span>
                                     <i class="fa-regular fa-hourglass-start me-2"></i>
-                                    Waiting payment
+                                    Chờ Thanh Toán
                                 </span>
                                 <div>
                                     <a class="btn btn-outline-secondary">
-                                        Confirm Payment
+                                        Xác Nhận Thanh Toán
                                     </a>
                                 </div>
                             </div>
@@ -345,55 +363,46 @@
                             <div class="d-flex justify-content-between align-items-center">
                                 <span>
                                     <i class="fa-regular fa-hourglass-start me-2"></i>
-                                    Shipping
+                                    Đang Vận Chuyên
                                 </span>
                                 <div>
                                     <a class="btn btn-outline-secondary shadow-0">
-                                        Received
+                                        Xác nhận đã nhận
                                     </a>
                                 </div>
                             </div>
                             <div class="card-body mt-2">
                                 <div class="row mb-3">
-                                    <div class="col-4">
-                                        <span class="small text-muted text-uppercase fw-bold">
-                                            Shipping
+                                    <div class="col-6">
+                                        <span class="small text-muted text-uppercase fw-bold d-inline-block w-35">
+                                            Vị trí
                                         </span>
-                                        <br/>
                                         <span class="text-primary">
+                                            Bưu cục Linh Trung - TP HCM
                                         </span>
                                     </div>
-                                    <div class="col-4">
-                                        <span class="small text-muted text-uppercase fw-bold">
-                                            Status
+                                    <div class="col-6">
+                                        <span class="small text-muted text-uppercase fw-bold d-inline-block w-35">
+                                            Trạng Thái
                                         </span>
-                                        <br/>
-                                    </div>
-                                    <div class="col-4">
-                                        <span class="small text-muted text-uppercase fw-bold">
-                                            Provider
-                                        </span>
-                                        <br/>
-                                        <span >
-
+                                        <span class="badge badge-info">
+                                            Đang vận chuyển
                                         </span>
                                     </div>
-                                </div>
-                                <div class="row">
 
 
-                                    <div class="col-4">
-                                        <span class="small text-muted text-uppercase fw-bold">
-                                            Created At
+                                    <div class="col-6">
+                                        <span class="small text-muted text-uppercase fw-bold d-inline-block w-35">
+                                            Tạo Lúc
                                         </span>
                                         <br/>
                                         <span>
 
                                         </span>
                                     </div>
-                                    <div class="col-4">
-                                        <span class="small text-muted text-uppercase fw-bold">
-                                            Last Update
+                                    <div class="col-6">
+                                        <span class="small text-muted text-uppercase fw-bold d-inline-block w-35">
+                                            Cập nhật lúc
                                         </span>
                                         <br/>
                                         <span>
@@ -401,13 +410,13 @@
                                         </span>
 
                                     </div>
-                                    <div class="col-4"></div>
+                                    <div class="col-6"></div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 mb-4">
+                <div class="col-md-4 mb-4">
                     <div class="card rounded-1 shadow-0 shadow-0 mb-4">
                         <div class="card-header">
                             Customer
@@ -431,6 +440,18 @@
                             </div>
                             <div>
                             </div>
+                        </div>
+                    </div>
+                    <div class="card rounded-1 shadow-0 shadow-0 mb-4">
+                        <div class="card-header">
+                            Thông tin đơn
+                        </div>
+                        <div class="card-body">
+                            <p><strong>Mã đơn hàng:</strong> #BP12345</p>
+                            <p><strong>Ngày lập:</strong> 03/12/2024 05:05:23</p>
+                            <p><strong>Ngày nhận hàng dự kiến:</strong> Đơn cập nhật</p>
+                            <p><strong>Trạng thái:</strong> Hỏa tốc, hẹn giờ</p>
+                            <p><strong>Dịch vụ cộng thêm:</strong> Zalo thông báo đơn hàng</p>
                         </div>
                     </div>
 
