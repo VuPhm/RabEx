@@ -52,6 +52,9 @@
         .visible {
             display: table;
         }
+        .w-35{
+            width: 35% !important;
+        }
     </style>
 </head>
 <body>
@@ -182,8 +185,8 @@
         <section class="mb-1">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Orders</li>
+                    <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Đơn</li>
                 </ol>
             </nav>
         </section>
@@ -197,7 +200,7 @@
                             <div class="d-flex justify-content-between align-items-center align-content-center">
                                 <b>#31029253</b>
                                 <div>
-                                    <span class="badge badge-info">Shipping</span>
+                                    <span class="badge badge-info">Đang Vận Chuyên</span>
                                 </div>
                             </div>
 
@@ -251,7 +254,7 @@
                                 </div>
                                 <div class="col-5">
                                     <table class="table table-borderless text-right table-sm"
-                                           th:with="summary=${order.getSummary()}">
+                                    >
                                         <thead>
                                         <tr>
                                             <th></th>
@@ -260,19 +263,19 @@
                                         </thead>
                                         <tbody class="text-right">
                                         <tr>
-                                            <td>Quantity</td>
+                                            <td>Số Lượng</td>
                                             <td>1</td>
                                         </tr>
                                         <tr>
-                                            <td>Weight</td>
+                                            <td>Khối Lượng</td>
                                             <td>12 kg</td>
                                         </tr>
                                         <tr>
                                             <td>Cost</td>
-                                            <td>200kg</td>
+                                            <td>40.000đ</td>
                                         </tr>
                                         <tr>
-                                            <td>Voucher</td>
+                                            <td>Giảm Giá</td>
                                             <td>0</td>
                                         </tr>
                                         <tr>
@@ -280,7 +283,7 @@
                                             <td>100.000 vnd</td>
                                         </tr>
                                         <tr>
-                                            <td>tax</td>
+                                            <td>Thuế</td>
                                             <td>5.000vnd</td>
                                         </tr>
 
@@ -289,15 +292,22 @@
 
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-7">
+
+                                </div>
+                                <div class="col-5">
+
+                                </div>
+                            </div>
+
                         </div>
                         <hr class="hr m-0"/>
                         <div class="card-body">
-                            <div class="d-flex justify-content-between align-items-center"
-                                 th:if="${order.status.toString() ne 'WAIT'}">
+                            <div class="d-flex justify-content-between align-items-center">
                                 <span>
                                     <i class="fa fa-check text-success me-2"></i>
-                                    Confirmed
-                                </span>
+Đã Xác Nhận                                </span>
                                 <div>
 
                                 </div>
@@ -333,11 +343,11 @@
                             >
                                 <span>
                                     <i class="fa-regular fa-hourglass-start me-2"></i>
-                                    Waiting payment
+                                    Chờ Thanh Toán
                                 </span>
                                 <div>
                                     <a class="btn btn-outline-secondary">
-                                        Confirm Payment
+                                        Xác Nhận Thanh Toán
                                     </a>
                                 </div>
                             </div>
@@ -358,55 +368,46 @@
                             <div class="d-flex justify-content-between align-items-center">
                                 <span>
                                     <i class="fa-regular fa-hourglass-start me-2"></i>
-                                    Shipping
+                                    Đang Vận Chuyên
                                 </span>
                                 <div>
                                     <a class="btn btn-outline-secondary shadow-0">
-                                        Received
+                                        Xác nhận đã nhận
                                     </a>
                                 </div>
                             </div>
                             <div class="card-body mt-2">
                                 <div class="row mb-3">
-                                    <div class="col-4">
-                                        <span class="small text-muted text-uppercase fw-bold">
-                                            Shipping
+                                    <div class="col-6">
+                                        <span class="small text-muted text-uppercase fw-bold d-inline-block w-35">
+                                            Vị trí
                                         </span>
-                                        <br/>
                                         <span class="text-primary">
+                                            Bưu cục Linh Trung - TP HCM
                                         </span>
                                     </div>
-                                    <div class="col-4">
-                                        <span class="small text-muted text-uppercase fw-bold">
-                                            Status
+                                    <div class="col-6">
+                                        <span class="small text-muted text-uppercase fw-bold d-inline-block w-35">
+                                            Trạng Thái
                                         </span>
-                                        <br/>
-                                    </div>
-                                    <div class="col-4">
-                                        <span class="small text-muted text-uppercase fw-bold">
-                                            Provider
-                                        </span>
-                                        <br/>
-                                        <span >
-
+                                        <span class="badge badge-info">
+                                            Đang vận chuyển
                                         </span>
                                     </div>
-                                </div>
-                                <div class="row">
 
 
-                                    <div class="col-4">
-                                        <span class="small text-muted text-uppercase fw-bold">
-                                            Created At
+                                    <div class="col-6">
+                                        <span class="small text-muted text-uppercase fw-bold d-inline-block w-35">
+                                            Tạo Lúc
                                         </span>
                                         <br/>
                                         <span>
 
                                         </span>
                                     </div>
-                                    <div class="col-4">
-                                        <span class="small text-muted text-uppercase fw-bold">
-                                            Last Update
+                                    <div class="col-6">
+                                        <span class="small text-muted text-uppercase fw-bold d-inline-block w-35">
+                                            Cập nhật lúc
                                         </span>
                                         <br/>
                                         <span>
@@ -414,7 +415,7 @@
                                         </span>
 
                                     </div>
-                                    <div class="col-4"></div>
+                                    <div class="col-6"></div>
                                 </div>
                             </div>
                         </div>
