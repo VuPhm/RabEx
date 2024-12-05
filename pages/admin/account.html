@@ -118,7 +118,7 @@
         <!-- Right links -->
         <ul class="navbar-nav ms-auto d-flex flex-row align-items-center ">
             <li class="nav-item me-4">
-                <a class="btn btn-outline-primary" href="order-create.html">
+                <a class="btn btn-outline-primary" href="order-details.html">
                     <i class="fas fa-plus fa-fw me-3"></i>Tạo Đơn</a>
             </li>
             <!-- Notification dropdown -->
@@ -148,7 +148,7 @@
                          loading="lazy"/>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
-                    <li><a class="dropdown-item " href="user-info.html">My profile</a></li>
+                    <li><a class="dropdown-item " href="#">My profile</a></li>
                     <li><a class="dropdown-item" href="#">Settings</a></li>
                     <li><a class="dropdown-item" href="/logout">Logout</a></li>
                 </ul>
@@ -174,22 +174,36 @@
             <span class="sidenav-subheading text-muted text-uppercase fw-bold">Dashboard</span>
         </li>
         <li class="sidenav-item">
-            <a class="sidenav-link" href="./../dashboard.html">
+            <a class="sidenav-link" href="dashboard.html">
                 <i class="fas fa-plus fa-fw me-3"></i><span>Dashboard</span></a>
         </li>
 
         <li class="sidenav-item pt-3">
-            <span class="sidenav-subheading text-muted text-uppercase fw-bold">Quản lý đơn hàng</span>
+            <span class="sidenav-subheading text-muted text-uppercase fw-bold">Quản lý</span>
+        </li>
+        <li class="sidenav-item">
+            <a class="sidenav-link" href="post-manager.html">
+                <i class="fas fa-building fa-fw me-3"></i><span>Bưu cục</span></a>
         </li>
         <li class="sidenav-item">
             <a class="sidenav-link" href="order-manager.html">
-                <i class="fas fa-cubes fa-fw me-3"></i><span>Theo dõi đơn hàng</span></a>
+                <i class="fas fa-cubes fa-fw me-3"></i><span>Bưu phẩm</span></a>
         </li>
         <li class="sidenav-item">
-            <a class="sidenav-link" href="order-history.html">
-                <i class="fas fa-list-alt fa-fw me-3"></i><span>Lịch sử đơn hàng</span></a>
+            <a class="sidenav-link" href="post-staff.html">
+                <i class="fas fa-clipboard-user fa-fw me-3"></i><span>Nhân viên</span></a>
         </li>
-
+        <li class="sidenav-item">
+            <a class="sidenav-link" href="user-manager.html">
+                <i class="fas fa-users fa-fw me-3"></i><span>Tài khoản</span></a>
+        </li>
+        <li class="sidenav-item pt-3">
+            <span class="sidenav-subheading text-muted text-uppercase fw-bold">Cài đặt</span>
+        </li>
+        <li class="sidenav-item">
+            <a class="sidenav-link bg-info-subtle" href="account.html">
+                <i class="fas fa-user fa-fw me-3"></i><span>Tài khoản</span></a>
+        </li>
     </ul>
 </nav>
 
@@ -207,15 +221,6 @@
 <!-- content  -->
 <main id="content">
     <div class="container p-4">
-        <!-- Breadcrumb -->
-        <section class="mb-4">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Hồ sơ người dùng</li>
-                </ol>
-            </nav>
-        </section>
 
         <!-- Profile Section -->
         <section class="mb-4">
@@ -233,9 +238,9 @@
                                     <i class="fas fa-edit me-2"></i>
                                 </a>
                             </div>
-                            <h5 class="card-title mb-2 mt-3">Nguyễn Văn A</h5>
-                            <p class="text-muted mb-1">Khách hàng</p>
-                            <p class="text-muted">Thành viên từ 12/2023</p>
+                            <h5 class="card-title mb-2 mt-3">Nguyễn Văn Phát</h5>
+                            <p class="text-muted mb-1">Quản trị viên</p>
+                            <p class="text-muted">Thành viên từ 12/2020</p>
                         </div>
                     </div>
                 </div>
@@ -291,7 +296,7 @@
                                     <h6 class="mb-0">Họ và tên</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary" data-field="user-name">
-                                    Nguyễn Văn A
+                                    Nguyễn Văn Phát
                                 </div>
                             </div>
                             <hr>
@@ -300,7 +305,7 @@
                                     <h6 class="mb-0">Email</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary" data-field="user-email">
-                                    nguyenvana@example.com
+                                    jsol1s@email.com
                                 </div>
                             </div>
                             <hr>
@@ -338,6 +343,100 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <!-- Thông tin chuyên nghiệp -->
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Chức vụ</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary" data-field="job-title">
+                                    Quản trị viên hệ thống
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Ngày bắt đầu</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary" data-field="start-date">
+                                    15/01/2021
+                                </div>
+                            </div>
+                            <hr>
+                            <!-- Thông tin liên hệ mở rộng -->
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Điện thoại văn phòng</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary" data-field="office-phone">
+                                    (028) 3812 3456
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Email công ty</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary" data-field="company-email">
+                                    phat.nguyen@rabex.com
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Liên hệ</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary" data-field="contact-apps">
+                                    <span class="me-3"><i class="fab fa-skype"></i> phat.nguyen</span>
+                                    <span class="me-3"><i class="fab fa-zalo"></i> 0123456789</span>
+                                </div>
+                            </div>
+                            <hr>
+                            <!-- Quyền truy cập -->
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Cấp độ quản trị</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary" data-field="admin-level">
+                                    Quản trị cấp cao (Super Admin)
+                                </div>
+                            </div>
+                            <hr>
+                            <!-- Thông tin bảo mật -->
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Trạng thái tài khoản</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary" data-field="account-status">
+                                    <span class="badge rounded-pill bg-success">Hoạt động</span>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Đăng nhập lần cuối</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary" data-field="last-login">
+                                    05/12/2024 - 14:30 (Máy tính để bàn)
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <a class="btn btn-outline-primary" href="#" data-mdb-ripple-init data-mdb-modal-init
+                                       data-mdb-target="#professional-details-edit">
+                                        <i class="fas fa-edit me-2"></i>Chi tiết chuyên nghiệp
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
@@ -436,59 +535,6 @@
             </div>
         </div>
 
-        <!-- Shop section -->
-        <section class="mb-4">
-            <div class="card">
-                <div class="card-header text-black">
-                    <h5 class="mb-0">Thông Tin Kinh Doanh</h5>
-                </div>
-                <div class="card-body">
-                    <div class="row mb-3">
-                        <div class="col-sm-3">
-                            <h6 class="mb-0">Tên Công Ty</h6>
-                        </div>
-                        <div class="col-sm-9 text-secondary" data-field="company-name">
-                            Công Ty TNHH Rabex
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="row mb-3">
-                        <div class="col-sm-3">
-                            <h6 class="mb-0">Số lượng đơn ngày</h6>
-                        </div>
-                        <div class="col-sm-9 text-secondary">
-                            -
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="row mb-3">
-                        <div class="col-sm-3">
-                            <h6 class="mb-0">Ngành hàng</h6>
-                        </div>
-                        <div class="col-sm-9 text-secondary" data-field="industry">
-                            -
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="row mb-3">
-                        <div class="col-sm-3">
-                            <h6 class="mb-0">Kênh bán hàng</h6>
-                        </div>
-                        <div class="col-sm-9 text-secondary" data-field="sales-channel">
-                            Tiktok
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12 d-flex justify-content-end">
-                            <a class="btn btn-outline-primary" href="#" data-mdb-ripple-init data-mdb-modal-init
-                               data-mdb-target="#shop-info">
-                                <i class="fas fa-edit me-2"></i>Cập nhật
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
         <!-- Shop edit modal -->
         <div class="modal fade" id="shop-info" tabindex="-1" aria-labelledby="shop-info" aria-hidden="true">
             <div class="modal-dialog">
