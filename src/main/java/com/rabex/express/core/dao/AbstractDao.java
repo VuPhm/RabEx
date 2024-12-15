@@ -18,7 +18,7 @@ import java.util.StringJoiner;
  *
  * @author Jakhang
  */
-public abstract class AbstractDao<Entity> {
+public abstract class AbstractDao<Entity> implements Dao<Entity> {
 
     @Inject
     private DataSource dataSource;
@@ -97,7 +97,6 @@ public abstract class AbstractDao<Entity> {
         String sql = generatePaginationSql(querySql, pageable);
         List<U> content = query(sql, mapper, params);
         int total = count(countSql, params);
-
         return Page.of(content, total, pageable);
     }
 
@@ -124,7 +123,7 @@ public abstract class AbstractDao<Entity> {
         ResultSet resultSet = null;
         try (Connection connection = connect()) {
             assert connection != null;
-            try (PreparedStatement statement = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
                 setParameter(statement, parameters);
                 statement.execute();
                 return true;
@@ -187,6 +186,4 @@ public abstract class AbstractDao<Entity> {
     /*------------------
           Ov
     --------------------*/
-
-
 }

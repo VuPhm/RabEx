@@ -7,12 +7,12 @@ import com.rabex.express.core.data.Pageable;
 
 import java.util.List;
 
-public interface Dao<Model, Request> {
+public interface Dao<Model> {
 
     List<Model> findAll();
     Page<Model> findAll(Pageable pageable);
     int countAll();
-    Long insert(Request request);
+    Long insert(Model request);
     Model findById(RID id);
-    boolean update(RID id, Request request);
+    boolean update(RID id, Model request);
 }
