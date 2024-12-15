@@ -9,6 +9,8 @@ import java.sql.SQLException;
 public class AddressMapper implements RowMapper<Address> {
     private String prefix;
 
+
+
     @Override
     public Address mapRow(ResultSet resultSet, int row) throws SQLException {
         return null;

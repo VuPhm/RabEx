@@ -1,7 +1,10 @@
 package com.rabex.express.config;
 
+import jakarta.inject.Singleton;
+
 import java.util.ResourceBundle;
 
+@Singleton
 public class DataSource {
     private final String url;
     private final String username;
