@@ -87,7 +87,22 @@ public abstract class AbstractDao<Entity> {
     }
 
     protected <U> Page<U> queryPage(String querySql, String countSql, Pageable pageable, RowMapper<U> mapper, Object... params) {
-        String sql = new StringJoiner(" ")
+        String sql = generatePaginationSql(querySql, pageable);
+        List<U> content = query(sql, mapper, params);
+        int total = count(countSql, params);
+        return Page.of(content, total, pageable);
+    }
+
+    protected <U> Page<U> queryPage(String querySql, String countSql, Pageable pageable, ResultSetExtractor<List<U>> mapper, Object... params) {
+        String sql = generatePaginationSql(querySql, pageable);
+        List<U> content = query(sql, mapper, params);
+        int total = count(countSql, params);
+
+        return Page.of(content, total, pageable);
+    }
+
+    private String generatePaginationSql(String querySql, Pageable pageable) {
+        return new StringJoiner(" ")
                 .add(querySql)
                 .add(sortToSqlConvertor.convert(pageable.getSort()))
                 .add("LIMIT")
@@ -95,10 +110,6 @@ public abstract class AbstractDao<Entity> {
                 .add("OFFSET")
                 .add(String.valueOf(pageable.getOffset()))
                 .toString();
-        List<U> content = query(sql, mapper, params);
-        int total = count(countSql, params);
-
-        return Page.of(content, total, pageable);
     }
 
     protected <U> U singleQuery(String sql, RowMapper<U> mapper, Object... parameters) {
