@@ -12,7 +12,7 @@ public interface Dao<Model> {
     List<Model> findAll();
     Page<Model> findAll(Pageable pageable);
     int countAll();
-    Long insert(Model request);
+    boolean insert(Model request);
     Model findById(RID id);
     boolean update(RID id, Model request);
 }

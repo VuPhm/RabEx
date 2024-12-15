@@ -5,4 +5,8 @@ import java.sql.SQLException;
 
 public interface RowMapper<T> {
     T mapRow(ResultSet resultSet, int row) throws SQLException;
+
+    default String getPrefix(){
+        return "";
+    }
 }
