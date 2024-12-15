@@ -71,7 +71,7 @@ public abstract class AbstractDao<Entity> {
                 } else if (parameter instanceof Enum<?> e) {
                     statement.setString(index, e.toString());
                 } else if(parameter instanceof RID rid){
-                    statement.setBytes(index, rid.toBytes());
+                    statement.setString(index, rid.toLowerCase());
                 } else {
                     assert parameter != null;
                     statement.setString(index, parameter.toString());
