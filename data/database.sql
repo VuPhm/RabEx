@@ -194,3 +194,5 @@ CREATE TABLE users_tokens (
                               verify_token_expired_at TIMESTAMP NULL,
                               reset_password_token_expired_at TIMESTAMP NULL
 );
+
+
