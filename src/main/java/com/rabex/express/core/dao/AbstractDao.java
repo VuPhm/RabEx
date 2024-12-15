@@ -18,7 +18,7 @@ import java.util.StringJoiner;
  *
  * @author Jakhang
  */
-public abstract class AbstractDao<Entity> {
+public abstract class AbstractDao<Entity> implements Dao<Entity> {
 
     @Inject
     private DataSource dataSource;
@@ -87,7 +87,22 @@ public abstract class AbstractDao<Entity> {
     }
 
     protected <U> Page<U> queryPage(String querySql, String countSql, Pageable pageable, RowMapper<U> mapper, Object... params) {
-        String sql = new StringJoiner(" ")
+        String sql = generatePaginationSql(querySql, pageable);
+        List<U> content = query(sql, mapper, params);
+        int total = count(countSql, params);
+
+        return Page.of(content, total, pageable);
+    }
+
+    protected <U> Page<U> queryPage(String querySql, String countSql, Pageable pageable, ResultSetExtractor<List<U>> extractor, Object... params) {
+        String sql = generatePaginationSql(querySql, pageable);
+        List<U> content = query(sql, extractor, params);
+        int total = count(countSql, params);
+        return Page.of(content, total, pageable);
+    }
+
+    private String generatePaginationSql(String querySql, Pageable pageable) {
+        return new StringJoiner(" ")
                 .add(querySql)
                 .add(sortToSqlConvertor.convert(pageable.getSort()))
                 .add("LIMIT")
@@ -95,10 +110,6 @@ public abstract class AbstractDao<Entity> {
                 .add("OFFSET")
                 .add(String.valueOf(pageable.getOffset()))
                 .toString();
-        List<U> content = query(sql, mapper, params);
-        int total = count(countSql, params);
-
-        return Page.of(content, total, pageable);
     }
 
     protected <U> U singleQuery(String sql, RowMapper<U> mapper, Object... parameters) {
@@ -113,7 +124,7 @@ public abstract class AbstractDao<Entity> {
         ResultSet resultSet = null;
         try (Connection connection = connect()) {
             assert connection != null;
-            try (PreparedStatement statement = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
                 setParameter(statement, parameters);
                 statement.execute();
                 return true;
@@ -177,5 +188,36 @@ public abstract class AbstractDao<Entity> {
           Ov
     --------------------*/
 
+    protected ResultSetExtractor<List<Entity>> extractor() {
+        return new ListExtractor<>(rowMapper());
+    }
 
+    protected abstract RowMapper<Entity> rowMapper();
+
+    protected abstract String querySql();
+
+    protected abstract String countAllSql();
+
+    @Override
+    public Entity findById(RID id) {
+        String sql = querySql() + "WHERE id = ?";
+        List<Entity> entities = query(sql, extractor(), id);
+        return entities.isEmpty() ? null : entities.get(0);
+    }
+
+    @Override
+    public List<Entity> findAll() {
+        String sql = querySql();
+        return query(sql, extractor());
+    }
+
+    @Override
+    public int countAll() {
+        return count(countAllSql());
+    }
+
+    @Override
+    public Page<Entity> findAll(Pageable pageable) {
+        return queryPage(querySql(), countAllSql(), pageable, extractor());
+    }
 }
