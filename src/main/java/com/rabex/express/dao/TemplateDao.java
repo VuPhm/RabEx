@@ -18,9 +18,17 @@ public abstract class TemplateDao<T> extends AbstractDao<T> {
 
     protected abstract String countAllSql();
 
+    protected String tableLabel() {
+        return "this";
+    }
+
+    protected String table(){
+        return "";
+    }
+
     @Override
     public Optional<T> findById(RID id) {
-        String sql = querySql() + "WHERE id = ?";
+        String sql = querySql() + " WHERE " + tableLabel() + ".id = ?";
         List<T> entities = query(sql, extractor(), id);
         return entities.stream().findFirst();
     }
@@ -39,5 +47,11 @@ public abstract class TemplateDao<T> extends AbstractDao<T> {
     @Override
     public Page<T> findAll(Pageable pageable) {
         return queryPage(querySql(), countAllSql(), pageable, extractor());
+    }
+
+    @Override
+    public boolean deleteById(RID id) {
+        String sql = "DELETE FROM " + table() + " WHERE id = ?";
+        return update(sql, id);
     }
 }

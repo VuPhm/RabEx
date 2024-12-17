@@ -20,8 +20,7 @@ import java.util.StringJoiner;
  */
 public abstract class AbstractDao<Entity> implements Dao<Entity> {
 
-    @Inject
-    private DataSource dataSource;
+    private DataSource dataSource = new DataSource();
 
     private final SortToSqlConvertor sortToSqlConvertor = new SortToSqlConvertor();
 
@@ -71,7 +70,7 @@ public abstract class AbstractDao<Entity> implements Dao<Entity> {
                 } else if (parameter instanceof Enum<?> e) {
                     statement.setString(index, e.toString());
                 } else if(parameter instanceof RID rid){
-                    statement.setBytes(index, rid.toBytes());
+                    statement.setString(index, rid.toString());
                 } else {
                     assert parameter != null;
                     statement.setString(index, parameter.toString());
@@ -100,7 +99,7 @@ public abstract class AbstractDao<Entity> implements Dao<Entity> {
         return Page.of(content, total, pageable);
     }
 
-    private String generatePaginationSql(String querySql, Pageable pageable) {
+    protected String generatePaginationSql(String querySql, Pageable pageable) {
         return new StringJoiner(" ")
                 .add(querySql)
                 .add(sortToSqlConvertor.convert(pageable.getSort()))
