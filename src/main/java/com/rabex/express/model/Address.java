@@ -11,20 +11,20 @@ public class Address {
     private String district;        // varchar(45)
     private String province;        // varchar(45)
     private Timestamp createdAt;    // timestamp
-    private Timestamp modifiedAt;   // timestamp
+    private Timestamp updateAt;   // timestamp
 
     public Address() {
     }
 
     public Address(RID id, String description, String ward, String district, String province,
-                   Timestamp createdAt, Timestamp modifiedAt) {
+                   Timestamp createdAt, Timestamp updateAt) {
         this.id = id;
         this.description = description;
         this.ward = ward;
         this.district = district;
         this.province = province;
         this.createdAt = createdAt;
-        this.modifiedAt = modifiedAt;
+        this.updateAt = updateAt;
     }
 
     // Các phương thức getter và setter cho từng thuộc tính
@@ -76,12 +76,12 @@ public class Address {
         this.createdAt = createdAt;
     }
 
-    public Timestamp getModifiedAt() {
-        return modifiedAt;
+    public Timestamp getUpdateAt() {
+        return updateAt;
     }
 
-    public void setModifiedAt(Timestamp modifiedAt) {
-        this.modifiedAt = modifiedAt;
+    public void setUpdateAt(Timestamp updateAt) {
+        this.updateAt = updateAt;
     }
 
     @Override
@@ -93,7 +93,7 @@ public class Address {
                 ", district='" + district + '\'' +
                 ", province='" + province + '\'' +
                 ", createdAt=" + createdAt +
-                ", modifiedAt=" + modifiedAt +
+                ", modifiedAt=" + updateAt +
                 '}';
     }
 }
