@@ -25,7 +25,7 @@ public interface Page<T> {
     static <T> Page<T> of(List<T> content, Integer count, Pageable pageable) {
         return new DefaultPage<>(
                 content,
-                pageable.petPage(),
+                pageable.getPage(),
                 getTotalPage(pageable.getLimit(), count),
                 count,
                 pageable.getLimit()
