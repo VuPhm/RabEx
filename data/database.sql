@@ -37,6 +37,38 @@ CREATE TABLE shipping_method (
                                  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP()
 );
 
+-- Table: users
+CREATE TABLE users (
+                       id CHAR(26) PRIMARY KEY,
+                       hash_password VARCHAR(70) NOT NULL,
+                       full_name VARCHAR(64) NOT NULL,
+                       deleted BOOLEAN NOT NULL DEFAULT FALSE,
+                       status ENUM('active', 'inactive', 'banned', 'pending') NOT NULL,
+                       created_at TIMESTAMP NOT NULL,
+                       modified_at TIMESTAMP NOT NULL,
+                       email VARCHAR(128) UNIQUE NOT NULL,
+                       verified_at TIMESTAMP NULL,
+                       refresh_token VARCHAR(255) NULL,
+                       avatar VARCHAR(320) NULL
+);
+
+-- Table: roles
+CREATE TABLE roles (
+                       id CHAR(26) PRIMARY KEY,
+                       name ENUM('admin', 'user', 'staff') NOT NULL,
+                       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() NOT NULL,
+                       updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP()
+);
+
+-- Table: users_roles
+CREATE TABLE users_roles (
+                             user_id CHAR(26) NOT NULL,
+                             role_id CHAR(26) NOT NULL,
+                             PRIMARY KEY (user_id, role_id),
+                             FOREIGN KEY (user_id) REFERENCES users(id),
+                             FOREIGN KEY (role_id) REFERENCES roles(id)
+);
+
 -- Table: parcels
 CREATE TABLE parcels (
                          id CHAR(26) PRIMARY KEY,
@@ -84,51 +116,9 @@ CREATE TABLE posts (
                        FOREIGN KEY (address_id) REFERENCES address(id)
 );
 
--- Table: trackings
-CREATE TABLE trackings (
-                           id CHAR(26) PRIMARY KEY,
-                           post_id CHAR(26) NOT NULL,
-                           shipment_id CHAR(26) NOT NULL,
-                           status ENUM('pending', 'arrived', 'delivering', 'delivered', 'leaved', 'returning', 'returned', 'created', 'failed') NOT NULL,
-                           tracking_by CHAR(26) NOT NULL,
-                           destination_post_id CHAR(26) NOT NULL,
-                           created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() NOT NULL,
-                           updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP(),
-                           FOREIGN KEY (post_id) REFERENCES posts(id),
-                           FOREIGN KEY (shipment_id) REFERENCES shipments(id)
-);
 
--- Table: users
-CREATE TABLE users (
-                       id CHAR(26) PRIMARY KEY,
-                       hash_password VARCHAR(70) NOT NULL,
-                       full_name VARCHAR(64) NOT NULL,
-                       deleted BOOLEAN NOT NULL DEFAULT FALSE,
-                       status ENUM('active', 'inactive', 'banned', 'pending') NOT NULL,
-                       created_at TIMESTAMP NOT NULL,
-                       modified_at TIMESTAMP NOT NULL,
-                       email VARCHAR(128) NOT NULL,
-                       verified_at TIMESTAMP NULL,
-                       refresh_token VARCHAR(255) NULL,
-                       avatar VARCHAR(320) NULL
-);
 
--- Table: roles
-CREATE TABLE roles (
-                       id CHAR(26) PRIMARY KEY,
-                       name ENUM('admin', 'user', 'staff') NOT NULL,
-                       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() NOT NULL,
-                       updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP()
-);
 
--- Table: users_roles
-CREATE TABLE users_roles (
-                             user_id CHAR(26) NOT NULL,
-                             role_id CHAR(26) NOT NULL,
-                             PRIMARY KEY (user_id, role_id),
-                             FOREIGN KEY (user_id) REFERENCES users(id),
-                             FOREIGN KEY (role_id) REFERENCES roles(id)
-);
 
 -- Table: staffs
 CREATE TABLE staffs (
@@ -169,6 +159,20 @@ CREATE TABLE shipments (
                            FOREIGN KEY (shipping_service_id) REFERENCES shipping_services(id)
 );
 
+-- Table: trackings
+CREATE TABLE trackings (
+                           id CHAR(26) PRIMARY KEY,
+                           post_id CHAR(26) NOT NULL,
+                           shipment_id CHAR(26) NOT NULL,
+                           status ENUM('pending', 'arrived', 'delivering', 'delivered', 'leaved', 'returning', 'returned', 'created', 'failed') NOT NULL,
+                           tracking_by CHAR(26) NOT NULL,
+                           destination_post_id CHAR(26) NOT NULL,
+                           created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() NOT NULL,
+                           updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP(),
+                           FOREIGN KEY (post_id) REFERENCES posts(id),
+                           FOREIGN KEY (shipment_id) REFERENCES shipments(id)
+);
+
 -- Table: invoices
 CREATE TABLE invoices (
                           id CHAR(26) PRIMARY KEY,
@@ -190,3 +194,5 @@ CREATE TABLE users_tokens (
                               verify_token_expired_at TIMESTAMP NULL,
                               reset_password_token_expired_at TIMESTAMP NULL
 );
+
+
