@@ -6,6 +6,7 @@ import com.rabex.express.core.data.Page;
 import com.rabex.express.core.data.Pageable;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface Dao<Model> {
 
@@ -13,6 +14,7 @@ public interface Dao<Model> {
     Page<Model> findAll(Pageable pageable);
     int countAll();
     boolean insert(Model request);
-    Model findById(RID id);
+
+    Optional<Model> findById(RID id);
     boolean update(RID id, Model request);
 }

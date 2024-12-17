@@ -5,6 +5,7 @@ import com.rabex.express.core.data.Page;
 import com.rabex.express.core.data.Pageable;
 
 import java.util.List;
+import java.util.Optional;
 
 public abstract class TemplateDao<T> extends AbstractDao<T> {
     protected ResultSetExtractor<List<T>> extractor() {
@@ -18,10 +19,10 @@ public abstract class TemplateDao<T> extends AbstractDao<T> {
     protected abstract String countAllSql();
 
     @Override
-    public T findById(RID id) {
+    public Optional<T> findById(RID id) {
         String sql = querySql() + "WHERE id = ?";
         List<T> entities = query(sql, extractor(), id);
-        return entities.isEmpty() ? null : entities.get(0);
+        return entities.stream().findFirst();
     }
 
     @Override
