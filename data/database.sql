@@ -44,12 +44,12 @@ CREATE TABLE users (
                        full_name VARCHAR(64) NOT NULL,
                        deleted BOOLEAN NOT NULL DEFAULT FALSE,
                        status ENUM('active', 'inactive', 'banned', 'pending') NOT NULL,
-                       created_at TIMESTAMP NOT NULL,
-                       modified_at TIMESTAMP NOT NULL,
                        email VARCHAR(128) UNIQUE NOT NULL,
                        verified_at TIMESTAMP NULL,
                        refresh_token VARCHAR(255) NULL,
-                       avatar VARCHAR(320) NULL
+                       avatar VARCHAR(320) NULL,
+                       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() NOT NULL,
+                       updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP()
 );
 
 -- Table: roles
@@ -74,8 +74,8 @@ CREATE TABLE parcels (
                          id CHAR(26) PRIMARY KEY,
                          name VARCHAR(64) NOT NULL,
                          created_by CHAR(26) NOT NULL,
-                         created_at TIMESTAMP NOT NULL,
-                         modified_at TIMESTAMP NOT NULL,
+                         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() NOT NULL,
+                         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP(),
                          fragile BOOLEAN NOT NULL,
                          weight DECIMAL NOT NULL,
                          longg DECIMAL NULL,
