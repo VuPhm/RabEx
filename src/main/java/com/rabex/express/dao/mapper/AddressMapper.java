@@ -5,6 +5,7 @@ import com.rabex.express.core.dao.RID;
 import com.rabex.express.core.dao.RowMapper;
 import com.rabex.express.core.dao.StringToRidConvertor;
 import com.rabex.express.model.Address;
+import com.rabex.express.model.User;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
