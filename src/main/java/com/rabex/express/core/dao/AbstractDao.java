@@ -72,7 +72,6 @@ public abstract class AbstractDao<Entity> implements Dao<Entity> {
                 } else if(parameter instanceof RID rid){
                     statement.setString(index, rid.toString());
                 } else {
-                    assert parameter != null;
                     statement.setString(index, parameter.toString());
                 }
             }
@@ -163,6 +162,7 @@ public abstract class AbstractDao<Entity> implements Dao<Entity> {
             connection.commit();
             return u;
         } catch (SQLException e) {
+            System.out.println(e);
             try {
                 connection.rollback();
             } catch (SQLException ex) {
