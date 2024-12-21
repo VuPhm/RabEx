@@ -16,7 +16,9 @@ public abstract class TemplateDao<T> extends AbstractDao<T> {
 
     protected abstract String querySql();
 
-    protected abstract String countAllSql();
+    protected String countAllSql(){
+        return "SELECT COUNT(*) FROM " + table();
+    }
 
     protected String tableLabel() {
         return "this";
