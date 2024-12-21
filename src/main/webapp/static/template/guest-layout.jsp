@@ -3,7 +3,7 @@
 <html>
 <head>
     <%@include file="/WEB-INF/views/guest/common/head-link.jsp" %>
-    <title>Dịch vụ</title>
+    <title>Rabex</title>
 </head>
 <body>
 <%-- Nav --%>
