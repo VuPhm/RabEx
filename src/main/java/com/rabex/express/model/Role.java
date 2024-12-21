@@ -10,7 +10,16 @@ public class Role {
     private Timestamp created_at;
     private Timestamp modified_at;
 
-
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("Role{");
+        sb.append("id=").append(id);
+        sb.append(", name=").append(name);
+        sb.append(", created_at=").append(created_at);
+        sb.append(", modified_at=").append(modified_at);
+        sb.append('}');
+        return sb.toString();
+    }
 
     public Role() {
     }
