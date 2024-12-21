@@ -96,9 +96,12 @@ CREATE TABLE cod_details (
 CREATE TABLE address (
                          id CHAR(26) PRIMARY KEY,
                          description TEXT NULL,
+                         phone VARCHAR(12) NOT NULL,
                          ward VARCHAR(45) NOT NULL,
                          district VARCHAR(45) NOT NULL,
                          province VARCHAR(45) NOT NULL,
+                         address_type ENUM('private house', 'office', 'different') NOT NULL,
+                         is_default BOOLEAN NOT NULL,
                          created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() NOT NULL,
                          updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP()
 );
