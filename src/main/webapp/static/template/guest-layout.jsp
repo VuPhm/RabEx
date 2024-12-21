@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@include file="../common/taglib.jsp" %>
+<%@include file="/WEB-INF/views/common/taglib.jsp" %>
 <html>
 <head>
     <%@include file="/WEB-INF/views/guest/common/head-link.jsp" %>
@@ -7,7 +7,7 @@
 </head>
 <body>
 <%-- Nav --%>
-<%@include file="common/navbar.jsp" %>
+<%@include file="/WEB-INF/views/guest/common/navbar.jsp" %>
 <%-- End Nav --%>
 
 
@@ -15,7 +15,7 @@
 
 
 <%-- Footer --%>
-<%@include file="common/footer.jsp" %>
+<%@include file="/WEB-INF/views/guest/common/footer.jsp" %>
 <%-- End Footer --%>
 </body>
 </html>
