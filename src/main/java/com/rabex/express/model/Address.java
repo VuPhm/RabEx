@@ -4,11 +4,13 @@ import com.rabex.express.core.dao.RID;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
 @Getter
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor
 public class Address {
     private RID id;              // char(16)
     private String description;     // text

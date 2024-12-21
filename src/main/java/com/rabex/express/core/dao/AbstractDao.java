@@ -70,7 +70,7 @@ public abstract class AbstractDao<Entity> implements Dao<Entity> {
                 } else if (parameter instanceof Enum<?> e) {
                     statement.setString(index, e.toString());
                 } else if(parameter instanceof RID rid){
-                    statement.setBytes(index, rid.toBytes());
+                    statement.setString(index, rid.toString());
                 } else {
                     statement.setString(index, parameter.toString());
                 }

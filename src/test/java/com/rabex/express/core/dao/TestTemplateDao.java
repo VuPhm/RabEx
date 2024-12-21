@@ -21,7 +21,7 @@ public class TestTemplateDao {
 
     @Test
     void testFindAll(){
-        User user = userDao.findById(RID.from("01HJK9C4K4ZR8TK9P8AW6ZP3V3")).orElse(null);
+        User user = userDao.findById(RID.from("01JFAJM220CTEKNV2M65QW317M")).orElseThrow(() -> new IllegalArgumentException("Not found"));
         System.out.println(user);
     }
 
@@ -37,11 +37,11 @@ public class TestTemplateDao {
 
     @Test
     void  test(){
-        Role role = roleDao.findByRoleName(RoleName.ADMIN).orElse(null);
+        Role role = roleDao.findByRoleName(RoleName.ADMIN).orElseThrow(() -> new IllegalArgumentException("Not found"));
         RID rid = RID.from("01JFAJM220CTEKNV2M65QW317N");
         User user = User.builder()
                 .id(rid)
-                .fullName("Nguyễn Văn Huynh")
+                .fullName("David")
                 .hashPassword("")
                 .roles(List.of(role))
                 .email("nguyenvanhuynh@gmail.com")
@@ -49,7 +49,7 @@ public class TestTemplateDao {
                 .build();
 
         System.out.println(user);
-        userDao.update(rid, user);
+        userDao.insert(user);
     }
 
     @Test

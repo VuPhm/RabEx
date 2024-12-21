@@ -39,7 +39,7 @@ public class AddressServiceImpl implements AddressService {
 
     @Override
     public Address getAddressById(RID id) {
-         return addressDao.findById(id).orElse(new Address());
+         return addressDao.findById(id).orElse(null);
     }
 
     @Override

@@ -28,7 +28,7 @@ public class AddressMapper implements RowMapper<Address> {
                 resultSet.getString(prefix + "pro"),
                 enumConvertor.convert(resultSet.getString(prefix + "type")),
                 resultSet.getTimestamp(prefix + "created_at"),
-                resultSet.getTimestamp(prefix + "updated_at")
+                resultSet.getTimestamp(prefix + "modified_at")
         );
     }
 
