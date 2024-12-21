@@ -13,8 +13,8 @@ import java.util.Map;
 
 public class UserExtractor implements ResultSetExtractor<List<User>> {
 
-    private RowMapper<User> userMapper;
-    private RowMapper<Role> roleMapper;
+    private final RowMapper<User> userMapper;
+    private final RowMapper<Role> roleMapper;
 
     public UserExtractor(String userPrefix, String rolePrefix) {
         this.userMapper = new UserMapper(userPrefix);
