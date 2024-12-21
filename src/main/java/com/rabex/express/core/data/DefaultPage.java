@@ -80,6 +80,18 @@ public class DefaultPage<T> implements Page<T> {
         return totalPage - (1 - START_PAGE);
     }
 
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("DefaultPage{");
+        sb.append("content=").append(content);
+        sb.append(", page=").append(page);
+        sb.append(", totalPage=").append(totalPage);
+        sb.append(", totalElement=").append(totalElement);
+        sb.append(", limit=").append(limit);
+        sb.append('}');
+        return sb.toString();
+    }
+
     public static void main(String[] args) {
         DefaultPage<String> page = new DefaultPage<>(List.of("1", "3", "4"), 1, 5, 15, 3);
         System.out.println(page.isFirst());

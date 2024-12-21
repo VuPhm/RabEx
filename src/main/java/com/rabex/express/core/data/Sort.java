@@ -10,7 +10,7 @@ import static com.rabex.express.core.data.Sort.Direction.unsorted;
 public class Sort implements Iterable<Sort.Order>{
     private List<Order> orders;
     public static final Sort.Direction DEFAULT_DIRECTION;
-    public static final Sort UNSORTED = by(List.of());
+    public static final Sort UNSORTED = new Sort(List.of());
 
     static {
         DEFAULT_DIRECTION = Sort.Direction.ASC;
@@ -74,7 +74,8 @@ public class Sort implements Iterable<Sort.Order>{
     }
 
     public static Sort by(Direction direction, String... properties) {
-
+        if (properties.length == 0)
+            return UNSORTED;
         return by(Arrays.stream(properties).map(p -> new Order(p, direction)).toList());
     }
 

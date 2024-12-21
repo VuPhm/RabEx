@@ -17,4 +17,10 @@ public interface Dao<Model> {
 
     Optional<Model> findById(RID id);
     boolean update(RID id, Model request);
+
+    default boolean deleteById(RID id){
+        return false;
+    }
+
+
 }
