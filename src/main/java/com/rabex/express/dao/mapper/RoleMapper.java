@@ -20,7 +20,7 @@ public class RoleMapper implements RowMapper<Role> {
     public Role mapRow(ResultSet resultSet, int row) throws SQLException {
         return new Role(
                 ridConvertor.convert(resultSet.getString(prefix + "id")),
-                enumConvertor.convert(resultSet.getString(prefix + "role_name")),
+                enumConvertor.convert(resultSet.getString(prefix + "name")),
                 resultSet.getTimestamp(prefix + "created_at"),
                 resultSet.getTimestamp(prefix + "modified_at")
 
