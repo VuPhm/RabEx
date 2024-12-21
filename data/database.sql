@@ -25,7 +25,7 @@ CREATE TABLE shipping_services
     shipping_method_coefficient DECIMAL                               NOT NULL,
     unit_cost                   DECIMAL                               NOT NULL,
     created_at                  TIMESTAMP DEFAULT CURRENT_TIMESTAMP() NOT NULL,
-    updated_at                  TIMESTAMP DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP()
+    modified_at                  TIMESTAMP DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP()
 );
 
 -- Table: shipping_method
@@ -38,7 +38,7 @@ CREATE TABLE shipping_method
     image         TEXT                                  NULL,
     expected_time INT                                   NULL,
     created_at    TIMESTAMP DEFAULT CURRENT_TIMESTAMP() NOT NULL,
-    updated_at    TIMESTAMP DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP()
+    modified_at    TIMESTAMP DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP()
 );
 
 -- Table: users
@@ -55,7 +55,7 @@ CREATE TABLE users
     refresh_token      VARCHAR(255)                                     NULL,
     avatar             VARCHAR(320)                                     NULL,
     created_at         TIMESTAMP                                                 DEFAULT CURRENT_TIMESTAMP() NOT NULL,
-    updated_at         TIMESTAMP                                                 DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP(),
+    modified_at         TIMESTAMP                                                 DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP(),
     FOREIGN KEY (default_address_id) REFERENCES address (id)
 );
 
@@ -65,7 +65,7 @@ CREATE TABLE roles
     id         CHAR(26) PRIMARY KEY,
     name       ENUM ('admin', 'user', 'staff')       NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() NOT NULL,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP()
+    modified_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP()
 );
 
 -- Table: users_roles
@@ -85,7 +85,7 @@ CREATE TABLE parcels
     name       VARCHAR(64)                           NOT NULL,
     created_by CHAR(26)                              NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() NOT NULL,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP(),
+    modified_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP(),
     fragile    BOOLEAN                               NOT NULL,
     weight     DECIMAL                               NOT NULL,
     longg      DECIMAL                               NULL,
@@ -113,7 +113,7 @@ CREATE TABLE address
     province     VARCHAR(45)                                   NOT NULL,
     address_type ENUM ('private_house', 'office', 'different') NOT NULL,
     created_at   TIMESTAMP DEFAULT CURRENT_TIMESTAMP()         NOT NULL,
-    updated_at   TIMESTAMP DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP()
+    modified_at   TIMESTAMP DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP()
 );
 
 -- Table: posts
@@ -126,7 +126,7 @@ CREATE TABLE posts
     phone_number VARCHAR(15)                           NOT NULL,
     manager_id   CHAR(26)                              NOT NULL,
     created_at   TIMESTAMP DEFAULT CURRENT_TIMESTAMP() NOT NULL,
-    updated_at   TIMESTAMP DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP(),
+    modified_at   TIMESTAMP DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP(),
     FOREIGN KEY (address_id) REFERENCES address (id)
 );
 
@@ -139,7 +139,7 @@ CREATE TABLE staffs
     position     VARCHAR(45)                           NOT NULL,
     phone_number VARCHAR(15)                           NOT NULL,
     created_at   TIMESTAMP DEFAULT CURRENT_TIMESTAMP() NOT NULL,
-    updated_at   TIMESTAMP DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP(),
+    modified_at   TIMESTAMP DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP(),
     FOREIGN KEY (post_id) REFERENCES posts (id)
 );
 
@@ -161,7 +161,7 @@ CREATE TABLE shipments
     receive_at_home           BOOLEAN                                                                   NOT NULL,
     failed_count              INT                                                                       NULL,
     created_at                TIMESTAMP DEFAULT CURRENT_TIMESTAMP()                                     NOT NULL,
-    updated_at                TIMESTAMP DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP(),
+    modified_at                TIMESTAMP DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP(),
     FOREIGN KEY (receiver_id) REFERENCES person_info (id),
     FOREIGN KEY (sender_id) REFERENCES person_info (id),
     FOREIGN KEY (receiver_address_id) REFERENCES address (id),
@@ -182,7 +182,7 @@ CREATE TABLE trackings
     tracking_by         CHAR(26)                                                                                                       NOT NULL,
     destination_post_id CHAR(26)                                                                                                       NOT NULL,
     created_at          TIMESTAMP DEFAULT CURRENT_TIMESTAMP()                                                                          NOT NULL,
-    updated_at          TIMESTAMP DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP(),
+    modified_at          TIMESTAMP DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP(),
     FOREIGN KEY (post_id) REFERENCES posts (id),
     FOREIGN KEY (shipment_id) REFERENCES shipments (id)
 );
@@ -197,7 +197,7 @@ CREATE TABLE invoices
     real_unit      DECIMAL                               NOT NULL,
     export_by      CHAR(26)                              NULL,
     created_at     TIMESTAMP DEFAULT CURRENT_TIMESTAMP() NOT NULL,
-    updated_at     TIMESTAMP DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP(),
+    modified_at     TIMESTAMP DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP(),
     FOREIGN KEY (export_by) REFERENCES users (id)
 );
 
