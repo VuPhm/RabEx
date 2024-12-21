@@ -1,11 +1,9 @@
 package com.rabex.express.dao.mapper;
 
-import com.rabex.express.core.dao.Convertor;
-import com.rabex.express.core.dao.RID;
-import com.rabex.express.core.dao.RowMapper;
-import com.rabex.express.core.dao.StringToRidConvertor;
+import com.rabex.express.core.dao.*;
 import com.rabex.express.model.Address;
-import com.rabex.express.model.User;
+import com.rabex.express.model.AddressType;
+import com.rabex.express.model.RoleName;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,6 +11,7 @@ import java.sql.SQLException;
 public class AddressMapper implements RowMapper<Address> {
     private String prefix;
     private Convertor<String, RID> idConvertor = new StringToRidConvertor();
+    private final Convertor<String, AddressType> enumConvertor = new StringToEnumConvertor<>(AddressType.class);
 
 
     public AddressMapper(String address) {
@@ -27,6 +26,7 @@ public class AddressMapper implements RowMapper<Address> {
                 resultSet.getString(prefix + "ward"),
                 resultSet.getString(prefix + "dis"),
                 resultSet.getString(prefix + "pro"),
+                enumConvertor.convert(resultSet.getString(prefix + "type")),
                 resultSet.getTimestamp(prefix + "created_at"),
                 resultSet.getTimestamp(prefix + "updated_at")
         );

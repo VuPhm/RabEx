@@ -12,27 +12,22 @@
             padding: 15px;
             border-bottom: 1px solid #e0e0e0;
         }
-
         .address-details {
             flex-grow: 1;
         }
-
         .address-actions {
             display: flex;
             gap: 10px;
         }
-
         .address-table {
             width: 100%;
             border-collapse: collapse;
         }
-
         .address-table th, .address-table td {
             border: 1px solid #ddd;
             padding: 8px;
             text-align: left;
         }
-
         .address-table th {
             background-color: #f2f2f2;
             font-weight: bold;
@@ -44,16 +39,8 @@
 <%@include file="../common/user/navbar.jsp" %>
 <%-- End Nav --%>
 
-<%--Heading--%>
-<section class="text-center text-md-start">
-    <!-- Background gradient -->
-    <div style="height: 60px;">
-    </div>
-    <!-- Background gradient -->
-</section>
-<%--Heading--%>
 
-<%--content--%>
+<!-- content  -->
 <main id="content">
     <div class="container p-4">
         <section class="mb-4">
@@ -62,23 +49,21 @@
                     <h5 style="font-size: 24px;">Quản lý địa chỉ</h5>
                 </div>
                 <div class="card-body">
-                    <%--Form thêm địa chỉ--%>
+                    <!-- Form thêm địa chỉ -->
                     <form id="add-address-form">
-                        <a class="btn btn-outline-primary" href="#" data-mdb-ripple-init data-mdb-modal-init
-                           data-mdb-target="#address-edit">
+                        <a class="btn btn-outline-primary" href="#" data-mdb-ripple-init data-mdb-modal-init data-mdb-target="#address-edit">
                             <i class="fas fa-edit me-2"></i>Thêm địa chỉ mới
                         </a>
                     </form>
-                    <%--Address Edit Modal--%>
-                    <div class="modal fade" id="address-edit" tabindex="-1" aria-labelledby="address-edit"
-                         aria-hidden="true">
+
+                    <!-- Address Edit Modal -->
+                    <div class="modal fade" id="address-edit" tabindex="-1" aria-labelledby="address-edit" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <!-- Modal Header -->
                                 <div class="modal-header">
                                     <h5 class="modal-title">Thêm địa chỉ mới</h5>
-                                    <button type="button" class="btn-close" data-mdb-dismiss="modal"
-                                            aria-label="Close"></button>
+                                    <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
                                     <form id="address-form">
@@ -86,15 +71,15 @@
 
                                         <div class="row mb-3">
                                             <div class="col-md-4">
-                                                <label class="form-label">Tên</label>
+                                                <label class="form-label" for="name">Tên</label>
                                                 <input type="text" class="form-control" id="name" required>
                                             </div>
                                             <div class="col-md-4">
-                                                <label class="form-label">Số điện thoại</label>
+                                                <label class="form-label" for="phone">Số điện thoại</label>
                                                 <input type="tel" class="form-control" id="phone" required>
                                             </div>
                                             <div class="col-md-4">
-                                                <label class="form-label">Loại địa chỉ</label>
+                                                <label class="form-label" for="address-type">Loại địa chỉ</label>
                                                 <select id="address-type" class="form-select">
                                                     <option value="home">Nhà riêng</option>
                                                     <option value="work">Văn phòng</option>
@@ -105,7 +90,7 @@
 
                                         <div class="row mb-3">
                                             <div class="col-md-4">
-                                                <label class="form-label">Tỉnh/Thành phố</label>
+                                                <label class="form-label" for="province">Tỉnh/Thành phố</label>
                                                 <select id="province" class="form-select" required>
                                                     <option value="">Chọn tỉnh/thành phố</option>
                                                     <option value="1">Hà Nội</option>
@@ -114,26 +99,25 @@
                                                 </select>
                                             </div>
                                             <div class="col-md-4">
-                                                <label class="form-label">Quận/Huyện</label>
+                                                <label class="form-label" for="district">Quận/Huyện</label>
                                                 <select id="district" class="form-select" required>
                                                     <option value="">Chọn quận/huyện</option>
                                                 </select>
                                             </div>
                                             <div class="col-md-4">
-                                                <label class="form-label">Phường/Xã</label>
+                                                <label class="form-label" for="ward">Phường/Xã</label>
                                                 <input type="text" class="form-control" id="ward" required>
                                             </div>
                                         </div>
 
                                         <div class="mb-3">
-                                            <label class="form-label">Địa chỉ chi tiết</label>
+                                            <label class="form-label" for="address">Địa chỉ chi tiết</label>
                                             <input type="text" class="form-control" id="address" required>
                                         </div>
 
                                         <div class="mb-3">
-                                            <label class="form-label">Ghi chú giao hàng</label>
-                                            <textarea class="form-control" id="delivery-instructions"
-                                                      rows="3"></textarea>
+                                            <label class="form-label" for="delivery-instructions">Ghi chú giao hàng</label>
+                                            <textarea class="form-control" id="delivery-instructions" rows="3"></textarea>
                                         </div>
 
                                         <div class="form-check">
@@ -145,17 +129,18 @@
                                     </form>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Đóng
-                                    </button>
+                                    <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Đóng</button>
                                     <button type="button" class="btn btn-primary" id="save-address">Lưu địa chỉ</button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <hr/>
+
+                    <hr />
+
                     <!-- Address List Table -->
                     <div class="table-responsive">
-                        <table class="table table-hover visible" id="address-table">
+                        <table class="table table-hover" id="address-table">
                             <thead>
                             <tr>
                                 <th>STT</th>
@@ -164,11 +149,11 @@
                                 <th>Địa chỉ</th>
                                 <th>Loại địa chỉ</th>
                                 <th>Mặc định</th>
-                                <th></th>
+                                <th>Hành động</th>
                             </tr>
                             </thead>
                             <tbody id="address-container">
-                            <!-- Addresses will be dynamically added here -->
+                            <!-- Các địa chỉ sẽ được thêm vào đây một cách động -->
                             <tr class="active">
                                 <td>1</td>
                                 <td>Ngô Văn</td>
@@ -195,297 +180,168 @@
         </section>
     </div>
 </main>
-<%--content--%>
-<%--<%@include file="../common/user/script.jsp" %>--%>
-<%--<script src="<c:url value="/static/js/quill.js"/>"></script>--%>
-<%--<script>--%>
-<%--    const sidenav = document.getElementById("main-sidenav");--%>
+<!--content -->
 
-<%--    const sidenavInstance = mdb.Sidenav.getInstance(sidenav);--%>
+<script src="<c:url value='/static/js/mdb.umd.min.js'/>"></script>
+<script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
+<script src="<c:url value='/static/js/main.js'/>"></script>
+<script>
+    const sidenav = document.getElementById("main-sidenav");
 
-<%--    const currencyFormat = Intl.NumberFormat("vi-VN", {style: 'currency', currency: 'VND'})--%>
+    const sidenavInstance = mdb.Sidenav.getInstance(sidenav);
+
+    const currencyFormat = Intl.NumberFormat("vi-VN", {style: 'currency', currency: 'VND'})
 
 
-<%--    let innerWidth = null;--%>
+    let innerWidth = null;
 
-<%--    //--%>
+    //
 
-<%--    const setMode = (e) => {--%>
-<%--        // Check necessary for Android devices--%>
-<%--        if (window.innerWidth === innerWidth) {--%>
-<%--            return;--%>
-<%--        }--%>
+    const setMode = (e) => {
+        // Check necessary for Android devices
+        if (window.innerWidth === innerWidth) {
+            return;
+        }
 
-<%--        innerWidth = window.innerWidth;--%>
+        innerWidth = window.innerWidth;
 
-<%--        if (window.innerWidth < 1400) {--%>
-<%--            sidenavInstance.changeMode("over");--%>
-<%--            sidenavInstance.hide();--%>
-<%--        } else {--%>
-<%--            sidenavInstance.changeMode("side");--%>
-<%--            sidenavInstance.show();--%>
-<%--        }--%>
-<%--    };--%>
+        if (window.innerWidth < 1400) {
+            sidenavInstance.changeMode("over");
+            sidenavInstance.hide();
+        } else {
+            sidenavInstance.changeMode("side");
+            sidenavInstance.show();
+        }
+    };
 
-<%--    setMode();--%>
+    setMode();
 
-<%--    // Event listeners--%>
-<%--    window.addEventListener("resize", setMode);--%>
+    // Event listeners
+    window.addEventListener("resize", setMode);
 
-<%--    const searchFocus = document.getElementById('search-focus');--%>
-<%--    const keys = [--%>
-<%--        {keyCode: 'AltLeft', isTriggered: false},--%>
-<%--        {keyCode: 'ControlLeft', isTriggered: false},--%>
-<%--    ];--%>
+    const searchFocus = document.getElementById('search-focus');
+    const keys = [
+        {keyCode: 'AltLeft', isTriggered: false},
+        {keyCode: 'ControlLeft', isTriggered: false},
+    ];
 
-<%--    window.addEventListener('keydown', (e) => {--%>
-<%--        keys.forEach((obj) => {--%>
-<%--            if (obj.keyCode === e.code) {--%>
-<%--                obj.isTriggered = true;--%>
-<%--            }--%>
-<%--        });--%>
+    window.addEventListener('keydown', (e) => {
+        keys.forEach((obj) => {
+            if (obj.keyCode === e.code) {
+                obj.isTriggered = true;
+            }
+        });
 
-<%--        const shortcutTriggered = keys.filter((obj) => obj.isTriggered).length === keys.length;--%>
+        const shortcutTriggered = keys.filter((obj) => obj.isTriggered).length === keys.length;
 
-<%--        if (shortcutTriggered) {--%>
-<%--            searchFocus.focus();--%>
-<%--        }--%>
-<%--    });--%>
+        if (shortcutTriggered) {
+            searchFocus.focus();
+        }
+    });
 
-<%--    window.addEventListener('keyup', (e) => {--%>
-<%--        keys.forEach((obj) => {--%>
-<%--            if (obj.keyCode === e.code) {--%>
-<%--                obj.isTriggered = false;--%>
-<%--            }--%>
-<%--        });--%>
-<%--    });--%>
+    window.addEventListener('keyup', (e) => {
+        keys.forEach((obj) => {
+            if (obj.keyCode === e.code) {
+                obj.isTriggered = false;
+            }
+        });
+    });
 
-<%--    // Address Management Script--%>
+    // Handle save address button click
+    document.getElementById('save-address').addEventListener('click', async function(e) {
+        e.preventDefault();
 
-<%--    const addressContainer = document.getElementById("address-container");--%>
-<%--    const addressForm = document.getElementById("address-form");--%>
-<%--    const saveAddressBtn = document.getElementById("save-address");--%>
-<%--    const provinceSelect = document.getElementById("province");--%>
-<%--    const districtSelect = document.getElementById("district");--%>
-<%--    const addressEditModal = new mdb.Modal(document.getElementById("address-edit"));--%>
-<%--    let currentEditIndex = null;--%>
+        const saveButton = this;
+        const form = document.getElementById('address-form');
 
-<%--    // Save addresses to localStorage--%>
-<%--    function saveAddresses(addresses) {--%>
-<%--        localStorage.setItem('addresses', JSON.stringify(addresses));--%>
-<%--    }--%>
+        // Validate form
+        if (!form.checkValidity()) {
+            form.reportValidity();
+            return;
+        }
 
-<%--    // Get addresses from localStorage--%>
-<%--    function getAddresses() {--%>
-<%--        const addresses = localStorage.getItem('addresses');--%>
-<%--        return addresses ? JSON.parse(addresses) : [];--%>
-<%--    }--%>
+        try {
+            // Show loading state
+            saveButton.disabled = true;
+            saveButton.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Đang lưu...';
 
-<%--    // Render addresses in the table--%>
-<%--    function renderAddresses() {--%>
-<%--        const addresses = getAddresses();--%>
-<%--        addressContainer.innerHTML = '';--%>
+            // Gather form data
+            const formData = {
+                name: document.getElementById('name').value,
+                phone: document.getElementById('phone').value,
+                province: document.getElementById('province').options[document.getElementById('province').selectedIndex].text,
+                district: document.getElementById('district').value,
+                ward: document.getElementById('ward').value,
+                address: document.getElementById('address').value,
+                addressType: document.getElementById('address_type'),
+                isDefault: document.getElementById('is_default').checked
+            };
 
-<%--        addresses.forEach((addr, index) => {--%>
-<%--            const addressRow = document.createElement('tr');--%>
+            // Send request to backend
+            const response = await fetch('/dia-chi', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            });
 
-<%--            addressRow.innerHTML = `--%>
-<%--            <td>${index + 1}</td>--%>
-<%--            <td>${addr.name}</td>--%>
-<%--            <td>${addr.phone}</td>--%>
-<%--            <td>${addr.address}, ${addr.ward}, ${addr.district}, ${addr.province}</td>--%>
-<%--            <td>${getAddressTypeLabel(addr.type)}</td>--%>
-<%--            <td>--%>
-<%--                ${addr.isDefault--%>
-<%--                ? '<span class="badge bg-success">Mặc định</span>'--%>
-<%--                : '<span class="badge bg-secondary">-</span>'}--%>
-<%--            </td>--%>
-<%--            <td>--%>
-<%--                <a class="btn btn-sm btn-outline-primary edit-address" data-index="${index}">--%>
-<%--                    <i class="fas fa-edit me-1"></i>--%>
-<%--                </a>--%>
-<%--                <a class="btn btn-sm btn-outline-danger remove-address" data-index="${index}">--%>
-<%--                    <i class="fas fa-trash me-1"></i>--%>
-<%--                </a>--%>
-<%--            </td>--%>
-<%--        `;--%>
+            const result = await response.json();
 
-<%--            addressContainer.appendChild(addressRow);--%>
-<%--        });--%>
+            if (result.success) {
+                // Show success message using MDB alert
+                const alertTemplate = `
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>Thành công!</strong> ${result.message}
+                    <button type="button" class="btn-close" data-mdb-dismiss="alert" aria-label="Close"></button>
+                </div>
+            `;
+                document.querySelector('.container').insertAdjacentHTML('afterbegin', alertTemplate);
 
-<%--        // Add event listeners for edit and remove buttons--%>
-<%--        addAddressActionListeners();--%>
-<%--    }--%>
+                // Close modal
+                const modal = mdb.Modal.getInstance(document.getElementById('address-edit'));
+                modal.hide();
 
-<%--    // Get address type label--%>
-<%--    function getAddressTypeLabel(type) {--%>
-<%--        const addressTypes = {--%>
-<%--            'home': 'Nhà riêng',--%>
-<%--            'work': 'Văn phòng',--%>
-<%--            'other': 'Khác'--%>
-<%--        };--%>
-<%--        return addressTypes[type] || type;--%>
-<%--    }--%>
+                // Refresh address list
+                location.reload();
+            } else {
+                throw new Error(result.message);
+            }
 
-<%--    // Update district options based on province--%>
-<%--    function updateDistrictOptions(provinceId) {--%>
-<%--        const districtOptions = {--%>
-<%--            '1': [--%>
-<%--                {value: '1', label: 'Hoàn Kiếm'},--%>
-<%--                {value: '2', label: 'Đống Đa'},--%>
-<%--                {value: '3', label: 'Ba Đình'}--%>
-<%--            ],--%>
-<%--            '2': [--%>
-<%--                {value: '1', label: 'Quận 1'},--%>
-<%--                {value: '2', label: 'Quận 3'},--%>
-<%--                {value: '3', label: 'Thủ Đức'}--%>
-<%--            ],--%>
-<%--            '3': [--%>
-<%--                {value: '1', label: 'Hải Châu'},--%>
-<%--                {value: '2', label: 'Thanh Khê'},--%>
-<%--                {value: '3', label: 'Sơn Trà'}--%>
-<%--            ]--%>
-<%--        };--%>
+        } catch (error) {
+            // Show error message
+            const alertTemplate = `
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Lỗi!</strong> ${error.message}
+                <button type="button" class="btn-close" data-mdb-dismiss="alert" aria-label="Close"></button>
+            </div>
+        `;
+            document.querySelector('.container').insertAdjacentHTML('afterbegin', alertTemplate);
+        } finally {
+            // Reset button state
+            saveButton.disabled = false;
+            saveButton.innerHTML = 'Lưu địa chỉ';
+        }
+    });
 
-<%--        districtSelect.innerHTML = '<option value="">Chọn quận/huyện</option>';--%>
+    // Province-District cascade
+    document.getElementById('province').addEventListener('change', function() {
+        const districtSelect = document.getElementById('district');
+        districtSelect.innerHTML = '<option value="">Chọn quận/huyện</option>';
 
-<%--        if (districtOptions[provinceId]) {--%>
-<%--            districtOptions[provinceId].forEach(option => {--%>
-<%--                const optionElement = document.createElement('option');--%>
-<%--                optionElement.value = option.value;--%>
-<%--                optionElement.textContent = option.label;--%>
-<%--                districtSelect.appendChild(optionElement);--%>
-<%--            });--%>
-<%--        }--%>
-<%--    }--%>
+        const districts = {
+            '1': ['Ba Đình', 'Hoàn Kiếm', 'Hai Bà Trưng'],
+            '2': ['Quận 1', 'Quận 2', 'Thủ Đức'],
+            '3': ['Hải Châu', 'Thanh Khê', 'Sơn Trà']
+        };
 
-<%--    // Add event listeners for edit and remove buttons--%>
-<%--    function addAddressActionListeners() {--%>
-<%--        // Remove address--%>
-<%--        addressContainer.querySelectorAll('.remove-address').forEach(btn => {--%>
-<%--            btn.addEventListener('click', function() {--%>
-<%--                const index = this.getAttribute('data-index');--%>
-<%--                const addresses = getAddresses();--%>
-
-<%--                // Confirm before deletion--%>
-<%--                if (confirm('Bạn có chắc chắn muốn xóa địa chỉ này?')) {--%>
-<%--                    addresses.splice(index, 1);--%>
-<%--                    saveAddresses(addresses);--%>
-<%--                    renderAddresses();--%>
-<%--                }--%>
-<%--            });--%>
-<%--        });--%>
-
-<%--        // Edit address--%>
-<%--        addressContainer.querySelectorAll('.edit-address').forEach(btn => {--%>
-<%--            btn.addEventListener('click', function() {--%>
-<%--                const index = this.getAttribute('data-index');--%>
-<%--                const addresses = getAddresses();--%>
-<%--                const addressToEdit = addresses[index];--%>
-
-<%--                // Reset form--%>
-<%--                addressForm.reset();--%>
-
-<%--                // Populate form with existing address data--%>
-<%--                document.getElementById('name').value = addressToEdit.name;--%>
-<%--                document.getElementById('phone').value = addressToEdit.phone;--%>
-<%--                document.getElementById('province').value =--%>
-<%--                    Array.from(provinceSelect.options).find(option =>--%>
-<%--                        option.text === addressToEdit.province--%>
-<%--                    )?.value || '';--%>
-
-<%--                // Update district options based on province--%>
-<%--                updateDistrictOptions(addressToEdit.province);--%>
-
-<%--                // Set district after a short delay to ensure options are populated--%>
-<%--                setTimeout(() => {--%>
-<%--                    document.getElementById('district').value =--%>
-<%--                        Array.from(districtSelect.options).find(option =>--%>
-<%--                            option.text === addressToEdit.district--%>
-<%--                        )?.value || '';--%>
-<%--                }, 100);--%>
-
-<%--                document.getElementById('ward').value = addressToEdit.ward;--%>
-<%--                document.getElementById('address').value = addressToEdit.address;--%>
-<%--                document.getElementById('delivery-instructions').value = addressToEdit.deliveryInstructions || '';--%>
-<%--                document.getElementById('address-type').value = addressToEdit.type;--%>
-<%--                document.getElementById('default-address').checked = addressToEdit.isDefault;--%>
-
-<%--                // Store the index of the address being edited--%>
-<%--                currentEditIndex = index;--%>
-
-<%--                // Show the modal--%>
-<%--                addressEditModal.show();--%>
-<%--            });--%>
-<%--        });--%>
-<%--    }--%>
-
-<%--    // Province change event listener--%>
-<%--    provinceSelect.addEventListener('change', function() {--%>
-<%--        updateDistrictOptions(this.value);--%>
-<%--    });--%>
-
-<%--    // Save address event listener--%>
-<%--    saveAddressBtn.addEventListener('click', function() {--%>
-<%--        const name = document.getElementById('name').value;--%>
-<%--        const phone = document.getElementById('phone').value;--%>
-<%--        const provinceElement = document.getElementById('province');--%>
-<%--        const districtElement = document.getElementById('district');--%>
-<%--        const ward = document.getElementById('ward').value;--%>
-<%--        const address = document.getElementById('address').value;--%>
-<%--        const deliveryInstructions = document.getElementById('delivery-instructions').value;--%>
-<%--        const type = document.getElementById('address-type').value;--%>
-<%--        const isDefault = document.getElementById('default-address').checked;--%>
-
-<%--        // Validate form--%>
-<%--        const form = document.getElementById('address-form');--%>
-<%--        if (!form.checkValidity()) {--%>
-<%--            form.reportValidity();--%>
-<%--            return;--%>
-<%--        }--%>
-
-<%--        // Get current addresses--%>
-<%--        const addresses = getAddresses();--%>
-
-<%--        // If new address is set as default, remove default from others--%>
-<%--        if (isDefault) {--%>
-<%--            addresses.forEach(addr => addr.isDefault = false);--%>
-<%--        }--%>
-
-<%--        const newAddress = {--%>
-<%--            name,--%>
-<%--            phone,--%>
-<%--            province: provinceElement.options[provinceElement.selectedIndex].text,--%>
-<%--            district: districtElement.options[districtElement.selectedIndex].text,--%>
-<%--            ward,--%>
-<%--            address,--%>
-<%--            deliveryInstructions,--%>
-<%--            type,--%>
-<%--            isDefault--%>
-<%--        };--%>
-
-<%--        // If editing existing address, replace it--%>
-<%--        if (currentEditIndex !== null) {--%>
-<%--            addresses[currentEditIndex] = newAddress;--%>
-<%--            currentEditIndex = null;--%>
-<%--        } else {--%>
-<%--            // Otherwise, add new address--%>
-<%--            addresses.push(newAddress);--%>
-<%--        }--%>
-
-<%--        // Save and render--%>
-<%--        saveAddresses(addresses);--%>
-<%--        renderAddresses();--%>
-
-<%--        // Close the modal--%>
-<%--        addressEditModal.hide();--%>
-
-<%--        // Reset form--%>
-<%--        form.reset();--%>
-<%--    });--%>
-
-<%--    // Initial render--%>
-<%--    renderAddresses();--%>
-<%--</script>--%>
+        if (this.value) {
+            districts[this.value].forEach(district => {
+                const option = new Option(district, district);
+                districtSelect.add(option);
+            });
+        }
+    });
+</script>
 </body>
 </html>

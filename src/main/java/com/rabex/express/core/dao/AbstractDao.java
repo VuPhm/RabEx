@@ -70,7 +70,7 @@ public abstract class AbstractDao<Entity> implements Dao<Entity> {
                 } else if (parameter instanceof Enum<?> e) {
                     statement.setString(index, e.toString());
                 } else if(parameter instanceof RID rid){
-                    statement.setString(index, rid.toString());
+                    statement.setBytes(index, rid.toBytes());
                 } else {
                     statement.setString(index, parameter.toString());
                 }
@@ -98,7 +98,7 @@ public abstract class AbstractDao<Entity> implements Dao<Entity> {
         return Page.of(content, total, pageable);
     }
 
-    protected String generatePaginationSql(String querySql, Pageable pageable) {
+    private String generatePaginationSql(String querySql, Pageable pageable) {
         return new StringJoiner(" ")
                 .add(querySql)
                 .add(sortToSqlConvertor.convert(pageable.getSort()))

@@ -4,11 +4,13 @@ import com.rabex.express.core.dao.RID;
 import com.rabex.express.model.Address;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface AddressService {
     // Show all
     List<Address> getAllAddresses();
 
+    int countAll();
     // Tìm địa chỉ theo id
     Address getAddressById(RID id);
 

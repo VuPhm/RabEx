@@ -6,14 +6,22 @@ import com.rabex.express.dao.AddressDao;
 import com.rabex.express.dao.TemplateDao;
 import com.rabex.express.dao.mapper.AddressMapper;
 import com.rabex.express.model.Address;
+import jakarta.inject.Inject;
+import jakarta.inject.Singleton;
 
+@Singleton
 public class DefaultAddressDao extends TemplateDao<Address> implements AddressDao {
-    private static final String QUERY_SQL = "SELECT this.id as address_id, this.description as address_des, this.ward as address_ward, this.district as address_dis, this.province as address_pro, this.created_at as address_created_at, this.updated_at as address_updated_at from address this";
+    private static final String QUERY_SQL = "SELECT this.id as address_id, this.description as address_des, this.phone as address_phone, this.ward as address_ward, this.district as address_dis, this.province as address_pro, this.address_type as address_type, this.is_default as address_def this.created_at as address_created_at, this.updated_at as address_updated_at from address this";
     private AddressMapper addressMapper;
+
+    public DefaultAddressDao() {
+    }
+
+
 
     @Override
     public boolean insert(Address address) {
-        String insertAddress = "INSERT INTO address(id, description, ward, district, province, created_at ,updated_at) VALUES (?,?,?,?,?,?,?)";
+        String insertAddress = "INSERT INTO address(id, description, phone, ward, district, province, address_type, is_default, created_at ,updated_at) VALUES (?,?,?,?,?,?,?)";
         // Insert new address
         boolean success = insert(insertAddress, address.getId(), address.getDescription(), address.getWard(), address.getDistrict(), address.getDistrict(), address.getCreatedAt(), address.getUpdateAt());
         return success;
@@ -21,13 +29,16 @@ public class DefaultAddressDao extends TemplateDao<Address> implements AddressDa
 
     @Override
     public boolean update(RID id, Address address) {
-        String updateAddress = "UPDATE address SET description = ?, ward = ?, district = ?, province = ?, updated_at = ? WHERE id = ?";
+        String updateAddress = "UPDATE address SET description = ?, phone = ?, ward = ?, district = ?, province = ?, address_type =?, is_default = ?, updated_at = ? WHERE id = ?";
         // Update address
         return update(updateAddress,
                 address.getDescription(),
+                address.getPhone(),
                 address.getWard(),
                 address.getDistrict(),
                 address.getProvince(),
+                address.getAddressType(),
+                address.isDefault(),
                 address.getUpdateAt()
         );
     }
