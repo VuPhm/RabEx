@@ -15,9 +15,9 @@ public interface AddressService {
     Address getAddressById(RID id);
 
     // Thêm địa chỉ mới
-    Address addAddress(Address address) throws IllegalArgumentException;
+    boolean addAddress(Address address) throws IllegalArgumentException;
     // Cập nhật địa chỉ
-    Address updateAddress(RID id, Address address) throws IllegalArgumentException;
+    boolean updateAddress(RID id, Address address) throws IllegalArgumentException;
     // Xoá địa chỉ
     boolean deleteAddress(RID id);
 }

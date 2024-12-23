@@ -12,22 +12,27 @@
             padding: 15px;
             border-bottom: 1px solid #e0e0e0;
         }
+
         .address-details {
             flex-grow: 1;
         }
+
         .address-actions {
             display: flex;
             gap: 10px;
         }
+
         .address-table {
             width: 100%;
             border-collapse: collapse;
         }
+
         .address-table th, .address-table td {
             border: 1px solid #ddd;
             padding: 8px;
             text-align: left;
         }
+
         .address-table th {
             background-color: #f2f2f2;
             font-weight: bold;
@@ -42,8 +47,8 @@
 
 <!-- content  -->
 <main id="content">
-    <div class="container p-4">
-        <section class="mb-4">
+    <div class="container p-4 mt-5">
+        <section class="mt-4">
             <div class="card">
                 <div class="card-header bg-white">
                     <h5 style="font-size: 24px;">Quản lý địa chỉ</h5>
@@ -51,19 +56,22 @@
                 <div class="card-body">
                     <!-- Form thêm địa chỉ -->
                     <form id="add-address-form">
-                        <a class="btn btn-outline-primary" href="#" data-mdb-ripple-init data-mdb-modal-init data-mdb-target="#address-edit">
+                        <a class="btn btn-outline-primary" href="#" data-mdb-ripple-init data-mdb-modal-init
+                           data-mdb-target="#address-edit">
                             <i class="fas fa-edit me-2"></i>Thêm địa chỉ mới
                         </a>
                     </form>
 
                     <!-- Address Edit Modal -->
-                    <div class="modal fade" id="address-edit" tabindex="-1" aria-labelledby="address-edit" aria-hidden="true">
+                    <div class="modal fade" id="address-edit" tabindex="-1" aria-labelledby="address-edit"
+                         aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <!-- Modal Header -->
                                 <div class="modal-header">
                                     <h5 class="modal-title">Thêm địa chỉ mới</h5>
-                                    <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+                                    <button type="button" class="btn-close" data-mdb-dismiss="modal"
+                                            aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
                                     <form id="address-form">
@@ -116,8 +124,10 @@
                                         </div>
 
                                         <div class="mb-3">
-                                            <label class="form-label" for="delivery-instructions">Ghi chú giao hàng</label>
-                                            <textarea class="form-control" id="delivery-instructions" rows="3"></textarea>
+                                            <label class="form-label" for="delivery-instructions">Ghi chú giao
+                                                hàng</label>
+                                            <textarea class="form-control" id="delivery-instructions"
+                                                      rows="3"></textarea>
                                         </div>
 
                                         <div class="form-check">
@@ -129,15 +139,13 @@
                                     </form>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Đóng</button>
+                                    <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Đóng
+                                    </button>
                                     <button type="button" class="btn btn-primary" id="save-address">Lưu địa chỉ</button>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <hr />
-
                     <!-- Address List Table -->
                     <div class="table-responsive">
                         <table class="table table-hover" id="address-table">
@@ -153,25 +161,28 @@
                             </tr>
                             </thead>
                             <tbody id="address-container">
-                            <!-- Các địa chỉ sẽ được thêm vào đây một cách động -->
-                            <tr class="active">
-                                <td>1</td>
-                                <td>Ngô Văn</td>
-                                <td>0385874145</td>
-                                <td>214B Đ.Tam Bình, Khu phố 2, Tam Phú, Thủ Đức, Hồ Chí Minh</td>
-                                <td>Nhà riêng</td>
-                                <td>
-                                    <span class="badge rounded-pill bg-success">Mặc định</span>
-                                </td>
-                                <td>
-                                    <a class="btn btn-sm btn-outline-primary edit-address" data-index="0">
-                                        <i class="fas fa-edit me-1"></i>
-                                    </a>
-                                    <a class="btn btn-sm btn-outline-danger remove-address" data-index="0">
-                                        <i class="fas fa-trash me-1"></i>
-                                    </a>
-                                </td>
-                            </tr>
+                            <c:forEach var="address" items="${addresses}">
+                                <tr>
+                                    <td>${address.index}</td>
+                                    <td>${address.name}</td>
+                                    <td>${address.phone}</td>
+                                    <td>${address.fullAddress}</td>
+                                    <td>${address.addressType}</td>
+                                    <td>
+                                        <span class="badge rounded-pill ${address.isDefault ? 'bg-success' : 'bg-secondary'}">
+                                                ${address.isDefault ? 'Mặc định' : 'Không mặc định'}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-sm btn-outline-primary edit-address" data-id="${address.id}">
+                                            <i class="fas fa-edit me-1"></i>
+                                        </a>
+                                        <a class="btn btn-sm btn-outline-danger remove-address" data-id="${address.id}">
+                                            <i class="fas fa-trash me-1"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </c:forEach>
                             </tbody>
                         </table>
                     </div>
@@ -248,100 +259,130 @@
     });
 
     // Handle save address button click
-    document.getElementById('save-address').addEventListener('click', async function(e) {
-        e.preventDefault();
+    // JavaScript for managing address CRUD operations
+    let addressList = [];
 
-        const saveButton = this;
-        const form = document.getElementById('address-form');
+    // Fetch and render addresses on page load
+    document.addEventListener('DOMContentLoaded', async () => {
+        await fetchAddresses();
+        renderTable();
+    });
 
-        // Validate form
-        if (!form.checkValidity()) {
-            form.reportValidity();
+    // Function to fetch addresses from server
+    async function fetchAddresses() {
+        try {
+            const response = await fetch('/dia-chi');
+            if (!response.ok) throw new Error('Failed to fetch addresses');
+            addressList = await response.json();
+        } catch (error) {
+            console.error('Error fetching addresses:', error);
+        }
+    }
+
+    // Function to render the address table
+    function renderTable() {
+        const tableBody = document.querySelector('#addressTable tbody');
+        tableBody.innerHTML = '';
+
+        addressList.forEach((address, index) => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+            <td>${index + 1}</td>
+            <td>${address.description}</td>
+            <td>${address.ward}</td>
+            <td>${address.district}</td>
+            <td>${address.province}</td>
+            <td>${address.addressType}</td>
+            <td>
+                <button class="btn btn-warning btn-sm" onclick="onEdit(${index})">Edit</button>
+                <button class="btn btn-danger btn-sm" onclick="onDelete(${index})">Delete</button>
+            </td>
+        `;
+            tableBody.appendChild(row);
+        });
+    }
+
+    // Function to handle adding or updating an address
+    document.getElementById('saveButton').addEventListener('click', async () => {
+        const description = document.getElementById('descriptionInput').value.trim();
+        const ward = document.getElementById('wardInput').value.trim();
+        const district = document.getElementById('districtInput').value.trim();
+        const province = document.getElementById('provinceInput').value.trim();
+        const addressType = document.getElementById('typeInput').value.trim();
+        const index = document.getElementById('addressIndex').value;
+
+        if (!description || !ward || !district || !province || !addressType) {
+            alert('Please fill in all fields!');
             return;
         }
 
+        const addressData = {description, ward, district, province, addressType};
+
         try {
-            // Show loading state
-            saveButton.disabled = true;
-            saveButton.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Đang lưu...';
+            const method = index === '' ? 'POST' : 'PUT';
+            const url = index === '' ? '/dia-chi' : `/dia-chi/${addressList[index].id}`;
 
-            // Gather form data
-            const formData = {
-                name: document.getElementById('name').value,
-                phone: document.getElementById('phone').value,
-                province: document.getElementById('province').options[document.getElementById('province').selectedIndex].text,
-                district: document.getElementById('district').value,
-                ward: document.getElementById('ward').value,
-                address: document.getElementById('address').value,
-                addressType: document.getElementById('address_type'),
-                isDefault: document.getElementById('is_default').checked
-            };
-
-            // Send request to backend
-            const response = await fetch('/dia-chi', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(formData)
+            const response = await fetch(url, {
+                method,
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(addressData),
             });
 
-            const result = await response.json();
+            if (!response.ok) throw new Error('Failed to save address');
 
-            if (result.success) {
-                // Show success message using MDB alert
-                const alertTemplate = `
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <strong>Thành công!</strong> ${result.message}
-                    <button type="button" class="btn-close" data-mdb-dismiss="alert" aria-label="Close"></button>
-                </div>
-            `;
-                document.querySelector('.container').insertAdjacentHTML('afterbegin', alertTemplate);
-
-                // Close modal
-                const modal = mdb.Modal.getInstance(document.getElementById('address-edit'));
-                modal.hide();
-
-                // Refresh address list
-                location.reload();
-            } else {
-                throw new Error(result.message);
-            }
-
+            alert('Address saved successfully!');
+            await fetchAddresses();
+            renderTable();
         } catch (error) {
-            // Show error message
-            const alertTemplate = `
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                <strong>Lỗi!</strong> ${error.message}
-                <button type="button" class="btn-close" data-mdb-dismiss="alert" aria-label="Close"></button>
-            </div>
-        `;
-            document.querySelector('.container').insertAdjacentHTML('afterbegin', alertTemplate);
+            console.error('Error saving address:', error);
+            alert('An error occurred while saving the address.');
         } finally {
-            // Reset button state
-            saveButton.disabled = false;
-            saveButton.innerHTML = 'Lưu địa chỉ';
+            resetForm();
         }
     });
 
-    // Province-District cascade
-    document.getElementById('province').addEventListener('change', function() {
-        const districtSelect = document.getElementById('district');
-        districtSelect.innerHTML = '<option value="">Chọn quận/huyện</option>';
+    // Function to edit an address
+    function onEdit(index) {
+        const address = addressList[index];
 
-        const districts = {
-            '1': ['Ba Đình', 'Hoàn Kiếm', 'Hai Bà Trưng'],
-            '2': ['Quận 1', 'Quận 2', 'Thủ Đức'],
-            '3': ['Hải Châu', 'Thanh Khê', 'Sơn Trà']
-        };
+        document.getElementById('descriptionInput').value = address.description;
+        document.getElementById('wardInput').value = address.ward;
+        document.getElementById('districtInput').value = address.district;
+        document.getElementById('provinceInput').value = address.province;
+        document.getElementById('typeInput').value = address.addressType;
+        document.getElementById('addressIndex').value = index;
 
-        if (this.value) {
-            districts[this.value].forEach(district => {
-                const option = new Option(district, district);
-                districtSelect.add(option);
-            });
+        const modal = new bootstrap.Modal(document.getElementById('addressModal'));
+        modal.show();
+    }
+
+    // Function to delete an address
+    async function onDelete(index) {
+        if (!confirm('Are you sure you want to delete this address?')) return;
+
+        try {
+            const response = await fetch(`/dia-chi/${addressList[index].id}`, {method: 'DELETE'});
+            if (!response.ok) throw new Error('Failed to delete address');
+
+            alert('Address deleted successfully!');
+            await fetchAddresses();
+            renderTable();
+        } catch (error) {
+            console.error('Error deleting address:', error);
+            alert('An error occurred while deleting the address.');
         }
-    });
+    }
+
+    // Function to reset the form
+    function resetForm() {
+        document.getElementById('descriptionInput').value = '';
+        document.getElementById('wardInput').value = '';
+        document.getElementById('districtInput').value = '';
+        document.getElementById('provinceInput').value = '';
+        document.getElementById('typeInput').value = '';
+        document.getElementById('addressIndex').value = '';
+    }
+
 </script>
 </body>
 </html>

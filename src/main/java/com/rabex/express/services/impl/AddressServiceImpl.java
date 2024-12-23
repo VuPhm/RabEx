@@ -43,17 +43,17 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public Address addAddress(Address address) throws IllegalArgumentException {
-        return null;
+    public boolean addAddress(Address address) throws IllegalArgumentException {
+        return addressDao.insert(address);
     }
 
     @Override
-    public Address updateAddress(RID id, Address address) throws IllegalArgumentException {
-        return null;
+    public boolean updateAddress(RID id, Address address) throws IllegalArgumentException {
+        return addressDao.update(id, address);
     }
 
     @Override
     public boolean deleteAddress(RID id) {
-        return false;
+        return addressDao.delete(id);
     }
 }
