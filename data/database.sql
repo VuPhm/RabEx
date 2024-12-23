@@ -1,16 +1,18 @@
 -- Table: person_info
-CREATE TABLE person_info (
-                             id CHAR(26) PRIMARY KEY,
-                             phone_number VARCHAR(15) NOT NULL,
-                             full_name VARCHAR(64) NOT NULL,
-                             email VARCHAR(320) NULL
+CREATE TABLE person_info
+(
+    id           CHAR(26) PRIMARY KEY,
+    phone_number VARCHAR(15)  NOT NULL,
+    full_name    VARCHAR(64)  NOT NULL,
+    email        VARCHAR(320) NULL
 );
 
 -- Table: delivery_failed_action
-CREATE TABLE delivery_failed_action (
-                                        id CHAR(26) PRIMARY KEY,
-                                        name VARCHAR(45) NOT NULL,
-                                        description TEXT NULL
+CREATE TABLE delivery_failed_action
+(
+    id          CHAR(26) PRIMARY KEY,
+    name        VARCHAR(45) NOT NULL,
+    description TEXT        NULL
 );
 
 -- Table: shipping_services
@@ -58,15 +60,17 @@ CREATE TABLE roles (
                        name ENUM('admin', 'user', 'staff') NOT NULL,
                        modified_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() NOT NULL,
                        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP()
+
 );
 
 -- Table: users_roles
-CREATE TABLE users_roles (
-                             user_id CHAR(26) NOT NULL,
-                             role_id CHAR(26) NOT NULL,
-                             PRIMARY KEY (user_id, role_id),
-                             FOREIGN KEY (user_id) REFERENCES users(id),
-                             FOREIGN KEY (role_id) REFERENCES roles(id)
+CREATE TABLE users_roles
+(
+    user_id CHAR(26) NOT NULL,
+    role_id CHAR(26) NOT NULL,
+    PRIMARY KEY (user_id, role_id),
+    FOREIGN KEY (user_id) REFERENCES users (id),
+    FOREIGN KEY (role_id) REFERENCES roles (id)
 );
 
 -- Table: parcels
@@ -82,14 +86,16 @@ CREATE TABLE parcels (
                          high DECIMAL NULL,
                          wide DECIMAL NULL,
                          FOREIGN KEY (created_by) REFERENCES users(id)
+
 );
 
 -- Table: cod_details
-CREATE TABLE cod_details (
-                             id CHAR(26) PRIMARY KEY,
-                             amount DECIMAL NOT NULL,
-                             status ENUM('pending', 'paid') NOT NULL,
-                             collected_date DATE NOT NULL
+CREATE TABLE cod_details
+(
+    id             CHAR(26) PRIMARY KEY,
+    amount         DECIMAL                  NOT NULL,
+    status         ENUM ('pending', 'paid') NOT NULL,
+    collected_date DATE                     NOT NULL
 );
 
 -- Table: address
@@ -114,10 +120,8 @@ CREATE TABLE posts (
                        modified_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() NOT NULL,
                        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP(),
                        FOREIGN KEY (address_id) REFERENCES address(id)
+
 );
-
-
-
 
 
 -- Table: staffs
@@ -184,15 +188,17 @@ CREATE TABLE invoices (
                           modified_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() NOT NULL,
                           updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP(),
                           FOREIGN KEY (export_by) REFERENCES users(id)
+
 );
 
 -- Table: users_tokens
-CREATE TABLE users_tokens (
-                              id CHAR(26) PRIMARY KEY,
-                              verify_token VARCHAR(45) NULL,
-                              reset_password_token VARCHAR(45) NULL,
-                              verify_token_expired_at TIMESTAMP NULL,
-                              reset_password_token_expired_at TIMESTAMP NULL
+CREATE TABLE users_tokens
+(
+    id                              CHAR(26) PRIMARY KEY,
+    verify_token                    VARCHAR(45) NULL,
+    reset_password_token            VARCHAR(45) NULL,
+    verify_token_expired_at         TIMESTAMP   NULL,
+    reset_password_token_expired_at TIMESTAMP   NULL
 );
 
 # add customer
