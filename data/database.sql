@@ -21,8 +21,10 @@ CREATE TABLE shipping_services (
                                    details TEXT NULL,
                                    shipping_method_coefficient DECIMAL NOT NULL,
                                    unit_cost DECIMAL NOT NULL,
-                                   modified_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() NOT NULL,
-                                   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP()
+                                   image TEXT NULL,
+                                   unit ENUM('weight', 'volume', 'turn') NOT NULL,
+                                   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() NOT NULL,
+                                   modified_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP()
 );
 
 -- Table: shipping_method
@@ -33,8 +35,8 @@ CREATE TABLE shipping_method (
                                  description TEXT NULL,
                                  image TEXT NULL,
                                  expected_time INT NULL,
-                                 modified_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() NOT NULL,
-                                 updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP()
+                                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() NOT NULL,
+                                 modified_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP()
 );
 
 -- Table: users
@@ -48,16 +50,16 @@ CREATE TABLE users (
                        verified_at TIMESTAMP NULL,
                        refresh_token VARCHAR(255) NULL,
                        avatar VARCHAR(320) NULL,
-                       modified_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() NOT NULL,
-                       updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP()
+                       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() NOT NULL,
+                       modified_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP()
 );
 
 -- Table: roles
 CREATE TABLE roles (
                        id CHAR(26) PRIMARY KEY,
                        name ENUM('admin', 'user', 'staff') NOT NULL,
-                       modified_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() NOT NULL,
-                       updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP()
+                       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() NOT NULL,
+                       modified_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP()
 );
 
 -- Table: users_roles
@@ -74,8 +76,8 @@ CREATE TABLE parcels (
                          id CHAR(26) PRIMARY KEY,
                          name VARCHAR(64) NOT NULL,
                          created_by CHAR(26) NOT NULL,
-                         modified_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() NOT NULL,
-                         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP(),
+                         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() NOT NULL,
+                         modified_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP(),
                          fragile BOOLEAN NOT NULL,
                          weight DECIMAL NOT NULL,
                          longg DECIMAL NULL,
@@ -99,8 +101,8 @@ CREATE TABLE address (
                          ward VARCHAR(45) NOT NULL,
                          district VARCHAR(45) NOT NULL,
                          province VARCHAR(45) NOT NULL,
-                         modified_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() NOT NULL,
-                         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP()
+                         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() NOT NULL,
+                         modified_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP()
 );
 
 -- Table: posts
@@ -111,8 +113,8 @@ CREATE TABLE posts (
                        email VARCHAR(128) NULL,
                        phone_number VARCHAR(15) NOT NULL,
                        manager_id CHAR(26) NOT NULL,
-                       modified_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() NOT NULL,
-                       updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP(),
+                       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() NOT NULL,
+                       modified_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP(),
                        FOREIGN KEY (address_id) REFERENCES address(id)
 );
 
@@ -126,8 +128,8 @@ CREATE TABLE staffs (
                         post_id CHAR(26) NOT NULL,
                         position VARCHAR(45) NOT NULL,
                         phone_number VARCHAR(15) NOT NULL,
-                        modified_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() NOT NULL,
-                        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP(),
+                        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() NOT NULL,
+                        modified_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP(),
                         FOREIGN KEY (post_id) REFERENCES posts(id)
 );
 
@@ -147,8 +149,8 @@ CREATE TABLE orders (
                            note TEXT NULL,
                            receive_at_home BOOLEAN NOT NULL,
                            failed_count INT NULL,
-                           modified_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() NOT NULL,
-                           updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP(),
+                           created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() NOT NULL,
+                           modified_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP(),
                            FOREIGN KEY (receiver_id) REFERENCES person_info(id),
                            FOREIGN KEY (sender_id) REFERENCES person_info(id),
                            FOREIGN KEY (receiver_address_id) REFERENCES address(id),
@@ -167,8 +169,8 @@ CREATE TABLE trackings (
                            status ENUM('pending', 'arrived', 'delivering', 'delivered', 'leaved', 'returning', 'returned', 'created', 'failed') NOT NULL,
                            tracking_by CHAR(26) NOT NULL,
                            destination_post_id CHAR(26) NOT NULL,
-                           modified_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() NOT NULL,
-                           updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP(),
+                           created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() NOT NULL,
+                           modified_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP(),
                            FOREIGN KEY (post_id) REFERENCES posts(id),
                            FOREIGN KEY (order_id) REFERENCES orders(id)
 );
@@ -181,8 +183,8 @@ CREATE TABLE invoices (
                           status ENUM('pending', 'paid') NOT NULL,
                           real_unit DECIMAL NOT NULL,
                           export_by CHAR(26) NULL,
-                          modified_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() NOT NULL,
-                          updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP(),
+                          created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() NOT NULL,
+                          modified_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP(),
                           FOREIGN KEY (export_by) REFERENCES users(id)
 );
 
