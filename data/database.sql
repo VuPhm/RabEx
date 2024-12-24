@@ -118,11 +118,11 @@ CREATE TABLE customers
 (
     id                 CHAR(26) PRIMARY KEY,
     default_address_id CHAR(26),
-    phoneNumber        VARCHAR(45),
-    fullName           VARCHAR(45),
+    phone_number        VARCHAR(45),
+    full_name           VARCHAR(45),
     email              VARCHAR(45),
-    companyName        VARCHAR(45),
-    quantityOrder      VARCHAR(45),
+    company_name        VARCHAR(45),
+    quantity_order      VARCHAR(45),
     industry           VARCHAR(45),
     channel            VARCHAR(45),
     FOREIGN KEY (id) REFERENCES users(id)

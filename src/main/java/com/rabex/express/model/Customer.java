@@ -13,7 +13,6 @@ import java.util.List;
 @NoArgsConstructor
 public class Customer {
     private RID id;
-    private List<Address> addresses;
     private RID defaultAddressId;
     private String phoneNumber;
     private String fullName;
@@ -22,4 +21,5 @@ public class Customer {
     private String quantityOrder;
     private String industry;
     private String channel;
+    private List<Address> addresses;
 }

@@ -20,7 +20,6 @@ public class Address {
     private AddressType addressType;
     private Timestamp createdAt;    // timestamp
     private Timestamp modifiedAt;   // timestamp
-
     @Override
     public String toString() {
         return "Address{" +
