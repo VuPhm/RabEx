@@ -27,6 +27,7 @@ CREATE TABLE shipping_services (
                                    modified_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP()
 );
 
+
 -- Table: shipping_method
 CREATE TABLE shipping_method (
                                  id CHAR(26) PRIMARY KEY,
