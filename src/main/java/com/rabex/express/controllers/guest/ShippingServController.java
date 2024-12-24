@@ -23,6 +23,7 @@ public class ShippingServController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
+        //dich-vu/*
         if (WebUtils.getSubPaths(req).length == 1){
             String slug = WebUtils.getSubPaths(req)[0];
             ShippingServ service = shippingServService.findBySlug(slug);
@@ -30,8 +31,12 @@ public class ShippingServController extends HttpServlet {
                 req.setAttribute("service", service);
                 req.getRequestDispatcher("/WEB-INF/views/guest/service-details.jsp").forward(req, resp);
                 return;
+            } else {
+                resp.sendRedirect(req.getContextPath() + "/dich-vu");
+                return;
             }
         }
+        //dich-vu
         req.setAttribute("services", shippingServService.findAll());
         req.getRequestDispatcher("/WEB-INF/views/guest/services.jsp").forward(req, resp);
     }

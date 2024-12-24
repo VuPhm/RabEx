@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class ShippingServDaoImpl extends TemplateDao<ShippingServ> implements ShippingServDao {
-    private static final String QUERY_SQL = "SELECT ss.id AS ss_id, ss.name AS ss_name, ss.slug AS ss_slug, ss.short_description AS ss_short_description, ss.details AS ss_details, ss.shipping_method_coefficient AS ss_shipping_method_coefficient, ss.unit_cost AS ss_unit_cost, ss.created_at AS ss_created_at, ss.modified_at AS ss_modified_at FROM shipping_services AS ss";
+    private static final String QUERY_SQL = "SELECT ss.id AS ss_id, ss.name AS ss_name, ss.slug AS ss_slug, ss.short_description AS ss_short_description, ss.details AS ss_details, ss.image AS ss_image, ss.expected_time AS ss_expected_time, ss.created_at AS ss_created_at, ss.modified_at AS ss_modified_at FROM shipping_services AS ss";
     private ShippingServMapper shippingServMapper;
 
     @Override

@@ -26,8 +26,8 @@ public class ShippingServMapper implements RowMapper<ShippingServ> {
                 .slug(resultSet.getString(prefix + "slug"))
                 .shortDescription(resultSet.getString(prefix + "short_description"))
                 .details(resultSet.getString(prefix + "details"))
-                .methodCoefficient(resultSet.getDouble(prefix + "shipping_method_coefficient"))
-                .unitCost(resultSet.getDouble(prefix + "unit_cost"))
+                .image(resultSet.getString(prefix + "image"))
+                .expectedTime(resultSet.getString(prefix + "expected_time"))
                 .createdAt(resultSet.getTimestamp(prefix + "created_at"))
                 .modifiedAt(resultSet.getTimestamp(prefix + "modified_at"))
                 .build();

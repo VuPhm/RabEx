@@ -14,8 +14,8 @@ public class ShippingServ {
     private String slug;
     private String shortDescription;
     private String details;
-    private double methodCoefficient;
-    private double unitCost;
+    private String image;
+    private String expectedTime;
     private Timestamp createdAt;
     private Timestamp modifiedAt;
 }
