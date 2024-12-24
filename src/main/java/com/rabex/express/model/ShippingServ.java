@@ -11,6 +11,7 @@ import java.sql.Timestamp;
 public class ShippingServ {
     private RID id;
     private String name;
+    private String slug;
     private String shortDescription;
     private String details;
     private double methodCoefficient;

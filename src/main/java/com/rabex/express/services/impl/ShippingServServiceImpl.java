@@ -18,6 +18,11 @@ public class ShippingServServiceImpl implements ShippingServService {
 
     @Override
     public List<ShippingServ> findAll() {
-        return List.of();
+        return shippingServDao.findAll();
+    }
+
+    @Override
+    public ShippingServ findBySlug(String slug) {
+        return shippingServDao.findBySlug(slug).orElse(null);
     }
 }

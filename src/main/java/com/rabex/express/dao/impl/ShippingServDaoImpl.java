@@ -7,8 +7,11 @@ import com.rabex.express.dao.TemplateDao;
 import com.rabex.express.dao.mapper.ShippingServMapper;
 import com.rabex.express.model.ShippingServ;
 
+import java.util.List;
+import java.util.Optional;
+
 public class ShippingServDaoImpl extends TemplateDao<ShippingServ> implements ShippingServDao {
-    private static final String QUERY_SQL = "SELECT ss.id AS shipping_service_id, ss.name AS shipping_service_short_description, ss.short_description AS shipping_service_name, ss.details AS shipping_service_short_short_description, ss.shipping_method_coefficient AS shipping_shipping_method_coefficient, ss.unit_cost AS shipping_service_unit_cost, ss.created_at AS shipping_service_create_at, ss.modified_at AS shipping_service_modify_at FROM shipping_services AS ss";
+    private static final String QUERY_SQL = "SELECT ss.id AS ss_id, ss.name AS ss_name, ss.slug AS ss_slug, ss.short_description AS ss_short_description, ss.details AS ss_details, ss.shipping_method_coefficient AS ss_shipping_method_coefficient, ss.unit_cost AS ss_unit_cost, ss.created_at AS ss_created_at, ss.modified_at AS ss_modified_at FROM shipping_services AS ss";
     private ShippingServMapper shippingServMapper;
 
     @Override
@@ -17,9 +20,14 @@ public class ShippingServDaoImpl extends TemplateDao<ShippingServ> implements Sh
     }
 
     @Override
+    protected String tableLabel() {
+        return "ss";
+    }
+
+    @Override
     protected RowMapper<ShippingServ> rowMapper() {
         return shippingServMapper == null ?
-                shippingServMapper = new ShippingServMapper("shipping_service") : shippingServMapper;
+                shippingServMapper = new ShippingServMapper("ss_") : shippingServMapper;
     }
 
     @Override
@@ -35,5 +43,11 @@ public class ShippingServDaoImpl extends TemplateDao<ShippingServ> implements Sh
     @Override
     public boolean update(RID id, ShippingServ request) {
         return update(QUERY_SQL, id, request);
+    }
+
+    @Override
+    public Optional<ShippingServ> findBySlug(String slug) {
+        String sql = querySql() + " WHERE " + tableLabel() + ".slug = ?";
+        return Optional.ofNullable(singleQuery(sql, rowMapper(), slug));
     }
 }
