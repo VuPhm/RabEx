@@ -3,6 +3,8 @@ package com.rabex.express.dao.mapper;
 import com.rabex.express.core.dao.*;
 import com.rabex.express.model.Address;
 import com.rabex.express.model.Customer;
+import com.rabex.express.model.PersonInfo;
+import com.rabex.express.model.ShippingAddress;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,10 +16,12 @@ import java.util.Map;
 public class CustomerExtractor implements ResultSetExtractor<List<Customer>> {
     private final RowMapper<Customer> customerMapper;
     private final RowMapper<Address> addressMapper;
+    private final RowMapper<PersonInfo> infoRowMapper;
 
-    public CustomerExtractor(RowMapper<Customer> customerMapper, RowMapper<Address> addressMapper) {
+    public CustomerExtractor(RowMapper<Customer> customerMapper, RowMapper<Address> addressMapper, RowMapper<PersonInfo> infoRowMapper) {
         this.customerMapper = customerMapper;
         this.addressMapper = addressMapper;
+        this.infoRowMapper = infoRowMapper;
     }
 
     private Convertor<String, RID> ridConvertor = new StringToRidConvertor();
@@ -39,7 +43,8 @@ public class CustomerExtractor implements ResultSetExtractor<List<Customer>> {
             }
 
             Address address = addressMapper.mapRow(resultSet, i);
-            customer.getAddresses().add(address);
+            PersonInfo personInfo = infoRowMapper.mapRow(resultSet, i);
+            customer.getAddresses().add(new ShippingAddress(address, personInfo));
 
             i++;
         }

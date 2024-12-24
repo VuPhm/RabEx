@@ -18,7 +18,7 @@ public class Customer {
     private String companyName;
     private String industry;
     private String channel;
-    private List<Address> addresses;
+    private List<ShippingAddress> addresses;
 
     @Override
     public String toString() {

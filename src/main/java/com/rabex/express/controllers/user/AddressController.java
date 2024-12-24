@@ -2,7 +2,9 @@ package com.rabex.express.controllers.user;
 
 import com.rabex.express.core.dao.RID;
 import com.rabex.express.model.Address;
+import com.rabex.express.model.Customer;
 import com.rabex.express.services.AddressService;
+import com.rabex.express.services.CustomerService;
 import jakarta.inject.Inject;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -18,9 +20,15 @@ public class AddressController extends HttpServlet {
     @Inject
     private AddressService addressService;
 
+    @Inject
+    private CustomerService customerService;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Customer customer = customerService.findById(RID.from("01JFVEQ45VDEWERDXVJ9DBKYW6"));
+        if (customerService != null) {
+            req.setAttribute("addresses", customer.getAddresses());
+        }
         req.getRequestDispatcher("/WEB-INF/views/user/address.jsp").forward(req, resp);
     }
 

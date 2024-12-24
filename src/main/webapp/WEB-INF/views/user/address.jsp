@@ -163,8 +163,8 @@
                             <tbody id="address-container">
                             <c:forEach var="address" items="${addresses}">
                                 <tr>
-                                    <td>${address.index}</td>
-                                    <td>${address.name}</td>
+                                    <td>${1}</td>
+                                    <td>${address.description}</td>
                                     <td>${address.phone}</td>
                                     <td>${address.fullAddress}</td>
                                     <td>${address.addressType}</td>
