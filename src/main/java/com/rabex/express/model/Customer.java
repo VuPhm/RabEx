@@ -1,13 +1,11 @@
 package com.rabex.express.model;
 
 import com.rabex.express.core.dao.RID;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 @Getter
+@Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,8 +16,22 @@ public class Customer {
     private String fullName;
     private String email;
     private String companyName;
-    private String quantityOrder;
     private String industry;
     private String channel;
     private List<Address> addresses;
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "id=" + id +
+                ", defaultAddressId=" + defaultAddressId +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", fullName='" + fullName + '\'' +
+                ", email='" + email + '\'' +
+                ", companyName='" + companyName + '\'' +
+                ", industry='" + industry + '\'' +
+                ", channel='" + channel + '\'' +
+                ", addresses=" + addresses +
+                '}';
+    }
 }

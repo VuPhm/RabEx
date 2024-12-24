@@ -1,4 +1,4 @@
-package com.rabex.express.dao.impl;
+package com.rabex.express.dao.mapper;
 
 import com.rabex.express.core.dao.Convertor;
 import com.rabex.express.core.dao.RID;
@@ -23,11 +23,10 @@ public class CustomerMapper implements RowMapper<Customer> {
         return Customer.builder()
                 .id(idConvertor.convert(resultSet.getString(prefix + "id")))
                 .defaultAddressId(idConvertor.convert(resultSet.getString(prefix + "default_address")))
-                .phoneNumber(resultSet.getString(prefix + "phone"))
+                .phoneNumber(resultSet.getString(prefix + "phone_number"))
                 .fullName(resultSet.getString(prefix + "full_name"))
                 .email(resultSet.getString(prefix + "email"))
                 .companyName(resultSet.getString(prefix + "company"))
-                .quantityOrder(resultSet.getString(prefix + "quantity_order"))
                 .industry(resultSet.getString(prefix + "industry"))
                 .channel(resultSet.getString(prefix + "channel")).build();
     }
