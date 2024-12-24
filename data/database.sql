@@ -18,28 +18,29 @@ CREATE TABLE delivery_failed_action
 -- Table: shipping_services
 CREATE TABLE shipping_services
 (
-    id                          CHAR(26) PRIMARY KEY,
-    name                        VARCHAR(45)                           NOT NULL,
-    short_description           TEXT                                  NULL,
-    details                     TEXT                                  NULL,
-    shipping_method_coefficient DECIMAL                               NOT NULL,
-    unit_cost                   DECIMAL                               NOT NULL,
-    created_at                  TIMESTAMP DEFAULT CURRENT_TIMESTAMP() NOT NULL,
-    modified_at                 TIMESTAMP DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP()
+    id                CHAR(26) PRIMARY KEY,
+    name              VARCHAR(45)                           NOT NULL,
+    short_description TEXT                                  NULL,
+    details           TEXT                                  NULL,
+    image             TEXT                                  NULL,
+    expected_time     TEXT                                  NULL,
+    created_at        TIMESTAMP DEFAULT CURRENT_TIMESTAMP() NOT NULL,
+    modified_at       TIMESTAMP DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP()
+
 );
 
--- Table: shipping_method
-CREATE TABLE shipping_method
+-- Table: costs
+CREATE TABLE costs
 (
-    id            CHAR(26) PRIMARY KEY,
-    fee           DECIMAL                               NOT NULL,
-    name          VARCHAR(45)                           NOT NULL,
-    description   TEXT                                  NULL,
-    image         TEXT                                  NULL,
-    expected_time INT                                   NULL,
-    created_at    TIMESTAMP DEFAULT CURRENT_TIMESTAMP() NOT NULL,
-    modified_at   TIMESTAMP DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP()
+    id                   CHAR(26) PRIMARY KEY,
+    service_id           CHAR(26) NOT NULL,
+    min_weight           DECIMAL  NULL,
+    max_weight           DECIMAL  NOT NULL,
+    intra_province_price DECIMAL  NOT NULL,
+    out_province_price   DECIMAL  NOT NULL,
+    FOREIGN KEY (service_id) REFERENCES shipping_services (id)
 );
+
 
 -- Table: users
 CREATE TABLE users
@@ -165,8 +166,8 @@ CREATE TABLE staffs
     FOREIGN KEY (post_id) REFERENCES posts (id)
 );
 
--- Table: shipments
-CREATE TABLE shipments
+-- Table: orders
+CREATE TABLE orders
 (
     id                        CHAR(26) PRIMARY KEY,
     receiver_id               CHAR(26)                                                                  NOT NULL,
@@ -188,7 +189,6 @@ CREATE TABLE shipments
     FOREIGN KEY (sender_id) REFERENCES person_info (id),
     FOREIGN KEY (receiver_address_id) REFERENCES address (id),
     FOREIGN KEY (sender_address_id) REFERENCES address (id),
-    FOREIGN KEY (method_id) REFERENCES shipping_method (id),
     FOREIGN KEY (parcel_id) REFERENCES parcels (id),
     FOREIGN KEY (delivery_failed_action_id) REFERENCES delivery_failed_action (id),
     FOREIGN KEY (shipping_service_id) REFERENCES shipping_services (id)
@@ -199,14 +199,14 @@ CREATE TABLE trackings
 (
     id                  CHAR(26) PRIMARY KEY,
     post_id             CHAR(26)                                                                                                       NOT NULL,
-    shipment_id         CHAR(26)                                                                                                       NOT NULL,
+    order_id            CHAR(26)                                                                                                       NOT NULL,
     status              ENUM ('pending', 'arrived', 'delivering', 'delivered', 'leaved', 'returning', 'returned', 'created', 'failed') NOT NULL,
     tracking_by         CHAR(26)                                                                                                       NOT NULL,
     destination_post_id CHAR(26)                                                                                                       NOT NULL,
     created_at          TIMESTAMP DEFAULT CURRENT_TIMESTAMP()                                                                          NOT NULL,
     modified_at         TIMESTAMP DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP(),
     FOREIGN KEY (post_id) REFERENCES posts (id),
-    FOREIGN KEY (shipment_id) REFERENCES shipments (id)
+    FOREIGN KEY (order_id) REFERENCES orders (id)
 );
 
 -- Table: invoices

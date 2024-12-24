@@ -1,9 +1,11 @@
 package com.rabex.express.dao.mapper;
 
-import com.rabex.express.core.dao.*;
+import com.rabex.express.core.dao.Convertor;
+import com.rabex.express.core.dao.RID;
+import com.rabex.express.core.dao.RowMapper;
+import com.rabex.express.core.dao.StringToRidConvertor;
 import com.rabex.express.model.Address;
-import com.rabex.express.model.AddressType;
-import com.rabex.express.model.RoleName;
+import com.rabex.express.model.User;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,25 +13,24 @@ import java.sql.SQLException;
 public class AddressMapper implements RowMapper<Address> {
     private String prefix;
     private Convertor<String, RID> idConvertor = new StringToRidConvertor();
-    private final Convertor<String, AddressType> enumConvertor = new StringToEnumConvertor<>(AddressType.class);
 
 
-    public AddressMapper(String address) {
-        this.prefix = address;
+    public AddressMapper(String prefix) {
+        this.prefix = prefix;
     }
 
 
     @Override
     public Address mapRow(ResultSet resultSet, int row) throws SQLException {
-        return new Address(idConvertor.convert(resultSet.getString(prefix + "id")),
-                resultSet.getString(prefix + "des"),
-                resultSet.getString(prefix + "ward"),
-                resultSet.getString(prefix + "dis"),
-                resultSet.getString(prefix + "pro"),
-                enumConvertor.convert(resultSet.getString(prefix + "type")),
-                resultSet.getTimestamp(prefix + "created_at"),
-                resultSet.getTimestamp(prefix + "modified_at")
-        );
+        return Address.builder()
+                .id(idConvertor.convert(resultSet.getString(prefix + "id")))
+                .description(resultSet.getString(prefix + "des"))
+                .ward(resultSet.getString(prefix + "ward"))
+                .district(resultSet.getString(prefix + "dis"))
+                .province(resultSet.getString(prefix + "pro"))
+                .createdAt(resultSet.getTimestamp(prefix + "created_at"))
+                .modifiedAt(resultSet.getTimestamp(prefix + "updated_at"))
+                .build();
     }
 
     @Override
