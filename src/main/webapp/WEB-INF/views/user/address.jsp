@@ -44,32 +44,25 @@
 <%@include file="../common/user/navbar.jsp" %>
 <%-- End Nav --%>
 
-<%--Heading--%>
-<section class="text-center text-md-start">
-    <!-- Background gradient -->
-    <div style="height: 60px;">
-    </div>
-    <!-- Background gradient -->
-</section>
-<%--Heading--%>
 
-<%--content--%>
+<!-- content  -->
 <main id="content">
-    <div class="container p-4">
-        <section class="mb-4">
+    <div class="container p-4 mt-5">
+        <section class="mt-4">
             <div class="card">
                 <div class="card-header bg-white">
                     <h5 style="font-size: 24px;">Quản lý địa chỉ</h5>
                 </div>
                 <div class="card-body">
-                    <%--Form thêm địa chỉ--%>
+                    <!-- Form thêm địa chỉ -->
                     <form id="add-address-form">
                         <a class="btn btn-outline-primary" href="#" data-mdb-ripple-init data-mdb-modal-init
                            data-mdb-target="#address-edit">
                             <i class="fas fa-edit me-2"></i>Thêm địa chỉ mới
                         </a>
                     </form>
-                    <%--Address Edit Modal--%>
+
+                    <!-- Address Edit Modal -->
                     <div class="modal fade" id="address-edit" tabindex="-1" aria-labelledby="address-edit"
                          aria-hidden="true">
                         <div class="modal-dialog">
@@ -86,15 +79,15 @@
 
                                         <div class="row mb-3">
                                             <div class="col-md-4">
-                                                <label class="form-label">Tên</label>
+                                                <label class="form-label" for="name">Tên</label>
                                                 <input type="text" class="form-control" id="name" required>
                                             </div>
                                             <div class="col-md-4">
-                                                <label class="form-label">Số điện thoại</label>
+                                                <label class="form-label" for="phone">Số điện thoại</label>
                                                 <input type="tel" class="form-control" id="phone" required>
                                             </div>
                                             <div class="col-md-4">
-                                                <label class="form-label">Loại địa chỉ</label>
+                                                <label class="form-label" for="address-type">Loại địa chỉ</label>
                                                 <select id="address-type" class="form-select">
                                                     <option value="home">Nhà riêng</option>
                                                     <option value="work">Văn phòng</option>
@@ -105,7 +98,7 @@
 
                                         <div class="row mb-3">
                                             <div class="col-md-4">
-                                                <label class="form-label">Tỉnh/Thành phố</label>
+                                                <label class="form-label" for="province">Tỉnh/Thành phố</label>
                                                 <select id="province" class="form-select" required>
                                                     <option value="">Chọn tỉnh/thành phố</option>
                                                     <option value="1">Hà Nội</option>
@@ -114,24 +107,25 @@
                                                 </select>
                                             </div>
                                             <div class="col-md-4">
-                                                <label class="form-label">Quận/Huyện</label>
+                                                <label class="form-label" for="district">Quận/Huyện</label>
                                                 <select id="district" class="form-select" required>
                                                     <option value="">Chọn quận/huyện</option>
                                                 </select>
                                             </div>
                                             <div class="col-md-4">
-                                                <label class="form-label">Phường/Xã</label>
+                                                <label class="form-label" for="ward">Phường/Xã</label>
                                                 <input type="text" class="form-control" id="ward" required>
                                             </div>
                                         </div>
 
                                         <div class="mb-3">
-                                            <label class="form-label">Địa chỉ chi tiết</label>
+                                            <label class="form-label" for="address">Địa chỉ chi tiết</label>
                                             <input type="text" class="form-control" id="address" required>
                                         </div>
 
                                         <div class="mb-3">
-                                            <label class="form-label">Ghi chú giao hàng</label>
+                                            <label class="form-label" for="delivery-instructions">Ghi chú giao
+                                                hàng</label>
                                             <textarea class="form-control" id="delivery-instructions"
                                                       rows="3"></textarea>
                                         </div>
@@ -152,10 +146,9 @@
                             </div>
                         </div>
                     </div>
-                    <hr/>
                     <!-- Address List Table -->
                     <div class="table-responsive">
-                        <table class="table table-hover visible" id="address-table">
+                        <table class="table table-hover" id="address-table">
                             <thead>
                             <tr>
                                 <th>STT</th>
@@ -164,29 +157,32 @@
                                 <th>Địa chỉ</th>
                                 <th>Loại địa chỉ</th>
                                 <th>Mặc định</th>
-                                <th></th>
+                                <th>Hành động</th>
                             </tr>
                             </thead>
                             <tbody id="address-container">
-                            <!-- Addresses will be dynamically added here -->
-                            <tr class="active">
-                                <td>1</td>
-                                <td>Ngô Văn</td>
-                                <td>0385874145</td>
-                                <td>214B Đ.Tam Bình, Khu phố 2, Tam Phú, Thủ Đức, Hồ Chí Minh</td>
-                                <td>Nhà riêng</td>
-                                <td>
-                                    <span class="badge rounded-pill bg-success">Mặc định</span>
-                                </td>
-                                <td>
-                                    <a class="btn btn-sm btn-outline-primary edit-address" data-index="0">
-                                        <i class="fas fa-edit me-1"></i>
-                                    </a>
-                                    <a class="btn btn-sm btn-outline-danger remove-address" data-index="0">
-                                        <i class="fas fa-trash me-1"></i>
-                                    </a>
-                                </td>
-                            </tr>
+                            <c:forEach var="address" items="${addresses}">
+                                <tr>
+                                    <td>${1}</td>
+                                    <td>${address.description}</td>
+                                    <td>${address.phone}</td>
+                                    <td>${address.fullAddress}</td>
+                                    <td>${address.addressType}</td>
+                                    <td>
+                                        <span class="badge rounded-pill ${address.isDefault ? 'bg-success' : 'bg-secondary'}">
+                                                ${address.isDefault ? 'Mặc định' : 'Không mặc định'}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-sm btn-outline-primary edit-address" data-id="${address.id}">
+                                            <i class="fas fa-edit me-1"></i>
+                                        </a>
+                                        <a class="btn btn-sm btn-outline-danger remove-address" data-id="${address.id}">
+                                            <i class="fas fa-trash me-1"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </c:forEach>
                             </tbody>
                         </table>
                     </div>
@@ -195,297 +191,198 @@
         </section>
     </div>
 </main>
-<%--content--%>
-<%--<%@include file="../common/user/script.jsp" %>--%>
-<%--<script src="<c:url value="/static/js/quill.js"/>"></script>--%>
-<%--<script>--%>
-<%--    const sidenav = document.getElementById("main-sidenav");--%>
+<!--content -->
 
-<%--    const sidenavInstance = mdb.Sidenav.getInstance(sidenav);--%>
+<script src="<c:url value='/static/js/mdb.umd.min.js'/>"></script>
+<script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
+<script src="<c:url value='/static/js/main.js'/>"></script>
+<script>
+    const sidenav = document.getElementById("main-sidenav");
 
-<%--    const currencyFormat = Intl.NumberFormat("vi-VN", {style: 'currency', currency: 'VND'})--%>
+    const sidenavInstance = mdb.Sidenav.getInstance(sidenav);
+
+    const currencyFormat = Intl.NumberFormat("vi-VN", {style: 'currency', currency: 'VND'})
 
 
-<%--    let innerWidth = null;--%>
+    let innerWidth = null;
 
-<%--    //--%>
+    //
 
-<%--    const setMode = (e) => {--%>
-<%--        // Check necessary for Android devices--%>
-<%--        if (window.innerWidth === innerWidth) {--%>
-<%--            return;--%>
-<%--        }--%>
+    const setMode = (e) => {
+        // Check necessary for Android devices
+        if (window.innerWidth === innerWidth) {
+            return;
+        }
 
-<%--        innerWidth = window.innerWidth;--%>
+        innerWidth = window.innerWidth;
 
-<%--        if (window.innerWidth < 1400) {--%>
-<%--            sidenavInstance.changeMode("over");--%>
-<%--            sidenavInstance.hide();--%>
-<%--        } else {--%>
-<%--            sidenavInstance.changeMode("side");--%>
-<%--            sidenavInstance.show();--%>
-<%--        }--%>
-<%--    };--%>
+        if (window.innerWidth < 1400) {
+            sidenavInstance.changeMode("over");
+            sidenavInstance.hide();
+        } else {
+            sidenavInstance.changeMode("side");
+            sidenavInstance.show();
+        }
+    };
 
-<%--    setMode();--%>
+    setMode();
 
-<%--    // Event listeners--%>
-<%--    window.addEventListener("resize", setMode);--%>
+    // Event listeners
+    window.addEventListener("resize", setMode);
 
-<%--    const searchFocus = document.getElementById('search-focus');--%>
-<%--    const keys = [--%>
-<%--        {keyCode: 'AltLeft', isTriggered: false},--%>
-<%--        {keyCode: 'ControlLeft', isTriggered: false},--%>
-<%--    ];--%>
+    const searchFocus = document.getElementById('search-focus');
+    const keys = [
+        {keyCode: 'AltLeft', isTriggered: false},
+        {keyCode: 'ControlLeft', isTriggered: false},
+    ];
 
-<%--    window.addEventListener('keydown', (e) => {--%>
-<%--        keys.forEach((obj) => {--%>
-<%--            if (obj.keyCode === e.code) {--%>
-<%--                obj.isTriggered = true;--%>
-<%--            }--%>
-<%--        });--%>
+    window.addEventListener('keydown', (e) => {
+        keys.forEach((obj) => {
+            if (obj.keyCode === e.code) {
+                obj.isTriggered = true;
+            }
+        });
 
-<%--        const shortcutTriggered = keys.filter((obj) => obj.isTriggered).length === keys.length;--%>
+        const shortcutTriggered = keys.filter((obj) => obj.isTriggered).length === keys.length;
 
-<%--        if (shortcutTriggered) {--%>
-<%--            searchFocus.focus();--%>
-<%--        }--%>
-<%--    });--%>
+        if (shortcutTriggered) {
+            searchFocus.focus();
+        }
+    });
 
-<%--    window.addEventListener('keyup', (e) => {--%>
-<%--        keys.forEach((obj) => {--%>
-<%--            if (obj.keyCode === e.code) {--%>
-<%--                obj.isTriggered = false;--%>
-<%--            }--%>
-<%--        });--%>
-<%--    });--%>
+    window.addEventListener('keyup', (e) => {
+        keys.forEach((obj) => {
+            if (obj.keyCode === e.code) {
+                obj.isTriggered = false;
+            }
+        });
+    });
 
-<%--    // Address Management Script--%>
+    // Handle save address button click
+    // JavaScript for managing address CRUD operations
+    let addressList = [];
 
-<%--    const addressContainer = document.getElementById("address-container");--%>
-<%--    const addressForm = document.getElementById("address-form");--%>
-<%--    const saveAddressBtn = document.getElementById("save-address");--%>
-<%--    const provinceSelect = document.getElementById("province");--%>
-<%--    const districtSelect = document.getElementById("district");--%>
-<%--    const addressEditModal = new mdb.Modal(document.getElementById("address-edit"));--%>
-<%--    let currentEditIndex = null;--%>
+    // Fetch and render addresses on page load
+    document.addEventListener('DOMContentLoaded', async () => {
+        await fetchAddresses();
+        renderTable();
+    });
 
-<%--    // Save addresses to localStorage--%>
-<%--    function saveAddresses(addresses) {--%>
-<%--        localStorage.setItem('addresses', JSON.stringify(addresses));--%>
-<%--    }--%>
+    // Function to fetch addresses from server
+    async function fetchAddresses() {
+        try {
+            const response = await fetch('/dia-chi');
+            if (!response.ok) throw new Error('Failed to fetch addresses');
+            addressList = await response.json();
+        } catch (error) {
+            console.error('Error fetching addresses:', error);
+        }
+    }
 
-<%--    // Get addresses from localStorage--%>
-<%--    function getAddresses() {--%>
-<%--        const addresses = localStorage.getItem('addresses');--%>
-<%--        return addresses ? JSON.parse(addresses) : [];--%>
-<%--    }--%>
+    // Function to render the address table
+    function renderTable() {
+        const tableBody = document.querySelector('#addressTable tbody');
+        tableBody.innerHTML = '';
 
-<%--    // Render addresses in the table--%>
-<%--    function renderAddresses() {--%>
-<%--        const addresses = getAddresses();--%>
-<%--        addressContainer.innerHTML = '';--%>
+        addressList.forEach((address, index) => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+            <td>${index + 1}</td>
+            <td>${address.description}</td>
+            <td>${address.ward}</td>
+            <td>${address.district}</td>
+            <td>${address.province}</td>
+            <td>${address.addressType}</td>
+            <td>
+                <button class="btn btn-warning btn-sm" onclick="onEdit(${index})">Edit</button>
+                <button class="btn btn-danger btn-sm" onclick="onDelete(${index})">Delete</button>
+            </td>
+        `;
+            tableBody.appendChild(row);
+        });
+    }
 
-<%--        addresses.forEach((addr, index) => {--%>
-<%--            const addressRow = document.createElement('tr');--%>
+    // Function to handle adding or updating an address
+    document.getElementById('saveButton').addEventListener('click', async () => {
+        const description = document.getElementById('descriptionInput').value.trim();
+        const ward = document.getElementById('wardInput').value.trim();
+        const district = document.getElementById('districtInput').value.trim();
+        const province = document.getElementById('provinceInput').value.trim();
+        const addressType = document.getElementById('typeInput').value.trim();
+        const index = document.getElementById('addressIndex').value;
 
-<%--            addressRow.innerHTML = `--%>
-<%--            <td>${index + 1}</td>--%>
-<%--            <td>${addr.name}</td>--%>
-<%--            <td>${addr.phone}</td>--%>
-<%--            <td>${addr.address}, ${addr.ward}, ${addr.district}, ${addr.province}</td>--%>
-<%--            <td>${getAddressTypeLabel(addr.type)}</td>--%>
-<%--            <td>--%>
-<%--                ${addr.isDefault--%>
-<%--                ? '<span class="badge bg-success">Mặc định</span>'--%>
-<%--                : '<span class="badge bg-secondary">-</span>'}--%>
-<%--            </td>--%>
-<%--            <td>--%>
-<%--                <a class="btn btn-sm btn-outline-primary edit-address" data-index="${index}">--%>
-<%--                    <i class="fas fa-edit me-1"></i>--%>
-<%--                </a>--%>
-<%--                <a class="btn btn-sm btn-outline-danger remove-address" data-index="${index}">--%>
-<%--                    <i class="fas fa-trash me-1"></i>--%>
-<%--                </a>--%>
-<%--            </td>--%>
-<%--        `;--%>
+        if (!description || !ward || !district || !province || !addressType) {
+            alert('Please fill in all fields!');
+            return;
+        }
 
-<%--            addressContainer.appendChild(addressRow);--%>
-<%--        });--%>
+        const addressData = {description, ward, district, province, addressType};
 
-<%--        // Add event listeners for edit and remove buttons--%>
-<%--        addAddressActionListeners();--%>
-<%--    }--%>
+        try {
+            const method = index === '' ? 'POST' : 'PUT';
+            const url = index === '' ? '/dia-chi' : `/dia-chi/${addressList[index].id}`;
 
-<%--    // Get address type label--%>
-<%--    function getAddressTypeLabel(type) {--%>
-<%--        const addressTypes = {--%>
-<%--            'home': 'Nhà riêng',--%>
-<%--            'work': 'Văn phòng',--%>
-<%--            'other': 'Khác'--%>
-<%--        };--%>
-<%--        return addressTypes[type] || type;--%>
-<%--    }--%>
+            const response = await fetch(url, {
+                method,
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(addressData),
+            });
 
-<%--    // Update district options based on province--%>
-<%--    function updateDistrictOptions(provinceId) {--%>
-<%--        const districtOptions = {--%>
-<%--            '1': [--%>
-<%--                {value: '1', label: 'Hoàn Kiếm'},--%>
-<%--                {value: '2', label: 'Đống Đa'},--%>
-<%--                {value: '3', label: 'Ba Đình'}--%>
-<%--            ],--%>
-<%--            '2': [--%>
-<%--                {value: '1', label: 'Quận 1'},--%>
-<%--                {value: '2', label: 'Quận 3'},--%>
-<%--                {value: '3', label: 'Thủ Đức'}--%>
-<%--            ],--%>
-<%--            '3': [--%>
-<%--                {value: '1', label: 'Hải Châu'},--%>
-<%--                {value: '2', label: 'Thanh Khê'},--%>
-<%--                {value: '3', label: 'Sơn Trà'}--%>
-<%--            ]--%>
-<%--        };--%>
+            if (!response.ok) throw new Error('Failed to save address');
 
-<%--        districtSelect.innerHTML = '<option value="">Chọn quận/huyện</option>';--%>
+            alert('Address saved successfully!');
+            await fetchAddresses();
+            renderTable();
+        } catch (error) {
+            console.error('Error saving address:', error);
+            alert('An error occurred while saving the address.');
+        } finally {
+            resetForm();
+        }
+    });
 
-<%--        if (districtOptions[provinceId]) {--%>
-<%--            districtOptions[provinceId].forEach(option => {--%>
-<%--                const optionElement = document.createElement('option');--%>
-<%--                optionElement.value = option.value;--%>
-<%--                optionElement.textContent = option.label;--%>
-<%--                districtSelect.appendChild(optionElement);--%>
-<%--            });--%>
-<%--        }--%>
-<%--    }--%>
+    // Function to edit an address
+    function onEdit(index) {
+        const address = addressList[index];
 
-<%--    // Add event listeners for edit and remove buttons--%>
-<%--    function addAddressActionListeners() {--%>
-<%--        // Remove address--%>
-<%--        addressContainer.querySelectorAll('.remove-address').forEach(btn => {--%>
-<%--            btn.addEventListener('click', function() {--%>
-<%--                const index = this.getAttribute('data-index');--%>
-<%--                const addresses = getAddresses();--%>
+        document.getElementById('descriptionInput').value = address.description;
+        document.getElementById('wardInput').value = address.ward;
+        document.getElementById('districtInput').value = address.district;
+        document.getElementById('provinceInput').value = address.province;
+        document.getElementById('typeInput').value = address.addressType;
+        document.getElementById('addressIndex').value = index;
 
-<%--                // Confirm before deletion--%>
-<%--                if (confirm('Bạn có chắc chắn muốn xóa địa chỉ này?')) {--%>
-<%--                    addresses.splice(index, 1);--%>
-<%--                    saveAddresses(addresses);--%>
-<%--                    renderAddresses();--%>
-<%--                }--%>
-<%--            });--%>
-<%--        });--%>
+        const modal = new bootstrap.Modal(document.getElementById('addressModal'));
+        modal.show();
+    }
 
-<%--        // Edit address--%>
-<%--        addressContainer.querySelectorAll('.edit-address').forEach(btn => {--%>
-<%--            btn.addEventListener('click', function() {--%>
-<%--                const index = this.getAttribute('data-index');--%>
-<%--                const addresses = getAddresses();--%>
-<%--                const addressToEdit = addresses[index];--%>
+    // Function to delete an address
+    async function onDelete(index) {
+        if (!confirm('Are you sure you want to delete this address?')) return;
 
-<%--                // Reset form--%>
-<%--                addressForm.reset();--%>
+        try {
+            const response = await fetch(`/dia-chi/${addressList[index].id}`, {method: 'DELETE'});
+            if (!response.ok) throw new Error('Failed to delete address');
 
-<%--                // Populate form with existing address data--%>
-<%--                document.getElementById('name').value = addressToEdit.name;--%>
-<%--                document.getElementById('phone').value = addressToEdit.phone;--%>
-<%--                document.getElementById('province').value =--%>
-<%--                    Array.from(provinceSelect.options).find(option =>--%>
-<%--                        option.text === addressToEdit.province--%>
-<%--                    )?.value || '';--%>
+            alert('Address deleted successfully!');
+            await fetchAddresses();
+            renderTable();
+        } catch (error) {
+            console.error('Error deleting address:', error);
+            alert('An error occurred while deleting the address.');
+        }
+    }
 
-<%--                // Update district options based on province--%>
-<%--                updateDistrictOptions(addressToEdit.province);--%>
+    // Function to reset the form
+    function resetForm() {
+        document.getElementById('descriptionInput').value = '';
+        document.getElementById('wardInput').value = '';
+        document.getElementById('districtInput').value = '';
+        document.getElementById('provinceInput').value = '';
+        document.getElementById('typeInput').value = '';
+        document.getElementById('addressIndex').value = '';
+    }
 
-<%--                // Set district after a short delay to ensure options are populated--%>
-<%--                setTimeout(() => {--%>
-<%--                    document.getElementById('district').value =--%>
-<%--                        Array.from(districtSelect.options).find(option =>--%>
-<%--                            option.text === addressToEdit.district--%>
-<%--                        )?.value || '';--%>
-<%--                }, 100);--%>
-
-<%--                document.getElementById('ward').value = addressToEdit.ward;--%>
-<%--                document.getElementById('address').value = addressToEdit.address;--%>
-<%--                document.getElementById('delivery-instructions').value = addressToEdit.deliveryInstructions || '';--%>
-<%--                document.getElementById('address-type').value = addressToEdit.type;--%>
-<%--                document.getElementById('default-address').checked = addressToEdit.isDefault;--%>
-
-<%--                // Store the index of the address being edited--%>
-<%--                currentEditIndex = index;--%>
-
-<%--                // Show the modal--%>
-<%--                addressEditModal.show();--%>
-<%--            });--%>
-<%--        });--%>
-<%--    }--%>
-
-<%--    // Province change event listener--%>
-<%--    provinceSelect.addEventListener('change', function() {--%>
-<%--        updateDistrictOptions(this.value);--%>
-<%--    });--%>
-
-<%--    // Save address event listener--%>
-<%--    saveAddressBtn.addEventListener('click', function() {--%>
-<%--        const name = document.getElementById('name').value;--%>
-<%--        const phone = document.getElementById('phone').value;--%>
-<%--        const provinceElement = document.getElementById('province');--%>
-<%--        const districtElement = document.getElementById('district');--%>
-<%--        const ward = document.getElementById('ward').value;--%>
-<%--        const address = document.getElementById('address').value;--%>
-<%--        const deliveryInstructions = document.getElementById('delivery-instructions').value;--%>
-<%--        const type = document.getElementById('address-type').value;--%>
-<%--        const isDefault = document.getElementById('default-address').checked;--%>
-
-<%--        // Validate form--%>
-<%--        const form = document.getElementById('address-form');--%>
-<%--        if (!form.checkValidity()) {--%>
-<%--            form.reportValidity();--%>
-<%--            return;--%>
-<%--        }--%>
-
-<%--        // Get current addresses--%>
-<%--        const addresses = getAddresses();--%>
-
-<%--        // If new address is set as default, remove default from others--%>
-<%--        if (isDefault) {--%>
-<%--            addresses.forEach(addr => addr.isDefault = false);--%>
-<%--        }--%>
-
-<%--        const newAddress = {--%>
-<%--            name,--%>
-<%--            phone,--%>
-<%--            province: provinceElement.options[provinceElement.selectedIndex].text,--%>
-<%--            district: districtElement.options[districtElement.selectedIndex].text,--%>
-<%--            ward,--%>
-<%--            address,--%>
-<%--            deliveryInstructions,--%>
-<%--            type,--%>
-<%--            isDefault--%>
-<%--        };--%>
-
-<%--        // If editing existing address, replace it--%>
-<%--        if (currentEditIndex !== null) {--%>
-<%--            addresses[currentEditIndex] = newAddress;--%>
-<%--            currentEditIndex = null;--%>
-<%--        } else {--%>
-<%--            // Otherwise, add new address--%>
-<%--            addresses.push(newAddress);--%>
-<%--        }--%>
-
-<%--        // Save and render--%>
-<%--        saveAddresses(addresses);--%>
-<%--        renderAddresses();--%>
-
-<%--        // Close the modal--%>
-<%--        addressEditModal.hide();--%>
-
-<%--        // Reset form--%>
-<%--        form.reset();--%>
-<%--    });--%>
-
-<%--    // Initial render--%>
-<%--    renderAddresses();--%>
-<%--</script>--%>
+</script>
 </body>
 </html>

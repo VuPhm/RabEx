@@ -98,7 +98,7 @@ public abstract class AbstractDao<Entity> implements Dao<Entity> {
         return Page.of(content, total, pageable);
     }
 
-    protected String generatePaginationSql(String querySql, Pageable pageable) {
+    private String generatePaginationSql(String querySql, Pageable pageable) {
         return new StringJoiner(" ")
                 .add(querySql)
                 .add(sortToSqlConvertor.convert(pageable.getSort()))
