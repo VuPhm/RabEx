@@ -44,17 +44,17 @@ CREATE TABLE shipping_method
 -- Table: users
 CREATE TABLE users
 (
-    id                 CHAR(26) PRIMARY KEY,
-    hash_password      VARCHAR(70)                                      NOT NULL,
-    full_name          VARCHAR(64)                                      NOT NULL,
-    deleted            BOOLEAN                                          NOT NULL DEFAULT FALSE,
-    status             ENUM ('active', 'inactive', 'banned', 'pending') NOT NULL,
-    email              VARCHAR(128) UNIQUE                              NOT NULL,
-    verified_at        TIMESTAMP                                        NULL,
-    refresh_token      VARCHAR(255)                                     NULL,
-    avatar             VARCHAR(320)                                     NULL,
-    created_at         TIMESTAMP                                                 DEFAULT CURRENT_TIMESTAMP() NOT NULL,
-    modified_at        TIMESTAMP                                                 DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP()
+    id            CHAR(26) PRIMARY KEY,
+    hash_password VARCHAR(70)                                      NOT NULL,
+    full_name     VARCHAR(64)                                      NOT NULL,
+    deleted       BOOLEAN                                          NOT NULL DEFAULT FALSE,
+    status        ENUM ('active', 'inactive', 'banned', 'pending') NOT NULL,
+    email         VARCHAR(128) UNIQUE                              NOT NULL,
+    verified_at   TIMESTAMP                                        NULL,
+    refresh_token VARCHAR(255)                                     NULL,
+    avatar        VARCHAR(320)                                     NULL,
+    created_at    TIMESTAMP                                                 DEFAULT CURRENT_TIMESTAMP() NOT NULL,
+    modified_at   TIMESTAMP                                                 DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP()
 );
 
 -- Table: roles
@@ -118,23 +118,24 @@ CREATE TABLE customers
 (
     id                 CHAR(26) PRIMARY KEY,
     default_address_id CHAR(26),
-    phone_number        VARCHAR(45),
-    full_name           VARCHAR(45),
+    phone_number       VARCHAR(45),
+    full_name          VARCHAR(45),
     email              VARCHAR(45),
-    company_name        VARCHAR(45),
-    quantity_order      VARCHAR(45),
+    company_name       VARCHAR(45),
     industry           VARCHAR(45),
     channel            VARCHAR(45),
-    FOREIGN KEY (id) REFERENCES users(id)
+    FOREIGN KEY (id) REFERENCES users (id)
 );
 
-CREATE TABLE address_customers
+CREATE TABLE shipping_address
 (
-    address_id CHAR(26),
-    customer_id CHAR(26),
-    PRIMARY KEY (address_id, customer_id),
-    FOREIGN KEY (address_id) REFERENCES address(id),
-    FOREIGN KEY (customer_id) REFERENCES customers(id)
+    address_id     CHAR(26) NOT NULL,
+    person_info_id CHAR(26) NOT NULL,
+    customer_id    CHAR(26) NOT NULL,
+    PRIMARY KEY (person_info_id, address_id, customer_id),
+    FOREIGN KEY (address_id) REFERENCES address (id),
+    FOREIGN KEY (customer_id) REFERENCES customers (id),
+    FOREIGN KEY (person_info_id) REFERENCES person_info (id)
 );
 
 -- Table: posts
