@@ -13,15 +13,15 @@
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Đơn hàng</a>
                 <div class="dropdown-menu fade-up m-0">
-                    <a href="<c:url value="/WEB-INF/views/guest/login.jsp"/>" class="dropdown-item">Tạo đơn</a>
-                    <a href="<c:url value="/WEB-INF/views/guest/order-search.jsp"/>" class="dropdown-item">Tra cứu bưu phẩm</a>
-                    <a href="<c:url value="/WEB-INF/views/guest/cost-estimate.jsp"/>" class="dropdown-item">Ước tính chi phí</a>
+                    <a href="<c:url value="/tao-don"/>" class="dropdown-item">Tạo đơn</a>
+                    <a href="<c:url value="/tra-cuu-buu-pham"/>" class="dropdown-item">Tra cứu bưu phẩm</a>
+                    <a href="<c:url value="/uoc-tinh-chi-phi"/>" class="dropdown-item">Ước tính chi phí</a>
                 </div>
             </div>
-            <a href="<c:url value="/WEB-INF/views/guest/about.jsp"/>" class="nav-item nav-link">Về chúng tôi</a>
-            <a href="<c:url value="/WEB-INF/views/guest/services.jsp"/>" class="nav-item nav-link">Dịch vụ</a>
-            <a href="<c:url value="/WEB-INF/views/guest/contact.jsp"/>" class="nav-item nav-link">Liên hệ</a>
+            <a href="<c:url value="/ve-chung-toi"/>" class="nav-item nav-link">Về chúng tôi</a>
+            <a href="<c:url value="/dich-vu"/>" class="nav-item nav-link">Dịch vụ</a>
+            <a href="<c:url value="/lien-he"/>" class="nav-item nav-link">Liên hệ</a>
         </div>
     </div>
-    <a href="<c:url value="/WEB-INF/views/guest/cost-estimate.jsp"/>login.html" class="btn btn-primary ms-auto me-3 order-1 order-lg-2 h-25">Đăng nhập</a>
+    <a href="<c:url value="/dang-nhap"/>login.html" class="btn btn-primary ms-auto me-3 order-1 order-lg-2 h-25">Đăng nhập</a>
 </nav>

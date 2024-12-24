@@ -4,6 +4,8 @@
 <head>
     <%@include file="/WEB-INF/views/guest/common/head-link.jsp" %>
     <title>Dịch vụ</title>
+    <base href="${pageContext.request.contextPath}/" />
+
 </head>
 <body>
 <%-- Nav --%>
@@ -32,7 +34,7 @@
                             tiêu thời gian tiêu chuẩn. Không áp dụng với các đơn hàng có thu hộ COD.
 
                         </p>
-                        <a class="btn-slide mt-2" href="dich-vu?id=${s.slug}"><i class="fa fa-arrow-right"></i><span>Xem thêm</span></a>
+                        <a class="btn-slide mt-2" href="<c:url value="dich-vu/${s.slug}"/>"><i class="fa fa-arrow-right"></i><span>Xem thêm</span></a>
                     </div>
                 </div>
             </c:forEach>
