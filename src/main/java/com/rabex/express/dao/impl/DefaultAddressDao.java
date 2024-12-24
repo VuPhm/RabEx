@@ -15,7 +15,7 @@ public class DefaultAddressDao extends TemplateDao<Address> implements AddressDa
     public boolean insert(Address address) {
         String insertAddress = "INSERT INTO address(id, description, ward, district, province, created_at ,updated_at) VALUES (?,?,?,?,?,?,?)";
         // Insert new address
-        boolean success = insert(insertAddress, address.getId(), address.getDescription(), address.getWard(), address.getDistrict(), address.getDistrict(), address.getCreatedAt(), address.getUpdateAt());
+        boolean success = insert(insertAddress, address.getId(), address.getDescription(), address.getWard(), address.getDistrict(), address.getDistrict(), address.getCreatedAt(), address.getModifiedAt());
         return success;
     }
 
@@ -28,7 +28,7 @@ public class DefaultAddressDao extends TemplateDao<Address> implements AddressDa
                 address.getWard(),
                 address.getDistrict(),
                 address.getProvince(),
-                address.getUpdateAt()
+                address.getModifiedAt()
         );
     }
 
