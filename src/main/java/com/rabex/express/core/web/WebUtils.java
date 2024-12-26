@@ -1,4 +1,4 @@
-package com.rabex.express.controllers;
+package com.rabex.express.core.web;
 
 
 import com.google.gson.Gson;

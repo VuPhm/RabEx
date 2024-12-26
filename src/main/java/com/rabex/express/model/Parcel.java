@@ -6,27 +6,44 @@ import java.sql.Timestamp;
 
 public class Parcel {
     private RID id;
+    private String name;
     private double weight;
-    private RID created_by;
-    private Timestamp created_at;
-    private Timestamp modified_at;
-    private boolean fragment;
+    private double longg;
+    private double high;
+    private double wide;
+    private Timestamp createdAt;
+    private Timestamp modifiedAt;
+    private boolean fragile;
+
+    public Parcel() {
+    }
+
+    public Parcel(RID id, String name, double weight, double longg, double high, double wide, Timestamp created_at, Timestamp modified_at, boolean fragile) {
+        this.id = id;
+        this.name = name;
+        this.weight = weight;
+        this.longg = longg;
+        this.high = high;
+        this.wide = wide;
+        this.createdAt = created_at;
+        this.modifiedAt = modified_at;
+        this.fragile = fragile;
+    }
 
     public RID getId() {
         return id;
     }
 
-    public Parcel(RID id, double weight, RID created_by, Timestamp created_at, Timestamp modified_at, boolean fragment) {
-        this.id = id;
-        this.weight = weight;
-        this.created_by = created_by;
-        this.created_at = created_at;
-        this.modified_at = modified_at;
-        this.fragment = fragment;
-    }
-
     public void setId(RID id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public double getWeight() {
@@ -37,38 +54,51 @@ public class Parcel {
         this.weight = weight;
     }
 
-    public RID getCreated_by() {
-        return created_by;
+    public double getLongg() {
+        return longg;
     }
 
-    public void setCreated_by(RID created_by) {
-        this.created_by = created_by;
+    public void setLongg(double longg) {
+        this.longg = longg;
     }
 
-    public Timestamp getCreated_at() {
-        return created_at;
+    public double getHigh() {
+        return high;
     }
 
-    public void setCreated_at(Timestamp created_at) {
-        this.created_at = created_at;
+    public void setHigh(double high) {
+        this.high = high;
     }
 
-    public Timestamp getModified_at() {
-        return modified_at;
+    public double getWide() {
+        return wide;
     }
 
-    public void setModified_at(Timestamp modified_at) {
-        this.modified_at = modified_at;
+    public void setWide(double wide) {
+        this.wide = wide;
     }
 
-    public boolean isFragment() {
-        return fragment;
+    public Timestamp getCreatedAt() {
+        return createdAt;
     }
 
-    public void setFragment(boolean fragment) {
-        this.fragment = fragment;
+    public void setCreatedAt(Timestamp createdAt) {
+        this.createdAt = createdAt;
     }
 
-    public Parcel() {
+    public Timestamp getModifiedAt() {
+        return modifiedAt;
+    }
+
+    public void setModifiedAt(Timestamp modifiedAt) {
+        this.modifiedAt = modifiedAt;
+    }
+
+    public boolean isFragile() {
+        return fragile;
+    }
+
+    public void setFragile(boolean fragile) {
+        this.fragile = fragile;
     }
 }

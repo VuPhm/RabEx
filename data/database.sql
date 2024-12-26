@@ -105,13 +105,38 @@ CREATE TABLE cod_details
 -- Table: address
 CREATE TABLE address
 (
-    id          CHAR(26) PRIMARY KEY,
-    description TEXT                                  NULL,
-    ward        VARCHAR(45)                           NOT NULL,
-    district    VARCHAR(45)                           NOT NULL,
-    province    VARCHAR(45)                           NOT NULL,
-    created_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP() NOT NULL,
-    modified_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP()
+    id           CHAR(26) PRIMARY KEY,
+    description  TEXT                                          NULL,
+    ward         VARCHAR(45)                                   NOT NULL,
+    district     VARCHAR(45)                                   NOT NULL,
+    province     VARCHAR(45)                                   NOT NULL,
+    address_type ENUM ('private_house', 'office', 'different') NOT NULL,
+    created_at   TIMESTAMP DEFAULT CURRENT_TIMESTAMP()         NOT NULL,
+    modified_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP()
+);
+
+CREATE TABLE customers
+(
+    id                 CHAR(26) PRIMARY KEY,
+    default_address_id CHAR(26),
+    phone_number       VARCHAR(45),
+    full_name          VARCHAR(45),
+    email              VARCHAR(45),
+    company_name       VARCHAR(45),
+    industry           VARCHAR(45),
+    channel            VARCHAR(45),
+    FOREIGN KEY (id) REFERENCES users (id)
+);
+
+CREATE TABLE shipping_address
+(
+    address_id     CHAR(26) NOT NULL,
+    person_info_id CHAR(26) NOT NULL,
+    customer_id    CHAR(26) NOT NULL,
+    PRIMARY KEY (person_info_id, address_id, customer_id),
+    FOREIGN KEY (address_id) REFERENCES address (id),
+    FOREIGN KEY (customer_id) REFERENCES customers (id),
+    FOREIGN KEY (person_info_id) REFERENCES person_info (id)
 );
 
 -- Table: posts
@@ -207,33 +232,3 @@ CREATE TABLE users_tokens
     verify_token_expired_at         TIMESTAMP   NULL,
     reset_password_token_expired_at TIMESTAMP   NULL
 );
-
-# add customer
-
-CREATE TABLE `customers`
-(
-    id                 char(26)    NOT NULL,
-    company            varchar(45) NOT NULL,
-    default_address_id char(26)    NOT NULL,
-    date_of_birth      date        NULL,
-    industry           varchar(45) NULL,
-    sales_channel      varchar(45) NULL,
-    phone_number       varchar(10) NOT NULL,
-
-    PRIMARY KEY (id),
-    KEY FK_1 (id),
-    CONSTRAINT `FK_24` FOREIGN KEY (`id`) REFERENCES `users` (`id`)
-);
-
-CREATE TABLE `customer_addresses`
-(
-    customer_id char(26) NOT NULL,
-    address_id  char(26) NOT NULL,
-
-    PRIMARY KEY (`customer_id`, `address_id`),
-    KEY `FK_1` (`customer_id`),
-    CONSTRAINT `FK_25` FOREIGN KEY `FK_1` (`customer_id`) REFERENCES `customers` (`id`),
-    KEY `FK_2` (`address_id`),
-    CONSTRAINT `FK_26` FOREIGN KEY `FK_2` (`address_id`) REFERENCES `address` (`id`)
-);
-
