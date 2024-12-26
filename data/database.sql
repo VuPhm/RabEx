@@ -30,17 +30,20 @@ CREATE TABLE shipping_services
 );
 
 
--- Table: costs
-CREATE TABLE costs
+CREATE TABLE pricing_tiers
 (
-    id                   CHAR(26) PRIMARY KEY,
-    description          text     NULL,
-    service_id           CHAR(26) NOT NULL,
-    min_weight           DECIMAL  NULL,
-    max_weight           DECIMAL  NOT NULL,
-    intra_province_price DECIMAL  NOT NULL,
-    out_province_price   DECIMAL  NOT NULL,
-    FOREIGN KEY (service_id) REFERENCES shipping_services (id)
+    id                 CHAR(26) PRIMARY KEY,                           -- Khóa chính tự tăng
+    description        text                                  NULL,
+    service_id         CHAR(26)                              NOT NULL, -- Khóa ngoại, liên kết với dịch vụ
+    weight_start       FLOAT     DEFAULT 0,                            -- Khối lượng bắt đầu (kg)
+    weight_end         FLOAT     DEFAULT 0,                            -- Khối lượng kết thúc (kg)
+    step_increment     FLOAT     DEFAULT 0,                            -- Bước tăng khối lượng (vd: 0.5kg)
+    price_per_step     DECIMAL   DEFAULT 0.00,                         -- Giá tăng thêm mỗi bước
+    shipping_range ENUM('inProvince', 'outProvince') NOT NULL,
+    base_price         DECIMAL   DEFAULT 0.00,                         -- Giá cơ bản cho mốc này
+    created_at         timestamp DEFAULT current_timestamp() NOT NULL,
+    modified_at        timestamp DEFAULT current_timestamp() NOT NULL ON UPDATE current_timestamp(),
+    FOREIGN KEY (service_id) REFERENCES shipping_services (id) ON DELETE CASCADE
 );
 
 
