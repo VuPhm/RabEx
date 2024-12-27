@@ -42,7 +42,7 @@ CREATE TABLE pricing_tiers
     shipping_range ENUM('inProvince', 'outProvince') NOT NULL,
     base_price         DECIMAL   DEFAULT 0.00,                         -- Giá cơ bản cho mốc này
     created_at         timestamp DEFAULT current_timestamp() NOT NULL,
-    modified_at        timestamp DEFAULT current_timestamp() NOT NULL ON UPDATE current_timestamp(),
+    updated_at        timestamp DEFAULT current_timestamp() NOT NULL ON UPDATE current_timestamp(),
     FOREIGN KEY (service_id) REFERENCES shipping_services (id) ON DELETE CASCADE
 );
 
