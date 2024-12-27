@@ -15,10 +15,11 @@ import com.rabex.express.model.ShippingAddress;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.util.List;
+import java.util.Optional;
 
 public class DefaultCustomerDao extends TemplateDao<Customer> implements CustomerDao {
-    private static final String QUERY_SQL = "SELECT this.id as cus_id, this.default_address_id as cus_default_address, this.phone_number as cus_phone_number, this.full_name as cus_full_name, this.email as cus_email, this.company_name as cus_company, this.industry as cus_industry, this.channel as cus_channel, a.id as address_id, a.description as address_des, a.ward as address_ward, a.district as address_dis, a.province as address_pro, a.address_type as address_type, a.created_at as address_created_at, a.modified_at as address_modified_at, pi.id as info_id, pi.full_name as info_full_name, pi.phone_number as info_phone FROM customers this LEFT JOIN shipping_address ac ON this.id = ac.customer_id LEFT JOIN address a ON ac.address_id = a.id LEFT JOIN person_info pi on ac.person_info_id = pi.id";
-    private static final String INSERT_SQL = "INSERT INTO customers(id, default_address_id, phone_number, full_name, email, company_name, quantity_order, industry, channel) VALUES(?, ?, ? ,? ,? ,? ,? ,? , ?)";
+    private static final String QUERY_SQL = "SELECT this.id as cus_id, this.default_address_id as cus_default_address, this.phone_number as cus_phone_number, this.full_name as cus_full_name, this.email as cus_email, this.company_name as cus_company, this.industry as cus_industry, this.channel as cus_channel, a.id as address_id, a.description as address_des, a.ward as address_ward, a.district as address_dis, a.province as address_pro, a.address_type as address_type, a.created_at as address_created_at, a.modified_at as address_modified_at, pi.id as info_id, pi.email as info_email, pi.full_name as info_full_name, pi.phone_number as info_phone FROM customers this LEFT JOIN shipping_address ac ON this.id = ac.customer_id LEFT JOIN address a ON ac.address_id = a.id LEFT JOIN person_info pi ON ac.person_info_id = pi.id";
+    private static final String INSERT_SQL = "INSERT INTO customers(id, default_address_id, phone_number, full_name, email, company_name, industry, channel) VALUES(?, ?, ? ,? ,? ,? ,? , ?)";
 
     private CustomerMapper customerMapper;
 
@@ -42,7 +43,6 @@ public class DefaultCustomerDao extends TemplateDao<Customer> implements Custome
                     customer.getIndustry(),
                     customer.getChannel());
             boolean success = insertCustomerStatement.executeUpdate() > 0;
-
 
 
             return success ;
@@ -109,5 +109,12 @@ public class DefaultCustomerDao extends TemplateDao<Customer> implements Custome
     @Override
     protected String countAllSql() {
         return "SELECT COUNT(*) FROM customers";
+    }
+
+    @Override
+    public boolean deleteAddress(RID addressId, RID customerId) {
+        Optional<Customer> customer = findById(customerId);
+
+        return false;
     }
 }
