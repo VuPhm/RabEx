@@ -39,7 +39,7 @@ CREATE TABLE pricing_tiers
     weight_end         FLOAT     DEFAULT 0,                            -- Khối lượng kết thúc (kg)
     step_increment     FLOAT     DEFAULT 0,                            -- Bước tăng khối lượng (vd: 0.5kg)
     price_per_step     DECIMAL   DEFAULT 0.00,                         -- Giá tăng thêm mỗi bước
-    shipping_range ENUM('inProvince', 'outProvince') NOT NULL,
+    shipping_range ENUM('IN_PROVINCE', 'OUT_PROVINCE') NOT NULL,
     base_price         DECIMAL   DEFAULT 0.00,                         -- Giá cơ bản cho mốc này
     created_at         timestamp DEFAULT current_timestamp() NOT NULL,
     updated_at        timestamp DEFAULT current_timestamp() NOT NULL ON UPDATE current_timestamp(),
