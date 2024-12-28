@@ -24,6 +24,7 @@
 
 <!-- Customized Bootstrap Stylesheet -->
 <link href="<c:url value="/static/css/bootstrap.min.css"/>" rel="stylesheet">
+<link href="<c:url value="/static/css/mdb.min.css"/>" rel="stylesheet">
 
 <!-- Template Stylesheet -->
 <link href="<c:url value="/static/css/style.css"/> " rel="stylesheet">
