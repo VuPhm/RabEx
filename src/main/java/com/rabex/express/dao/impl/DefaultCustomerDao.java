@@ -45,11 +45,22 @@ public class DefaultCustomerDao extends TemplateDao<Customer> implements Custome
             boolean success = insertCustomerStatement.executeUpdate() > 0;
 
 
-            return success ;
+            return success;
         });
     }
 
-    public boolean insertCustomerAddressRelationship(Customer customer, Connection connection) {
+//    protected boolean isSuccessAll(int[] affectedRows) {
+//        boolean addressInserted = true;
+//        for (int affectedRow : affectedRows) {
+//            if (affectedRow <= 0) {
+//                addressInserted = false;
+//                break;
+//            }
+//        }
+//        return addressInserted;
+//    }
+
+    protected boolean insertCustomerAddressRelationship(Customer customer, Connection connection) {
         // Ensure the customer and address list are valid
         if (customer.getAddresses() == null || customer.getAddresses().isEmpty()) {
             // If the address list is null or empty, return false as no relationships can be created
@@ -90,9 +101,27 @@ public class DefaultCustomerDao extends TemplateDao<Customer> implements Custome
     }
 
     @Override
-    public boolean update(RID id, Customer request) {
-        String deleteCustomer = "DELETE FROM address WHERE id = ?";
-        return update(deleteCustomer, id);
+    public boolean update(RID id, Customer customer) {
+        String updateCustomerSql = "UPDATE customers SET default_address_id = ?, phone_number = ?, full_name = ?, email = ?, company_name = ?, industry = ?, channel = ? WHERE id = ?;"; // này chỉnh lại nha
+        String deletedRelationshipSql = "DELETE FROM shipping_address WHERE customer_id = ?";
+
+        return executeTransaction(connection -> {
+            boolean success = false;
+
+            PreparedStatement s1 = connection.prepareStatement(updateCustomerSql);
+            setParameter(s1, customer.getDefaultAddressId(), customer.getPhoneNumber(), customer.getFullName(), customer
+                    .getEmail(), customer.getCompanyName(), customer.getIndustry(), customer.getChannel(), id);
+            success = s1.execute();
+
+            PreparedStatement s2 = connection.prepareStatement(deletedRelationshipSql);
+            setParameter(s2, id);
+            success = success && s2.execute();
+
+            success = success && insertCustomerAddressRelationship(customer, connection);
+
+            System.out.println(success);
+            return success;
+        });
     }
 
     @Override
@@ -111,10 +140,4 @@ public class DefaultCustomerDao extends TemplateDao<Customer> implements Custome
         return "SELECT COUNT(*) FROM customers";
     }
 
-    @Override
-    public boolean deleteAddress(RID addressId, RID customerId) {
-        Optional<Customer> customer = findById(customerId);
-
-        return false;
-    }
 }
