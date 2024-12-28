@@ -8,6 +8,6 @@ public class ShippingServDaoTest {
     @Test
     public void test() {
         ShippingServDao shippingServDao = new ShippingServDaoImpl();
-        System.out.println(shippingServDao.findPricingTiers(10, ShippingRange.OUT_PROVINCE));
+        System.out.println(shippingServDao.findPricingTiers(300, ShippingRange.OUT_PROVINCE));
     }
 }

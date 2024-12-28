@@ -10,6 +10,7 @@ import com.rabex.express.model.PricingTier;
 import com.rabex.express.model.ShippingRange;
 import com.rabex.express.model.ShippingServ;
 
+import java.util.List;
 import java.util.Optional;
 
 public class ShippingServDaoImpl extends TemplateDao<ShippingServ> implements ShippingServDao {
@@ -63,6 +64,8 @@ public class ShippingServDaoImpl extends TemplateDao<ShippingServ> implements Sh
     }
     @Override
     public Optional<PricingTier> findPricingTiers(double weight, ShippingRange range) {
-        return Optional.ofNullable(singleQuery(PRICING_SQL, pricingTierMapper(), weight, range));
+        List<PricingTier> tiers = query(PRICING_SQL, pricingTierMapper(), range, weight);
+        System.out.println(tiers.toString());
+        return Optional.ofNullable(tiers.isEmpty() ? null : tiers.get(0));
     }
 }
