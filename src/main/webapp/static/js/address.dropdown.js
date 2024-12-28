@@ -1,7 +1,8 @@
 class AddressDropdown {
-    constructor(selector, {input, placeholder}) {
+    constructor(selector, {input, placeholder, url}) {
         this.input = input || ".address-input";
         this.selector = selector;
+        this.url = url;
         this.placeholder = placeholder;
     }
 
@@ -108,7 +109,7 @@ class AddressDropdown {
             });
         });
 
-        fetch("./../../data/dvhc.json")
+        fetch(this.url)
             .then(value => value.json())
             .then(json => this.data = json.data)
             .then(() => {
