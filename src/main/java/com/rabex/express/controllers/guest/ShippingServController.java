@@ -29,8 +29,6 @@ public class ShippingServController extends HttpServlet {
             if (service != null) {
                 req.setAttribute("service", service);
                 req.getRequestDispatcher("/WEB-INF/views/guest/service-details.jsp").forward(req, resp);
-            } else { // not found service
-                resp.sendRedirect(req.getContextPath() + "/dich-vu");
             }
             return;
         }
