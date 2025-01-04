@@ -63,6 +63,15 @@ CREATE TABLE special_service_surcharges (
 );
 
 
+CREATE TABLE order_surcharges (
+                                  order_id CHAR(26),  -- ID đơn hàng
+                                  surcharge_id CHAR(26),  -- ID phụ phí
+                                  PRIMARY KEY (order_id, surcharge_id),
+                                  FOREIGN KEY (order_id) REFERENCES orders(id),
+                                  FOREIGN KEY (surcharge_id) REFERENCES special_service_surcharges(id)
+);
+
+
 -- Table: users
 CREATE TABLE users
 (
