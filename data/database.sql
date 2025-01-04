@@ -47,6 +47,22 @@ CREATE TABLE pricing_tiers
 );
 
 
+CREATE TABLE special_service_surcharges (
+                                     id             CHAR(26)                             NOT NULL PRIMARY KEY,
+                                     description    TEXT                                 NULL,
+                                     service_id     CHAR(26)                             NOT NULL,
+                                     weight_start   FLOAT      DEFAULT 0                 NULL,
+                                     weight_end     FLOAT      DEFAULT 0                 NULL,
+                                     price_per_step DECIMAL    DEFAULT 0                 NULL,
+                                     base_price     DECIMAL    DEFAULT 0                 NULL,
+                                     unit_type      ENUM('VNĐ', 'kg', 'none') DEFAULT 'none'           NULL,
+                                     created_at     TIMESTAMP  DEFAULT current_timestamp() NOT NULL,
+                                     updated_at     TIMESTAMP  DEFAULT current_timestamp() NOT NULL
+                                         ON UPDATE current_timestamp(),
+                                     CONSTRAINT fk_service_id FOREIGN KEY (service_id) REFERENCES shipping_services (id)
+);
+
+
 -- Table: users
 CREATE TABLE users
 (
