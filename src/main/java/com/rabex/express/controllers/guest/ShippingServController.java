@@ -26,7 +26,7 @@ public class ShippingServController extends HttpServlet {
             String slug = WebUtils.getSubPaths(req)[0];
             ShippingServ service = shippingServService.findBySlug(slug);
 
-            if (service == null) {
+            if (service != null) {
                 req.setAttribute("service", service);
                 req.getRequestDispatcher("/WEB-INF/views/guest/service-details.jsp").forward(req, resp);
             } else { // not found service
