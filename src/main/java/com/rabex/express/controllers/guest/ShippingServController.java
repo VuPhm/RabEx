@@ -1,6 +1,6 @@
 package com.rabex.express.controllers.guest;
 
-import com.rabex.express.controllers.WebUtils;
+import com.rabex.express.core.web.WebUtils;
 import com.rabex.express.model.ShippingServ;
 import com.rabex.express.services.ShippingServService;
 import jakarta.inject.Inject;
@@ -11,8 +11,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
 
 @WebServlet(urlPatterns = {"/dich-vu", "/dich-vu/*"})
 public class ShippingServController extends HttpServlet {
@@ -23,20 +21,21 @@ public class ShippingServController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
-        //dich-vu/*
-        if (WebUtils.getSubPaths(req).length == 1){
+        // /dich-vu/*
+        if (WebUtils.getSubPaths(req).length > 0) {
             String slug = WebUtils.getSubPaths(req)[0];
             ShippingServ service = shippingServService.findBySlug(slug);
-            if (service != null){
+
+            if (service != null) {
                 req.setAttribute("service", service);
                 req.getRequestDispatcher("/WEB-INF/views/guest/service-details.jsp").forward(req, resp);
-                return;
             } else {
-                resp.sendRedirect(req.getContextPath() + "/dich-vu");
-                return;
-            }
+                req.setAttribute("errorMessage", "Không tìm thấy dịch vụ");
+                req.getRequestDispatcher("/404.jsp").forward(req, resp);            }
+            return;
         }
-        //dich-vu
+
+        // /dich-vu
         req.setAttribute("services", shippingServService.findAll());
         req.getRequestDispatcher("/WEB-INF/views/guest/services.jsp").forward(req, resp);
     }

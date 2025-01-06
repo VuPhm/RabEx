@@ -25,9 +25,9 @@ public class AddressController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Customer customer = customerService.findById(RID.from("01JFVEQ45VDEWERDXVJ9DBKYW6"));
+        Customer customer = customerService.findById(RID.from("01JFVW84PVN5CNT6AAB4ZM7SG6"));
         if (customerService != null) {
-            req.setAttribute("addresses", customer.getAddresses());
+            req.setAttribute("customer", customer);
         }
         req.getRequestDispatcher("/WEB-INF/views/user/address.jsp").forward(req, resp);
     }
@@ -44,6 +44,27 @@ public class AddressController extends HttpServlet {
 
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        String pathInfo = req.getPathInfo(); // Lấy đường dẫn ví dụ: /dia-chi/{id}
+        if (pathInfo == null || pathInfo.length() <= 1) {
+            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            resp.getWriter().write("Invalid address ID");
+            return;
+        }
+        String addressId = pathInfo.substring(1); // Lấy ID từ URL
+        RID rid = RID.from(addressId);
+        try {
+            boolean deleted = addressService.deleteAddress(rid);
+            if (deleted) {
+                resp.setStatus(HttpServletResponse.SC_OK);
+                resp.getWriter().write("Address deleted successfully");
+            } else {
+                resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
+                resp.getWriter().write("Address not found");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            resp.getWriter().write("Error deleting address");
+        }
     }
 }
