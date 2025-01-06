@@ -44,27 +44,58 @@ public class AddressController extends HttpServlet {
 
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String pathInfo = req.getPathInfo(); // Lấy đường dẫn ví dụ: /dia-chi/{id}
-        if (pathInfo == null || pathInfo.length() <= 1) {
-            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            resp.getWriter().write("Invalid address ID");
-            return;
-        }
-        String addressId = pathInfo.substring(1); // Lấy ID từ URL
-        RID rid = RID.from(addressId);
         try {
-            boolean deleted = addressService.deleteAddress(rid);
-            if (deleted) {
+            // Lấy `addressId` từ URL hoặc query parameter
+            String addressId = req.getParameter("addressId");
+            if (addressId == null || addressId.isEmpty()) {
+                resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+                resp.getWriter().write("Missing addressId");
+                return;
+            }
+
+            // Tìm khách hàng (có thể là khách hàng hiện tại hoặc theo một logic xác định trước)
+            String customerId = req.getParameter("customerId");
+            if (customerId == null || customerId.isEmpty()) {
+                resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+                resp.getWriter().write("Missing customerId");
+                return;
+            }
+
+            // Lấy đối tượng Customer
+            RID customerRID = RID.from(customerId);
+            Customer customer = customerService.findById(customerRID);
+
+            if (customer == null) {
+                resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
+                resp.getWriter().write("Customer not found");
+                return;
+            }
+
+            // Kiểm tra xem addressId có tồn tại trong danh sách địa chỉ của khách hàng không
+            boolean addressExists = customer.getAddresses().stream()
+                    .anyMatch(shippingAddress -> shippingAddress.getAddress().getId().equals(addressId));
+
+            if (!addressExists) {
+                resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
+                resp.getWriter().write("Address not found for the customer");
+                return;
+            }
+
+            // Gọi service để xóa địa chỉ
+            boolean success = addressService.deleteAddress(RID.from(addressId));
+
+            // Phản hồi kết quả
+            if (success) {
                 resp.setStatus(HttpServletResponse.SC_OK);
                 resp.getWriter().write("Address deleted successfully");
             } else {
-                resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
-                resp.getWriter().write("Address not found");
+                resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+                resp.getWriter().write("Failed to delete address");
             }
         } catch (Exception e) {
             e.printStackTrace();
             resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-            resp.getWriter().write("Error deleting address");
+            resp.getWriter().write("An error occurred: " + e.getMessage());
         }
     }
 }
