@@ -12,7 +12,7 @@ class DefaultCustomerDaoTest {
     @Test
     void test(){
         CustomerDao customerDao = new DefaultCustomerDao();
-        System.out.println(customerDao.findById(RID.from("01JFVEQ45VDEWERDXVJ9DBKYW6")));
+        System.out.println(customerDao.findById(RID.from("01JFVW84PVN5CNT6AAB4ZM7SG6")));
     }
 
 }

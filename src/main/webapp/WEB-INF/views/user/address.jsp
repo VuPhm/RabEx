@@ -161,23 +161,28 @@
                             </tr>
                             </thead>
                             <tbody id="address-container">
-                            <c:forEach var="address" items="${addresses}">
+                            <%--@elvariable id="customer" type="com.rabex.express.model.Customer"--%>
+                            <c:forEach var="address" items="${customer.addresses}">
                                 <tr>
                                     <td>${1}</td>
-                                    <td>${address.description}</td>
-                                    <td>${address.phone}</td>
-                                    <td>${address.fullAddress}</td>
-                                    <td>${address.addressType}</td>
+                                    <td>${address.personInfo.fullName}</td>
+                                    <td>${address.personInfo.phoneNumber}</td>
+                                    <td>${address.address.description},
+                                            ${address.address.ward},
+                                            ${address.address.district},
+                                            ${address.address.province}
+                                    </td>
+                                    <td>${address.address.addressType}</td>
                                     <td>
-                                        <span class="badge rounded-pill ${address.isDefault ? 'bg-success' : 'bg-secondary'}">
-                                                ${address.isDefault ? 'Mặc định' : 'Không mặc định'}
-                                        </span>
+<%--                                        <span class="badge rounded-pill ${customer.defaultAddressId ? 'bg-success' : 'bg-secondary'}">--%>
+<%--                                                ${customer.defaultAddressId ? 'Mặc định' : 'Không mặc định'}--%>
+<%--                                        </span>--%>
                                     </td>
                                     <td>
-                                        <a class="btn btn-sm btn-outline-primary edit-address" data-id="${address.id}">
+                                        <a class="btn btn-sm btn-outline-primary edit-address" data-id="${address.address.id}">
                                             <i class="fas fa-edit me-1"></i>
                                         </a>
-                                        <a class="btn btn-sm btn-outline-danger remove-address" data-id="${address.id}">
+                                        <a class="btn btn-sm btn-outline-danger remove-address" data-id="${address.address.id}">
                                             <i class="fas fa-trash me-1"></i>
                                         </a>
                                     </td>
@@ -383,6 +388,33 @@
         document.getElementById('addressIndex').value = '';
     }
 
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const deleteButtons = document.querySelectorAll('.remove-address');
+        deleteButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const addressId = button.getAttribute('data-id');
+                if (confirm('Bạn có chắc chắn muốn xóa địa chỉ này?')) {
+                    fetch(`/dia-chi/${addressId}`, {
+                        method: 'DELETE',
+                    })
+                        .then(response => {
+                            if (response.ok) {
+                                alert('Địa chỉ đã được xóa thành công!');
+                                location.reload(); // Tải lại trang để cập nhật danh sách
+                            } else {
+                                alert('Xóa địa chỉ thất bại!');
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Lỗi:', error);
+                            alert('Đã xảy ra lỗi khi xóa địa chỉ.');
+                        });
+                }
+            });
+        });
+    });
 </script>
 </body>
 </html>

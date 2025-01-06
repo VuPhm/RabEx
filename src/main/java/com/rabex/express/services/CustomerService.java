@@ -12,4 +12,6 @@ public interface CustomerService {
     int countAll();
     // Tìm địa chỉ theo id
     Customer findById(RID id);
+    boolean delete(RID id);
+    boolean deleteAddress(RID addressId, RID customerId);
 }

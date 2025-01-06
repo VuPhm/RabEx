@@ -10,4 +10,6 @@ import lombok.Data;
 public class ShippingAddress {
     private Address address;
     private PersonInfo personInfo;
+
+
 }
