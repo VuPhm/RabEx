@@ -4,14 +4,13 @@ import com.rabex.express.core.dao.*;
 import com.rabex.express.model.PricingTier;
 import com.rabex.express.model.ShippingRange;
 
-import java.rmi.server.UID;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class PricingTierMapper implements RowMapper<PricingTier> {
     private final String prefix;
     private final Convertor<String, RID> idConvertor = new StringToRidConvertor();
-    private final Convertor<String, ShippingRange> enumConvertor = new StringToEnumConvertor<ShippingRange>(ShippingRange.class);
+    private final Convertor<String, ShippingRange> enumConvertor = new StringToEnumConvertor<>(ShippingRange.class);
 
     public PricingTierMapper(String prefix) {
         this.prefix = prefix;

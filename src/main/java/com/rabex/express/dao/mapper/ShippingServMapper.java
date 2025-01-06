@@ -10,8 +10,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ShippingServMapper implements RowMapper<ShippingServ> {
-    private String prefix;
-    private Convertor<String, RID> idConvertor = new StringToRidConvertor();
+    private final String prefix;
+    private final Convertor<String, RID> idConvertor = new StringToRidConvertor();
 
     public ShippingServMapper(String prefix) {
         this.prefix = prefix;

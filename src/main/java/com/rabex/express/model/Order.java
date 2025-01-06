@@ -6,19 +6,20 @@ import lombok.*;
 import java.sql.Timestamp;
 @Builder
 @Getter
+@Setter
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
 public class Order {
     private RID id;
-    private RID receiverId;
-    private RID senderId;
+    private PersonInfo receiver;
+    private PersonInfo sender;
     private Address receiverAddress;
     private Address senderAddress;
-    private RID methodId;
     private Parcel parcel;
-    private RID deliveryFailedActionId;
-    private RID shippingServiceId;
+    private DeliveryFailedAction deliveryFailedAction;
+    private ShippingServ shippingService;
+    private ShippingServ addOnShippingService;
     private OrderStatus status;
     private String code;
     private String note;
