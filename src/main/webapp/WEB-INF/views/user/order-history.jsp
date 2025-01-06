@@ -45,72 +45,20 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>#BP12345</td>
-                            <td>20/11/2024</td>
-                            <td>Bưu kiện vận chuyển tiêu chuẩn</td>
-                            <td>2 kg</td>
-                            <td><span class="badge bg-success">Đã giao</span></td>
-                            <td>
-                                <a class="btn btn-sm btn-outline-primary" href="order-details.html">Chi
-                                    tiết</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>#BP12346</td>
-                            <td>15/11/2024</td>
-                            <td>Bưu phẩm vận chuyển nhanh</td>
-                            <td>1.5 kg</td>
-                            <td><span class="badge bg-warning">Đang vận chuyển</span></td>
-                            <td>
-                                <a class="btn btn-sm btn-outline-primary" href="order-details.html">Chi
-                                    tiết</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>#BP12345</td>
-                            <td>20/11/2024</td>
-                            <td>Bưu kiện vận chuyển tiêu chuẩn</td>
-                            <td>2 kg</td>
-                            <td><span class="badge bg-success">Đã giao</span></td>
-                            <td>
-                                <a class="btn btn-sm btn-outline-primary" href="order-details.html">Chi
-                                    tiết</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>#BP12346</td>
-                            <td>15/11/2024</td>
-                            <td>Bưu phẩm vận chuyển nhanh</td>
-                            <td>1.5 kg</td>
-                            <td><span class="badge bg-warning">Đang vận chuyển</span></td>
-                            <td>
-                                <a class="btn btn-sm btn-outline-primary" href="order-details.html">Chi
-                                    tiết</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>#BP12345</td>
-                            <td>20/11/2024</td>
-                            <td>Bưu kiện vận chuyển tiêu chuẩn</td>
-                            <td>2 kg</td>
-                            <td><span class="badge bg-success">Đã giao</span></td>
-                            <td>
-                                <a class="btn btn-sm btn-outline-primary" href="order-details.html">Chi
-                                    tiết</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>#BP12346</td>
-                            <td>15/11/2024</td>
-                            <td>Bưu phẩm vận chuyển nhanh</td>
-                            <td>1.5 kg</td>
-                            <td><span class="badge bg-warning">Đang vận chuyển</span></td>
-                            <td>
-                                <a class="btn btn-sm btn-outline-primary" href="order-details.html">Chi
-                                    tiết</a>
-                            </td>
-                        </tr>
+                        <jsp:useBean id="history" scope="request" type="java.util.List"/>
+                        <c:forEach items="${history}" var="o">
+                            <tr>
+                                <td>${o.code}</td>
+                                <td>${o.createdAt}</td>
+                                <td>${o.shippingService.name}</td>
+                                <td>${o.parcel.weight}</td>
+                                <td><span class="badge bg-success">${o.status}</span></td>
+                                <td>
+                                    <a class="btn btn-sm btn-outline-primary" href="order-details.html">Chi
+                                        tiết</a>
+                                </td>
+                            </tr>
+                        </c:forEach>
                         </tbody>
                     </table>
                     <table class="table table-hover hidden" id="data-table2">
