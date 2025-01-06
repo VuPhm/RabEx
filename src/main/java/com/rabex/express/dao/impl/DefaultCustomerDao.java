@@ -103,19 +103,19 @@ public class DefaultCustomerDao extends TemplateDao<Customer> implements Custome
     @Override
     public boolean update(RID id, Customer customer) {
         String updateCustomerSql = "UPDATE customers SET default_address_id = ?, phone_number = ?, full_name = ?, email = ?, company_name = ?, industry = ?, channel = ? WHERE id = ?;"; // này chỉnh lại nha
-        String deletedRelationshipSql = "DELETE FROM shipping_address WHERE customer_id = ?";
+        String deletedRelationshipSql = "DELETE FROM shipping_address WHERE customer_id = ? AND person_info_id = ?";
 
         return executeTransaction(connection -> {
             boolean success = false;
+
+            PreparedStatement s2 = connection.prepareStatement(deletedRelationshipSql);
+            setParameter(s2, id);
+            success = success && s2.execute();
 
             PreparedStatement s1 = connection.prepareStatement(updateCustomerSql);
             setParameter(s1, customer.getDefaultAddressId(), customer.getPhoneNumber(), customer.getFullName(), customer
                     .getEmail(), customer.getCompanyName(), customer.getIndustry(), customer.getChannel(), id);
             success = s1.execute();
-
-            PreparedStatement s2 = connection.prepareStatement(deletedRelationshipSql);
-            setParameter(s2, id);
-            success = success && s2.execute();
 
             success = success && insertCustomerAddressRelationship(customer, connection);
 
