@@ -25,6 +25,7 @@ CREATE TABLE shipping_services
     details           text                                  NULL,
     image             text                                  NULL,
     expected_time     text                                  NULL,
+    service_type      ENUM ('add-on', 'delivery')           NOT NULL,
     created_at        timestamp DEFAULT current_timestamp() NOT NULL,
     modified_at       timestamp DEFAULT current_timestamp() NOT NULL ON UPDATE current_timestamp()
 );
@@ -32,18 +33,45 @@ CREATE TABLE shipping_services
 
 CREATE TABLE pricing_tiers
 (
-    id                 CHAR(26) PRIMARY KEY,                           -- Khóa chính tự tăng
-    description        text                                  NULL,
-    service_id         CHAR(26)                              NOT NULL, -- Khóa ngoại, liên kết với dịch vụ
-    weight_start       FLOAT     DEFAULT 0,                            -- Khối lượng bắt đầu (kg)
-    weight_end         FLOAT     DEFAULT 0,                            -- Khối lượng kết thúc (kg)
-    step_increment     FLOAT     DEFAULT 0,                            -- Bước tăng khối lượng (vd: 0.5kg)
-    price_per_step     DECIMAL   DEFAULT 0.00,                         -- Giá tăng thêm mỗi bước
-    shipping_range ENUM('inProvince', 'outProvince') NOT NULL,
-    base_price         DECIMAL   DEFAULT 0.00,                         -- Giá cơ bản cho mốc này
-    created_at         timestamp DEFAULT current_timestamp() NOT NULL,
-    modified_at        timestamp DEFAULT current_timestamp() NOT NULL ON UPDATE current_timestamp(),
+    id             CHAR(26) PRIMARY KEY,                           -- Khóa chính tự tăng
+    description    text                                  NULL,
+    service_id     CHAR(26)                              NOT NULL, -- Khóa ngoại, liên kết với dịch vụ
+    weight_start   FLOAT     DEFAULT 0,                            -- Khối lượng bắt đầu (kg)
+    weight_end     FLOAT     DEFAULT 0,                            -- Khối lượng kết thúc (kg)
+    step_increment FLOAT     DEFAULT 0,                            -- Bước tăng khối lượng (vd: 0.5kg)
+    price_per_step DECIMAL   DEFAULT 0.00,                         -- Giá tăng thêm mỗi bước
+    shipping_range ENUM ('IN_PROVINCE', 'OUT_PROVINCE')  NOT NULL,
+    base_price     DECIMAL   DEFAULT 0.00,                         -- Giá cơ bản cho mốc này
+    created_at     timestamp DEFAULT current_timestamp() NOT NULL,
+    updated_at     timestamp DEFAULT current_timestamp() NOT NULL ON UPDATE current_timestamp(),
     FOREIGN KEY (service_id) REFERENCES shipping_services (id) ON DELETE CASCADE
+);
+
+
+CREATE TABLE special_service_surcharges
+(
+    id             CHAR(26)                                               NOT NULL PRIMARY KEY,
+    description    TEXT                                                   NULL,
+    service_id     CHAR(26)                                               NOT NULL,
+    weight_start   FLOAT                      DEFAULT 0                   NULL,
+    weight_end     FLOAT                      DEFAULT 0                   NULL,
+    price_per_step DECIMAL                    DEFAULT 0                   NULL,
+    base_price     DECIMAL                    DEFAULT 0                   NULL,
+    unit_type      ENUM ('VNĐ', 'kg', 'none') DEFAULT 'none'              NULL,
+    created_at     TIMESTAMP                  DEFAULT current_timestamp() NOT NULL,
+    updated_at     TIMESTAMP                  DEFAULT current_timestamp() NOT NULL
+        ON UPDATE current_timestamp(),
+    CONSTRAINT fk_service_id FOREIGN KEY (service_id) REFERENCES shipping_services (id)
+);
+
+
+CREATE TABLE order_surcharges
+(
+    order_id     CHAR(26), -- ID đơn hàng
+    surcharge_id CHAR(26), -- ID phụ phí
+    PRIMARY KEY (order_id, surcharge_id),
+    FOREIGN KEY (order_id) REFERENCES orders (id),
+    FOREIGN KEY (surcharge_id) REFERENCES special_service_surcharges (id)
 );
 
 
@@ -90,7 +118,6 @@ CREATE TABLE parcels
     created_by  CHAR(26)                              NOT NULL,
     created_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP() NOT NULL,
     modified_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP(),
-    fragile     BOOLEAN                               NOT NULL,
     weight      DECIMAL                               NOT NULL,
     longg       DECIMAL                               NULL,
     high        DECIMAL                               NULL,
@@ -174,29 +201,31 @@ CREATE TABLE staffs
 -- Table: orders
 CREATE TABLE orders
 (
-    id                        CHAR(26) PRIMARY KEY,
-    receiver_id               CHAR(26)                                                                  NOT NULL,
-    sender_id                 CHAR(26)                                                                  NOT NULL,
-    receiver_address_id       CHAR(26)                                                                  NOT NULL,
-    sender_address_id         CHAR(26)                                                                  NOT NULL,
-    method_id                 CHAR(26)                                                                  NOT NULL,
-    parcel_id                 CHAR(26)                                                                  NOT NULL,
-    delivery_failed_action_id CHAR(26)                                                                  NULL,
-    shipping_service_id       CHAR(26)                                                                  NOT NULL,
-    status                    ENUM ('pending', 'processed', 'cancelled', 'done', 'returned', 'transit') NOT NULL,
-    code                      VARCHAR(255)                                                              NOT NULL,
-    note                      TEXT                                                                      NULL,
-    receive_at_home           BOOLEAN                                                                   NOT NULL,
-    failed_count              INT                                                                       NULL,
-    created_at                TIMESTAMP DEFAULT CURRENT_TIMESTAMP()                                     NOT NULL,
-    modified_at               TIMESTAMP DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP(),
+    id                        char(26)                                                                  NOT NULL
+        PRIMARY KEY,
+    receiver_id               char(26)                                                                  NOT NULL,
+    sender_id                 char(26)                                                                  NOT NULL,
+    receiver_address_id       char(26)                                                                  NOT NULL,
+    sender_address_id         char(26)                                                                  NOT NULL,
+    parcel_id                 char(26)                                                                  NOT NULL,
+    delivery_failed_action_id char(26)                                                                  NULL,
+    shipping_service_id       char(26)                                                                  NOT NULL,
+    addon_shipping_service_id char(26)                                                                  NULL,
+    status                    enum ('pending', 'processed', 'cancelled', 'done', 'returned', 'transit') NOT NULL,
+    code                      varchar(255)                                                              NOT NULL,
+    note                      text                                                                      NULL,
+    receive_at_home           tinyint(1)                                                                NOT NULL,
+    failed_count              int                                                                       NULL,
+    created_at                timestamp DEFAULT current_timestamp()                                     NOT NULL,
+    modified_at               timestamp DEFAULT current_timestamp()                                     NOT NULL ON UPDATE current_timestamp(),
     FOREIGN KEY (receiver_id) REFERENCES person_info (id),
     FOREIGN KEY (sender_id) REFERENCES person_info (id),
     FOREIGN KEY (receiver_address_id) REFERENCES address (id),
     FOREIGN KEY (sender_address_id) REFERENCES address (id),
     FOREIGN KEY (parcel_id) REFERENCES parcels (id),
     FOREIGN KEY (delivery_failed_action_id) REFERENCES delivery_failed_action (id),
-    FOREIGN KEY (shipping_service_id) REFERENCES shipping_services (id)
+    FOREIGN KEY (shipping_service_id) REFERENCES shipping_services (id),
+    FOREIGN KEY (addon_shipping_service_id) REFERENCES shipping_services (id)
 );
 
 -- Table: trackings
