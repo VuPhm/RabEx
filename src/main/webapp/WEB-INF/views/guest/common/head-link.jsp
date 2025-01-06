@@ -4,7 +4,7 @@
 <meta content="" name="description">
 
 <!-- Favicon -->
-<%--<link href="../../favicon.ico" rel="icon">--%>
+<link href="<c:url value="/static/favicon.ico"/>" rel="icon">
 
 <!-- Google Web Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,7 +24,7 @@
 
 <!-- Customized Bootstrap Stylesheet -->
 <link href="<c:url value="/static/css/bootstrap.min.css"/>" rel="stylesheet">
-<link href="<c:url value="/static/css/mdb.min.css"/>" rel="stylesheet">
+<%--<link href="<c:url value="/static/css/mdb.min.css"/>" rel="stylesheet">--%>
 
 <!-- Template Stylesheet -->
 <link href="<c:url value="/static/css/style.css"/> " rel="stylesheet">

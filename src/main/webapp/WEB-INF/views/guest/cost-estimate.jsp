@@ -212,10 +212,9 @@
 <script src="<c:url value="/static/js/mdb.umd.min.js"/>"></script>
 <script src="<c:url value="/static/js/address.dropdown.js"/>"></script>
 <%--<script src="<c:url value="/static/data/dvhc.json"/>"></script>--%>
-</body>
 <script>
-
-    const receiverAddress = new AddressDropdown("#receiver_address", {url:"/rabex/static/data/dvhc.json", placeholder:"Chọn"});
+    const receiverAddress = new AddressDropdown("#receiver_address", {url:"/static/data/dvhc.json", placeholder:"Chọn"});
     receiverAddress.init();
 </script>
+</body>
 </html>
