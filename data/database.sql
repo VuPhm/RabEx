@@ -65,16 +65,6 @@ CREATE TABLE special_service_surcharges
 );
 
 
-CREATE TABLE order_surcharges
-(
-    order_id     CHAR(26), -- ID đơn hàng
-    surcharge_id CHAR(26), -- ID phụ phí
-    PRIMARY KEY (order_id, surcharge_id),
-    FOREIGN KEY (order_id) REFERENCES orders (id),
-    FOREIGN KEY (surcharge_id) REFERENCES special_service_surcharges (id)
-);
-
-
 -- Table: users
 CREATE TABLE users
 (
@@ -205,15 +195,14 @@ CREATE TABLE orders
         PRIMARY KEY,
     receiver_id               char(26)                                                                  NOT NULL,
     sender_id                 char(26)                                                                  NOT NULL,
-    receiver_address_id       char(26)                                                                  NOT NULL,
+    receiver_address_id       char(26)                                                                   NOT NULL,
     sender_address_id         char(26)                                                                  NOT NULL,
     parcel_id                 char(26)                                                                  NOT NULL,
     delivery_failed_action_id char(26)                                                                  NULL,
     shipping_service_id       char(26)                                                                  NOT NULL,
-    addon_shipping_service_id char(26)                                                                  NULL,
     status                    enum ('pending', 'processed', 'cancelled', 'done', 'returned', 'transit') NOT NULL,
     code                      varchar(255)                                                              NOT NULL,
-    note                      text                                                                      NULL,
+    note                      text                                                                     NULL,
     receive_at_home           tinyint(1)                                                                NOT NULL,
     failed_count              int                                                                       NULL,
     created_at                timestamp DEFAULT current_timestamp()                                     NOT NULL,
@@ -224,9 +213,19 @@ CREATE TABLE orders
     FOREIGN KEY (sender_address_id) REFERENCES address (id),
     FOREIGN KEY (parcel_id) REFERENCES parcels (id),
     FOREIGN KEY (delivery_failed_action_id) REFERENCES delivery_failed_action (id),
-    FOREIGN KEY (shipping_service_id) REFERENCES shipping_services (id),
-    FOREIGN KEY (addon_shipping_service_id) REFERENCES shipping_services (id)
+    FOREIGN KEY (shipping_service_id) REFERENCES shipping_services (id)
 );
+
+
+CREATE TABLE order_surcharges
+(
+    order_id     CHAR(26), -- ID đơn hàng
+    surcharge_id CHAR(26), -- ID phụ phí
+    PRIMARY KEY (order_id, surcharge_id),
+    FOREIGN KEY (order_id) REFERENCES orders (id),
+    FOREIGN KEY (surcharge_id) REFERENCES special_service_surcharges (id)
+);
+
 
 -- Table: trackings
 CREATE TABLE trackings
