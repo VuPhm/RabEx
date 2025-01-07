@@ -25,7 +25,7 @@ CREATE TABLE shipping_services
     details           text                                  NULL,
     image             text                                  NULL,
     expected_time     text                                  NULL,
-    service_type      ENUM ('add-on', 'delivery')           NOT NULL,
+    type      ENUM ('add-on', 'delivery')           NOT NULL,
     created_at        timestamp DEFAULT current_timestamp() NOT NULL,
     modified_at       timestamp DEFAULT current_timestamp() NOT NULL ON UPDATE current_timestamp()
 );
