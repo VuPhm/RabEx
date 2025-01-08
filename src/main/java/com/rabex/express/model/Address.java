@@ -1,16 +1,14 @@
 package com.rabex.express.model;
 
 import com.rabex.express.core.dao.RID;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.sql.Timestamp;
 @Getter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class Address {
     private RID id;              // char(16)
     private String description;     // text
@@ -20,17 +18,5 @@ public class Address {
     private AddressType addressType;
     private Timestamp createdAt;    // timestamp
     private Timestamp modifiedAt;   // timestamp
-    @Override
-    public String toString() {
-        return "Address{" +
-                "id='" + id + '\'' +
-                ", description='" + description + '\'' +
-                ", ward='" + ward + '\'' +
-                ", district='" + district + '\'' +
-                ", province='" + province + '\'' +
-                ", createdAt=" + createdAt +
-                ", modifiedAt=" + modifiedAt +
-                '}';
-    }
 }
 
