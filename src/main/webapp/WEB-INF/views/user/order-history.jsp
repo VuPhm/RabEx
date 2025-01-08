@@ -26,8 +26,8 @@
 
 <%--content--%>
 <main id="content">
-    <div class="container p-4 ">
-        <section class="mb-4">
+    <div class="container p-4 mt-5">
+        <section class="mb-4 mt-4">
             <div class="card">
                 <div class="card-header bg-white py-3">
                     <h5 class="mb-0">Lịch sử bưu phẩm</h5>
@@ -45,8 +45,8 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <jsp:useBean id="history" scope="request" type="java.util.List"/>
-                        <c:forEach items="${history}" var="o">
+                        <jsp:useBean id="orders" scope="request" type="java.util.List"/>
+                        <c:forEach items="${orders}" var="o">
                             <tr>
                                 <td>${o.code}</td>
                                 <td>${o.createdAt}</td>
