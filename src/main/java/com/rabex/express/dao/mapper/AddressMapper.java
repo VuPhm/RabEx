@@ -5,6 +5,7 @@ import com.rabex.express.model.Address;
 import com.rabex.express.model.AddressType;
 import com.rabex.express.model.User;
 import com.rabex.express.model.UserStatus;
+import org.apache.commons.lang3.ObjectUtils;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -22,6 +23,9 @@ public class AddressMapper implements RowMapper<Address> {
 
     @Override
     public Address mapRow(ResultSet resultSet, int row) throws SQLException {
+        if (resultSet.getString(prefix + "id") == null){
+            return null;
+        }
         return Address.builder()
                 .id(idConvertor.convert(resultSet.getString(prefix + "id")))
                 .description(resultSet.getString(prefix + "description"))

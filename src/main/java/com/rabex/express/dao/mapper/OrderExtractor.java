@@ -21,7 +21,6 @@ public class OrderExtractor implements ResultSetExtractor<List<Order>> {
     private final RowMapper<Parcel> parcelRowMapper;
     private final RowMapper<DeliveryFailedAction> deliveryFailedActionRowMapper;
     private final RowMapper<ShippingServ> shippingServRowMapper;
-    private final RowMapper<ShippingServ> addOnShippingServRowMapper;
 
 
     private final Convertor<String, RID> ridConvertor = new StringToRidConvertor();
@@ -42,7 +41,6 @@ public class OrderExtractor implements ResultSetExtractor<List<Order>> {
             order.setParcel(parcelRowMapper.mapRow(resultSet, i));
             order.setDeliveryFailedAction(deliveryFailedActionRowMapper.mapRow(resultSet, i));
             order.setShippingService(shippingServRowMapper.mapRow(resultSet, i));
-            order.setAddOnShippingService(addOnShippingServRowMapper.mapRow(resultSet, i));
 
             orders.put(orderId, order);
 

@@ -20,6 +20,8 @@ public class PersonInfoMapper implements RowMapper<PersonInfo> {
 
     @Override
     public PersonInfo mapRow(ResultSet resultSet, int row) throws SQLException {
+        if (resultSet.getString(prefix + "id") == null) return null;
+
         return PersonInfo.builder().id(idConvertor.convert(resultSet.getString(prefix + "id")))
                 .phoneNumber(resultSet.getString(prefix+"phone_number"))
                 .fullName(resultSet.getString(prefix + "full_name"))

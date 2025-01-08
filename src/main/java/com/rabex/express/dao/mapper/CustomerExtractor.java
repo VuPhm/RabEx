@@ -24,27 +24,37 @@ public class CustomerExtractor implements ResultSetExtractor<List<Customer>> {
         this.infoRowMapper = infoRowMapper;
     }
 
-    private Convertor<String, RID> ridConvertor = new StringToRidConvertor();
+    private final Convertor<String, RID> ridConvertor = new StringToRidConvertor();
 
     @Override
     public List<Customer> extractData(ResultSet resultSet) throws SQLException {
-
-
+        if (resultSet == null) {
+            System.out.println("ResultSet is null");
+            return new ArrayList<>();
+        }
         Map<RID, Customer> customers = new HashMap<>();
         int i = 0;
         while (resultSet.next()) {
             //1
             RID customerId = ridConvertor.convert(resultSet.getString(customerMapper.getPrefix() + "id"));
+
+            //lay customer tu map
             Customer customer = customers.get(customerId);
             if (customer == null) {
+                // new khong co
+                // lay customer tu resulSet
                 customer = customerMapper.mapRow(resultSet, i);
-                customer.setAddresses(new ArrayList<>());
+
+                //add vao map
                 customers.put(customerId, customer);
+                customer.setAddresses(new ArrayList<>());
+
             }
 
             Address address = addressMapper.mapRow(resultSet, i);
             PersonInfo personInfo = infoRowMapper.mapRow(resultSet, i);
-            customer.getAddresses().add(new ShippingAddress(address, personInfo));
+            if (address != null && personInfo != null)
+                customer.getAddresses().add(new ShippingAddress(address, personInfo));
 
             i++;
         }
