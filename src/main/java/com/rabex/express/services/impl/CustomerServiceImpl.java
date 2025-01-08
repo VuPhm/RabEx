@@ -3,7 +3,8 @@ package com.rabex.express.services.impl;
 import com.rabex.express.core.dao.RID;
 import com.rabex.express.dao.AddressDao;
 import com.rabex.express.dao.CustomerDao;
-import com.rabex.express.model.Customer;
+import com.rabex.express.dto.ShippingAddressForm;
+import com.rabex.express.model.*;
 import com.rabex.express.services.CustomerService;
 import jakarta.inject.Inject;
 
@@ -36,7 +37,40 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public boolean deleteAddress(RID addressId, RID customerId) {
-        return false;
+    public boolean updateShippingAddress(RID aId, RID pId, ShippingAddressForm request) {
+        return customerDao.updateShippingAddress(aId, pId, request);
     }
+
+    @Override
+    public boolean addAddress(RID cId, ShippingAddressForm request) {
+        Address address = Address.builder()
+                .id(RID.fast())
+                .description(request.getDescription())
+                .ward(request.getWard())
+                .district(request.getDistrict())
+                .province(request.getProvince())
+                .addressType(request.getAddressType() == null ? null : AddressType.valueOf(request.getAddressType().toUpperCase()))
+                .build();
+        PersonInfo personInfo = PersonInfo.builder()
+                .id(RID.fast())
+                .fullName(request.getFullName())
+                .phoneNumber(request.getPhoneNumber())
+                .build();
+        ShippingAddress shippingAddress = new ShippingAddress(address, personInfo);
+        boolean success = customerDao.addAddress(cId, shippingAddress);
+        if (request.getAddressDefault()){
+            Customer customer = customerDao.findById(cId).get();
+            customer.setDefaultAddressId(shippingAddress.getAddress().getId());
+        }
+
+        return success;
+    }
+
+    @Override
+    public boolean removeAddress(RID customerId, RID addressId, RID personInfoId) {
+        Customer customer = customerDao.findById(customerId).get();
+        return customerDao.removeAddress(customerId,addressId,personInfoId);
+    }
+
+
 }
