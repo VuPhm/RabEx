@@ -18,9 +18,8 @@ public class OrderHistoryController extends HttpServlet {
     OrderHistoryService orderHistoryService;
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Order> history = orderHistoryService.getOrderHistory();
-        req.setAttribute("orders", history);
-        System.out.println(history);
+        List<Order> orders = orderHistoryService.getOrderHistory();
+        req.setAttribute("orders", orders);
         req.getRequestDispatcher("/WEB-INF/views/user/order-history.jsp").forward(req, resp);
     }
 }

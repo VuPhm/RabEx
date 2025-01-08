@@ -1,15 +1,13 @@
 package com.rabex.express.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
+@Setter
+@Getter
 @Data
 @Builder
 @AllArgsConstructor
 public class ShippingAddress {
     private Address address;
     private PersonInfo personInfo;
-
-
 }
