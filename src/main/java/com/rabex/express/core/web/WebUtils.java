@@ -70,6 +70,14 @@ public class WebUtils {
                     field.set(t, Boolean.valueOf(request.getParameter(field.getName())));
                 } else if (field.getType().equals(String.class)){
                     field.set(t, request.getParameter(field.getName()));
+                } else if (field.getType().equals(Integer.class)){
+                    field.set(t, Integer.valueOf(request.getParameter(field.getName())));
+                } else if (field.getType().equals(Long.class)){
+                    field.set(t, Long.valueOf(request.getParameter(field.getName())));
+                } else if (field.getType().equals(Double.class)){
+                    field.set(t, Double.valueOf(request.getParameter(field.getName())));
+                } else if (field.getType().equals(Float.class)){
+                    field.set(t, Float.valueOf(request.getParameter(field.getName())));
                 }
                 field.setAccessible(false);
             }
@@ -89,6 +97,5 @@ public class WebUtils {
         cookie.setMaxAge(0);
         cookie.setPath("/");
         response.addCookie(cookie);
-
     }
 }
