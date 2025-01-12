@@ -67,17 +67,17 @@ public class WebUtils {
             for (Field field: fields){
                 field.setAccessible(true);
                 if (field.getType().equals(Boolean.class)){
-                    field.set(t, Boolean.valueOf(getParameter(request, field.getName(), "false")));
+                    field.set(t, Boolean.valueOf(request.getParameter(field.getName())));
                 } else if (field.getType().equals(String.class)){
-                    field.set(t, getParameter(request, field.getName(), "-trống-"));
+                    field.set(t, request.getParameter(field.getName()));
                 } else if (field.getType().equals(Integer.class)){
-                    field.set(t, Integer.valueOf(getParameter(request, field.getName(), "0")));
+                    field.set(t, Integer.valueOf(request.getParameter(field.getName())));
                 } else if (field.getType().equals(Long.class)){
-                    field.set(t, Long.valueOf(getParameter(request, field.getName(), "0")));
+                    field.set(t, Long.valueOf(request.getParameter(field.getName())));
                 } else if (field.getType().equals(Double.class)){
-                    field.set(t, Double.valueOf(getParameter(request, field.getName(), "0")));
+                    field.set(t, Double.valueOf(request.getParameter(field.getName())));
                 } else if (field.getType().equals(Float.class)){
-                    field.set(t, Float.valueOf(getParameter(request, field.getName(), "0")));
+                    field.set(t, Float.valueOf(request.getParameter(field.getName())));
                 }
                 field.setAccessible(false);
             }
