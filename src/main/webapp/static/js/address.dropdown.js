@@ -146,7 +146,7 @@ class AddressDropdown {
 
     template() {
         let id = this.selector.replaceAll("#", '')
-        return `<input readonly class="form-control dropdown-toggle address-input bg-light" placeholder="${this.placeholder}" name="${this.name}" data-mdb-dropdown-init  data-mdb-auto-close="outside" aria-expanded="false">
+        return `<input required readonly class="form-control dropdown-toggle address-input bg-light" placeholder="${this.placeholder}" name="${this.name}" data-mdb-dropdown-init  data-mdb-auto-close="outside" aria-expanded="false">
                        <div class="dropdown-menu dropdown-menu-xl-start" style="width: 100%">
                             <div class="">
                                 <ul class="nav nav-tabs nav-fill mb-3" id="${id}-tab" role="tablist">
@@ -187,7 +187,7 @@ class AddressDropdown {
                                                                 >
                                                             </li>
                                                         </ul>
-                                                        <div class="tab-content p-2" id="${id}-content">
+                                    <div class="tab-content p-2" id="${id}-content">
                                                             <div
                                                                     class="tab-pane fade show active"
                                                                     id="${id}-tabs-1"
@@ -208,13 +208,9 @@ class AddressDropdown {
                                                                 
                                                             </div>
                                                             </div>
-                                                        </div>
-                                                        <!-- Tabs content -->
+                                                        </div> <!-- Tabs content -->
                                     </div>
-                                </div>
-
-
-`
+                                </div>`
     }
 
 
