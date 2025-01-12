@@ -22,6 +22,10 @@ public class ShippingServ {
     private String image;
     private String expectedTime;
     private List<PricingTier> pricingTiers;
+    private ShippingServiceType type;
     private Timestamp createdAt;
     private Timestamp modifiedAt;
+
+    public static void main(String[] args) {
+    }
 }

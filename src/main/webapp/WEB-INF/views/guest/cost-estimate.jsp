@@ -25,21 +25,19 @@
 <!-- Cost Estimate Start-->
 <div class="container-xxl mt-5 mb-3 wow fadeInDown" id="cost_estimate">
     <div class="container py-3 px-5 service-item">
-        <form>
+        <form method="post" action="uoc-tinh-chi-phi">
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label class="py-3" for="senderAddress">* Địa chỉ người gửi:</label>
-                        <select id="senderAddress" class="form-control bg-light">
-                            <option selected>Chọn tỉnh/thành phố</option>
-                        </select>
+                        <label class="py-3" for="sender_address">* Địa chỉ người gửi:</label>
+                        <div class="dropdown" id="sender_address">
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <div class="">
-                            <div class="dropdown" id="receiver_address">
-                            </div>
+                        <label class="py-3" for="receiver_address">* Địa chỉ người nhận:</label>
+                        <div class="dropdown" id="receiver_address">
                         </div>
                     </div>
                 </div>
@@ -49,7 +47,7 @@
                             <label class="py-3" for="weight">* Tổng khối lượng:</label>
                             <i class="bi bi-question-circle" id="weight-info"></i>
                             <div class="input-group">
-                                <input type="text" id="weight" class="form-control"
+                                <input type="number" name="weight" id="weight" class="form-control"
                                        placeholder="Vui lòng nhập thông tin">
                                 <div class="input-group-append">
                                     <span class="input-group-text bg-light">KG</span>
@@ -57,7 +55,8 @@
                             </div>
                         </div>
                         <div class="form-group form-check">
-                            <input type="checkbox" class="form-check-input" id="unknownWeight">
+                            <input type="checkbox" class="form-check-input" id="unknownWeight" name="unknownWeight"
+                                   value="true">
                             <label class="form-check-label" for="unknownWeight">Tôi không biết cân nặng chính xác của
                                 bưu
                                 gửi</label>
@@ -70,7 +69,7 @@
                             <div class="form-row d-flex flex-wrap">
                                 <div class="col">
                                     <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="Dài">
+                                        <input type="number" name="longg" class="form-control" placeholder="Dài">
                                         <div class="input-group-append">
                                             <span class="input-group-text bg-light">CM</span>
                                         </div>
@@ -81,7 +80,7 @@
                                 </div>
                                 <div class="col">
                                     <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="Rộng">
+                                        <input type="number" name="wide" class="form-control" placeholder="Rộng">
                                         <div class="input-group-append">
                                             <span class="input-group-text bg-light">CM</span>
                                         </div>
@@ -92,7 +91,7 @@
                                 </div>
                                 <div class="col">
                                     <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="Cao">
+                                        <input type="number" name="height" class="form-control" placeholder="Cao">
                                         <div class="input-group-append">
                                             <span class="input-group-text bg-light">CM</span>
                                         </div>
@@ -104,7 +103,7 @@
                 </div>
                 <div class="d-flex justify-content-between">
                     <button type="submit" class="btn btn-primary mt-4">Tính Phí Giao Hàng</button>
-                    <a type="submit" class="text-primary text-decoration-underline mt-4">Xem toàn bộ biểu phí</a>
+                    <a href="dich-vu" class="text-primary text-decoration-underline mt-4">Xem toàn bộ biểu phí</a>
                 </div>
             </div>
         </form>
@@ -115,10 +114,10 @@
 <!-- Result costs Start -->
 <div id="cost_estimate_result" class="container-xxl wow fadeIn">
     <div class="container py-5 px-5 service-item">
-        <h5 class="text-center">Phí vận chuyển ước tính sẽ bao gồm phụ phí và trừ đi các khoản chiến khấu/giảm giá bởi
+        <h5 class="text-center">Phí vận chuyển sẽ bao gồm phụ phí và trừ đi các khoản chiến khấu/giảm giá bởi
             khuyến mãi.</h5>
         <!-- Bảng cho trường hợp không biết cân nặng -->
-        <div id="unknownWeightResult" class="table-responsive ">
+        <div id="unknownWeightResult" class="table-responsive d-none">
             <table class="table table-bordered mt-3 text-center">
                 <thead class="table-light">
                 <tr>
@@ -170,33 +169,32 @@
         </div>
 
         <!-- Bảng cho trường hợp biết cân nặng -->
-        <div id="knownWeightResult" class="table-responsive d-none">
+        <div id="knownWeightResult" class="table-responsive">
             <table class="table table-bordered mt-3 text-center">
                 <thead class="table-light">
                 <tr>
                     <th>Sản phẩm</th>
-                    <th>Phí vận chuyển ước tính sẽ bao gồm phụ phí và trừ đi các khoản chiến khấu/giảm giá bởi khuyến
-                        mãi. (VNĐ)
+                    <th>Phí vận chuyển ước tính (VNĐ)
                     </th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
                     <td>Cân nặng của Bưu gửi</td>
-                    <td>12kg</td>
+                    <td>--</td>
                 </tr>
-                <tr>
-                    <td>Giao hàng Tiêu Chuẩn</td>
-                    <td>Không có sẵn</td>
-                </tr>
-                <tr>
-                    <td>Giao hàng Nhanh</td>
-                    <td>Không có sẵn</td>
-                </tr>
-                <tr>
-                    <td>Giao hàng Hỏa Tốc</td>
-                    <td>Không có sẵn</td>
-                </tr>
+                <jsp:useBean id="result" scope="request" type="java.util.List"/>
+                <%--                <jsp:useBean id="item" scope="request" type="com.rabex.express.model.ShippingServ"/>--%>
+                <c:forEach var="item" items="${result}">
+                    <tr>
+                        <td>${item.name}</td>
+<%--                        <td>${item.pricingTiers.get(0).basePrice}</td>--%>
+                        <td>
+                            <fmt:formatNumber value="${item.pricingTiers.get(0).basePrice}" type="currency"
+                                             currencySymbol="" maxFractionDigits="0" groupingUsed="true"/>
+                        </td>
+                    </tr>
+                </c:forEach>
                 </tbody>
             </table>
         </div>
@@ -211,9 +209,18 @@
 
 <script src="<c:url value="/static/js/mdb.umd.min.js"/>"></script>
 <script src="<c:url value="/static/js/address.dropdown.js"/>"></script>
-<%--<script src="<c:url value="/static/data/dvhc.json"/>"></script>--%>
 <script>
-    const receiverAddress = new AddressDropdown("#receiver_address", {url:"/static/data/dvhc.json", placeholder:"Chọn"});
+    const senderAddress = new AddressDropdown("#sender_address", {
+        url: "/static/data/dvhc.json",
+        placeholder: "Chọn Tỉnh/Thành phố",
+        name: "senderAddress"
+    });
+    const receiverAddress = new AddressDropdown("#receiver_address", {
+        url: "/static/data/dvhc.json",
+        placeholder: "Chọn Tỉnh/Thành phố",
+        name: "receiverAddress"
+    });
+    senderAddress.init();
     receiverAddress.init();
 </script>
 </body>
