@@ -1,4 +1,4 @@
-package com.rabex.express.model;
+package com.rabex.express.model.enumm;
 
 public enum UnitType {
     NONE,

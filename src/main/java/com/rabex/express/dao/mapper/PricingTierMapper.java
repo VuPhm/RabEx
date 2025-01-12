@@ -2,7 +2,7 @@ package com.rabex.express.dao.mapper;
 
 import com.rabex.express.core.dao.*;
 import com.rabex.express.model.PricingTier;
-import com.rabex.express.model.ShippingRange;
+import com.rabex.express.model.enumm.ShippingRange;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

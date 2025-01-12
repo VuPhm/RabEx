@@ -69,7 +69,7 @@ public class WebUtils {
                 if (field.getType().equals(Boolean.class)){
                     field.set(t, Boolean.valueOf(getParameter(request, field.getName(), "false")));
                 } else if (field.getType().equals(String.class)){
-                    field.set(t, getParameter(request, field.getName(), "-trống-"));
+                    field.set(t, getParameter(request, field.getName(), "none"));
                 } else if (field.getType().equals(Integer.class)){
                     field.set(t, Integer.valueOf(getParameter(request, field.getName(), "0")));
                 } else if (field.getType().equals(Long.class)){

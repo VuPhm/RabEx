@@ -1,9 +1,8 @@
 package com.rabex.express.dao.mapper;
 
 import com.rabex.express.core.dao.*;
-import com.rabex.express.model.RoleName;
 import com.rabex.express.model.ShippingServ;
-import com.rabex.express.model.ShippingServiceType;
+import com.rabex.express.model.enumm.ShippingServiceType;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

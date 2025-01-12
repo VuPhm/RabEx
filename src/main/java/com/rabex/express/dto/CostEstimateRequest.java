@@ -10,7 +10,7 @@ public class CostEstimateRequest {
     String senderAddress;
     String receiverAddress;
     Double weight;
-    Boolean unknownWeight;
+    Boolean unknownWeight = false;
     Double longg;
     Double wide;
     Double height;
@@ -22,24 +22,15 @@ public class CostEstimateRequest {
     public double getOrTransformedWeight() {
         return getUnknownWeight() ?
                 (unknownVolume() ? 0 : this.longg * this.wide * this.height / 5000)
-                : getWeight(); // cm to kg2
+                : getWeight(); // cm to kg
     }
 
     public boolean isInProvince() {
         return getProvince(senderAddress).equals(getProvince(receiverAddress));
     }
 
-    private String getProvince(String address) {
+    public String getProvince(String address) {
         return address.split("/")[0].trim();
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getProvince(senderAddress)).append("-");
-        sb.append(getProvince(receiverAddress))
-                .append("_");
-        sb.append(getOrTransformedWeight()).append("kg");
-        return sb.toString();
-    }
 }

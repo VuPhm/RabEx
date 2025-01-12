@@ -1,6 +1,7 @@
 package com.rabex.express.model;
 
 import com.rabex.express.core.dao.RID;
+import com.rabex.express.model.enumm.ShippingRange;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
@@ -22,4 +23,9 @@ public class PricingTier {
     private double basePrice;
     private Timestamp created_at;
     private Timestamp updated_at;
+
+    public double getTotalPrice(double requestWeight){
+        return stepIncrement == 0.0 ? basePrice : (basePrice + pricePerStep * (requestWeight - weightStart) / stepIncrement);
+    }
+
 }

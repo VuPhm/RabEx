@@ -7,7 +7,7 @@ import com.rabex.express.dao.mapper.PricingTierMapper;
 import com.rabex.express.dao.mapper.ShippingServExtractor;
 import com.rabex.express.dao.mapper.ShippingServMapper;
 import com.rabex.express.model.PricingTier;
-import com.rabex.express.model.ShippingRange;
+import com.rabex.express.model.enumm.ShippingRange;
 import com.rabex.express.model.ShippingServ;
 
 import java.util.List;
