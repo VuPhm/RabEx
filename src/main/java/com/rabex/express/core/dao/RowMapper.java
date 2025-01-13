@@ -9,4 +9,6 @@ public interface RowMapper<T> {
     default String getPrefix(){
         return "";
     }
+
+
 }

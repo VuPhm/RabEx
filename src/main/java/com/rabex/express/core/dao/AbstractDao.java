@@ -80,6 +80,17 @@ public abstract class AbstractDao<Entity> implements Dao<Entity> {
         }
     }
 
+    protected void setMultiRowParameter(PreparedStatement statement, List<List<Object>> prams) {
+        for (List<Object> pram : prams) {
+            setParameter(statement, pram.toArray());
+            try {
+                statement.addBatch();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
     protected <U> List<U> query(String sql, RowMapper<U> mapper, Object... parameters) {
         return query(sql, new ListExtractor<>(mapper), parameters);
     }
@@ -120,12 +131,7 @@ public abstract class AbstractDao<Entity> implements Dao<Entity> {
     protected boolean insert(String sql, Object... parameters) {
         ResultSet resultSet = null;
         try (Connection connection = connect()) {
-            assert connection != null;
-            try (PreparedStatement statement = connection.prepareStatement(sql)) {
-                setParameter(statement, parameters);
-                statement.execute();
-                return true;
-            }
+           return insert(sql, connection, parameters);
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
@@ -143,10 +149,7 @@ public abstract class AbstractDao<Entity> implements Dao<Entity> {
     protected boolean update(String sql, Object... parameters) {
         try (Connection connection = connect()) {
             assert connection != null;
-            try (PreparedStatement statement = connection.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY)) {
-                setParameter(statement, parameters);
-                return statement.executeUpdate() > 0;
-            }
+            return update(sql, connection, parameters);
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
@@ -180,6 +183,25 @@ public abstract class AbstractDao<Entity> implements Dao<Entity> {
         }
     }
 
+    protected boolean update(String sql, Connection connection,  Object... parameters){
+        try (PreparedStatement statement = connection.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY)) {
+            setParameter(statement, parameters);
+            return statement.executeUpdate() > 0;
+        } catch (SQLException e) {
+            return false;
+        }
+    }
+
+    protected boolean insert(String sql, Connection connection,  Object... parameters){
+        assert connection != null;
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            setParameter(statement, parameters);
+            statement.execute();
+            return true;
+        } catch (SQLException e) {
+            return false;
+        }
+    }
 
 
     /*------------------

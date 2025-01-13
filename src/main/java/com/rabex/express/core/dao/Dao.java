@@ -1,7 +1,6 @@
 package com.rabex.express.core.dao;
 
 
-
 import com.rabex.express.core.data.Page;
 import com.rabex.express.core.data.Pageable;
 
@@ -16,6 +15,7 @@ public interface Dao<Model> {
     boolean insert(Model request);
 
     Optional<Model> findById(RID id);
+
     boolean update(RID id, Model request);
 
     default boolean deleteById(RID id){

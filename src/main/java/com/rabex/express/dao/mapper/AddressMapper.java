@@ -19,6 +19,10 @@ public class AddressMapper implements RowMapper<Address> {
         this.prefix = address;
     }
 
+    public AddressMapper(String prefix, Convertor<String, RID> idConvertor) {
+        this.prefix = prefix;
+        this.idConvertor = idConvertor;
+    }
 
     @Override
     public Address mapRow(ResultSet resultSet, int row) throws SQLException {

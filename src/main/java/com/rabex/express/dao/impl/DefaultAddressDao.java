@@ -13,22 +13,22 @@ public class DefaultAddressDao extends TemplateDao<Address> implements AddressDa
 
     @Override
     public boolean insert(Address address) {
-        String insertAddress = "INSERT INTO address(id, description, ward, district, province, created_at ,updated_at) VALUES (?,?,?,?,?,?,?)";
+        String insertAddress = "INSERT INTO address(id, description, ward, district, province, created_at ,modified_at) VALUES (?,?,?,?,?,?,?)";
         // Insert new address
-        boolean success = insert(insertAddress, address.getId(), address.getDescription(), address.getWard(), address.getDistrict(), address.getDistrict(), address.getCreatedAt(), address.getUpdateAt());
+        boolean success = insert(insertAddress, address.getId(), address.getDescription(), address.getWard(), address.getDistrict(), address.getDistrict(), address.getCreatedAt(), address.getModifiedAt());
         return success;
     }
 
     @Override
     public boolean update(RID id, Address address) {
-        String updateAddress = "UPDATE address SET description = ?, ward = ?, district = ?, province = ?, updated_at = ? WHERE id = ?";
+        String updateAddress = "UPDATE address SET description = ?, ward = ?, district = ?, province = ?, modified_at = ? WHERE id = ?";
         // Update address
         return update(updateAddress,
                 address.getDescription(),
                 address.getWard(),
                 address.getDistrict(),
                 address.getProvince(),
-                address.getUpdateAt()
+                address.getModifiedAt()
         );
     }
 

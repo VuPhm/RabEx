@@ -2,6 +2,7 @@ package com.rabex.express.services;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Scope;
+import jakarta.inject.Singleton;
 
 public class DefaultTestService implements TestService{
     @Override

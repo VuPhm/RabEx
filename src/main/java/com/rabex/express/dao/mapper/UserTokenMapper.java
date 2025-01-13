@@ -31,7 +31,7 @@ public class UserTokenMapper implements RowMapper<UserToken> {
         if (resetPasswordTokenValue != null) resetPasswordToken = new Token(resetPasswordTokenValue, rs.getTimestamp(getPrefix() + "reset_password_token_expired_at"));
         if (verifyTokenValue != null)verifyToken = new Token(resetPasswordTokenValue, rs.getTimestamp(getPrefix() + "verify_token_expired_at"));
 
-        return UserToken.UserTokenBuilder.anUserToken()
+        return UserToken.builder()
                 .id(ridConvertor.convert(rs.getString(prefix + "id")))
                 .resetPassword(resetPasswordToken)
                 .verify(verifyToken)

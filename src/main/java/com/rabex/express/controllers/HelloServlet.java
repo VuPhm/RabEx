@@ -1,27 +1,40 @@
 package com.rabex.express.controllers;
 
 import java.io.*;
+import java.util.Map;
 
+import com.rabex.express.core.dao.RID;
+import com.rabex.express.core.web.*;
+import com.rabex.express.dto.RegisterRequest;
 import com.rabex.express.services.TestService;
 import jakarta.inject.Inject;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
-@WebServlet(name = "helloServlet", value = "/hello-servlet")
-public class HelloServlet extends HttpServlet {
-    @Inject
-    private TestService testService;
+@WebServlet(value = "/hello/*")
+public class HelloServlet extends AbstractController {
 
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setContentType("text/html");
-        System.out.println(testService);
-        // Hello
-        PrintWriter out = response.getWriter();
-        out.println("<html><body>");
-        out.println("<h1>" + testService.sayHi() + "</h1>");
-        out.println("</body></html>");
+
+
+    @Override
+    protected void map(MappingBuilder builder) {
+        builder.map(HttpMethod.GET, getIndex, "/{id}", "/home/{id}");;
     }
 
-    public void destroy() {
-    }
+
+
+    private final RequestHandler getIndex = (handlerAction) -> {
+        RID rid = handlerAction.getPathVariable("id", RID.class);
+        BindingResult<RegisterRequest> bindingResult = handlerAction.bindingResult(RegisterRequest.class);
+        if (bindingResult.hasError()){
+            return new MvcActionResult("/users/form");
+        }
+
+        RegisterRequest request = bindingResult.body();
+
+        MvcActionResult actionResult = new MvcActionResult("/WEB-INF/views/guest/contact.jsp");
+        actionResult.add("id", rid);
+        return actionResult;
+    };
 }

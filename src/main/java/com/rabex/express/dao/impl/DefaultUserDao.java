@@ -15,6 +15,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 import java.util.StringJoiner;
 
 public class DefaultUserDao extends TemplateDao<User> implements UserDao {
@@ -55,13 +56,13 @@ public class DefaultUserDao extends TemplateDao<User> implements UserDao {
     }
 
     @Override
-    public User findByEmail(String email) {
+    public Optional<User> findByEmail(String email) {
         String sql = new StringJoiner(" ")
                 .add(QUERY_SQL)
                 .add("WHERE this.email = ?")
                 .toString();
         List<User> users = query(sql, extractor(), email);
-        return users.isEmpty() ? null : users.get(0);
+        return users.stream().findFirst();
     }
 
     @Override
