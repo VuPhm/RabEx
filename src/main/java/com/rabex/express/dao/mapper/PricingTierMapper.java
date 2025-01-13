@@ -19,9 +19,10 @@ public class PricingTierMapper implements RowMapper<PricingTier> {
     @Override
     public PricingTier mapRow(ResultSet resultSet, int row) throws SQLException {
         return PricingTier.builder()
-                .id(idConvertor.convert(resultSet.getString(prefix + "id")))
-                .description(resultSet.getString(prefix + "description"))
-                .serviceId(idConvertor.convert(resultSet.getString(prefix + "service_id")))
+//                .id(idConvertor.convert(resultSet.getString(prefix + "id")))
+//                .description(resultSet.getString(prefix + "description"))
+                .description(resultSet.getString("ss_name"))
+//                .serviceId(idConvertor.convert(resultSet.getString(prefix + "service_id")))
                 .weightStart(resultSet.getDouble(prefix + "weight_start"))
                 .weightEnd(resultSet.getDouble(prefix + "weight_end"))
                 .stepIncrement(resultSet.getDouble(prefix + "step_increment"))

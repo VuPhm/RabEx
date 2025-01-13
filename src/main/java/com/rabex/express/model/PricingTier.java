@@ -4,11 +4,13 @@ import com.rabex.express.core.dao.RID;
 import com.rabex.express.model.enumm.ShippingRange;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
 import java.sql.Timestamp;
 
 @Getter
+@Setter
 @Builder
 @ToString
 public class PricingTier {
@@ -24,8 +26,10 @@ public class PricingTier {
     private Timestamp created_at;
     private Timestamp updated_at;
 
-    public double getTotalPrice(double requestWeight){
-        return stepIncrement == 0.0 ? basePrice : (basePrice + pricePerStep * (requestWeight - weightStart) / stepIncrement);
-    }
+    private double totalPrice;
 
+    public double calcTotalPrice(double requestWeight) {
+        return this.totalPrice = (stepIncrement == 0.0) ?
+                basePrice : (basePrice + pricePerStep * (requestWeight - weightStart) / stepIncrement);
+    }
 }

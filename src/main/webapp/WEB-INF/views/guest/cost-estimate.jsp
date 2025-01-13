@@ -22,17 +22,13 @@
 </div>
 <!-- Header End -->
 
-<%--@elvariable id="estimateRequest" type="com.rabex.express.dto.CostEstimateRequest"--%>
-<%--@elvariable id="pricingTier" type="com.rabex.express.model.PricingTier"--%>
-<%--@elvariable id="result" type="java.util.List"--%>
-
 
 <!-- Cost Estimate Start-->
 <div class="container-xxl mt-5 mb-3 wow fadeInDown" id="cost_estimate">
 
     <div class="container py-3 px-5 service-item">
         <form method="post" action="uoc-tinh-chi-phi">
-            <c:if test="${param.get('estimate')=='none'}">
+            <c:if test="${param.get('error')=='invalid'}">
                 <div class="row">
                     <h5 style="color: red">Vui lòng chọn địa chỉ!</h5>
                 </div>
@@ -40,12 +36,12 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label class="py-3">* Địa chỉ người gửi:</label>
-                        <div class="dropdown" id="sender_address">
-                        </div>
                     </div>
                 </div>
-                <div class="col-md-6">
+            </div>
+            <div class="col-md-6"><label class="py-3">* Địa chỉ người gửi:</label>
+                <div class="dropdown" id="sender_address">
+
                     <div class="form-group">
                         <label class="py-3">* Địa chỉ người nhận:</label>
                         <div class="dropdown" id="receiver_address">
@@ -57,20 +53,19 @@
                         <label class="py-3" for="weight"> Tổng khối lượng:</label>
                         <i class="bi bi-question-circle" id="weight-info"></i>
                         <div class="input-group">
-                            <input type="number" name="weight" id="weight" class="form-control"
+                            <input required type="number" name="weight" id="weight" class="form-control"
                                    placeholder="Vui lòng nhập thông tin">
                             <div class="input-group-append">
                                 <span class="input-group-text bg-light">G</span>
                             </div>
                         </div>
                     </div>
-                    <%--                        <div class="form-group form-check">--%>
-                    <%--                            <input type="checkbox" class="form-check-input" id="unknownWeight" name="unknownWeight"--%>
-                    <%--                                   value="true">--%>
-                    <%--                            <label class="form-check-label" for="unknownWeight">Tôi không biết cân nặng chính xác của--%>
-                    <%--                                bưu--%>
-                    <%--                                gửi</label>--%>
-                    <%--                        </div>--%>
+                    <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" id="unknownWeight" name="unknownWeight"
+                               value="true">
+                        <label class="form-check-label" for="unknownWeight">Tôi không biết cân nặng chính xác của bưu
+                            gửi</label>
+                    </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group py-3">
@@ -79,7 +74,7 @@
                         <div class="form-row d-flex flex-wrap">
                             <div class="col">
                                 <div class="input-group">
-                                    <input type="number" name="longg" class="form-control" placeholder="Dài">
+                                    <input type="number" id="longg" name="longg" class="form-control" placeholder="Dài">
                                     <div class="input-group-append">
                                         <span class="input-group-text bg-light">CM</span>
                                     </div>
@@ -90,7 +85,7 @@
                             </div>
                             <div class="col">
                                 <div class="input-group">
-                                    <input type="number" name="wide" class="form-control" placeholder="Rộng">
+                                    <input type="number" id="wide" name="wide" class="form-control" placeholder="Rộng">
                                     <div class="input-group-append">
                                         <span class="input-group-text bg-light">CM</span>
                                     </div>
@@ -101,7 +96,8 @@
                             </div>
                             <div class="col">
                                 <div class="input-group">
-                                    <input type="number" name="height" class="form-control" placeholder="Cao">
+                                    <input type="number" id="height" name="height" class="form-control"
+                                           placeholder="Cao">
                                     <div class="input-group-append">
                                         <span class="input-group-text bg-light">CM</span>
                                     </div>
@@ -120,14 +116,17 @@
     </div>
 </div>
 <!-- Cost Estimate End-->
+
 <!-- Result costs Start -->
+<%--@elvariable id="result" type="java.util.List"--%>
 <c:if test="${result != null}">
     <div id="cost_estimate_result" class="container-xxl wow fadeIn">
         <div class="container py-5 px-5 service-item">
             <h5 class="text-center">Phí vận chuyển sẽ bao gồm phụ phí và trừ đi các khoản chiến khấu/giảm giá bởi
                 khuyến mãi.</h5>
             <!-- Bảng cho trường hợp không biết cân nặng -->
-            <c:if test="${estimateRequest.unknownWeight}">
+            <jsp:useBean id="requestWeight" scope="request" type="java.lang.Double"/>
+            <c:if test="${requestWeight*1000==-1000}">
                 <div id="unknownWeightResult" class="table-responsive d-none">
                     <table class="table table-bordered mt-3 text-center">
                         <thead class="table-light">
@@ -183,12 +182,11 @@
             </c:if>
 
             <!-- Bảng cho trường hợp biết cân nặng -->
-            <c:if test="${!estimateRequest.unknownWeight}">
-                <c:set var="weight" value="${estimateRequest.weight}"/>
+            <c:if test="${requestWeight*1000>=0}">
                 <div id="knownWeightResult" class="table-responsive">
                     <table class="table table-bordered mt-3 text-center">
                         <thead class="table-light">
-                        <tr>pricingTier
+                        <tr>
                             <th>Sản phẩm</th>
                             <th>Phí vận chuyển ước tính (VNĐ)
                             </th>
@@ -197,16 +195,15 @@
                         <tbody>
                         <tr>
                             <td>Cân nặng của Bưu gửi</td>
-                            <td>--</td>
+                            <td>${requestWeight}</td>
                         </tr>
                             <%--@elvariable id="result" type="java.util.List"--%>
-                        <c:forEach var="item" items="${result}">
+                            <%--@elvariable id="tier" type="com.rabex.express.model.PricingTier"--%>
+                        <c:forEach var="tier" items="${result}">
                             <tr>
-                                <td>${item.name}</td>
+                                <td>${tier.description}</td>
                                 <td>
-                                    <c:set var="pricingTier" value="${item.pricingTiers.get(0)}"/>
-<%--                                    <fmt:formatNumber value="${item.pricingTiers.get(0).getTotalPrice(weight)}"--%>
-                                    <fmt:formatNumber value="${pricingTier.getTotalPrice(weight)}"
+                                    <fmt:formatNumber value="${tier.totalPrice}"
                                                       type="currency"
                                                       currencySymbol="" maxFractionDigits="0" groupingUsed="true"/>
                                 </td>
@@ -230,35 +227,37 @@
 <script src="<c:url value="/static/js/address.dropdown.js"/>"></script>
 <script src="<c:url value="/static/js/utils.js"/>"></script>
 <script>
-    // Khởi tạo AddressDropdown
-    const senderAddress = new AddressDropdown("#sender_address", {
-        url: "/static/data/dvhc.json",
-        placeholder: "Chọn Tỉnh/Thành phố",
-        name: "senderAddress"
-    });
-
-    const receiverAddress = new AddressDropdown("#receiver_address", {
-        url: "/static/data/dvhc.json",
-        placeholder: "Chọn Tỉnh/Thành phố",
-        name: "receiverAddress"
-    });
-
-    // Gọi phương thức init để khởi tạo dropdown
-    senderAddress.init();
-    receiverAddress.init();
 
     document.addEventListener("DOMContentLoaded", function () {
-        const estReq = {
-            senderAddress: '${estimateRequest.senderAddress}',
-            receiverAddress: '${estimateRequest.receiverAddress}',
-            weight: '${estimateRequest.weight}',
-            unknownWeight: '${estimateRequest.unknownWeight}',
-            longg: '${estimateRequest.longg}',
-            wide: '${estimateRequest.wide}',
-            height: '${estimateRequest.height}'
-        };
+        // Khởi tạo AddressDropdown
+        const senderAddress = new AddressDropdown("#sender_address", {
+            url: "/static/data/dvhc.json",
+            placeholder: "Chọn Tỉnh/Thành phố",
+            name: "senderAddress"
+        });
+        const receiverAddress = new AddressDropdown("#receiver_address", {
+            url: "/static/data/dvhc.json",
+            placeholder: "Chọn Tỉnh/Thành phố",
+            name: "receiverAddress"
+        });
+        senderAddress.init();
+        receiverAddress.init();
 
-        setInputValues(estReq, ["senderAddress", "receiverAddress", "weight", "unknownWeight", "longg", "wide", "height"]);
+        // Xu ly thao tac nhap khoi luong
+        const unknownWeightCheckbox = document.getElementById("unknownWeight");
+        unknownWeightCheckbox.addEventListener("change", function () {
+            const isChecked = this.checked;
+            // Select inputs
+            const inputWeight = document.getElementById("weight");
+            if (isChecked) {
+                inputWeight.removeAttribute("required"); // A không bắt buộc
+            } else {
+                inputWeight.setAttribute("required", "true");  // A bắt buộc
+            }
+        });
+
+        // mang theo du lieu da nhap vao
+
     });
 
 </script>

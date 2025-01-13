@@ -1,7 +1,7 @@
 package com.rabex.express.controllers.guest;
 
-import com.rabex.express.core.dao.RID;
 import com.rabex.express.dto.CostEstimateRequest;
+import com.rabex.express.model.PricingTier;
 import com.rabex.express.model.ShippingServ;
 import com.rabex.express.services.CostEstimateService;
 import jakarta.inject.Inject;
@@ -26,45 +26,55 @@ public class CostController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String estimateId = getParameter(req, "estimate", "none");
-        if (!"none".equals(estimateId)) {
-            CostEstimateRequest estimateRequest = (CostEstimateRequest) req.getSession().getAttribute(estimateId);
-            if (estimateRequest != null) {
-                req.setAttribute("request", estimateRequest);
-                List<ShippingServ> result = costEstimateService.getEstimating(estimateRequest);
-                req.setAttribute("result", result);
-            }
+        String error = req.getParameter("error");
+        if (error == null) {
+            List<PricingTier> result = handleEstimate(req);
+            req.setAttribute("result", result);
+        } else if ("invalid".equals(error)) {
+            req.setAttribute("error", "invalid request");
         }
         req.getRequestDispatcher("/WEB-INF/views/guest/cost-estimate.jsp").forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String senderAddress = getParameter(req, "senderAddress", "none");
-        String receiverAddress = getParameter(req, "receiverAddress", "none");
-        CostEstimateRequest estimateRequest = ("none".equals(senderAddress) || "none".equals(receiverAddress)) ?
-                null : mapRequestBody(CostEstimateRequest.class, req);
-
-        if (estimateRequest == null) {
-            resp.sendRedirect("/uoc-tinh-chi-phi?estimate=none");
-            return;
+        CostEstimateRequest estimateRequest = mapRequestBody(CostEstimateRequest.class, req);
+        if (estimateRequest.isValid()) {
+//            resp.sendRedirect("/uoc-tinh-chi-phi?E=" + RID.fast() + "&" + estimateParam(estimateRequest));
+            resp.sendRedirect("/uoc-tinh-chi-phi?" + estimateParams(estimateRequest));
+        } else {
+            resp.sendRedirect("/uoc-tinh-chi-phi?error=invalid");
         }
-        String estimateId = RID.fast().toString();
-
-        req.getSession().setAttribute(estimateId, estimateRequest);
-
-        resp.sendRedirect("/uoc-tinh-chi-phi?estimate=" + estimateId + "&" + estimateParam(estimateRequest));
     }
 
-    private static String estimateParam(CostEstimateRequest estimateRequest) {
-        if (estimateRequest == null) {
+    private List<PricingTier> handleEstimate(HttpServletRequest req) {
+        String senderProvince = getParameter(req, "from", "");
+        String receiverProvince = getParameter(req, "to", "");
+        double weight = getParameter(req, "W", -1.0);
+
+        if (weight < 0 || senderProvince.isEmpty() || receiverProvince.isEmpty()) {
+            return null;
+        }
+
+        req.setAttribute("requestWeight", weight);
+        List<PricingTier> result = costEstimateService.getEstimating(senderProvince, receiverProvince, weight);
+        result.forEach(t -> t.setTotalPrice(t.calcTotalPrice(weight)));
+        return result;
+    }
+
+    private static String estimateParams(CostEstimateRequest estimateRequest) {
+        if (estimateRequest == null || !estimateRequest.isValid()) {
             return "";
         }
         String senderProvince = estimateRequest.getProvince(estimateRequest.getSenderAddress());
         String requestProvince = estimateRequest.getProvince(estimateRequest.getReceiverAddress());
-        double weight = estimateRequest.getWeight();
+        double weight = estimateRequest.getOrTransformedWeight(); // => -1 if not request weight
+        if (weight*1000 == -1000) { // (double) weight "equals" -1
+            return "from=" + URLEncoder.encode(senderProvince, StandardCharsets.UTF_8) +
+                   "&to=" + URLEncoder.encode(requestProvince, StandardCharsets.UTF_8);
+        }
         return "from=" + URLEncoder.encode(senderProvince, StandardCharsets.UTF_8) +
                 "&to=" + URLEncoder.encode(requestProvince, StandardCharsets.UTF_8) +
-                "&w=" + weight;
+                "&W=" + weight;
     }
 }

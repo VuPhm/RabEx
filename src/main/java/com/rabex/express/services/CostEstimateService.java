@@ -1,10 +1,11 @@
 package com.rabex.express.services;
 
 import com.rabex.express.dto.CostEstimateRequest;
-import com.rabex.express.model.ShippingServ;
+import com.rabex.express.model.PricingTier;
 
 import java.util.List;
 
 public interface CostEstimateService {
-    List<ShippingServ> getEstimating(CostEstimateRequest request);
+    List<PricingTier> getEstimating(CostEstimateRequest request);
+    List<PricingTier> getEstimating(String senderProvince, String receiverProvince, double weight);
 }

@@ -16,13 +16,12 @@ public class CostEstimateRequest {
     Double height;
 
     public boolean unknownVolume() {
-        return this.getLongg() <= 0 || this.getHeight() <= 0 || this.getWeight() <= 0;
+        return (this.getLongg() > 0 && this.getHeight() > 0 && this.getWeight() > 0);
     }
 
     public double getOrTransformedWeight() {
-        return getUnknownWeight() ?
-                (unknownVolume() ? 0 : this.longg * this.wide * this.height / 5000)
-                : getWeight(); // cm to kg
+        return !getUnknownWeight() ? getWeight()
+                : (unknownVolume() ? this.longg * this.wide * this.height / 5000 : -1);
     }
 
     public boolean isInProvince() {
@@ -33,4 +32,9 @@ public class CostEstimateRequest {
         return address.split("/")[0].trim();
     }
 
+    public boolean isValid() {
+        return !(getSenderAddress().equals("none") || getReceiverAddress().equals("none"))
+                && !(unknownVolume() && getUnknownWeight());
+
+    }
 }
