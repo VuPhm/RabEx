@@ -97,25 +97,12 @@
                                         </div>
 
                                         <div class="row mb-3">
-                                            <div class="col-md-4">
-                                                <label class="form-label" for="province">Tỉnh/Thành phố</label>
-                                                <select id="province" class="form-select" required>
-                                                    <option value="">Chọn tỉnh/thành phố</option>
-                                                    <option value="1">Hà Nội</option>
-                                                    <option value="2">Hồ Chí Minh</option>
-                                                    <option value="3">Đà Nẵng</option>
-                                                </select>
+                                            <div class="col-md-12">
+                                                <label class="form-label" for="add-address-picker">Dia chi</label>
+                                            <%--     input name "address" formmat ward/district/province dung cat chuoi de lay cai thanh phan                                           n--%>
+                                                <div id="add-address-picker"></div>
                                             </div>
-                                            <div class="col-md-4">
-                                                <label class="form-label" for="district">Quận/Huyện</label>
-                                                <select id="district" class="form-select" required>
-                                                    <option value="">Chọn quận/huyện</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <label class="form-label" for="ward">Phường/Xã</label>
-                                                <input type="text" class="form-control" id="ward" required>
-                                            </div>
+
                                         </div>
 
                                         <div class="mb-3">
@@ -201,13 +188,17 @@
 <script src="<c:url value='/static/js/mdb.umd.min.js'/>"></script>
 <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
 <script src="<c:url value='/static/js/main.js'/>"></script>
+<script src="<c:url value='/static/js/address.dropdown.js'/>"></script>
 <script>
     const sidenav = document.getElementById("main-sidenav");
 
     const sidenavInstance = mdb.Sidenav.getInstance(sidenav);
 
     const currencyFormat = Intl.NumberFormat("vi-VN", {style: 'currency', currency: 'VND'})
-
+    const addAddressPicker = new AddressDropdown("#add-address-picker", {
+        placeholder: "Chon dia chi",
+        name: "address"
+    });
 
     let innerWidth = null;
 
