@@ -109,7 +109,7 @@ class AddressDropdown {
             });
         });
 
-        fetch("./../../data/dvhc.json")
+        fetch("/static/data/dvhc.json")
             .then(value => value.json())
             .then(json => this.data = json.data)
             .then(() => {
