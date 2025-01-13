@@ -1,11 +1,11 @@
 class AddressDropdown {
-    constructor(selector, {input, placeholder, url}) {
-        this.input = input || ".address-input";
+    constructor(selector, {input, placeholder, url, name}) {
         this.selector = selector;
-        this.url = url;
+        this.input = input || ".address-input";
         this.placeholder = placeholder;
+        this.url = url;
+        this.name = name
     }
-
 
 
     render() {
@@ -23,8 +23,15 @@ class AddressDropdown {
                 if (this.selectedProvince === p)
                     item.classList.add("active")
                 item.onclick = (e) => {
-                    this.selectedProvince = this.data.find((v) => v.level1_id === e.target.getAttribute('p_id'))
-                    this.render()
+                    // this.selectedProvince = this.data.find((v) => v.level1_id === e.target.getAttribute('p_id'))
+                    // this.render()
+                    if (this.selectedProvince !== p) {
+                        this.selectedProvince = this.data.find((v) => v.level1_id === e.target.getAttribute('p_id'));
+                        this.selectedDistrict = null; // Xóa lựa chọn cũ
+                        this.selectedWard = null; // Xóa lựa chọn cũ
+                        this.render();
+                        this.showNextTab('#province-tab', '#district-tab');
+                    }
                 }
                 return item
             })
@@ -47,11 +54,16 @@ class AddressDropdown {
                 if (this.selectedDistrict === d)
                     item.classList.add("active")
                 item.onclick = (e) => {
-                    this.selectedDistrict = this.selectedProvince.level2s.find((v) => v.level2_id === e.target.getAttribute('d_id'))
-                    console.log(this.selectedProvince)
-                    console.log(this.selectedDistrict)
-
-                    this.render()
+                    // this.selectedDistrict = this.selectedProvince.level2s.find((v) => v.level2_id === e.target.getAttribute('d_id'))
+                    // console.log(this.selectedProvince)
+                    // console.log(this.selectedDistrict)
+                    // this.render()
+                    if (this.selectedDistrict !== d) {
+                        this.selectedDistrict = this.selectedProvince.level2s.find((v) => v.level2_id === e.target.getAttribute('d_id'));
+                        this.selectedWard = null; // Xóa lựa chọn cũ
+                        this.render();
+                        this.showNextTab('#district-tab', '#ward-tab');
+                    }
                 }
                 return item
             })
@@ -75,8 +87,12 @@ class AddressDropdown {
                 if (this.selectedWard === w)
                     item.classList.add("active")
                 item.onclick = (e) => {
-                    this.selectedWard = this.selectedDistrict.level3s.find((v) => v.level3_id === e.target.getAttribute('w_id'))
-                    this.render()
+                    // this.selectedWard = this.selectedDistrict.level3s.find((v) => v.level3_id === e.target.getAttribute('w_id'))
+                    // this.render()
+                    if (this.selectedWard !== w) {
+                        this.selectedWard = this.selectedDistrict.level3s.find((v) => v.level3_id === e.target.getAttribute('w_id'));
+                        this.render();
+                    }
                 }
                 return item
             })
@@ -119,9 +135,18 @@ class AddressDropdown {
 
     }
 
-    template(){
+    showNextTab(currentTabSelector, nextTabSelector) {
+        const currentTab = document.querySelector(`${this.selector} ${currentTabSelector}`);
+        const nextTab = document.querySelector(`${this.selector} ${nextTabSelector}`);
+        if (currentTab && nextTab) {
+            const tabTrigger = new mdb.Tab(nextTab);
+            tabTrigger.show();
+        }
+    }
+
+    template() {
         let id = this.selector.replaceAll("#", '')
-        return `<input class="form-control dropdown-toggle address-input" placeholder="${this.placeholder}" data-mdb-dropdown-init  data-mdb-auto-close="outside" aria-expanded="false">
+        return `<input required readonly class="form-control dropdown-toggle address-input bg-light" placeholder="${this.placeholder}" name="${this.name}" data-mdb-dropdown-init  data-mdb-auto-close="outside" aria-expanded="false">
                        <div class="dropdown-menu dropdown-menu-xl-start" style="width: 100%">
                             <div class="">
                                 <ul class="nav nav-tabs nav-fill mb-3" id="${id}-tab" role="tablist">
@@ -162,7 +187,7 @@ class AddressDropdown {
                                                                 >
                                                             </li>
                                                         </ul>
-                                                        <div class="tab-content p-2" id="${id}-content">
+                                    <div class="tab-content p-2" id="${id}-content">
                                                             <div
                                                                     class="tab-pane fade show active"
                                                                     id="${id}-tabs-1"
@@ -183,15 +208,10 @@ class AddressDropdown {
                                                                 
                                                             </div>
                                                             </div>
-                                                        </div>
-                                                        <!-- Tabs content -->
+                                                        </div> <!-- Tabs content -->
                                     </div>
-                                </div>
-
-
-`
+                                </div>`
     }
-
 
 
 }

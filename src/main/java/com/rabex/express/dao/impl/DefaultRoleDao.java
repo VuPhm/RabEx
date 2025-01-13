@@ -6,7 +6,7 @@ import com.rabex.express.dao.RoleDao;
 import com.rabex.express.dao.TemplateDao;
 import com.rabex.express.dao.mapper.RoleMapper;
 import com.rabex.express.model.Role;
-import com.rabex.express.model.RoleName;
+import com.rabex.express.model.enumm.RoleName;
 
 import java.util.List;
 import java.util.Optional;

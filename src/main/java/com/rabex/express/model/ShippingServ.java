@@ -1,6 +1,7 @@
 package com.rabex.express.model;
 
 import com.rabex.express.core.dao.RID;
+import com.rabex.express.model.enumm.ShippingServiceType;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,6 +23,10 @@ public class ShippingServ {
     private String image;
     private String expectedTime;
     private List<PricingTier> pricingTiers;
+    private ShippingServiceType type;
     private Timestamp createdAt;
     private Timestamp modifiedAt;
+
+    public static void main(String[] args) {
+    }
 }

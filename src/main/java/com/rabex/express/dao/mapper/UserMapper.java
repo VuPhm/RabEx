@@ -2,7 +2,7 @@ package com.rabex.express.dao.mapper;
 
 import com.rabex.express.core.dao.*;
 import com.rabex.express.model.User;
-import com.rabex.express.model.UserStatus;
+import com.rabex.express.model.enumm.UserStatus;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
