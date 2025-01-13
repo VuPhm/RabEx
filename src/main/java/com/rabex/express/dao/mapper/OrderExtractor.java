@@ -3,7 +3,9 @@ package com.rabex.express.dao.mapper;
 
 import com.rabex.express.core.dao.*;
 import com.rabex.express.model.*;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,6 +14,8 @@ import java.util.List;
 import java.util.Map;
 
 @Builder
+@Data
+@AllArgsConstructor
 public class OrderExtractor implements ResultSetExtractor<List<Order>> {
     private final RowMapper<Order> orderRowMapper;
     private final RowMapper<PersonInfo> receiverMapper;
