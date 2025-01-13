@@ -55,6 +55,11 @@ public class WebUtils {
         return isEmpty(param) ? defaultValue : Integer.parseInt(param);
     }
 
+    public static Double getParameter(HttpServletRequest request, String name, Double defaultValue){
+        String param = request.getParameter(name);
+        return isEmpty(param) ? defaultValue : Double.parseDouble(param);
+    }
+
     public static Long getParameter(HttpServletRequest request, String name, Long defaultValue){
         String param = request.getParameter(name);
         return isEmpty(param) ? defaultValue : Long.parseLong(param);
