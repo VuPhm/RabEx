@@ -99,34 +99,9 @@
                                         </div>
 
                                         <div class="row mb-3">
-<%--                                            <div class="col-md-4">--%>
-<%--                                                <label class="form-label" for="province">Tỉnh/Thành phố</label>--%>
-<%--                                                <select id="province" name="province" class="form-select" required>--%>
-<%--                                                    <option value="">Chọn tỉnh/thành phố</option>--%>
-<%--                                                    <option value="1">Hà Nội</option>--%>
-<%--                                                    <option value="2">Hồ Chí Minh</option>--%>
-<%--                                                    <option value="3">Đà Nẵng</option>--%>
-<%--                                                </select>--%>
-<%--                                            </div>--%>
-<%--                                            <div class="col-md-4">--%>
-<%--                                                <label class="form-label" for="district">Quận/Huyện</label>--%>
-<%--                                                <select id="district" name="district" class="form-select" required>--%>
-<%--                                                    <option value="">Chọn quận/huyện</option>--%>
-<%--                                                    <option value="1">Hà Nội</option>--%>
-<%--                                                    <option value="2">Hồ Chí Minh</option>--%>
-<%--                                                    <option value="3">Đà Nẵng</option>--%>
-<%--                                                </select>--%>
-<%--                                            </div>--%>
-<%--                                            <div class="col-md-4">--%>
-<%--                                                <label class="form-label" for="ward">Phường/Xã</label>--%>
-<%--                                                <input type="text" class="form-control" id="ward" name="ward" required>--%>
-<%--                                            </div>--%>
-                                            <div class="col-md-4">
-                                                <label class="form-label" for="ward">Phường/Xã</label>
-                                                <div type="text" class="form-control" id="add-address-picker">
-                                            </div>
+                                            <label class="form-label" for="add-address-picker">Địa chỉ</label>
+                                            <div class="dropdown" id="add-address-picker"></div>
                                         </div>
-
                                         <div class="mb-3">
                                             <label class="form-label" for="address">Địa chỉ chi tiết</label>
                                             <input type="text" class="form-control" id="address" name="description"
@@ -193,10 +168,8 @@
                                         </div>
 
                                         <div class="row mb-3">
-                                            <div class="col-md-4">
-                                                <label class="form-label" for="ward">Phường/Xã</label>
-                                                <div type="text" class="form-control" id="edit-address-picker"></div>
-                                            </div>
+                                            <label class="form-label" for="edit-address-picker">Địa chỉ</label>
+                                            <div class="dropdown" id="edit-address-picker"></div>
                                         </div>
 
                                         <div class="mb-3">
@@ -277,7 +250,7 @@
                                             </c:otherwise>
                                         </c:choose>
                                     </td>
-                                     <td>
+                                    <td>
                                         <button type="button"
                                                 onclick="handleOpenEditModal('${address.personInfo.fullName}'
                                                         , '${address.personInfo.phoneNumber}'
@@ -320,14 +293,17 @@
 <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
 <script src="<c:url value='/static/js/main.js'/>"></script>
 <script src="<c:url value="/static/js/address.dropdown.js"/>"></script>
+<script src="<c:url value="/static/data/dvhc.json"/>"></script>
 
 <script>
     const addressPicker = new AddressDropdown("#add-address-picker", {
+        url: "<c:url value='/static/data/dvhc.json'/>",
         placeholder: "address",
         name: "address"
     })
     addressPicker.init()
     const editPicker = new AddressDropdown("#edit-address-picker", {
+        url: "<c:url value='/static/data/dvhc.json'/>",
         placeholder: "address",
         name: "address"
     })
@@ -447,55 +423,6 @@
         }
 
     })
-    //     // Province and District select handling
-    //     const provinceSelect = document.getElementById('province');
-    //     const districtSelect = document.getElementById('district');
-    //
-    //     if (provinceSelect && districtSelect) {
-    //         provinceSelect.addEventListener('change', () => {
-    //             // Reset district options
-    //             districtSelect.innerHTML = '<option value="">Chọn quận/huyện</option>';
-    //
-    //             // Get selected province
-    //             const selectedProvince = provinceSelect.value;
-    //             if (selectedProvince) {
-    //                 // Here you would typically fetch districts based on province
-    //                 // For now using static example
-    //                 const districts = getDistricts(selectedProvince);
-    //                 districts.forEach(district => {
-    //                     const option = document.createElement('option');
-    //                     option.value = district.value;
-    //                     option.textContent = district.label;
-    //                     districtSelect.appendChild(option);
-    //                 });
-    //             }
-    //         });
-    //     }
-    // });
-    //
-    // // Helper function to get districts (example)
-    // function getDistricts(provinceId) {
-    //     // This would typically come from an API
-    //     const districtsByProvince = {
-    //         '1': [ // Hà Nội
-    //             {value: '1', label: 'Ba Đình'},
-    //             {value: '2', label: 'Hoàn Kiếm'},
-    //             {value: '3', label: 'Hai Bà Trưng'}
-    //         ],
-    //         '2': [ // Hồ Chí Minh
-    //             {value: '4', label: 'Quận 1'},
-    //             {value: '5', label: 'Quận 2'},
-    //             {value: '6', label: 'Quận 3'}
-    //         ],
-    //         '3': [ // Đà Nẵng
-    //             {value: '7', label: 'Hải Châu'},
-    //             {value: '8', label: 'Thanh Khê'},
-    //             {value: '9', label: 'Sơn Trà'}
-    //         ]
-    //     };
-    //
-    //     return districtsByProvince[provinceId] || [];
-    // }
 </script>
 </body>
 </html>

@@ -19,7 +19,7 @@ import static com.rabex.express.core.web.WebUtils.*;
 @WebServlet("/nguoi-dung/dia-chi")
 public class AddressController extends HttpServlet {
 
-    RID userId = RID.from("01HZY0M93WZXABCDEF12345712");
+    RID userId = RID.from("01HZY0M93WZXABCDEF12345715");
 
     @Inject
     private AddressService addressService;
