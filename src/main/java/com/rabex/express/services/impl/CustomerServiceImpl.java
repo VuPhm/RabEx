@@ -43,7 +43,9 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public boolean addAddress(RID cId, ShippingAddressForm request) {
+        //address format ward/district/province dung split de cat ra
         String[] paths = request.getAddress().split("/");
+
         if (paths.length != 3)
             return false;
         Address address = Address.builder()
