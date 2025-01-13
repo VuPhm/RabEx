@@ -21,14 +21,16 @@ public class DefaultOrderHistoryDao extends TemplateDao<Order> implements OrderH
 
     @Override
     protected ResultSetExtractor<List<Order>> extractor() {
-        return new OrderExtractor(rowMapper()
-                , new PersonInfoMapper("receiver_")
-                , new PersonInfoMapper("sender_")
-                , new AddressMapper("receiver_address_")
-                , new AddressMapper("sender_address_")
-                , new ParcelMapper("parcel_")
-                , new DeliveryFailedActionMapper("delivery_failed_action_")
-                , new ShippingServMapper("shipping_service_"));
+        return new OrderExtractor(
+                rowMapper(),
+                new PersonInfoMapper("receiver_"),
+                new PersonInfoMapper("sender_"),
+                new AddressMapper("receiver_address_"),
+                new AddressMapper("sender_address_"),
+                new ParcelMapper("parcel_"),
+                new DeliveryFailedActionMapper("delivery_failed_action_"),
+                new ShippingServMapper("shipping_service_")
+        );
     }
 
     @Override

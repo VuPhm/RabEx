@@ -25,6 +25,233 @@
 
 
 <%--content--%>
+<main id="content">
+    <div class="container p-4 ">
+        <section class="mb-1">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Đơn vận</li>
+                </ol>
+            </nav>
+        </section>
+        <section class="mb-1">
+            <div class="card shadow-0 shadow-0 mb-4 p-4 rounded-1">
+                <div class="d-flex justify-content-between">
+                    <div class="d-flex gap-4">
+                        <div class="form-outline" data-mdb-datepicker-init data-mdb-input-init
+                             data-mdb-format="dd, mmm, yyyy">
+                            <input type="text" class="form-control" id="exampleDatepicker4"
+                                   placeholder="dd, mmm, yyyy"/>
+                            <label for="exampleDatepicker4" class="form-label">Select a date</label>
+                        </div>
+                        <select data-mdb-select-init>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                            <option value="4">Four</option>
+                            <option value="5">Five</option>
+                            <option value="6">Six</option>
+                            <option value="7">Seven</option>
+                            <option value="8">Eight</option>
+                        </select>
+                    </div>
+                    <div>
+                        <button class="btn btn-outline-primary">
+                            Export
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="mb-4">
+            <div class="card shadow-0 shadow-0 mb-4 p-2 rounded-1">
+                <div class="card-header bg-white py-3">
+                    <h5 class="mb-0">Theo dõi đơn hàng</h5>
+                </div>
+                <div class="card-body">
+                    <table class="table table-hover visible" id="data-table1">
+                        <thead>
+                        <tr>
+                            <th>Mã bưu phẩm</th>
+                            <th>Ngày gửi</th>
+                            <th>Loại bưu phẩm</th>
+                            <th>Khối lượng</th>
+                            <th>Trạng thái</th>
+                            <th>Hành động</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>#BP12345</td>
+                            <td>20/11/2024</td>
+                            <td>Bưu kiện vận chuyển tiêu chuẩn</td>
+                            <td>2 kg</td>
+                            <td><span class="badge bg-success">Đã giao</span></td>
+                            <td>
+                                <a class="btn btn-sm btn-outline-primary" href="order-details.html">Chi
+                                    tiết</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#BP12346</td>
+                            <td>15/11/2024</td>
+                            <td>Bưu phẩm vận chuyển nhanh</td>
+                            <td>1.5 kg</td>
+                            <td><span class="badge bg-warning">Đang vận chuyển</span></td>
+                            <td>
+                                <a class="btn btn-sm btn-outline-primary" href="order-details.html">Chi
+                                    tiết</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#BP12345</td>
+                            <td>20/11/2024</td>
+                            <td>Bưu kiện vận chuyển tiêu chuẩn</td>
+                            <td>2 kg</td>
+                            <td><span class="badge bg-success">Đã giao</span></td>
+                            <td>
+                                <a class="btn btn-sm btn-outline-primary" href="order-details.html">Chi
+                                    tiết</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#BP12346</td>
+                            <td>15/11/2024</td>
+                            <td>Bưu phẩm vận chuyển nhanh</td>
+                            <td>1.5 kg</td>
+                            <td><span class="badge bg-warning">Đang vận chuyển</span></td>
+                            <td>
+                                <a class="btn btn-sm btn-outline-primary" href="order-details.html">Chi
+                                    tiết</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#BP12345</td>
+                            <td>20/11/2024</td>
+                            <td>Bưu kiện vận chuyển tiêu chuẩn</td>
+                            <td>2 kg</td>
+                            <td><span class="badge bg-success">Đã giao</span></td>
+                            <td>
+                                <a class="btn btn-sm btn-outline-primary" href="order-details.html">Chi
+                                    tiết</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#BP12346</td>
+                            <td>15/11/2024</td>
+                            <td>Bưu phẩm vận chuyển nhanh</td>
+                            <td>1.5 kg</td>
+                            <td><span class="badge bg-warning">Đang vận chuyển</span></td>
+                            <td>
+                                <a class="btn btn-sm btn-outline-primary" href="order-details.html">Chi
+                                    tiết</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-hover hidden" id="data-table2">
+                        <thead>
+                        <tr>
+                            <th>Mã bưu phẩm</th>
+                            <th>Ngày gửi</th>
+                            <th>Loại bưu phẩm</th>
+                            <th>Khối lượng</th>
+                            <th>Trạng thái</th>
+                            <th>Hành động</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>#BP12347</td>
+                            <td>10/11/2024</td>
+                            <td>Bưu phẩm tiết kiệm</td>
+                            <td>3 kg</td>
+                            <td><span class="badge bg-danger">Chờ xử lý</span></td>
+                            <td>
+                                <a class="btn btn-sm btn-outline-primary" href="order-details.html">Chi
+                                    tiết</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#BP12348</td>
+                            <td>05/11/2024</td>
+                            <td>Bưu phẩm quốc tế</td>
+                            <td>5 kg</td>
+                            <td><span class="badge bg-secondary">Hủy</span></td>
+                            <td>
+                                <a class="btn btn-sm btn-outline-primary" href="order-details.html">Chi
+                                    tiết</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-hover hidden" id="data-table3">
+                        <thead>
+                        <tr>
+                            <th>Mã bưu phẩm</th>
+                            <th>Ngày gửi</th>
+                            <th>Loại bưu phẩm</th>
+                            <th>Khối lượng</th>
+                            <th>Trạng thái</th>
+                            <th>Hành động</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>#BP12348</td>
+                            <td>05/11/2024</td>
+                            <td>Bưu phẩm hoả tốc</td>
+                            <td>5 kg</td>
+                            <td><span class="badge bg-secondary">Hủy</span></td>
+                            <td>
+                                <a class="btn btn-sm btn-outline-primary" href="order-details.html">Chi
+                                    tiết</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#BP12347</td>
+                            <td>10/11/2024</td>
+                            <td>Bưu phẩm hoả tốc</td>
+                            <td>3 kg</td>
+                            <td><span class="badge bg-danger">Chờ xử lý</span></td>
+                            <td>
+                                <a class="btn btn-sm btn-outline-primary" href="order-details.html">Chi
+                                    tiết</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <!-- Nút phân trang -->
+                    <nav aria-label="Pagination" class="mt-4 d-flex justify-content-center">
+                        <ul class="pagination">
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Previous" onclick="changePage(-1)">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="#data-table1" onclick="showPage(1)">1</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="#data-table2" onclick="showPage(2)">2</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="#data-table3" onclick="showPage(3)">3</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Next" onclick="changePage(+1)">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
 <%--content--%>
 
 <script src="<c:url value='/static/js/mdb.umd.min.js'/>"></script>
