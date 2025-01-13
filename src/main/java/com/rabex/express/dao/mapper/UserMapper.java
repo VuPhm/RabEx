@@ -10,7 +10,7 @@ import java.sql.SQLException;
 public class UserMapper implements RowMapper<User> {
     private Convertor<String, RID> idConvertor = new StringToRidConvertor();
     private Convertor<String, UserStatus> enumConvertor = new StringToEnumConvertor<UserStatus>(UserStatus.class);
-    private String prefix;
+    private final String prefix;
 
     public UserMapper(String prefix) {
         this.prefix = prefix;

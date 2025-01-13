@@ -27,7 +27,7 @@ public class UserExtractor implements ResultSetExtractor<List<User>> {
     }
 
 
-    private Convertor<String, RID> ridConvertor = new StringToRidConvertor();
+    private final Convertor<String, RID> ridConvertor = new StringToRidConvertor();
 
     @Override
     public List<User> extractData(ResultSet resultSet) throws SQLException {
@@ -39,6 +39,7 @@ public class UserExtractor implements ResultSetExtractor<List<User>> {
             //1
             RID userId = ridConvertor.convert(resultSet.getString(userMapper.getPrefix() + "id"));
             User user = users.get(userId);
+
             if (user == null) {
                 user = userMapper.mapRow(resultSet, i);
                 user.setRoles(new ArrayList<>());

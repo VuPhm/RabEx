@@ -5,14 +5,15 @@ import com.rabex.express.model.Address;
 import com.rabex.express.model.AddressType;
 import com.rabex.express.model.User;
 import com.rabex.express.model.UserStatus;
+import org.apache.commons.lang3.ObjectUtils;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class AddressMapper implements RowMapper<Address> {
-    private String prefix;
-    private Convertor<String, RID> idConvertor = new StringToRidConvertor();
-    private Convertor<String, AddressType> enumConvertor = new StringToEnumConvertor<AddressType>(AddressType.class);
+    private final String prefix;
+    private final Convertor<String, RID> idConvertor = new StringToRidConvertor();
+    private final Convertor<String, AddressType> enumConvertor = new StringToEnumConvertor<AddressType>(AddressType.class);
 
 
     public AddressMapper(String prefix) {
@@ -22,12 +23,15 @@ public class AddressMapper implements RowMapper<Address> {
 
     @Override
     public Address mapRow(ResultSet resultSet, int row) throws SQLException {
+        if (resultSet.getString(prefix + "id") == null){
+            return null;
+        }
         return Address.builder()
                 .id(idConvertor.convert(resultSet.getString(prefix + "id")))
-                .description(resultSet.getString(prefix + "des"))
+                .description(resultSet.getString(prefix + "description"))
                 .ward(resultSet.getString(prefix + "ward"))
-                .district(resultSet.getString(prefix + "dis"))
-                .province(resultSet.getString(prefix + "pro"))
+                .district(resultSet.getString(prefix + "district"))
+                .province(resultSet.getString(prefix + "province"))
                 .addressType(enumConvertor.convert(resultSet.getString(prefix + "type")))
                 .createdAt(resultSet.getTimestamp(prefix + "created_at"))
                 .modifiedAt(resultSet.getTimestamp(prefix + "modified_at"))

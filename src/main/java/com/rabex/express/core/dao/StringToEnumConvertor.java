@@ -2,7 +2,7 @@ package com.rabex.express.core.dao;
 
 public class StringToEnumConvertor<T extends Enum<T>> implements Convertor<String, T > {
 
-    private Class<T> enumClass;
+    private final Class<T> enumClass;
 
     public StringToEnumConvertor(Class<T> enumClass) {
         this.enumClass = enumClass;
@@ -10,6 +10,8 @@ public class StringToEnumConvertor<T extends Enum<T>> implements Convertor<Strin
 
     @Override
     public T convert(String s) {
+        if (s == null)
+            return null;
         return Enum.valueOf(enumClass, s.toUpperCase());
     }
 }
