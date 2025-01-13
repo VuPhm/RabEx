@@ -1,10 +1,11 @@
 package com.rabex.express.config;
 
 import jakarta.inject.Singleton;
+import lombok.Getter;
 
 import java.util.ResourceBundle;
 
-@Singleton
+@Getter
 public class DataSource {
     private final String url;
     private final String username;
@@ -22,15 +23,4 @@ public class DataSource {
         this.password = resourceBundle.getString(PASSWORD_KEY);
     }
 
-    public String getUrl() {
-        return url;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
 }
