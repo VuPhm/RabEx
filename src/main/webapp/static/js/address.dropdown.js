@@ -119,6 +119,13 @@ class AddressDropdown {
 
     }
 
+    set(w, d, p){
+        this.selectedWard = w;
+        this.selectedDistrict = d;
+        this.selectedProvince = p;
+        this.render()
+    }
+
     template(){
         let id = this.selector.replaceAll("#", '')
         return `<input class="form-control dropdown-toggle address-input" placeholder="${this.placeholder}" name="${this.name}" data-mdb-dropdown-init  data-mdb-auto-close="outside" aria-expanded="false">

@@ -43,12 +43,15 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public boolean addAddress(RID cId, ShippingAddressForm request) {
+        String[] paths = request.getAddress().split("/");
+        if (paths.length != 3)
+            return false;
         Address address = Address.builder()
                 .id(RID.fast())
                 .description(request.getDescription())
-                .ward(request.getWard())
-                .district(request.getDistrict())
-                .province(request.getProvince())
+                .ward(paths[0])
+                .district(paths[1])
+                .province(paths[2])
                 .addressType(request.getAddressType() == null ? null : AddressType.valueOf(request.getAddressType().toUpperCase()))
                 .build();
         PersonInfo personInfo = PersonInfo.builder()

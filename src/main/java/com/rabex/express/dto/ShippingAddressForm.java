@@ -14,4 +14,5 @@ public class ShippingAddressForm {
     private String ward;
     private String description;
     private Boolean addressDefault;
+    private String address;
 }

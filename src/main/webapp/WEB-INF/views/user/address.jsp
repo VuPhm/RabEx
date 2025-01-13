@@ -99,27 +99,31 @@
                                         </div>
 
                                         <div class="row mb-3">
-                                            <div class="col-md-4">
-                                                <label class="form-label" for="province">Tỉnh/Thành phố</label>
-                                                <select id="province" name="province" class="form-select" required>
-                                                    <option value="">Chọn tỉnh/thành phố</option>
-                                                    <option value="1">Hà Nội</option>
-                                                    <option value="2">Hồ Chí Minh</option>
-                                                    <option value="3">Đà Nẵng</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <label class="form-label" for="district">Quận/Huyện</label>
-                                                <select id="district" name="district" class="form-select" required>
-                                                    <option value="">Chọn quận/huyện</option>
-                                                    <option value="1">Hà Nội</option>
-                                                    <option value="2">Hồ Chí Minh</option>
-                                                    <option value="3">Đà Nẵng</option>
-                                                </select>
-                                            </div>
+<%--                                            <div class="col-md-4">--%>
+<%--                                                <label class="form-label" for="province">Tỉnh/Thành phố</label>--%>
+<%--                                                <select id="province" name="province" class="form-select" required>--%>
+<%--                                                    <option value="">Chọn tỉnh/thành phố</option>--%>
+<%--                                                    <option value="1">Hà Nội</option>--%>
+<%--                                                    <option value="2">Hồ Chí Minh</option>--%>
+<%--                                                    <option value="3">Đà Nẵng</option>--%>
+<%--                                                </select>--%>
+<%--                                            </div>--%>
+<%--                                            <div class="col-md-4">--%>
+<%--                                                <label class="form-label" for="district">Quận/Huyện</label>--%>
+<%--                                                <select id="district" name="district" class="form-select" required>--%>
+<%--                                                    <option value="">Chọn quận/huyện</option>--%>
+<%--                                                    <option value="1">Hà Nội</option>--%>
+<%--                                                    <option value="2">Hồ Chí Minh</option>--%>
+<%--                                                    <option value="3">Đà Nẵng</option>--%>
+<%--                                                </select>--%>
+<%--                                            </div>--%>
+<%--                                            <div class="col-md-4">--%>
+<%--                                                <label class="form-label" for="ward">Phường/Xã</label>--%>
+<%--                                                <input type="text" class="form-control" id="ward" name="ward" required>--%>
+<%--                                            </div>--%>
                                             <div class="col-md-4">
                                                 <label class="form-label" for="ward">Phường/Xã</label>
-                                                <input type="text" class="form-control" id="ward" name="ward" required>
+                                                <div type="text" class="form-control" id="add-address-picker">
                                             </div>
                                         </div>
 
@@ -190,32 +194,8 @@
 
                                         <div class="row mb-3">
                                             <div class="col-md-4">
-                                                <label class="form-label" for="province-edit">Tỉnh/Thành
-                                                    phố</label>
-                                                <select id="province-edit" name="province"
-                                                        class="form-select" required>
-                                                    <option value="">Chọn tỉnh/thành phố</option>
-                                                    <option value="1">Hà Nội</option>
-                                                    <option value="2">Hồ Chí Minh</option>
-                                                    <option value="3">Đà Nẵng</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <label class="form-label"
-                                                       for="district-edit">Quận/Huyện</label>
-                                                <select id="district-edit" name="district"
-                                                        class="form-select" required>
-                                                    <option value="">Chọn quận/huyện</option>
-                                                    <option value="1">Hà Nội</option>
-                                                    <option value="2">Hồ Chí Minh</option>
-                                                    <option value="3">Đà Nẵng</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <label class="form-label"
-                                                       for="ward-edit">Phường/Xã</label>
-                                                <input type="text" class="form-control" id="ward-edit"
-                                                       name="ward" required>
+                                                <label class="form-label" for="ward">Phường/Xã</label>
+                                                <div type="text" class="form-control" id="edit-address-picker"></div>
                                             </div>
                                         </div>
 
@@ -342,6 +322,16 @@
 <script src="<c:url value="/static/js/address.dropdown.js"/>"></script>
 
 <script>
+    const addressPicker = new AddressDropdown("#add-address-picker", {
+        placeholder: "address",
+        name: "address"
+    })
+    addressPicker.init()
+    const editPicker = new AddressDropdown("#edit-address-picker", {
+        placeholder: "address",
+        name: "address"
+    })
+    editPicker.init()
     const sidenav = document.getElementById("main-sidenav");
 
     const sidenavInstance = mdb.Sidenav.getInstance(sidenav);
@@ -408,10 +398,11 @@
         document.querySelector('#address-edit input[name="fullName"]').value = fullName
         document.querySelector('#address-edit input[name="phoneNumber"]').value = phoneNumber
         document.querySelector('#address-edit input[name="description"]').value = description
-        document.querySelector('#address-edit input[name="ward"]').value = ward
-        document.querySelector('#address-edit select[name="district"]').value = district
-        document.querySelector('#address-edit select[name="province"]').value = province
+        // document.querySelector('#address-edit input[name="ward"]').value = ward
+        // document.querySelector('#address-edit select[name="district"]').value = district
+        // document.querySelector('#address-edit select[name="province"]').value = province
         document.querySelector('#address-edit select[name="addressType"]').value = addressType
+        editPicker.set(ward, district, province)
         console.log(addressType)
 
     }
@@ -455,56 +446,56 @@
             });
         }
 
-
-        // Province and District select handling
-        const provinceSelect = document.getElementById('province');
-        const districtSelect = document.getElementById('district');
-
-        if (provinceSelect && districtSelect) {
-            provinceSelect.addEventListener('change', () => {
-                // Reset district options
-                districtSelect.innerHTML = '<option value="">Chọn quận/huyện</option>';
-
-                // Get selected province
-                const selectedProvince = provinceSelect.value;
-                if (selectedProvince) {
-                    // Here you would typically fetch districts based on province
-                    // For now using static example
-                    const districts = getDistricts(selectedProvince);
-                    districts.forEach(district => {
-                        const option = document.createElement('option');
-                        option.value = district.value;
-                        option.textContent = district.label;
-                        districtSelect.appendChild(option);
-                    });
-                }
-            });
-        }
-    });
-
-    // Helper function to get districts (example)
-    function getDistricts(provinceId) {
-        // This would typically come from an API
-        const districtsByProvince = {
-            '1': [ // Hà Nội
-                {value: '1', label: 'Ba Đình'},
-                {value: '2', label: 'Hoàn Kiếm'},
-                {value: '3', label: 'Hai Bà Trưng'}
-            ],
-            '2': [ // Hồ Chí Minh
-                {value: '4', label: 'Quận 1'},
-                {value: '5', label: 'Quận 2'},
-                {value: '6', label: 'Quận 3'}
-            ],
-            '3': [ // Đà Nẵng
-                {value: '7', label: 'Hải Châu'},
-                {value: '8', label: 'Thanh Khê'},
-                {value: '9', label: 'Sơn Trà'}
-            ]
-        };
-
-        return districtsByProvince[provinceId] || [];
-    }
+    })
+    //     // Province and District select handling
+    //     const provinceSelect = document.getElementById('province');
+    //     const districtSelect = document.getElementById('district');
+    //
+    //     if (provinceSelect && districtSelect) {
+    //         provinceSelect.addEventListener('change', () => {
+    //             // Reset district options
+    //             districtSelect.innerHTML = '<option value="">Chọn quận/huyện</option>';
+    //
+    //             // Get selected province
+    //             const selectedProvince = provinceSelect.value;
+    //             if (selectedProvince) {
+    //                 // Here you would typically fetch districts based on province
+    //                 // For now using static example
+    //                 const districts = getDistricts(selectedProvince);
+    //                 districts.forEach(district => {
+    //                     const option = document.createElement('option');
+    //                     option.value = district.value;
+    //                     option.textContent = district.label;
+    //                     districtSelect.appendChild(option);
+    //                 });
+    //             }
+    //         });
+    //     }
+    // });
+    //
+    // // Helper function to get districts (example)
+    // function getDistricts(provinceId) {
+    //     // This would typically come from an API
+    //     const districtsByProvince = {
+    //         '1': [ // Hà Nội
+    //             {value: '1', label: 'Ba Đình'},
+    //             {value: '2', label: 'Hoàn Kiếm'},
+    //             {value: '3', label: 'Hai Bà Trưng'}
+    //         ],
+    //         '2': [ // Hồ Chí Minh
+    //             {value: '4', label: 'Quận 1'},
+    //             {value: '5', label: 'Quận 2'},
+    //             {value: '6', label: 'Quận 3'}
+    //         ],
+    //         '3': [ // Đà Nẵng
+    //             {value: '7', label: 'Hải Châu'},
+    //             {value: '8', label: 'Thanh Khê'},
+    //             {value: '9', label: 'Sơn Trà'}
+    //         ]
+    //     };
+    //
+    //     return districtsByProvince[provinceId] || [];
+    // }
 </script>
 </body>
 </html>
