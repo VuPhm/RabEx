@@ -49,8 +49,9 @@ public class DefaultAuthService implements AuthService{
 
     private Authentication authenticate(User user, String password) {
         if (user.getVerifiedAt() == null) throw new UnVerifyUserException();
-        if (user.getStatus() != UserStatus.ACTIVE) throw new UserDisabledException();
-        if (!encoder.match(user.getHashPassword(), password))
+//        if (user.getStatus() != UserStatus.ACTIVE) throw new UserDisabledException();
+//        if (!encoder.match(user.getHashPassword(), password))
+        return null;
     }
 
     @Override
