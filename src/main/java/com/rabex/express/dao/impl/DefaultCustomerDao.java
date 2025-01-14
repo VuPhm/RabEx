@@ -78,6 +78,12 @@ public class DefaultCustomerDao extends TemplateDao<Customer> implements Custome
         return addressSuccess && infoSuccess;
     }
 
+    @Override
+    public boolean updateDefaultAddressId(RID cId, RID rid) {
+        String sql = "UPDATE customers SET default_address_id = ? WHERE id = ?";
+        return update(sql, cId, rid);
+    }
+
 
     @Override
     protected RowMapper<Customer> rowMapper() {

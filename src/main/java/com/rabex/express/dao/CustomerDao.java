@@ -12,4 +12,6 @@ public interface CustomerDao extends Dao<Customer> {
     boolean addAddress(RID cId, ShippingAddress shippingAddress);
 
     boolean updateShippingAddress(RID addressId, RID personInfoId, ShippingAddressForm request);
+
+    boolean updateDefaultAddressId(RID cId, RID id);
 }

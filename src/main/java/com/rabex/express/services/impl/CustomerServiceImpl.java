@@ -63,17 +63,19 @@ public class CustomerServiceImpl implements CustomerService {
                 .build();
         ShippingAddress shippingAddress = new ShippingAddress(address, personInfo);
         boolean success = customerDao.addAddress(cId, shippingAddress);
-        if (request.getAddressDefault()){
-            Customer customer = customerDao.findById(cId).get();
-            customer.setDefaultAddressId(shippingAddress.getAddress().getId());
+//        if (request.getAddressDefault()){
+//            Customer customer = customerDao.findById(cId).get();
+//            customer.setDefaultAddressId(shippingAddress.getAddress().getId());
+//        }
+        if (success && Boolean.TRUE.equals(request.getAddressDefault())) {
+            // Cập nhật default_address_id
+            return customerDao.updateDefaultAddressId(cId, shippingAddress.getAddress().getId());
         }
-
         return success;
     }
 
     @Override
     public boolean removeAddress(RID customerId, RID addressId, RID personInfoId) {
-        Customer customer = customerDao.findById(customerId).get();
         return customerDao.removeAddress(customerId,addressId,personInfoId);
     }
 

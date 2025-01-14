@@ -81,12 +81,12 @@
                                             <div class="col-md-4">
                                                 <label class="form-label" for="fullName">Tên</label>
                                                 <input type="text" class="form-control" id="fullName" name="fullName"
-                                                       required>
+                                                >
                                             </div>
                                             <div class="col-md-4">
                                                 <label class="form-label" for="phone">Số điện thoại</label>
                                                 <input type="tel" class="form-control" id="phone" name="phoneNumber"
-                                                       required>
+                                                >
                                             </div>
                                             <div class="col-md-4">
                                                 <label class="form-label" for="address-type">Loại địa chỉ</label>
@@ -104,8 +104,7 @@
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label" for="address">Địa chỉ chi tiết</label>
-                                            <input type="text" class="form-control" id="address" name="description"
-                                                   required>
+                                            <input type="text" class="form-control" id="address" name="description">
                                         </div>
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" id="default-address"
@@ -159,7 +158,7 @@
                                                 <label class="form-label" for="address-type-edit">Loại
                                                     địa chỉ</label>
                                                 <select id="address-type-edit" class="form-select"
-                                                        name="addressType">
+                                                        name="addressType" required>
                                                     <option value="PRIVATE_HOUSE">Nhà riêng</option>
                                                     <option value="OFFICE">Văn phòng</option>
                                                     <option value="DIFFERENT">Khác</option>
@@ -169,7 +168,7 @@
 
                                         <div class="row mb-3">
                                             <label class="form-label" for="edit-address-picker">Địa chỉ</label>
-                                            <div class="dropdown" id="edit-address-picker"></div>
+                                            <div class="dropdown" id="edit-address-picker" required></div>
                                         </div>
 
                                         <div class="mb-3">
@@ -180,9 +179,10 @@
                                                    name="description" required>
                                         </div>
                                         <div class="form-check">
+                                            <input type="hidden" name="addressDefault" value="false">
                                             <input class="form-check-input" type="checkbox"
                                                    id="default-address-edit" name="addressDefault"
-                                                   value="true">
+                                                   value="true" required>
                                             <label class="form-check-label" for="default-address-edit">
                                                 Đặt làm địa chỉ mặc định
                                             </label>
@@ -193,10 +193,15 @@
                                     <button type="button" class="btn btn-secondary"
                                             data-mdb-dismiss="modal">Đóng
                                     </button>
-                                    <button type="submit" class="btn btn-primary"
-                                            id="save-address-edit">
-                                        Lưu địa chỉ
-                                    </button>
+                                    <form class="modal-content" action="/nguoi-dung/dia-chi?action=edit" method="post">
+                                        <!-- Các trường khác -->
+                                        <input type="hidden" name="province" id="province-hidden">
+                                        <input type="hidden" name="district" id="district-hidden">
+                                        <input type="hidden" name="ward" id="ward-hidden">
+                                        <button type="submit" class="btn btn-primary" id="save-address-edit">
+                                            Lưu địa chỉ
+                                        </button>
+                                    </form>
                                 </div>
                             </form>
                         </div>
@@ -224,8 +229,8 @@
                                 <td>1</td>
                                 <td>1</td>
                                 <td>1</td>
-                                <td>1</td>
                             </tr>
+                            <jsp:useBean id="customer" scope="request" type="com.rabex.express.model.Customer"/>
                             <c:forEach var="address" items="${customer.addresses}">
                                 <tr>
                                     <td>${1}</td>
@@ -251,22 +256,24 @@
                                         </c:choose>
                                     </td>
                                     <td>
-                                        <button type="button"
-                                                onclick="handleOpenEditModal('${address.personInfo.fullName}'
-                                                        , '${address.personInfo.phoneNumber}'
-                                                        , '${address.address.description}'
-                                                        , '${address.address.ward}'
-                                                        , '${address.address.district}'
-                                                        , '${address.address.province}'
-                                                        , '${address.address.addressType}')"
-                                                class="btn btn-sm btn-outline-primary edit-address"
-                                                href="#"
-                                                data-mdb-ripple-init
-                                                data-mdb-modal-init
-                                                data-mdb-target="#address-edit"
-                                                data-id="${address.address.id}">
-                                            <i class="fas fa-edit me-1"></i>
-                                        </button>
+                                        <form action="/nguoi-dung/dia-chi?action=edit" method="post">
+                                            <button type="button"
+                                                    class="btn btn-sm btn-outline-primary edit-address"
+                                                    data-mdb-ripple-init
+                                                    data-mdb-modal-init
+                                                    data-mdb-target="#address-edit"
+                                                    data-id="${address.address.id}"
+                                                    data-fullname="${address.personInfo.fullName}"
+                                                    data-phone="${address.personInfo.phoneNumber}"
+                                                    data-description="${address.address.description}"
+                                                    data-ward="${address.address.ward}"
+                                                    data-district="${address.address.district}"
+                                                    data-province="${address.address.province}"
+                                                    data-type="${address.address.addressType}">
+                                                <i class="fas fa-edit me-1"></i>
+                                            </button>
+
+                                        </form>
 
                                         <form action="/nguoi-dung/dia-chi?action=delete" method="post">
                                             <input hidden="hidden" name="addressId" value="${address.address.id}">
@@ -370,18 +377,51 @@
     });
 </script>
 <script>
-    function handleOpenEditModal(fullName, phoneNumber, description, ward, district, province, addressType) {
-        document.querySelector('#address-edit input[name="fullName"]').value = fullName
-        document.querySelector('#address-edit input[name="phoneNumber"]').value = phoneNumber
-        document.querySelector('#address-edit input[name="description"]').value = description
-        // document.querySelector('#address-edit input[name="ward"]').value = ward
-        // document.querySelector('#address-edit select[name="district"]').value = district
-        // document.querySelector('#address-edit select[name="province"]').value = province
-        document.querySelector('#address-edit select[name="addressType"]').value = addressType
-        editPicker.set(ward, district, province)
-        console.log(addressType)
+    function handleOpenEditModal(button) {
+        const fullName = button.getAttribute('data-fullname') || '';
+        const phoneNumber = button.getAttribute('data-phone') || '';
+        const description = button.getAttribute('data-description') || '';
+        const ward = button.getAttribute('data-ward') || '';
+        const district = button.getAttribute('data-district') || '';
+        const province = button.getAttribute('data-province') || '';
+        const addressType = button.getAttribute('data-type') || 'PRIVATE_HOUSE';
 
+        document.querySelector('#address-edit input[name="fullName"]').value = fullName;
+        document.querySelector('#address-edit input[name="phoneNumber"]').value = phoneNumber;
+        document.querySelector('#address-edit input[name="description"]').value = description;
+
+        if (typeof editPicker !== 'undefined' && typeof editPicker.set === 'function') {
+            try {
+                editPicker.set({
+                    province: province.trim(),
+                    district: district.trim(),
+                    ward: ward.trim()
+                });
+
+                // Đồng bộ dữ liệu vào trường ẩn khi mở modal
+                document.getElementById('province-hidden').value = province.trim();
+                document.getElementById('district-hidden').value = district.trim();
+                document.getElementById('ward-hidden').value = ward.trim();
+            } catch (error) {
+                console.error('Lỗi khi thiết lập editPicker:', error);
+            }
+        }
+
+        const addressTypeSelect = document.querySelector('#address-edit select[name="addressType"]');
+        if (addressTypeSelect) {
+            addressTypeSelect.value = addressType;
+        }
     }
+
+    // Đồng bộ dữ liệu từ editPicker khi thay đổi
+    if (typeof editPicker !== 'undefined' && typeof editPicker.onChange === 'function') {
+        editPicker.onChange((selected) => {
+            document.getElementById('province-hidden').value = selected.province || '';
+            document.getElementById('district-hidden').value = selected.district || '';
+            document.getElementById('ward-hidden').value = selected.ward || '';
+        });
+    }
+
 
     document.addEventListener('DOMContentLoaded', () => {
         // Handle delete address
@@ -421,8 +461,15 @@
                 }
             });
         }
-
     })
+    document.addEventListener('DOMContentLoaded', () => {
+        const editButtons = document.querySelectorAll('.edit-address');
+        editButtons.forEach(button => {
+            button.addEventListener('submit', () => {
+                handleOpenEditModal(button); // Gọi hàm với nút hiện tại
+            });
+        });
+    });
 </script>
 </body>
 </html>
