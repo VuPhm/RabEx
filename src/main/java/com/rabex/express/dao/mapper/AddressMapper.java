@@ -1,11 +1,8 @@
 package com.rabex.express.dao.mapper;
 
 import com.rabex.express.core.dao.*;
-import com.rabex.express.model.Address;
-import com.rabex.express.model.AddressType;
-import com.rabex.express.model.User;
-import com.rabex.express.model.UserStatus;
-import org.apache.commons.lang3.ObjectUtils;
+import com.rabex.express.model.*;
+import com.rabex.express.model.enumm.AddressType;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

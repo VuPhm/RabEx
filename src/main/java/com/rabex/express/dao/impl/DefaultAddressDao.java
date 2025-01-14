@@ -35,7 +35,8 @@ public class DefaultAddressDao extends TemplateDao<Address> implements AddressDa
                 address.getDistrict(),
                 address.getProvince(),
                 address.getAddressType(),
-                address.getModifiedAt()
+                address.getModifiedAt(),
+                id
         );
     }
 

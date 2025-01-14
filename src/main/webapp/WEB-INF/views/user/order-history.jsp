@@ -54,7 +54,7 @@
                                 <td>${o.parcel.weight}</td>
                                 <td><span class="badge bg-success">${o.status}</span></td>
                                 <td>
-                                    <a class="btn btn-sm btn-outline-primary" href="order-details.html">Chi tiết</a>
+                                    <a class="btn btn-sm btn-outline-primary" href="/nguoi-dung/chi-tiet-buu-pham?id=${o.id}">Chi tiết</a>
                                 </td>
                             </tr>
                         </c:forEach>

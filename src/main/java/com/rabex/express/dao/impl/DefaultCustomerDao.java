@@ -13,10 +13,12 @@ import com.rabex.express.dao.mapper.CustomerMapper;
 import com.rabex.express.dao.mapper.PersonInfoMapper;
 import com.rabex.express.dto.ShippingAddressForm;
 import com.rabex.express.model.*;
+import com.rabex.express.model.enumm.AddressType;
 import jakarta.inject.Inject;
+import lombok.Data;
 
 import java.util.List;
-
+@Data
 public class DefaultCustomerDao extends TemplateDao<Customer> implements CustomerDao {
     @Inject
     private AddressDao addressDao;
@@ -43,8 +45,16 @@ public class DefaultCustomerDao extends TemplateDao<Customer> implements Custome
 
     @Override
     public boolean update(RID id, Customer customer) {
-
-        return false;
+        String updateCustomer = "UPDATE customers SET default_address_id = ?, phone_number = ?, full_name = ?, email = ?, company_name = ?, industry = ?, channel = ? WHERE id = ?";
+        return update(updateCustomer
+                , customer.getDefaultAddressId()
+                , customer.getPhoneNumber()
+                , customer.getFullName()
+                , customer.getEmail()
+                , customer.getCompanyName()
+                , customer.getIndustry()
+                , customer.getChannel()
+                , id);
     }
 
     public boolean removeAddress(RID customerId, RID addressId, RID personInfoId) {
