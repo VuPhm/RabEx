@@ -1,30 +1,47 @@
-INSERT INTO rabex.person_info (id, phone_number, full_name, email) VALUES ('01HZY0M93WZXABCDEF12345678', '0123456789', 'John Doe', 'john.doe@example.com');
-INSERT INTO rabex.person_info (id, phone_number, full_name, email) VALUES ('01HZY0M93WZXABCDEF12345679', '0987654321', 'Jane Smith', 'jane.smith@example.com');
-INSERT INTO rabex.person_info (id, phone_number, full_name, email) VALUES ('01HZY0M93WZXABCDEF12345680', '0901234567', 'Alice Johnson', 'alice.johnson@example.com');
-INSERT INTO rabex.person_info (id, phone_number, full_name, email) VALUES ('01HZY0M93WZXABCDEF12345681', '0897654321', 'Bob Brown', 'bob.brown@example.com');
-INSERT INTO rabex.person_info (id, phone_number, full_name, email) VALUES ('01HZY0M93WZXABCDEF12345692', '0901234567', 'Nguyễn Văn A', 'nguyen.vana@example.com');
-INSERT INTO rabex.person_info (id, phone_number, full_name, email) VALUES ('01HZY0M93WZXABCDEF12345693', '0912345678', 'Trần Thị B', 'tran.thib@example.com');
-INSERT INTO rabex.person_info (id, phone_number, full_name, email) VALUES ('01HZY0M93WZXABCDEF12345694', '0923456789', 'Lê Minh C', 'le.minhc@example.com');
-INSERT INTO rabex.person_info (id, phone_number, full_name, email) VALUES ('01HZY0M93WZXABCDEF12345695', '0934567890', 'Phạm Thị D', 'pham.thid@example.com');
-INSERT INTO rabex.person_info (id, phone_number, full_name, email) VALUES ('01HZY0M93WZXABCDEF12345696', '0945678901', 'Võ Văn E', 'vo.vane@example.com');
-INSERT INTO rabex.person_info (id, phone_number, full_name, email) VALUES ('01HZY0M93WZXABCDEF12345697', '0956789012', 'Hoàng Thị F', 'hoang.thif@example.com');
-INSERT INTO rabex.person_info (id, phone_number, full_name, email) VALUES ('01HZY0M93WZXABCDEF12345711', '0901234567', 'Nguyễn Văn A', 'nguyen.vana@example.com');
-INSERT INTO rabex.person_info (id, phone_number, full_name, email) VALUES ('01HZY0M93WZXABCDEF12345712', '0987654321', 'Trần Thị B', 'tran.thib@example.com');
-INSERT INTO rabex.person_info (id, phone_number, full_name, email) VALUES ('01HZY0M93WZXABCDEF12345713', '0912345678', 'Lê Minh C', 'le.minhc@example.com');
-INSERT INTO rabex.person_info (id, phone_number, full_name, email) VALUES ('01HZY0M93WZXABCDEF12345714', '0934567890', 'Phạm Văn D', 'pham.vand@example.com');
-INSERT INTO rabex.person_info (id, phone_number, full_name, email) VALUES ('01HZY0M93WZXABCDEF12345715', '0971234567', 'Đặng Thị E', 'dang.thie@example.com');
-INSERT INTO rabex.person_info (id, phone_number, full_name, email) VALUES ('01HZY0M93WZXABCDEF12345716', '0907654321', 'Hoàng Minh F', 'hoang.minhf@example.com');
-INSERT INTO rabex.person_info (id, phone_number, full_name, email) VALUES ('01HZY0M93WZXABCDEF12345717', '0986543210', 'Bùi Thị G', 'bui.thig@example.com');
-INSERT INTO rabex.person_info (id, phone_number, full_name, email) VALUES ('01HZY0M93WZXABCDEF12345718', '0918765432', 'Ngô Minh H', 'ngo.minhh@example.com');
-INSERT INTO rabex.person_info (id, phone_number, full_name, email) VALUES ('01HZY0M93WZXABCDEF12345719', '0932345678', 'Cao Thị I', 'cao.thii@example.com');
-INSERT INTO rabex.person_info (id, phone_number, full_name, email) VALUES ('01HZY0M93WZXABCDEF12345720', '0976543210', 'Phan Minh J', 'phan.minhj@example.com');
-INSERT INTO rabex.person_info (id, phone_number, full_name, email) VALUES ('01HZY0M93WZXABCDEF12345721', '0908765432', 'Võ Thị K', 'vo.thik@example.com');
-INSERT INTO rabex.person_info (id, phone_number, full_name, email) VALUES ('01HZY0M93WZXABCDEF12345722', '0987654321', 'Lý Minh L', 'ly.minhl@example.com');
-INSERT INTO rabex.person_info (id, phone_number, full_name, email) VALUES ('01HZY0M93WZXABCDEF12345723', '0912345678', 'Nguyễn Thị M', 'nguyen.thim@example.com');
-INSERT INTO rabex.person_info (id, phone_number, full_name, email) VALUES ('01HZY0M93WZXABCDEF12345724', '0931234567', 'Trương Minh N', 'truong.minhn@example.com');
-INSERT INTO rabex.person_info (id, phone_number, full_name, email) VALUES ('01HZY0M93WZXABCDEF12345725', '0972345678', 'Lưu Thị O', 'luu.thio@example.com');
-INSERT INTO rabex.person_info (id, phone_number, full_name, email) VALUES ('01HZY0M93WZXABCDEF12345726', '0903456789', 'Đỗ Minh P', 'do.minhp@example.com');
-INSERT INTO rabex.person_info (id, phone_number, full_name, email) VALUES ('01HZY0M93WZXABCDEF12345727', '0981234567', 'Nguyễn Hoàng Q', 'nguyen.hoangq@example.com');
-INSERT INTO rabex.person_info (id, phone_number, full_name, email) VALUES ('01HZY0M93WZXABCDEF12345728', '0917654321', 'Phan Minh R', 'phan.minhr@example.com');
-INSERT INTO rabex.person_info (id, phone_number, full_name, email) VALUES ('01HZY0M93WZXABCDEF12345729', '0935678901', 'Trần Thị S', 'tran.this@example.com');
-INSERT INTO rabex.person_info (id, phone_number, full_name, email) VALUES ('01HZY0M93WZXABCDEF12345730', '0978765432', 'Cao Minh T', 'cao.minht@example.com');
+insert into rabex.person_info (id, phone_number, full_name, email)
+values  ('01HZY0M93WZXABCDEF12345678', '0123456789', 'Nguyễn Ngọc Kim Sa', 'john.doe@gmail.com'),
+        ('01HZY0M93WZXABCDEF12345679', '0987654321', 'Nguyễn Hoàng Thúy Vy', 'jane.smith@yahoo.com'),
+        ('01HZY0M93WZXABCDEF12345680', '0901234567', 'Nguyễn Hoàng Bảo An', 'alice.johnson@gmail.com'),
+        ('01HZY0M93WZXABCDEF12345681', '0897654321', 'Trần Quang Nhật Minh', 'bob.brown@yahoo.com'),
+        ('01HZY0M93WZXABCDEF12345692', '0901234567', 'Nguyễn Văn An', 'nguyen.vana@gmail.com'),
+        ('01HZY0M93WZXABCDEF12345693', '0912345678', 'Trần Thị Bích Ngọc', 'tran.thib@gmail.com'),
+        ('01HZY0M93WZXABCDEF12345694', '0923456789', 'Lê Minh Khánh Linh', 'le.minhc@yahoo.com'),
+        ('01HZY0M93WZXABCDEF12345695', '0934567890', 'Phạm Thị Bảo Châu', 'pham.thid@gmail.com'),
+        ('01HZY0M93WZXABCDEF12345696', '0945678901', 'Võ Minh Hoàng Phúc', 'vo.vane@yahoo.com'),
+        ('01HZY0M93WZXABCDEF12345697', '0956789012', 'Hoàng Thị Ngọc Mai', 'hoang.thif@gmail.com'),
+        ('01HZY0M93WZXABCDEF12345711', '0901234567', 'Nguyễn Văn An', 'nguyen.vana@yahoo.com'),
+        ('01HZY0M93WZXABCDEF12345712', '0987654321', 'Trần Thị Bích Vân', 'tran.thib@gmail.com'),
+        ('01HZY0M93WZXABCDEF12345713', '0912345678', 'Lê Ngọc Phương Trinh', 'le.minhc@yahoo.com'),
+        ('01HZY0M93WZXABCDEF12345714', '0934567890', 'Phạm Văn Đình Phong', 'pham.vand@gmail.com'),
+        ('01HZY0M93WZXABCDEF12345715', '0971234567', 'Đặng Thị Thảo Vi', 'dang.thie@yahoo.com'),
+        ('01HZY0M93WZXABCDEF12345716', '0907654321', 'Hoàng Minh Quốc Anh', 'hoang.minhf@gmail.com'),
+        ('01HZY0M93WZXABCDEF12345717', '0986543210', 'Bùi Thị Phương Linh', 'bui.thig@yahoo.com'),
+        ('01HZY0M93WZXABCDEF12345718', '0918765432', 'Ngô Minh Tấn Phát', 'ngo.minhh@gmail.com'),
+        ('01HZY0M93WZXABCDEF12345719', '0932345678', 'Cao Thị Minh Nguyệt', 'cao.thii@yahoo.com'),
+        ('01HZY0M93WZXABCDEF12345720', '0976543210', 'Phan Minh Hải Đăng', 'phan.minhj@gmail.com'),
+        ('01HZY0M93WZXABCDEF12345721', '0908765432', 'Võ Thị Thùy Trang', 'vo.thik@yahoo.com'),
+        ('01HZY0M93WZXABCDEF12345722', '0987654321', 'Lý Minh Chí Bảo', 'ly.minhl@gmail.com'),
+        ('01HZY0M93WZXABCDEF12345724', '0931234567', 'Trương Minh Hoàng Quân', 'truong.minhn@gmail.com'),
+        ('01HZY0M93WZXABCDEF12345725', '0972345678', 'Lưu Thị Khánh Vy', 'luu.thio@yahoo.com'),
+        ('01HZY0M93WZXABCDEF12345726', '0903456789', 'Đỗ Minh Thùy Dung', 'do.minhp@gmail.com'),
+        ('01HZY0M93WZXABCDEF12345727', '0981234567', 'Nguyễn Hoàng Nhật Anh', 'nguyen.hoangq@yahoo.com'),
+        ('01HZY0M93WZXABCDEF12345728', '0917654321', 'Phan Minh Gia Huy', 'phan.minhr@gmail.com'),
+        ('01HZY0M93WZXABCDEF12345729', '0935678901', 'Trần Thị Bảo Trân', 'tran.this@yahoo.com'),
+        ('01HZY0M93WZXABCDEF12345730', '0978765432', 'Cao Minh Quốc Thiên', 'cao.minht@gmail.com'),
+        ('01JH06EJVB4TJYPTQH9N645Q3A', '0385874145', 'Ngô Văn', null),
+        ('01JH06M4EP6Z8AWWN3VXP8B8MA', '0385874145', 'Ngô Văn', null),
+        ('01JH07N0GHGX6RNJPWYXNFWA0X', '0385874145', 'Ngô Văn', null),
+        ('01JH07SG2JXQ2B2H0FYAQKAFPG', '0385874145', 'Ngô Văn', null),
+        ('01JH081VQTWSBXEZGEY8HWJE5K', '0385874145', 'Ngô Văn', null),
+        ('01JH082DF0M0PV4HD443MCT2T4', '0385874145', 'Ngô Văn', null),
+        ('01JH0839AC3ERXDAF62JR0R8H7', '0385874145', 'Ngô Văn', null),
+        ('01JH083VZFAXHDZ57PEVFJZ995', '0385874145', 'Ngô Văn', null),
+        ('01JH086NB5EXMB99PEVVD6Q0BT', '0385874145', 'Ngô Văn', null),
+        ('01JH0AN708FY91QWMT1BJF91ZH', '0385874145', 'Ngô Văn', null),
+        ('01JHFZRQE5SC3DGT865B8DE7RS', '0901234563', 'Alice Lix', null),
+        ('01JHFZWDRRA6D5G4XSJXMDYH5V', '0901234567', 'Alice Johnson', null),
+        ('01JHGBP530RGK9TVMWJG5SBESK', '0901234563', 'Alice Ciu', null),
+        ('01JHGFBYN774AQJ2EQ1HEWH31T', '0901234563', 'Alice Lix', null),
+        ('01JHGGXTMDH02F4AVC755ERM5G', '0901234563', 'Alice Ciu', null),
+        ('01JHGH279VJ41G7VDZ7T2RFKPG', '0901367587', 'LẤLLÁD', null),
+        ('01JHGN9RVBE073ZV4XYWT0NRSF', '0901234563', 'Alice Ciu', null);
