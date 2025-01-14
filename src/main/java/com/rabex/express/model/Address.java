@@ -1,11 +1,7 @@
 package com.rabex.express.model;
 
 import com.rabex.express.core.dao.RID;
-import com.rabex.express.model.enumm.AddressType;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.sql.Timestamp;
 @Getter
