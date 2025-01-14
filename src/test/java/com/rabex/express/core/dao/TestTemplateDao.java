@@ -6,13 +6,11 @@ import com.rabex.express.dao.UserDao;
 import com.rabex.express.dao.impl.DefaultRoleDao;
 import com.rabex.express.dao.impl.DefaultUserDao;
 import com.rabex.express.model.Role;
-import com.rabex.express.model.RoleName;
+import com.rabex.express.model.enumm.RoleName;
 import com.rabex.express.model.User;
-import com.rabex.express.model.UserStatus;
+import com.rabex.express.model.enumm.UserStatus;
 import org.junit.jupiter.api.Test;
 
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
 import java.util.List;
 
 public class TestTemplateDao {

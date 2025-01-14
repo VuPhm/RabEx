@@ -2,8 +2,7 @@ package com.rabex.express.dao.mapper;
 
 import com.rabex.express.core.dao.*;
 import com.rabex.express.model.Order;
-import com.rabex.express.model.OrderStatus;
-import com.rabex.express.model.PersonInfo;
+import com.rabex.express.model.enumm.OrderStatus;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

@@ -1,7 +1,7 @@
 package com.rabex.express.dao.mapper;
 
 import com.rabex.express.core.dao.*;
-import com.rabex.express.model.AddressType;
+import com.rabex.express.model.enumm.AddressType;
 import com.rabex.express.model.Parcel;
 
 import java.sql.ResultSet;

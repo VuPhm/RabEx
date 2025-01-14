@@ -48,13 +48,14 @@ CREATE TABLE pricing_tiers
 );
 
 
-CREATE TABLE special_service_surcharges
+ CREATE TABLE surcharge_tiers
 (
     id             CHAR(26)                                               NOT NULL PRIMARY KEY,
     description    TEXT                                                   NULL,
     service_id     CHAR(26)                                               NOT NULL,
     weight_start   FLOAT                      DEFAULT 0                   NULL,
     weight_end     FLOAT                      DEFAULT 0                   NULL,
+    step_increment FLOAT                    DEFAULT 0                   NULL,
     price_per_step DECIMAL                    DEFAULT 0                   NULL,
     base_price     DECIMAL                    DEFAULT 0                   NULL,
     unit_type      ENUM ('VNĐ', 'kg', 'none') DEFAULT 'none'              NULL,
@@ -217,14 +218,14 @@ CREATE TABLE orders
 );
 
 
-# CREATE TABLE order_surcharges
-# (
-#     order_id     CHAR(26), -- ID đơn hàng
-#     surcharge_id CHAR(26), -- ID phụ phí
-#     PRIMARY KEY (order_id, surcharge_id),
-#     FOREIGN KEY (order_id) REFERENCES orders (id),
-#     FOREIGN KEY (surcharge_id) REFERENCES special_service_surcharges (id)
-# );
+CREATE TABLE order_surcharges
+(
+    order_id     CHAR(26), -- ID đơn hàng
+    surcharge_id CHAR(26), -- ID phụ phí
+    PRIMARY KEY (order_id, surcharge_id),
+    FOREIGN KEY (order_id) REFERENCES orders (id),
+    FOREIGN KEY (surcharge_id) REFERENCES surcharge_tiers (id)
+);
 
 
 -- Table: trackings

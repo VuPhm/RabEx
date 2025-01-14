@@ -8,7 +8,6 @@ import java.sql.Timestamp;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 public class Address {
     private RID id;              // char(16)
     private String description;     // text
@@ -18,5 +17,17 @@ public class Address {
     private AddressType addressType;
     private Timestamp createdAt;    // timestamp
     private Timestamp modifiedAt;   // timestamp
+    @Override
+    public String toString() {
+        return "Address{" +
+                "id='" + id + '\'' +
+                ", description='" + description + '\'' +
+                ", ward='" + ward + '\'' +
+                ", district='" + district + '\'' +
+                ", province='" + province + '\'' +
+                ", createdAt=" + createdAt +
+                ", modifiedAt=" + modifiedAt +
+                '}';
+    }
 }
 
