@@ -16,5 +16,4 @@ public class OrderHistoryServiceImpl implements OrderHistoryService {
     public List<Order> getOrderHistory() {
         return orderHistoryDao.findAll();
     }
-
 }

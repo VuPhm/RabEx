@@ -1,6 +1,7 @@
 package com.rabex.express.model;
 
 import com.rabex.express.core.dao.RID;
+import com.rabex.express.model.enumm.AddressType;
 import lombok.*;
 
 import java.sql.Timestamp;
@@ -30,4 +31,3 @@ public class Address {
                 '}';
     }
 }
-

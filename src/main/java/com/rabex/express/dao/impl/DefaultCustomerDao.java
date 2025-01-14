@@ -13,6 +13,7 @@ import com.rabex.express.dao.mapper.CustomerMapper;
 import com.rabex.express.dao.mapper.PersonInfoMapper;
 import com.rabex.express.dto.ShippingAddressForm;
 import com.rabex.express.model.*;
+import com.rabex.express.model.enumm.AddressType;
 import jakarta.inject.Inject;
 
 import java.util.List;
