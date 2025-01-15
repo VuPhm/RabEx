@@ -3,8 +3,8 @@
 <html>
 <head>
     <%@include file="/WEB-INF/views/guest/common/head-link.jsp" %>
-    <title>Đăng nhập</title>
-    <base href="${pageContext.request.contextPath}/" />
+    <title>Trang chủ</title>
+    <base href="${pageContext.request.contextPath}/"/>
 
 </head>
 <body>
@@ -12,11 +12,14 @@
 <%@include file="/WEB-INF/views/guest/common/navbar.jsp" %>
 <%-- End Nav --%>
 
-<%--&lt;%&ndash; carousel &ndash;%&gt;--%>
-<%--<%@include file="/WEB-INF/views/guest/common/carousel.jsp" %>--%>
-<%--&lt;%&ndash; carousel end &ndash;%&gt;--%>
+<%-- carousel --%>
+<%@include file="/WEB-INF/views/guest/common/carousel.jsp" %>
+<%-- carousel end --%>
 
 
+<%-- carousel --%>
+<%@include file="/WEB-INF/views/guest/common/quick-action.jsp" %>
+<%-- carousel end --%>
 
 
 <%-- Footer --%>

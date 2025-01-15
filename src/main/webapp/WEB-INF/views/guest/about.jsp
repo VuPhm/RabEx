@@ -3,7 +3,7 @@
 <html>
 <head>
     <%@include file="/WEB-INF/views/guest/common/head-link.jsp" %>
-    <title>Dịch vụ</title>
+    <title>Về chúng tôi</title>
     <base href="${pageContext.request.contextPath}/" />
 
 </head>
@@ -11,6 +11,10 @@
 <%-- Nav --%>
 <%@include file="/WEB-INF/views/guest/common/navbar.jsp" %>
 <%-- End Nav --%>
+
+<%--&lt;%&ndash; carousel &ndash;%&gt;--%>
+<%--<%@include file="/WEB-INF/views/guest/common/carousel.jsp" %>--%>
+<%--&lt;%&ndash; carousel end &ndash;%&gt;--%>
 
 
 <!-- Page Header Start -->

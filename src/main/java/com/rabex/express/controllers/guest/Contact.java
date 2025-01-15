@@ -10,13 +10,14 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet(urlPatterns = "/ve-chung-toi")
-public class About extends HttpServlet {
+@WebServlet(urlPatterns = "/lien-he")
+public class Contact extends HttpServlet {
     @Inject
     private ShippingServService shippingServService;
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setAttribute("services", shippingServService.findAll());
-        req.getRequestDispatcher("/WEB-INF/views/guest/about.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/views/guest/contact.jsp").forward(req, resp);
     }
 }

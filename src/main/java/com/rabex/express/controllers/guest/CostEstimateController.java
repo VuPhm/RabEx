@@ -24,6 +24,8 @@ public class CostEstimateController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setAttribute("services", shippingServService.findAll());
+
         String error = req.getParameter("error");
         if (error == null) {
             handleEstimate(req);

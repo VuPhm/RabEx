@@ -17,27 +17,16 @@
             </div>
             <div class="col-lg-3 col-md-6">
                 <h4 class="text-light mb-4">Dịch vụ</h4>
-                <a class="btn btn-link" href="service-details.html">Chuyển phát nhanh hàng hóa, tài liệu
-
-                </a>
-                <a class="btn btn-link" href="service-details.html">Chuyển phát Hoả tốc, hẹn giờ
-
-                </a>
-                <a class="btn btn-link" href="service-details.html">Chuyển phát Tiết kiệm
-
-                </a>
-                <a class="btn btn-link" href="service-details.html">Chuyển phát TM điện tử
-
-                </a>
-                <a class="btn btn-link" href="service-details.html">Phân loại hàng hóa đặc biệt
-
-                </a>
+                <%--@elvariable id="services" type="java.util.List"--%>
+                <c:forEach var="service" items="${services}">
+                    <a class="btn btn-link" href="dich-vu/${service.slug}">${service.name}</a>
+                </c:forEach>
             </div>
             <div class="col-lg-3 col-md-6">
                 <h4 class="text-light mb-4">Truy cập nhanh</h4>
-                <a href="about.html" class="btn btn-link">Về chúng tôi</a>
-                <a href="contact.html" class="btn btn-link">Liên hệ</a>
-                <a href="service.html" class="btn btn-link">Dịch vụ</a>
+                <a href="ve-chung-toi" class="btn btn-link">Về chúng tôi</a>
+                <a href="lien-he" class="btn btn-link">Liên hệ</a>
+                <a href="dich-vu" class="btn btn-link">Dịch vụ</a>
             </div>
             <div class="col-lg-3 col-md-6">
                 <h4 class="text-light mb-4">Cập nhật thông tin</h4>
@@ -55,7 +44,7 @@
         <div class="copyright">
             <div class="row">
                 <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                    © <a class="border-bottom" href="#">RabEx</a>
+                    © <a class="border-bottom" href="<c:url value="/"/> >">RabEx</a>
                 </div>
                 <div class="col-md-6 text-center text-md-end">
                     <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
@@ -65,3 +54,6 @@
         </div>
     </div>
 </div>
+
+
+<%@include file="/WEB-INF/views/guest/common/script-links.jsp" %>
