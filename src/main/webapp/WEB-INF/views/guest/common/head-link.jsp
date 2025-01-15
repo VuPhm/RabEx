@@ -28,3 +28,5 @@
 
 <!-- Template Stylesheet -->
 <link href="<c:url value="/static/css/style.css"/> " rel="stylesheet">
+
+<fmt:setLocale value="vi" />

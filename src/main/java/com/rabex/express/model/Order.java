@@ -5,6 +5,9 @@ import com.rabex.express.model.enumm.OrderStatus;
 import lombok.*;
 
 import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 @Builder
 @Getter
 @Setter
@@ -20,6 +23,7 @@ public class Order {
     private Parcel parcel;
     private DeliveryFailedAction deliveryFailedAction;
     private ShippingServ shippingService;
+    private RID shippingService_id;
     private ShippingServ addOnShippingService;
     private OrderStatus status;
     private String code;
@@ -29,4 +33,9 @@ public class Order {
     private Timestamp createdAt;
     private Timestamp updatedAt;
 
+    public LocalDate getExpectedDate(){
+        LocalDate date = createdAt.toLocalDateTime().toLocalDate();
+        if (!date.isAfter(LocalDate.now())) return LocalDate.now().plusDays(1);
+        return date.plusDays(shippingService.getExpectedDay());
+    }
 }

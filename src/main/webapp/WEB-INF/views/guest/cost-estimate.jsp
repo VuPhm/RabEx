@@ -6,8 +6,25 @@
     <title>Dịch vụ</title>
     <base href="${pageContext.request.contextPath}/"/>
 
+    <%--@elvariable id="result" type="java.util.List"--%>
+    <%--@elvariable id="service" type="com.rabex.express.model.ShippingServ"--%>
+    <%--@elvariable id="tier" type="com.rabex.express.model.PricingTier"--%>
+    <%--@elvariable id="estimateRequest" type="com.rabex.express.dto.CostEstimateRequest"--%>
+
+    <script>
+        const estimateRequest = {
+            senderAddress: '${estimateRequest.senderAddress}',
+            receiverAddress: '${estimateRequest.receiverAddress}',
+            weight: '${estimateRequest.weight}',
+            unknownWeight: '${estimateRequest.unknownWeight}',
+            longg: '${estimateRequest.longg}',
+            wide: '${estimateRequest.wide}',
+            height: '${estimateRequest.height}'
+        };
+    </script>
 </head>
 <body>
+
 <%-- Nav --%>
 <%@include file="/WEB-INF/views/guest/common/navbar.jsp" %>
 <%-- End Nav --%>
@@ -27,8 +44,8 @@
 <div class="container-xxl mt-5 mb-3 wow fadeInDown" id="cost_estimate">
 
     <div class="container py-3 px-5 service-item">
-        <form method="post" action="uoc-tinh-chi-phi">
-            <c:if test="${param.get('error')=='invalid'}">
+        <form method="post" id="estimateForm" action="uoc-tinh-chi-phi">
+            <c:if test="${param.get('error')=='invalid request'}">
                 <div class="row">
                     <h5 style="color: red">Vui lòng chọn địa chỉ!</h5>
                 </div>
@@ -36,14 +53,16 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
+                        <label class="py-3">* Địa chỉ người gửi:</label>
+                        <input hidden="hidden" type="text" id="SAtmp">
+                        <div class="dropdown" id="sender_address">
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-6"><label class="py-3">* Địa chỉ người gửi:</label>
-                <div class="dropdown" id="sender_address">
-
+                <div class="col-md-6">
                     <div class="form-group">
                         <label class="py-3">* Địa chỉ người nhận:</label>
+                        <input hidden="hidden" type="text" id="SRtmp">
                         <div class="dropdown" id="receiver_address">
                         </div>
                     </div>
@@ -117,102 +136,108 @@
 </div>
 <!-- Cost Estimate End-->
 
+<fmt:formatNumber var="weight" value="${estimateRequest.orTransformedWeight}" maxFractionDigits="0"/>
+
 <!-- Result costs Start -->
-<%--@elvariable id="result" type="java.util.List"--%>
 <c:if test="${result != null}">
     <div id="cost_estimate_result" class="container-xxl wow fadeIn">
         <div class="container py-5 px-5 service-item">
             <h5 class="text-center">Phí vận chuyển sẽ bao gồm phụ phí và trừ đi các khoản chiến khấu/giảm giá bởi
                 khuyến mãi.</h5>
-            <!-- Bảng cho trường hợp không biết cân nặng -->
-            <jsp:useBean id="requestWeight" scope="request" type="java.lang.Double"/>
-            <c:if test="${requestWeight*1000==-1000}">
-                <div id="unknownWeightResult" class="table-responsive d-none">
-                    <table class="table table-bordered mt-3 text-center">
-                        <thead class="table-light">
-                        <tr>
-                            <th>Sản phẩm</th>
-                            <th colspan="6">Phí vận chuyển ước tính sẽ bao gồm phụ phí và trừ đi các khoản chiến
-                                khấu/giảm
-                                giá
-                                bởi khuyến mãi. (VNĐ)
-                            </th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>Cân nặng của Bưu gửi</td>
-                            <td>0.5kg</td>
-                            <td>1kg</td>
-                            <td>2kg</td>
-                            <td>3kg</td>
-                            <td>4kg</td>
-                            <td>5kg</td>
-                        </tr>
-                        <tr>
-                            <td>Giao hàng Tiêu Chuẩn</td>
-                            <td>Không có sẵn</td>
-                            <td>Không có sẵn</td>
-                            <td>Không có sẵn</td>
-                            <td>Không có sẵn</td>
-                            <td>Không có sẵn</td>
-                            <td>Không có sẵn</td>
-                        </tr>
-                        <tr>
-                            <td>Giao hàng Nhanh</td>
-                            <td>Không có sẵn</td>
-                            <td>Không có sẵn</td>
-                            <td>Không có sẵn</td>
-                            <td>Không có sẵn</td>
-                            <td>Không có sẵn</td>
-                            <td>Không có sẵn</td>
-                        </tr>
-                        <tr>
-                            <td>Giao hàng Hỏa Tốc</td>
-                            <td>Không có sẵn</td>
-                            <td>Không có sẵn</td>
-                            <td>Không có sẵn</td>
-                            <td>Không có sẵn</td>
-                            <td>Không có sẵn</td>
-                            <td>Không có sẵn</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </c:if>
 
-            <!-- Bảng cho trường hợp biết cân nặng -->
-            <c:if test="${requestWeight*1000>=0}">
-                <div id="knownWeightResult" class="table-responsive">
-                    <table class="table table-bordered mt-3 text-center">
+                <%--1/2 can nang va the tich KHONG xac dinh--%>
+            <c:if test="${estimateRequest.unknownWeight && estimateRequest.unknownVolume()}">
+                <div class="table-responsive">
+                    <table class="table table-bordered mt-3 text-center" style="table-layout: auto;">
                         <thead class="table-light">
                         <tr>
-                            <th>Sản phẩm</th>
-                            <th>Phí vận chuyển ước tính (VNĐ)
+                            <th>Dịch vụ</th>
+                            <th colspan="14">Phí vận chuyển ước tính (VNĐ / bưu phẩm)
                             </th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>Cân nặng của Bưu gửi</td>
-                            <td>${requestWeight}</td>
-                        </tr>
-                            <%--@elvariable id="result" type="java.util.List"--%>
-                            <%--@elvariable id="tier" type="com.rabex.express.model.PricingTier"--%>
-                        <c:forEach var="tier" items="${result}">
+
+                        <c:forEach var="service" items="${result}">
+                            <c:set var="size" value="${14 / service.pricingTiers.size()}"/>
                             <tr>
-                                <td>${tier.description}</td>
-                                <td>
-                                    <fmt:formatNumber value="${tier.totalPrice}"
-                                                      type="currency"
-                                                      currencySymbol="" maxFractionDigits="0" groupingUsed="true"/>
-                                </td>
+                                <td rowspan="2" style="vertical-align: middle;">${service.name}</td>
+                                <c:forEach var="tier" items="${service.pricingTiers}">
+                                    <fmt:formatNumber var="weightStart" value="${tier.weightStart}"
+                                                      maxFractionDigits="0"/>
+                                    <fmt:formatNumber var="weightEnd" value="${tier.weightEnd}" maxFractionDigits="0"/>
+                                    <c:if test="${tier.stepIncrement*1000 == 0}">
+                                        <td colspan="${size}" class="bg-light"><i>${weightStart}-${weightEnd}g</i></td>
+                                    </c:if>
+                                    <c:if test="${tier.stepIncrement*1000 != 0}">
+                                        <fmt:formatNumber var="weightStartKG" value="${tier.weightStart/1000}"
+                                                          maxFractionDigits="1"/>
+                                        <td colspan="${size}" class="bg-light"><i>> ${weightStartKG}kg</i></td>
+                                    </c:if>
+                                </c:forEach>
+                            </tr>
+                            <tr>
+                                <c:forEach var="tier" items="${service.pricingTiers}">
+                                    <fmt:formatNumber var="basePrice" value="${tier.basePrice}" maxFractionDigits="0"/>
+                                    <c:if test="${tier.stepIncrement*1000 == 0}">
+                                        <td colspan="${size}"><b>${basePrice}đ</b></td>
+                                    </c:if>
+                                    <c:if test="${tier.stepIncrement*1000 != 0}">
+                                        <td colspan="${size}"><a href="dich-vu/${service.slug}"
+                                                                 class="btn-link text-primary"><b>Xem chi tiết</b></a>
+                                        </td>
+                                    </c:if>
+                                </c:forEach>
                             </tr>
                         </c:forEach>
                         </tbody>
                     </table>
                 </div>
             </c:if>
+
+                <%--2/2 can nang hoac kich thuoc xac dinh--%>
+            <c:if test="${!(estimateRequest.unknownWeight && estimateRequest.unknownVolume())}">
+                <div class="table-responsive">
+                    <table class="table table-bordered mt-3 text-center" style="table-layout: auto;">
+                        <thead class="table-light">
+                        <tr>
+                            <th>Dịch vụ</th>
+                            <th colspan="10">Phí vận chuyển ước tính (VNĐ / bưu phẩm)
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        <tr>
+                            <td><i>Cân nặng bưu phẩm</i></td>
+                            <td><i>${weight}g</i></td>
+                        </tr>
+                        <c:forEach var="service" items="${result}">
+                            <tr>
+                                <td>${service.name}</td>
+
+                                <c:choose>
+                                    <c:when test="${service.pricingTiers.size() !=0}">
+                                        <c:set var="size" value="${14 / service.pricingTiers.size()}"/>
+                                        <c:forEach var="tier" items="${service.pricingTiers}">
+                                            <fmt:formatNumber var="price" value="${tier.calcTotalPrice(weight)}"
+                                                              maxFractionDigits="0"/>
+                                            <td colspan="${size}"><b>${price}đ</b></td>
+                                        </c:forEach>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <td colspan="14"><a href="dich-vu/${service.slug}"
+                                                            class="btn-link text-primary"><b>Xem chi tiết</b></a></td>
+                                    </c:otherwise>
+                                </c:choose>
+
+                            </tr>
+                        </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
+            </c:if>
+
         </div>
     </div>
 </c:if>
@@ -232,32 +257,41 @@
         // Khởi tạo AddressDropdown
         const senderAddress = new AddressDropdown("#sender_address", {
             url: "/static/data/dvhc.json",
-            placeholder: "Chọn Tỉnh/Thành phố",
-            name: "senderAddress"
+            placeholder: "${estimateRequest.senderAddress}" || "Chọn Tỉnh/Thành phố",
+            name: "senderAddress",
+            value: "${estimateRequest.senderAddress}"
         });
         const receiverAddress = new AddressDropdown("#receiver_address", {
             url: "/static/data/dvhc.json",
-            placeholder: "Chọn Tỉnh/Thành phố",
-            name: "receiverAddress"
+            placeholder: "${estimateRequest.receiverAddress}" || "Chọn Tỉnh/Thành phố",
+            name: "receiverAddress",
+            value: "${estimateRequest.receiverAddress}"
         });
         senderAddress.init();
         receiverAddress.init();
 
         // Xu ly thao tac nhap khoi luong
         const unknownWeightCheckbox = document.getElementById("unknownWeight");
+        if (unknownWeightCheckbox) unknownWeightCheckbox.checked = false;
         unknownWeightCheckbox.addEventListener("change", function () {
             const isChecked = this.checked;
             // Select inputs
             const inputWeight = document.getElementById("weight");
             if (isChecked) {
-                inputWeight.removeAttribute("required"); // A không bắt buộc
+                inputWeight.removeAttribute("required");
+                inputWeight.setAttribute("disabled", "true");
             } else {
-                inputWeight.setAttribute("required", "true");  // A bắt buộc
+                inputWeight.setAttribute("required", "true");
+                inputWeight.removeAttribute("disabled")
             }
         });
 
         // mang theo du lieu da nhap vao
-
+        const form = document.getElementById("estimateForm");
+        populateForm(estimateRequest, form);
+        const va = document.getElementById("SAtmp").value = '${estimateRequest.senderAddress}';
+        console.log(va);
+        document.getElementById("SRtmp").value = '${estimateRequest.receiverAddress}';
     });
 
 </script>

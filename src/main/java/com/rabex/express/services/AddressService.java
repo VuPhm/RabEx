@@ -12,7 +12,7 @@ public interface AddressService {
 
     int countAll();
     // Tìm địa chỉ theo id
-    Address getAddressById(RID id);
+    Optional<Address> getAddressById(RID id);
 
     // Thêm địa chỉ mới
     boolean addAddress(Address address) throws IllegalArgumentException;

@@ -27,7 +27,7 @@
                      style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInUp;">
                     <div class="service-item p-4">
                         <div class="mb-4">
-                            <img class="img-fluid" src="/img/service1.png" alt="">
+                            <img class="img-fluid" src="/static/img/service1.png" alt="">
                         </div>
                         <h4 class="mb-3">${s.name}</h4>
                         <p>Là dịch vụ nhận gửi, vận chuyển và phát các loại thư, tài liệu, thư từ trong nước theo chỉ
