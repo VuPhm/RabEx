@@ -2,7 +2,7 @@
 <%@include file="../common/taglib.jsp" %>
 <html>
 <head>
-    <%@include file="/WEB-INF/views/common/user/head-link.jsp" %>
+    <%@include file="/WEB-INF/views/user/common/head-link.jsp" %>
     <title>lịch sử bưu phẩm</title>
     <style>
         .dt-search {
@@ -59,7 +59,7 @@
 </head>
 <body>
 <%-- Nav --%>
-<%@include file="../common/user/navbar.jsp" %>
+<%@include file="common/navbar.jsp" %>
 <%-- End Nav --%>
 
 
@@ -77,6 +77,7 @@
         </section>
 
         <!-- Profile Section -->
+        <jsp:useBean id="customer" scope="request" type="com.rabex.express.model.Customer"/>
         <jsp:useBean id="user" scope="request" type="com.rabex.express.model.User"/>
         <section class="mb-4">
             <div class="row">
@@ -169,7 +170,7 @@
                                     <h6 class="mb-0">Điện thoại</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary" data-field="user-phone">
-                                    0123 456 789
+                                    ${customer.phoneNumber}
                                 </div>
                             </div>
                             <hr>
@@ -308,7 +309,7 @@
                             <h6 class="mb-0">Tên Công Ty</h6>
                         </div>
                         <div class="col-sm-9 text-secondary" data-field="company-name">
-                            Công Ty TNHH Rabex
+                            ${customer.companyName}
                         </div>
                     </div>
                     <hr>
@@ -326,7 +327,7 @@
                             <h6 class="mb-0">Ngành hàng</h6>
                         </div>
                         <div class="col-sm-9 text-secondary" data-field="industry">
-                            -
+                            ${customer.industry}
                         </div>
                     </div>
                     <hr>
@@ -335,7 +336,7 @@
                             <h6 class="mb-0">Kênh bán hàng</h6>
                         </div>
                         <div class="col-sm-9 text-secondary" data-field="sales-channel">
-                            Tiktok
+                            ${customer.channel}
                         </div>
                     </div>
                     <div class="row">

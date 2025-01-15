@@ -55,7 +55,7 @@ public class CustomerServiceImpl implements CustomerService {
                 .ward(paths[2].trim())
                 .district(paths[1].trim())
                 .province(paths[0].trim())
-                .addressType(request.getAddressType() == null ? null : AddressType.valueOf(request.getAddressType().toUpperCase()))
+                .addressType(AddressType.valueOf(request.getAddressType()))
                 .build();
         PersonInfo personInfo = PersonInfo.builder()
                 .id(RID.fast())
@@ -64,10 +64,6 @@ public class CustomerServiceImpl implements CustomerService {
                 .build();
         ShippingAddress shippingAddress = new ShippingAddress(address, personInfo);
         boolean success = customerDao.addAddress(cId, shippingAddress);
-//        if (request.getAddressDefault()){
-//            Customer customer = customerDao.findById(cId).get();
-//            customer.setDefaultAddressId(shippingAddress.getAddress().getId());
-//        }
         if (success && Boolean.TRUE.equals(request.getAddressDefault())) {
             // Cập nhật default_address_id
             return customerDao.updateDefaultAddressId(cId, shippingAddress.getAddress().getId());

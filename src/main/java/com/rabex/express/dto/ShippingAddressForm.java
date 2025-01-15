@@ -12,11 +12,11 @@ import lombok.NoArgsConstructor;
 public class ShippingAddressForm {
     private String fullName;
     private String phoneNumber;
-    private String addressType;
     private String province;
     private String district;
     private String ward;
     private String description;
+    private String addressType;
     private Boolean addressDefault;
     private String address;
 }
