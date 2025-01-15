@@ -119,7 +119,9 @@
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Đóng
                                     </button>
+                                    <form action="<c:url value="/nguoi-dung/dia-chi"/>" method="post">
                                     <button type="submit" class="btn btn-primary" id="save-address">Lưu địa chỉ</button>
+                                    </form>
                                 </div>
                             </form>
                         </div>
@@ -200,7 +202,7 @@
                                     <button type="button" class="btn btn-secondary"
                                             data-mdb-dismiss="modal">Đóng
                                     </button>
-                                    <form action="/nguoi-dung/dia-chi?action=edit" method="post">
+                                    <form action="<c:url value="/nguoi-dung/dia-chi?action=edit"/>" method="post">
                                     <button type="submit" class="btn btn-primary" id="save-address-edit">
                                         Lưu địa chỉ
                                     </button>
