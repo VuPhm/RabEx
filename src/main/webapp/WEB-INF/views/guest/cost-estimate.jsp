@@ -6,6 +6,22 @@
     <title>Dịch vụ</title>
     <base href="${pageContext.request.contextPath}/"/>
 
+    <%--@elvariable id="result" type="java.util.List"--%>
+    <%--@elvariable id="service" type="com.rabex.express.model.ShippingServ"--%>
+    <%--@elvariable id="tier" type="com.rabex.express.model.PricingTier"--%>
+    <%--@elvariable id="estimateRequest" type="com.rabex.express.dto.CostEstimateRequest"--%>
+
+    <script>
+        const estimateRequest = {
+            senderAddress: '${estimateRequest.senderAddress}',
+            receiverAddress: '${estimateRequest.receiverAddress}',
+            weight: '${estimateRequest.weight}',
+            unknownWeight: '${estimateRequest.unknownWeight}',
+            longg: '${estimateRequest.longg}',
+            wide: '${estimateRequest.wide}',
+            height: '${estimateRequest.height}'
+        };
+    </script>
 </head>
 <body>
 
@@ -28,7 +44,7 @@
 <div class="container-xxl mt-5 mb-3 wow fadeInDown" id="cost_estimate">
 
     <div class="container py-3 px-5 service-item">
-        <form method="post" action="uoc-tinh-chi-phi">
+        <form method="post" id="estimateForm" action="uoc-tinh-chi-phi">
             <c:if test="${param.get('error')=='invalid request'}">
                 <div class="row">
                     <h5 style="color: red">Vui lòng chọn địa chỉ!</h5>
@@ -38,6 +54,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label class="py-3">* Địa chỉ người gửi:</label>
+                        <input hidden="hidden" type="text" id="SAtmp">
                         <div class="dropdown" id="sender_address">
                         </div>
                     </div>
@@ -45,6 +62,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label class="py-3">* Địa chỉ người nhận:</label>
+                        <input hidden="hidden" type="text" id="SRtmp">
                         <div class="dropdown" id="receiver_address">
                         </div>
                     </div>
@@ -118,11 +136,6 @@
 </div>
 <!-- Cost Estimate End-->
 
-<%--@elvariable id="result" type="java.util.List"--%>
-<%--@elvariable id="service" type="com.rabex.express.model.ShippingServ"--%>
-<%--@elvariable id="tier" type="com.rabex.express.model.PricingTier"--%>
-<%--@elvariable id="estimateRequest" type="com.rabex.express.dto.CostEstimateRequest"--%>
-
 <fmt:formatNumber var="weight" value="${estimateRequest.orTransformedWeight}" maxFractionDigits="0"/>
 
 <!-- Result costs Start -->
@@ -158,7 +171,7 @@
                                     </c:if>
                                     <c:if test="${tier.stepIncrement*1000 != 0}">
                                         <fmt:formatNumber var="weightStartKG" value="${tier.weightStart/1000}"
-                                                          maxFractionDigits="0"/>
+                                                          maxFractionDigits="1"/>
                                         <td colspan="${size}" class="bg-light"><i>> ${weightStartKG}kg</i></td>
                                     </c:if>
                                 </c:forEach>
@@ -244,19 +257,22 @@
         // Khởi tạo AddressDropdown
         const senderAddress = new AddressDropdown("#sender_address", {
             url: "/static/data/dvhc.json",
-            placeholder: "Chọn Tỉnh/Thành phố",
-            name: "senderAddress"
+            placeholder: "${estimateRequest.senderAddress}" || "Chọn Tỉnh/Thành phố",
+            name: "senderAddress",
+            value: "${estimateRequest.senderAddress}"
         });
         const receiverAddress = new AddressDropdown("#receiver_address", {
             url: "/static/data/dvhc.json",
-            placeholder: "Chọn Tỉnh/Thành phố",
-            name: "receiverAddress"
+            placeholder: "${estimateRequest.receiverAddress}" || "Chọn Tỉnh/Thành phố",
+            name: "receiverAddress",
+            value: "${estimateRequest.receiverAddress}"
         });
         senderAddress.init();
         receiverAddress.init();
 
         // Xu ly thao tac nhap khoi luong
         const unknownWeightCheckbox = document.getElementById("unknownWeight");
+        if (unknownWeightCheckbox) unknownWeightCheckbox.checked = false;
         unknownWeightCheckbox.addEventListener("change", function () {
             const isChecked = this.checked;
             // Select inputs
@@ -271,7 +287,11 @@
         });
 
         // mang theo du lieu da nhap vao
-
+        const form = document.getElementById("estimateForm");
+        populateForm(estimateRequest, form);
+        const va = document.getElementById("SAtmp").value = '${estimateRequest.senderAddress}';
+        console.log(va);
+        document.getElementById("SRtmp").value = '${estimateRequest.receiverAddress}';
     });
 
 </script>

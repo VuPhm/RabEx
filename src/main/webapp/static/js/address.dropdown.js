@@ -1,10 +1,11 @@
 class AddressDropdown {
-    constructor(selector, {input, placeholder, url, name}) {
+    constructor(selector, {input, placeholder, url, name, value}) {
         this.selector = selector;
         this.input = input || ".address-input";
         this.placeholder = placeholder;
         this.url = url;
-        this.name = name
+        this.name = name;
+        this.value = value || ""
     }
 
 
@@ -146,7 +147,7 @@ class AddressDropdown {
 
     template() {
         let id = this.selector.replaceAll("#", '')
-        return `<input required readonly class="form-control dropdown-toggle address-input bg-light" placeholder="${this.placeholder}" name="${this.name}" data-mdb-dropdown-init  data-mdb-auto-close="outside" aria-expanded="false">
+        return `<input required readonly class="form-control dropdown-toggle address-input" placeholder="${this.placeholder}" name="${this.name}" value="${this.value}" data-mdb-dropdown-init  data-mdb-auto-close="outside" aria-expanded="false">
                        <div class="dropdown-menu dropdown-menu-xl-start" style="width: 100%">
                             <div class="">
                                 <ul class="nav nav-tabs nav-fill mb-3" id="${id}-tab" role="tablist">

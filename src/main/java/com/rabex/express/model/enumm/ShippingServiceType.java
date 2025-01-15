@@ -1,6 +1,6 @@
 package com.rabex.express.model.enumm;
 
 public enum ShippingServiceType {
-    ADDON,
+    ADD_ON,
     DELIVERY
 }
