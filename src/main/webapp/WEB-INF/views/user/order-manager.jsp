@@ -28,9 +28,9 @@
 <main id="content">
     <div class="container p-4">
         <section class="mb-4">
-            <div class="card">
+            <div class="card shadow-0 shadow-0 mb-4 p-2 rounded-1">
                 <div class="card-header bg-white py-3">
-                    <h5 class="mb-0">Lịch sử bưu phẩm</h5>
+                    <h5 class="mb-0">Theo dõi bưu phẩm</h5>
                 </div>
                 <div class="card-body">
                     <table class="table table-hover visible" id="data-table1">
@@ -78,7 +78,8 @@
                                     </c:choose>
                                 </td>
                                 <td>
-                                    <a class="btn btn-sm btn-outline-primary" href="/nguoi-dung/chi-tiet-buu-pham?id=${o.id}">Chi tiết</a>
+                                    <a class="btn btn-sm btn-outline-primary"
+                                       href="/nguoi-dung/chi-tiet-buu-pham?id=${o.id}">Chi tiết</a>
                                 </td>
                             </tr>
                         </c:forEach>

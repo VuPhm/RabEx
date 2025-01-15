@@ -10,6 +10,8 @@ public class StringToEnumConvertor<T extends Enum<T>> implements Convertor<Strin
 
     @Override
     public T convert(String s) {
+        if (s == null)
+            return null;
         return Enum.valueOf(enumClass, s.toUpperCase());
     }
 }

@@ -104,3 +104,13 @@
         <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 676px;"></div>
     </div>
 </nav>
+
+<!-- Heading -->
+<section class="text-center text-md-start">
+    <!-- Background gradient -->
+    <div style="height: 60px;">
+    </div>
+    <!-- Background gradient -->
+
+</section>
+<!-- Heading -->

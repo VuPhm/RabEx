@@ -8,6 +8,7 @@ import com.rabex.express.model.Customer;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class CustomerMapper implements RowMapper<Customer> {
     private String prefix;
@@ -28,7 +29,9 @@ public class CustomerMapper implements RowMapper<Customer> {
                 .email(resultSet.getString(prefix + "email"))
                 .companyName(resultSet.getString(prefix + "company"))
                 .industry(resultSet.getString(prefix + "industry"))
-                .channel(resultSet.getString(prefix + "channel")).build();
+                .channel(resultSet.getString(prefix + "channel"))
+                .addresses(new ArrayList<>())
+                .build();
     }
 
     @Override

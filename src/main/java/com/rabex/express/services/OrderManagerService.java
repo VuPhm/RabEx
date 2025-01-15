@@ -5,7 +5,7 @@ import com.rabex.express.model.Order;
 
 import java.util.List;
 
-public interface OrderHistoryService {
-    public List<Order> getOrderHistory();
+public interface OrderManagerService {
+    public List<Order> getOrderManager();
     public Order getOrderDetails(RID oid);
 }

@@ -1,19 +1,20 @@
-INSERT INTO rabex.parcels (id, name, created_by, created_at, modified_at, weight, longg, high, wide) VALUES ('01HZY0M93WZXABCDEF12345731', 'Bưu phẩm A', '01HZY0M93WZXABCDEF12345711', '2025-01-06 16:53:51', '2025-01-06 16:53:51', 0, null, null, null);
-INSERT INTO rabex.parcels (id, name, created_by, created_at, modified_at, weight, longg, high, wide) VALUES ('01HZY0M93WZXABCDEF12345732', 'Bưu phẩm B', '01HZY0M93WZXABCDEF12345711', '2025-01-06 16:53:51', '2025-01-06 16:53:51', 0, null, null, null);
-INSERT INTO rabex.parcels (id, name, created_by, created_at, modified_at, weight, longg, high, wide) VALUES ('01HZY0M93WZXABCDEF12345733', 'Bưu phẩm C', '01HZY0M93WZXABCDEF12345711', '2025-01-06 16:53:51', '2025-01-06 16:53:51', 0, null, null, null);
-INSERT INTO rabex.parcels (id, name, created_by, created_at, modified_at, weight, longg, high, wide) VALUES ('01HZY0M93WZXABCDEF12345734', 'Bưu phẩm D', '01HZY0M93WZXABCDEF12345711', '2025-01-06 16:53:51', '2025-01-06 16:53:51', 0, null, null, null);
-INSERT INTO rabex.parcels (id, name, created_by, created_at, modified_at, weight, longg, high, wide) VALUES ('01HZY0M93WZXABCDEF12345735', 'Bưu phẩm E', '01HZY0M93WZXABCDEF12345711', '2025-01-06 16:53:51', '2025-01-06 16:53:51', 0, null, null, null);
-INSERT INTO rabex.parcels (id, name, created_by, created_at, modified_at, weight, longg, high, wide) VALUES ('01HZY0M93WZXABCDEF12345736', 'Bưu phẩm F', '01HZY0M93WZXABCDEF12345711', '2025-01-06 16:53:51', '2025-01-06 16:53:51', 0, null, null, null);
-INSERT INTO rabex.parcels (id, name, created_by, created_at, modified_at, weight, longg, high, wide) VALUES ('01HZY0M93WZXABCDEF12345737', 'Bưu phẩm G', '01HZY0M93WZXABCDEF12345711', '2025-01-06 16:53:51', '2025-01-06 16:53:51', 0, null, null, null);
-INSERT INTO rabex.parcels (id, name, created_by, created_at, modified_at, weight, longg, high, wide) VALUES ('01HZY0M93WZXABCDEF12345738', 'Bưu phẩm H', '01HZY0M93WZXABCDEF12345712', '2025-01-06 16:53:51', '2025-01-06 16:53:51', 0, null, null, null);
-INSERT INTO rabex.parcels (id, name, created_by, created_at, modified_at, weight, longg, high, wide) VALUES ('01HZY0M93WZXABCDEF12345739', 'Bưu phẩm I', '01HZY0M93WZXABCDEF12345713', '2025-01-06 16:53:51', '2025-01-06 16:53:51', 0, null, null, null);
-INSERT INTO rabex.parcels (id, name, created_by, created_at, modified_at, weight, longg, high, wide) VALUES ('01HZY0M93WZXABCDEF12345741', 'Bưu phẩm J', '01HZY0M93WZXABCDEF12345714', '2025-01-06 16:53:51', '2025-01-06 16:53:51', 0, null, null, null);
-INSERT INTO rabex.parcels (id, name, created_by, created_at, modified_at, weight, longg, high, wide) VALUES ('01HZY0M93WZXABCDEF12345742', 'Bưu phẩm K', '01HZY0M93WZXABCDEF12345715', '2025-01-06 16:53:51', '2025-01-06 16:53:51', 0, null, null, null);
-INSERT INTO rabex.parcels (id, name, created_by, created_at, modified_at, weight, longg, high, wide) VALUES ('01HZY0M93WZXABCDEF12345743', 'Bưu phẩm L', '01HZY0M93WZXABCDEF12345716', '2025-01-06 16:53:51', '2025-01-06 16:53:51', 0, null, null, null);
-INSERT INTO rabex.parcels (id, name, created_by, created_at, modified_at, weight, longg, high, wide) VALUES ('01HZY0M93WZXABCDEF12345744', 'Bưu phẩm M', '01HZY0M93WZXABCDEF12345716', '2025-01-06 16:53:51', '2025-01-06 16:53:51', 0, null, null, null);
-INSERT INTO rabex.parcels (id, name, created_by, created_at, modified_at, weight, longg, high, wide) VALUES ('01HZY0M93WZXABCDEF12345745', 'Bưu phẩm N', '01HZY0M93WZXABCDEF12345716', '2025-01-06 16:53:51', '2025-01-06 16:53:51', 0, null, null, null);
-INSERT INTO rabex.parcels (id, name, created_by, created_at, modified_at, weight, longg, high, wide) VALUES ('01HZY0M93WZXABCDEF12345746', 'Bưu phẩm O', '01HZY0M93WZXABCDEF12345716', '2025-01-06 16:53:51', '2025-01-06 16:53:51', 0, null, null, null);
-INSERT INTO rabex.parcels (id, name, created_by, created_at, modified_at, weight, longg, high, wide) VALUES ('01HZY0M93WZXABCDEF12345747', 'Bưu phẩm P', '01HZY0M93WZXABCDEF12345712', '2025-01-06 16:53:51', '2025-01-06 16:53:51', 0, null, null, null);
-INSERT INTO rabex.parcels (id, name, created_by, created_at, modified_at, weight, longg, high, wide) VALUES ('01HZY0M93WZXABCDEF12345748', 'Bưu phẩm Q', '01HZY0M93WZXABCDEF12345712', '2025-01-06 16:53:51', '2025-01-06 16:53:51', 0, null, null, null);
-INSERT INTO rabex.parcels (id, name, created_by, created_at, modified_at, weight, longg, high, wide) VALUES ('01HZY0M93WZXABCDEF12345749', 'Bưu phẩm R', '01HZY0M93WZXABCDEF12345712', '2025-01-06 16:53:51', '2025-01-06 16:53:51', 0, null, null, null);
-INSERT INTO rabex.parcels (id, name, created_by, created_at, modified_at, weight, longg, high, wide) VALUES ('01HZY0M93WZXABCDEF12345750', 'Bưu phẩm S', '01HZY0M93WZXABCDEF12345714', '2025-01-06 16:53:51', '2025-01-06 16:53:51', 0, null, null, null);
+insert into rabex.parcels (id, name, created_by, created_at, modified_at, weight, longg, high, wide)
+values  ('01HZY0M93WZXABCDEF12345731', 'Nước giặt OMO 6kg', '01HZY0M93WZXABCDEF12345711', '2025-01-06 16:53:51', '2025-01-14 22:38:38', 6, 30, 40, 20),
+        ('01HZY0M93WZXABCDEF12345732', 'Tivi Sony 55 inch', '01HZY0M93WZXABCDEF12345711', '2025-01-06 16:53:51', '2025-01-14 22:38:38', 16, 125, 75, 10),
+        ('01HZY0M93WZXABCDEF12345733', 'Tủ lạnh Samsung Inverter 250L', '01HZY0M93WZXABCDEF12345711', '2025-01-06 16:53:51', '2025-01-14 22:38:38', 55, 60, 170, 65),
+        ('01HZY0M93WZXABCDEF12345734', 'Máy giặt LG 9kg', '01HZY0M93WZXABCDEF12345711', '2025-01-06 16:53:51', '2025-01-14 22:38:39', 35, 60, 85, 55),
+        ('01HZY0M93WZXABCDEF12345735', 'Quạt điện Senko', '01HZY0M93WZXABCDEF12345711', '2025-01-06 16:53:51', '2025-01-14 22:38:39', 4, 40, 120, 40),
+        ('01HZY0M93WZXABCDEF12345736', 'Nồi cơm điện Philips 1.8L', '01HZY0M93WZXABCDEF12345711', '2025-01-06 16:53:51', '2025-01-14 22:38:39', 3, 35, 25, 35),
+        ('01HZY0M93WZXABCDEF12345737', 'Bàn học sinh', '01HZY0M93WZXABCDEF12345711', '2025-01-06 16:53:51', '2025-01-14 22:38:39', 12, 120, 75, 60),
+        ('01HZY0M93WZXABCDEF12345738', 'Ghế gaming E-Dra', '01HZY0M93WZXABCDEF12345712', '2025-01-06 16:53:51', '2025-01-14 22:38:39', 18, 70, 130, 65),
+        ('01HZY0M93WZXABCDEF12345739', 'Máy lọc không khí Sharp', '01HZY0M93WZXABCDEF12345713', '2025-01-06 16:53:51', '2025-01-14 22:38:39', 9, 40, 60, 25),
+        ('01HZY0M93WZXABCDEF12345741', 'Loa bluetooth JBL', '01HZY0M93WZXABCDEF12345714', '2025-01-06 16:53:51', '2025-01-14 22:38:39', 1, 20, 25, 15),
+        ('01HZY0M93WZXABCDEF12345742', 'Laptop Dell XPS 13', '01HZY0M93WZXABCDEF12345715', '2025-01-06 16:53:51', '2025-01-14 22:38:40', 2, 35, 5, 25),
+        ('01HZY0M93WZXABCDEF12345743', 'Máy in Canon LBP 2900', '01HZY0M93WZXABCDEF12345716', '2025-01-06 16:53:51', '2025-01-14 22:38:40', 7, 40, 25, 35),
+        ('01HZY0M93WZXABCDEF12345744', 'Bình nóng lạnh Ariston 20L', '01HZY0M93WZXABCDEF12345716', '2025-01-06 16:53:51', '2025-01-14 22:38:40', 10, 45, 80, 40),
+        ('01HZY0M93WZXABCDEF12345745', 'Nệm cao su Kim Cương', '01HZY0M93WZXABCDEF12345716', '2025-01-06 16:53:51', '2025-01-14 22:38:40', 25, 200, 25, 160),
+        ('01HZY0M93WZXABCDEF12345746', 'Bộ nồi inox Sunhouse', '01HZY0M93WZXABCDEF12345716', '2025-01-06 16:53:51', '2025-01-14 22:38:40', 5, 50, 35, 50),
+        ('01HZY0M93WZXABCDEF12345747', 'Máy xay sinh tố Phillips', '01HZY0M93WZXABCDEF12345712', '2025-01-06 16:53:51', '2025-01-14 22:38:40', 2, 25, 40, 20),
+        ('01HZY0M93WZXABCDEF12345748', 'Bàn ủi hơi nước Philips', '01HZY0M93WZXABCDEF12345712', '2025-01-06 16:53:51', '2025-01-14 22:38:40', 2, 30, 15, 15),
+        ('01HZY0M93WZXABCDEF12345749', 'Máy hút bụi Samsung', '01HZY0M93WZXABCDEF12345712', '2025-01-06 16:53:51', '2025-01-14 22:38:40', 5, 45, 30, 25),
+        ('01HZY0M93WZXABCDEF12345750', 'Nồi chiên không dầu Philips', '01HZY0M93WZXABCDEF12345714', '2025-01-06 16:53:51', '2025-01-14 22:38:40', 3, 35, 40, 35);

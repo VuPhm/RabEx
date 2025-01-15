@@ -1,23 +1,39 @@
-INSERT INTO rabex.address (id, description, ward, district, province, address_type, created_at, modified_at) VALUES ('01HZY0M93WZXABCDEF12345678', '123 Main St', 'Ward 1', 'District A', 'Province X', 'private_house', '2025-01-06 16:25:33', '2025-01-06 16:25:33');
-INSERT INTO rabex.address (id, description, ward, district, province, address_type, created_at, modified_at) VALUES ('01HZY0M93WZXABCDEF12345679', '456 Oak St', 'Ward 2', 'District B', 'Province Y', 'office', '2025-01-06 16:25:33', '2025-01-06 16:25:33');
-INSERT INTO rabex.address (id, description, ward, district, province, address_type, created_at, modified_at) VALUES ('01HZY0M93WZXABCDEF12345680', '789 Pine St', 'Ward 3', 'District C', 'Province Z', 'private_house', '2025-01-06 16:25:33', '2025-01-06 16:25:33');
-INSERT INTO rabex.address (id, description, ward, district, province, address_type, created_at, modified_at) VALUES ('01HZY0M93WZXABCDEF12345681', '101 Maple Ave', 'Ward 4', 'District D', 'Province W', 'different', '2025-01-06 16:25:33', '2025-01-06 16:25:33');
-INSERT INTO rabex.address (id, description, ward, district, province, address_type, created_at, modified_at) VALUES ('01HZY0M93WZXABCDEF12345692', '202 Birch Rd', 'Ward 5', 'District E', 'Province V', 'private_house', '2025-01-06 16:25:33', '2025-01-06 16:25:33');
-INSERT INTO rabex.address (id, description, ward, district, province, address_type, created_at, modified_at) VALUES ('01HZY0M93WZXABCDEF12345693', '303 Cedar Dr', 'Ward 6', 'District F', 'Province U', 'office', '2025-01-06 16:25:33', '2025-01-06 16:25:33');
-INSERT INTO rabex.address (id, description, ward, district, province, address_type, created_at, modified_at) VALUES ('01HZY0M93WZXABCDEF12345694', '404 Elm St', 'Ward 7', 'District G', 'Province T', 'private_house', '2025-01-06 16:25:33', '2025-01-06 16:25:33');
-INSERT INTO rabex.address (id, description, ward, district, province, address_type, created_at, modified_at) VALUES ('01HZY0M93WZXABCDEF12345695', '505 Oak Dr', 'Ward 8', 'District H', 'Province S', 'different', '2025-01-06 16:25:33', '2025-01-06 16:25:33');
-INSERT INTO rabex.address (id, description, ward, district, province, address_type, created_at, modified_at) VALUES ('01HZY0M93WZXABCDEF12345696', '606 Maple Rd', 'Ward 9', 'District I', 'Province R', 'private_house', '2025-01-06 16:25:33', '2025-01-06 16:25:33');
-INSERT INTO rabex.address (id, description, ward, district, province, address_type, created_at, modified_at) VALUES ('01HZY0M93WZXABCDEF12345697', '707 Pine Ave', 'Ward 10', 'District J', 'Province Q', 'office', '2025-01-06 16:25:33', '2025-01-06 16:25:33');
-INSERT INTO rabex.address (id, description, ward, district, province, address_type, created_at, modified_at) VALUES ('01HZY0M93WZXABCDEF12345698', 'Số 12, đường Lê Văn Sỹ', 'Phường 1', 'Quận Tân Bình', 'TP. Hồ Chí Minh', 'private_house', '2025-01-06 16:01:19', '2025-01-06 16:01:19');
-INSERT INTO rabex.address (id, description, ward, district, province, address_type, created_at, modified_at) VALUES ('01HZY0M93WZXABCDEF12345699', 'Số 20, đường Nguyễn Thị Minh Khai', 'Phường Bến Nghé', 'Quận 1', 'TP. Hồ Chí Minh', 'office', '2025-01-06 16:01:19', '2025-01-06 16:01:19');
-INSERT INTO rabex.address (id, description, ward, district, province, address_type, created_at, modified_at) VALUES ('01HZY0M93WZXABCDEF12345700', 'Số 55, đường Võ Thị Sáu', 'Phường 2', 'Quận 3', 'TP. Hồ Chí Minh', 'private_house', '2025-01-06 16:01:19', '2025-01-06 16:01:19');
-INSERT INTO rabex.address (id, description, ward, district, province, address_type, created_at, modified_at) VALUES ('01HZY0M93WZXABCDEF12345701', 'Số 80, đường Đoàn Văn Bơ', 'Phường 14', 'Quận 4', 'TP. Hồ Chí Minh', 'office', '2025-01-06 16:01:19', '2025-01-06 16:01:19');
-INSERT INTO rabex.address (id, description, ward, district, province, address_type, created_at, modified_at) VALUES ('01HZY0M93WZXABCDEF12345702', 'Số 14, đường Hùng Vương', 'Phường 10', 'Quận 5', 'TP. Hồ Chí Minh', 'different', '2025-01-06 16:01:19', '2025-01-06 16:01:19');
-INSERT INTO rabex.address (id, description, ward, district, province, address_type, created_at, modified_at) VALUES ('01HZY0M93WZXABCDEF12345703', 'Số 34, đường Nguyễn Văn Cừ', 'Phường An Lạc', 'Quận Bình Tân', 'TP. Hồ Chí Minh', 'private_house', '2025-01-06 16:01:19', '2025-01-06 16:01:19');
-INSERT INTO rabex.address (id, description, ward, district, province, address_type, created_at, modified_at) VALUES ('01HZY0M93WZXABCDEF12345704', 'Số 11, đường Trần Phú', 'Phường Lộc Hạ', 'TP. Biên Hòa', 'Đồng Nai', 'office', '2025-01-06 16:01:19', '2025-01-06 16:01:19');
-INSERT INTO rabex.address (id, description, ward, district, province, address_type, created_at, modified_at) VALUES ('01HZY0M93WZXABCDEF12345705', 'Số 72, đường Hạ Long', 'Phường Bãi Cháy', 'TP. Hạ Long', 'Quảng Ninh', 'private_house', '2025-01-06 16:01:19', '2025-01-06 16:01:19');
-INSERT INTO rabex.address (id, description, ward, district, province, address_type, created_at, modified_at) VALUES ('01HZY0M93WZXABCDEF12345706', 'Số 9, đường Lý Thường Kiệt', 'Phường Hoàng Văn Thụ', 'TP. Bắc Giang', 'Bắc Giang', 'different', '2025-01-06 16:01:19', '2025-01-06 16:01:19');
-INSERT INTO rabex.address (id, description, ward, district, province, address_type, created_at, modified_at) VALUES ('01HZY0M93WZXABCDEF12345707', 'Số 30, đường Nguyễn Thái Học', 'Phường Trung Tâm', 'TP. Huế', 'Thừa Thiên Huế', 'office', '2025-01-06 16:01:19', '2025-01-06 16:01:19');
-INSERT INTO rabex.address (id, description, ward, district, province, address_type, created_at, modified_at) VALUES ('01HZY0M93WZXABCDEF12345708', 'Số 45, đường Lê Hồng Phong', 'Phường Xuân Hà', 'TP. Đà Nẵng', 'Đà Nẵng', 'private_house', '2025-01-06 16:01:19', '2025-01-06 16:01:19');
-INSERT INTO rabex.address (id, description, ward, district, province, address_type, created_at, modified_at) VALUES ('01HZY0M93WZXABCDEF12345709', 'Số 17, đường Hoàng Diệu', 'Phường Thạnh Lộc', 'Quận 12', 'TP. Hồ Chí Minh', 'office', '2025-01-06 16:01:19', '2025-01-06 16:01:19');
-INSERT INTO rabex.address (id, description, ward, district, province, address_type, created_at, modified_at) VALUES ('01HZY0M93WZXABCDEF12345710', 'Số 50, đường Ngô Quyền', 'Phường Hoàng Văn Thụ', 'Quận Hoàng Mai', 'Hà Nội', 'different', '2025-01-06 16:01:19', '2025-01-06 16:01:19');
+insert into rabex.address (id, description, ward, district, province, address_type, created_at, modified_at)
+values  ('01HZY0M93WZXABCDEF12345678', 'Số 12A, Đường Nguyễn Huệ', 'Bến Nghé', 'Quận 1', 'TP. Hồ Chí Minh', 'private_house', '2025-01-06 16:25:33', '2025-01-14 21:57:03'),
+        ('01HZY0M93WZXABCDEF12345679', 'Số 405B, Đường Cầu Giấy', 'Cầu Giấy', 'Cầu Giấy', 'Hà Nội', 'office', '2025-01-06 16:25:33', '2025-01-14 21:57:03'),
+        ('01HZY0M93WZXABCDEF12345680', 'Số 7, Đường Nguyễn Văn Linh', 'Tân Phong', 'Quận 7', 'TP. Hồ Chí Minh', 'private_house', '2025-01-06 16:25:33', '2025-01-14 21:57:03'),
+        ('01HZY0M93WZXABCDEF12345681', 'Số 34, Đường Trần Phú', 'Hải Châu 1', 'Hải Châu', 'Đà Nẵng', 'different', '2025-01-06 16:25:33', '2025-01-14 21:57:03'),
+        ('01HZY0M93WZXABCDEF12345692', 'Số 56E, Đường Huỳnh Văn Lũy', 'Phú Hòa', 'Thủ Dầu Một', 'Bình Dương', 'private_house', '2025-01-06 16:25:33', '2025-01-14 21:57:03'),
+        ('01HZY0M93WZXABCDEF12345693', 'Số 47F, Đường Lê Hồng Phong', 'Máy Chai', 'Ngô Quyền', 'Hải Phòng', 'office', '2025-01-06 16:25:33', '2025-01-14 21:57:03'),
+        ('01HZY0M93WZXABCDEF12345694', 'Số 89, Đường 30 Tháng 4', 'An Hòa', 'Ninh Kiều', 'Cần Thơ', 'private_house', '2025-01-06 16:25:33', '2025-01-14 21:57:03'),
+        ('01HZY0M93WZXABCDEF12345695', 'Số 231H, Đường Lê Lợi', 'Thuận Hòa', 'TP. Huế', 'Thừa Thiên Huế', 'office', '2025-01-06 16:25:33', '2025-01-14 21:57:03'),
+        ('01HZY0M93WZXABCDEF12345696', 'Số 34ZI, Đường Phạm Văn Đồng', 'Vĩnh Phước', 'Nha Trang', 'Khánh Hòa', 'private_house', '2025-01-06 16:25:33', '2025-01-14 21:57:03'),
+        ('01HZY0M93WZXABCDEF12345697', 'Số 2, Đường Hạ Long', 'Thắng Tam', 'Vũng Tàu', 'Bà Rịa - Vũng Tàu', 'office', '2025-01-06 16:25:33', '2025-01-14 21:57:03'),
+        ('01HZY0M93WZXABCDEF12345698', 'Số 56K, Đường Nguyễn Ái Quốc', 'Long Bình', 'Biên Hòa', 'Đồng Nai', 'private_house', '2025-01-06 16:01:19', '2025-01-14 21:57:04'),
+        ('01HZY0M93WZXABCDEF12345699', 'Số 78L, Đường Hồng Hà', 'Hồng Hà', 'Hạ Long', 'Quảng Ninh', 'different', '2025-01-06 16:01:19', '2025-01-14 21:57:04'),
+        ('01HZY0M93WZXABCDEF12345700', 'Số 90M, Đường Trần Quốc Toản', '1', 'Đà Lạt', 'Lâm Đồng', 'private_house', '2025-01-06 16:01:19', '2025-01-14 21:57:04'),
+        ('01HZY0M93WZXABCDEF12345701', 'Số 120, Đường Nguyễn Trãi', 'Ba Đình', 'TP. Thanh Hóa', 'Thanh Hóa', 'office', '2025-01-06 16:01:19', '2025-01-14 21:57:04'),
+        ('01HZY0M93WZXABCDEF12345702', 'Số 45O, Đường Quang Trung', 'Hưng Dũng', 'Vinh', 'Nghệ An', 'private_house', '2025-01-06 16:01:19', '2025-01-14 21:57:04'),
+        ('01HZY0M93WZXABCDEF12345703', 'Số 7, Đường Trần Hưng Đạo', 'Lộc Vượng', 'TP. Nam Định', 'Nam Định', 'office', '2025-01-06 16:01:19', '2025-01-14 21:57:04'),
+        ('01HZY0M93WZXABCDEF12345704', 'Số 5, Đường Phan Bội Châu', 'Tân Thạnh', 'Tam Kỳ', 'Quảng Nam', 'private_house', '2025-01-06 16:01:19', '2025-01-14 21:57:04'),
+        ('01HZY0M93WZXABCDEF12345705', 'Số 31, Đường Lý Thái Tổ', 'Đại Phúc', 'TP. Bắc Ninh', 'Bắc Ninh', 'different', '2025-01-06 16:01:19', '2025-01-14 21:57:04'),
+        ('01HZY0M93WZXABCDEF12345706', 'Số 90B, Đường Trần Hưng Đạo', 'Phú Thủy', 'Phan Thiết', 'Bình Thuận', 'private_house', '2025-01-06 16:01:19', '2025-01-14 21:57:04'),
+        ('01HZY0M93WZXABCDEF12345707', 'Số 45B, Đường Hùng Vương', '7', 'Tuy Hòa', 'Phú Yên', 'office', '2025-01-06 16:01:19', '2025-01-14 21:57:04'),
+        ('01HZY0M93WZXABCDEF12345708', 'Số 78A, Đường Nguyễn Du', 'Ia Kring', 'Pleiku', 'Gia Lai', 'private_house', '2025-01-06 16:01:19', '2025-01-14 21:57:04'),
+        ('01HZY0M93WZXABCDEF12345709', 'Số 12A, Đường Trần Hưng Đạo', '5', 'Tân An', 'Long An', 'different', '2025-01-06 16:01:19', '2025-01-14 21:57:04'),
+        ('01HZY0M93WZXABCDEF12345735', 'Số 41, Đường Nguyễn Trung Trực', 'Vĩnh Bảo', 'Rạch Giá', 'Kiên Giang', 'private_house', '2025-01-07 19:08:30', '2025-01-14 21:57:05'),
+        ('01JH07N0GH1QD5FA7R3D1PVY2B', 'Thôn 3', 'ssdf', '1', '1', 'private_house', '2025-01-07 18:15:58', '2025-01-07 18:15:58'),
+        ('01JH07SG2HC5SJ57HWNSRJ5WPX', 'Thôn 3', 'ssdf', '1', '1', 'private_house', '2025-01-07 18:18:25', '2025-01-07 18:18:25'),
+        ('01JH081VQTQ0CDYQD5NDGM48Y6', 'Thôn 3', 'ssdf', '1', '1', 'private_house', '2025-01-07 18:22:59', '2025-01-07 18:22:59'),
+        ('01JH082DF08HB3X4W1YY1BC3GG', 'Thôn 3', 'ssdf', '1', '1', 'private_house', '2025-01-07 18:23:17', '2025-01-07 18:23:17'),
+        ('01JH0839AC1KXD8WY4VRTWVZBY', 'Thôn 3', 'ssdf', '', '1', 'private_house', '2025-01-07 18:23:46', '2025-01-07 18:23:46'),
+        ('01JH083VZF46RPG689WFGZQTPC', 'Thôn 3', 'ssdf', '2', '1', 'private_house', '2025-01-07 18:24:04', '2025-01-07 18:24:04'),
+        ('01JH086NB4W15W5003KSSW8GQM', 'Thôn 3', 'ssdf', '1', '1', 'private_house', '2025-01-07 18:25:36', '2025-01-07 18:25:36'),
+        ('01JH0AN708T2M5VRKSKJBTQFBA', 'ád', 'sdfsdfsd', '3', '1', 'different', '2025-01-07 19:08:30', '2025-01-07 19:08:30'),
+        ('01JHFZRQE5KZV471B9RW9GEKA0', 'Số 17, đường Hoàng Diệu', 'Phường Mũi Né', 'Thành phố Phan Thiết', 'Tỉnh Bình Thuận', 'office', '2025-01-13 21:06:02', '2025-01-13 21:06:02'),
+        ('01JHFZWDRRXN0BNX94Y3R2DDV0', 'Số 17, đường Hoàng Diệu', 'Xã Đức Hạnh', 'Huyện Bảo Lâm', 'Tỉnh Cao Bằng', 'different', '2025-01-13 21:08:03', '2025-01-13 21:08:03'),
+        ('01JHGBP53071KW7A4F4SBYH4Q7', 'Số 17, đường Hoàng Diệu', 'Xã Hùng Sơn', 'Huyện Kim Bôi', 'Tỉnh Hoà Bình', 'different', '2025-01-14 00:34:20', '2025-01-14 00:34:20'),
+        ('01JHGFBYN64A59RV6QN43MW5AZ', 'Số 17, đường Tô Ngọc Vân', 'Thị trấn Pác Miầu', 'Huyện Bảo Lâm', 'Tỉnh Cao Bằng', 'office', '2025-01-14 01:38:40', '2025-01-14 01:38:40'),
+        ('01JHGGXTMD6MHGTQ0AWEXEVKE3', 'Số 17, đường Hoàng Diệu', 'Thị trấn Pác Miầu', 'Huyện Bảo Lâm', 'Tỉnh Cao Bằng', 'private_house', '2025-01-14 02:05:55', '2025-01-14 02:05:55'),
+        ('01JHGH279TFT74183NZAEE94GD', '1235, đường 123', 'Xã Bản Mế', 'Huyện Si Ma Cai', 'Tỉnh Lào Cai', 'different', '2025-01-14 02:08:19', '2025-01-14 02:08:19'),
+        ('01JHGN9RVBDHR450YG8D9SY7AQ', 'Số 17, đường Hoàng Diệu', 'Xã Quang Hán', 'Huyện Trùng Khánh', 'Tỉnh Cao Bằng', 'private_house', '2025-01-14 03:22:20', '2025-01-14 03:22:20');

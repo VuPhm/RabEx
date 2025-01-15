@@ -1,8 +1,7 @@
 package com.rabex.express.dao.mapper;
 
 import com.rabex.express.core.dao.*;
-import com.rabex.express.model.Address;
-import com.rabex.express.model.User;
+import com.rabex.express.model.*;
 import com.rabex.express.model.enumm.AddressType;
 
 import java.sql.ResultSet;
@@ -21,6 +20,9 @@ public class AddressMapper implements RowMapper<Address> {
 
     @Override
     public Address mapRow(ResultSet resultSet, int row) throws SQLException {
+        if (resultSet.getString(prefix + "id") == null){
+            return null;
+        }
         return Address.builder()
                 .id(idConvertor.convert(resultSet.getString(prefix + "id")))
                 .description(resultSet.getString(prefix + "description"))
