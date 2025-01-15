@@ -26,48 +26,11 @@
 
 <%--content--%>
 <main id="content">
-    <div class="container p-4 ">
-        <section class="mb-1">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Đơn vận</li>
-                </ol>
-            </nav>
-        </section>
-        <section class="mb-1">
-            <div class="card shadow-0 shadow-0 mb-4 p-4 rounded-1">
-                <div class="d-flex justify-content-between">
-                    <div class="d-flex gap-4">
-                        <div class="form-outline" data-mdb-datepicker-init data-mdb-input-init
-                             data-mdb-format="dd, mmm, yyyy">
-                            <input type="text" class="form-control" id="exampleDatepicker4"
-                                   placeholder="dd, mmm, yyyy"/>
-                            <label for="exampleDatepicker4" class="form-label">Select a date</label>
-                        </div>
-                        <select data-mdb-select-init>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                            <option value="4">Four</option>
-                            <option value="5">Five</option>
-                            <option value="6">Six</option>
-                            <option value="7">Seven</option>
-                            <option value="8">Eight</option>
-                        </select>
-                    </div>
-                    <div>
-                        <button class="btn btn-outline-primary">
-                            Export
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <div class="container p-4 mt-5">
         <section class="mb-4">
             <div class="card shadow-0 shadow-0 mb-4 p-2 rounded-1">
                 <div class="card-header bg-white py-3">
-                    <h5 class="mb-0">Theo dõi đơn hàng</h5>
+                    <h5 class="mb-0">Theo dõi bưu phẩm</h5>
                 </div>
                 <div class="card-body">
                     <table class="table table-hover visible" id="data-table1">
@@ -89,7 +52,31 @@
                                 <td>${o.createdAt}</td>
                                 <td>${o.shippingService.name}</td>
                                 <td>${o.parcel.weight}</td>
-                                <td><span class="badge bg-success">${o.status}</span></td>
+                                <td>
+                                    <c:choose>
+                                        <c:when test="${o.status == 'PENDING'}">
+                                            <span class="badge bg-warning">Đang chờ</span>
+                                        </c:when>
+                                        <c:when test="${o.status == 'PROCESSED'}">
+                                            <span class="badge bg-info">Đã xử lý</span>
+                                        </c:when>
+                                        <c:when test="${o.status == 'CANCELLED'}">
+                                            <span class="badge bg-danger">Đã hủy</span>
+                                        </c:when>
+                                        <c:when test="${o.status == 'DONE'}">
+                                            <span class="badge bg-success">Hoàn thành</span>
+                                        </c:when>
+                                        <c:when test="${o.status == 'RETURNED'}">
+                                            <span class="badge bg-secondary">Đã trả lại</span>
+                                        </c:when>
+                                        <c:when test="${o.status == 'TRANSIT'}">
+                                            <span class="badge bg-primary">Đang vận chuyển</span>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <span class="badge bg-light text-dark">Không xác định</span>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </td>
                                 <td>
                                     <a class="btn btn-sm btn-outline-primary"
                                        href="/nguoi-dung/chi-tiet-buu-pham?id=${o.id}">Chi tiết</a>

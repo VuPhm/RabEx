@@ -1,3 +1,4 @@
+<%--@elvariable id="customer" type="com.rabex.express.model.Customer"--%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@include file="../common/taglib.jsp" %>
 <html>
@@ -129,8 +130,11 @@
                          aria-labelledby="address-edit"
                          aria-hidden="true">
                         <div class="modal-dialog">
-                            <form class="modal-content"
-                                  action="<c:url value="/nguoi-dung/dia-chi"/>" method="post">
+                            <form id="edit-address-form" class="modal-content"
+                                  action="<c:url value="/nguoi-dung/dia-chi?action=edit"/>" method="post">
+                                <!-- Thêm input hidden để lưu ID -->
+                                <input type="hidden" name="addressId" id="edit-address-id">
+                                <input type="hidden" name="personInfoId" id="edit-person-info-id">
                                 <!-- Modal Header -->
                                 <div class="modal-header">
                                     <h5 class="modal-title">Chỉnh sửa địa chỉ</h5>
@@ -138,7 +142,7 @@
                                             aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <div id="edit-address-form">
+                                    <div id="edit-address-body">
                                         <input type="hidden" id="edit-address-index">
 
                                         <div class="row mb-3">
@@ -169,6 +173,9 @@
                                         <div class="row mb-3">
                                             <label class="form-label" for="edit-address-picker">Địa chỉ</label>
                                             <div class="dropdown" id="edit-address-picker" required></div>
+                                            <input type="hidden" name="province" id="province-hidden">
+                                            <input type="hidden" name="district" id="district-hidden">
+                                            <input type="hidden" name="ward" id="ward-hidden">
                                         </div>
 
                                         <div class="mb-3">
@@ -193,15 +200,9 @@
                                     <button type="button" class="btn btn-secondary"
                                             data-mdb-dismiss="modal">Đóng
                                     </button>
-                                    <form class="modal-content" action="/nguoi-dung/dia-chi?action=edit" method="post">
-                                        <!-- Các trường khác -->
-                                        <input type="hidden" name="province" id="province-hidden">
-                                        <input type="hidden" name="district" id="district-hidden">
-                                        <input type="hidden" name="ward" id="ward-hidden">
-                                        <button type="submit" class="btn btn-primary" id="save-address-edit">
-                                            Lưu địa chỉ
-                                        </button>
-                                    </form>
+                                    <button type="submit" class="btn btn-primary" id="save-address-edit">
+                                        Lưu địa chỉ
+                                    </button>
                                 </div>
                             </form>
                         </div>
@@ -263,13 +264,15 @@
                                                     data-mdb-modal-init
                                                     data-mdb-target="#address-edit"
                                                     data-id="${address.address.id}"
+                                                    data-person-info-id="${address.personInfo.id}"
                                                     data-fullname="${address.personInfo.fullName}"
                                                     data-phone="${address.personInfo.phoneNumber}"
                                                     data-description="${address.address.description}"
                                                     data-ward="${address.address.ward}"
                                                     data-district="${address.address.district}"
                                                     data-province="${address.address.province}"
-                                                    data-type="${address.address.addressType}">
+                                                    data-type="${address.address.addressType}"
+                                                    data-default="${customer.defaultAddressId == address.address.id}">
                                                 <i class="fas fa-edit me-1"></i>
                                             </button>
 
@@ -309,12 +312,7 @@
         name: "address"
     })
     addressPicker.init()
-    const editPicker = new AddressDropdown("#edit-address-picker", {
-        url: "<c:url value='/static/data/dvhc.json'/>",
-        placeholder: "address",
-        name: "address"
-    })
-    editPicker.init()
+
     const sidenav = document.getElementById("main-sidenav");
 
     const sidenavInstance = mdb.Sidenav.getInstance(sidenav);
@@ -377,51 +375,86 @@
     });
 </script>
 <script>
+    let editPicker = null;
+
     function handleOpenEditModal(button) {
-        const fullName = button.getAttribute('data-fullname') || '';
-        const phoneNumber = button.getAttribute('data-phone') || '';
-        const description = button.getAttribute('data-description') || '';
-        const ward = button.getAttribute('data-ward') || '';
-        const district = button.getAttribute('data-district') || '';
-        const province = button.getAttribute('data-province') || '';
-        const addressType = button.getAttribute('data-type') || 'PRIVATE_HOUSE';
+        document.getElementById('edit-address-form').reset();
 
-        document.querySelector('#address-edit input[name="fullName"]').value = fullName;
-        document.querySelector('#address-edit input[name="phoneNumber"]').value = phoneNumber;
-        document.querySelector('#address-edit input[name="description"]').value = description;
+        // Lấy dữ liệu từ button
+        const addressId = button.getAttribute('data-id');
+        const personInfoId = button.getAttribute('data-person-info-id');
+        const fullName = button.getAttribute('data-fullname');
+        const phoneNumber = button.getAttribute('data-phone');
+        const description = button.getAttribute('data-description');
+        const ward = button.getAttribute('data-ward');
+        const district = button.getAttribute('data-district');
+        const province = button.getAttribute('data-province');
+        const addressType = button.getAttribute('data-type');
+        const isDefault = button.getAttribute('data-default') === 'true';
 
-        if (typeof editPicker !== 'undefined' && typeof editPicker.set === 'function') {
-            try {
-                editPicker.set({
-                    province: province.trim(),
-                    district: district.trim(),
-                    ward: ward.trim()
-                });
+        // Cập nhật các trường input
+        document.getElementById('edit-address-id').value = addressId;
+        document.getElementById('edit-person-info-id').value = personInfoId;
+        document.getElementById('fullName-edit').value = fullName;
+        document.getElementById('phone-edit').value = phoneNumber;
+        document.getElementById('address-des-edit').value = description;
+        document.getElementById('address-type-edit').value = addressType;
+        document.getElementById('default-address-edit').checked = isDefault;
 
-                // Đồng bộ dữ liệu vào trường ẩn khi mở modal
-                document.getElementById('province-hidden').value = province.trim();
-                document.getElementById('district-hidden').value = district.trim();
-                document.getElementById('ward-hidden').value = ward.trim();
-            } catch (error) {
-                console.error('Lỗi khi thiết lập editPicker:', error);
+        // Cập nhật hidden fields cho địa chỉ
+        document.getElementById('province-hidden').value = province;
+        document.getElementById('district-hidden').value = district;
+        document.getElementById('ward-hidden').value = ward;
+
+        // Tạo placeholder text từ các giá trị địa chỉ
+        const placeholderText = province + " / " + district + " / " + ward;
+
+        // Khởi tạo hoặc cập nhật AddressDropdown
+        if (editPicker) {
+            // Hủy instance cũ
+            editPicker.destroy && editPicker.destroy();
+        }
+
+        editPicker = new AddressDropdown("#edit-address-picker", {
+            url: "/static/data/dvhc.json",
+            placeholder: placeholderText,
+            name: "address",
+            defaultValue: {
+                province: province,
+                district: district,
+                ward: ward
             }
-        }
-
-        const addressTypeSelect = document.querySelector('#address-edit select[name="addressType"]');
-        if (addressTypeSelect) {
-            addressTypeSelect.value = addressType;
-        }
-    }
-
-    // Đồng bộ dữ liệu từ editPicker khi thay đổi
-    if (typeof editPicker !== 'undefined' && typeof editPicker.onChange === 'function') {
-        editPicker.onChange((selected) => {
-            document.getElementById('province-hidden').value = selected.province || '';
-            document.getElementById('district-hidden').value = selected.district || '';
-            document.getElementById('ward-hidden').value = selected.ward || '';
         });
+
+        editPicker.init();
+        //
+        // // Thêm event listener cho sự thay đổi địa chỉ
+        // editPicker.onChange((selected) => {
+        //     document.getElementById('province-hidden').value = selected.province || '';
+        //     document.getElementById('district-hidden').value = selected.district || '';
+        //     document.getElementById('ward-hidden').value = selected.ward || '';
+        // });
     }
 
+    // Xử lý sự kiện đóng modal
+    document.querySelector('#address-edit').addEventListener('hidden.bs.modal', function () {
+        if (editPicker) {
+            editPicker.destroy && editPicker.destroy();
+            editPicker = null;
+        }
+    });
+
+    // Thêm event listeners khi trang được load
+    document.addEventListener('DOMContentLoaded', function() {
+        // Gắn sự kiện cho tất cả các nút edit
+        const editButtons = document.querySelectorAll('.edit-address');
+        editButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                handleOpenEditModal(this);
+            });
+        });
+    });
 
     document.addEventListener('DOMContentLoaded', () => {
         // Handle delete address
@@ -462,14 +495,6 @@
             });
         }
     })
-    document.addEventListener('DOMContentLoaded', () => {
-        const editButtons = document.querySelectorAll('.edit-address');
-        editButtons.forEach(button => {
-            button.addEventListener('submit', () => {
-                handleOpenEditModal(button); // Gọi hàm với nút hiện tại
-            });
-        });
-    });
 </script>
 </body>
 </html>

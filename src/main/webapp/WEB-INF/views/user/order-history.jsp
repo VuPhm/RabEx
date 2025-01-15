@@ -52,7 +52,31 @@
                                 <td>${o.createdAt}</td>
                                 <td>${o.shippingService.name}</td>
                                 <td>${o.parcel.weight}</td>
-                                <td><span class="badge bg-success">${o.status}</span></td>
+                                <td>
+                                    <c:choose>
+                                        <c:when test="${o.status == 'PENDING'}">
+                                            <span class="badge bg-warning">Đang chờ</span>
+                                        </c:when>
+                                        <c:when test="${o.status == 'PROCESSED'}">
+                                            <span class="badge bg-info">Đã xử lý</span>
+                                        </c:when>
+                                        <c:when test="${o.status == 'CANCELLED'}">
+                                            <span class="badge bg-danger">Đã hủy</span>
+                                        </c:when>
+                                        <c:when test="${o.status == 'DONE'}">
+                                            <span class="badge bg-success">Hoàn thành</span>
+                                        </c:when>
+                                        <c:when test="${o.status == 'RETURNED'}">
+                                            <span class="badge bg-secondary">Đã trả lại</span>
+                                        </c:when>
+                                        <c:when test="${o.status == 'TRANSIT'}">
+                                            <span class="badge bg-primary">Đang vận chuyển</span>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <span class="badge bg-light text-dark">Không xác định</span>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </td>
                                 <td>
                                     <a class="btn btn-sm btn-outline-primary" href="/nguoi-dung/chi-tiet-buu-pham?id=${o.id}">Chi tiết</a>
                                 </td>
