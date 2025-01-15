@@ -1,7 +1,7 @@
 package com.rabex.express.model;
 
 import com.rabex.express.core.dao.RID;
-import com.rabex.express.model.enumm.TrackingStatus;
+import com.rabex.express.model.enumm.RecordAction;
 import lombok.Builder;
 import lombok.Data;
 
@@ -11,11 +11,11 @@ import java.sql.Timestamp;
 @Builder
 public class TrackingRecord {
     private RID id;
-    private Post post;
-    private Order order;
-    private TrackingStatus status;
-    private Staff trackingBy;
-    private Post destination;
+    private String orderCode;
+    private String post;
+    private RecordAction action;
+    private Staff executor;
+    private Staff staff;
     private Timestamp createdAt;
     private Timestamp modifiedAt;
 }

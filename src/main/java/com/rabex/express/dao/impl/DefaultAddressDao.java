@@ -6,11 +6,11 @@ import com.rabex.express.dao.AddressDao;
 import com.rabex.express.dao.TemplateDao;
 import com.rabex.express.dao.mapper.AddressMapper;
 import com.rabex.express.model.Address;
-import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.util.Optional;
 
 @Singleton
 public class DefaultAddressDao extends TemplateDao<Address> implements AddressDao {
@@ -42,6 +42,13 @@ public class DefaultAddressDao extends TemplateDao<Address> implements AddressDa
             return success && insertAddressCustomerRelationship(address, connection);
         });
     }
+
+    @Override
+    public Optional<Address> findById(RID id) {
+        return Optional.empty();
+    }
+
+
 
     protected boolean insertAddressCustomerRelationship(Address address, Connection connection) {
 //        // Ensure the customerId exists in the address object
@@ -110,4 +117,8 @@ public class DefaultAddressDao extends TemplateDao<Address> implements AddressDa
         return "SELECT COUNT(*) FROM address";
     }
 
+    public Address findBy(RID id) {
+        String findById = "SELECT * FROM address WHERE id = ?";
+        return singleQuery(findById, new AddressMapper(""), id);
+    }
 }

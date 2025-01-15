@@ -58,6 +58,11 @@
                         </div>
                     </div>
                 </div>
+
+                <c:if test="${status.equals('error')}">
+                    <h5 class="py-2">Sai thông tin đăng nhập!</h5>
+                </c:if>
+
                 <div class="col-md-12 col-lg-12 fadeInUp" data-wow-delay="0.3s">
                     <button type="submit" class="btn btn-lg btn-primary w-100">
                         Đăng Nhập

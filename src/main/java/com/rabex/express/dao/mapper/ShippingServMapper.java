@@ -27,7 +27,8 @@ public class ShippingServMapper implements RowMapper<ShippingServ> {
                 .details(resultSet.getString(prefix + "details"))
                 .image(resultSet.getString(prefix + "image"))
                 .expectedTime(resultSet.getString(prefix + "expected_time"))
-                .type(enumConvertor.convert(resultSet.getString(prefix + "type")))
+                .type(enumConvertor.convert(resultSet.getString(prefix + "service_type")))
+                .expectedDay(resultSet.getInt(prefix + "expected_day"))
                 .createdAt(resultSet.getTimestamp(prefix + "created_at"))
                 .modifiedAt(resultSet.getTimestamp(prefix + "modified_at"))
 

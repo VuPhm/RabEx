@@ -1,5 +1,6 @@
 package com.rabex.express.services.impl;
 
+import com.rabex.express.core.dao.RID;
 import com.rabex.express.dao.ShippingServDao;
 import com.rabex.express.dto.CostEstimateRequest;
 import com.rabex.express.model.ShippingServ;
@@ -11,6 +12,11 @@ import java.util.List;
 public class ShippingServServiceImpl implements ShippingServService {
     @Inject
     ShippingServDao shippingServDao;
+
+    @Override
+    public ShippingServ findById(RID id) {
+        return shippingServDao.findById(id).orElse(null);
+    }
 
     @Override
     public int countAll() {

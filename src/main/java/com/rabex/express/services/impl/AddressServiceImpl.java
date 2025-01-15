@@ -34,12 +34,13 @@ public class AddressServiceImpl implements AddressService {
 
     @Override
     public int countAll() {
-        return addressDao.countAll();
+        return addressDao.findAll().size();
     }
 
+
     @Override
-    public Address getAddressById(RID id) {
-         return addressDao.findById(id).orElse(null);
+    public Optional<Address> getAddressById(RID id) {
+         return addressDao.findById(id);
     }
 
     @Override

@@ -33,5 +33,11 @@
             <a href="<c:url value="/lien-he"/>" class="nav-item nav-link">Liên hệ</a>
         </div>
     </div>
-    <a href="<c:url value="/dang-nhap"/>login.html" class="btn btn-primary ms-auto me-3 order-1 order-lg-2 h-25">Đăng nhập</a>
+    <c:if test="${not empty sessionScope.user}">
+        <a href="tai-khoan/ca-nhan">${sessionScope.user.email} <span><a href="/tai-khoan?action=dang-xuat">Đăng xuất</a></span></a>
+    </c:if>
+    <c:if test="${empty sessionScope.user}">
+        <a href="<c:url value="/dang-nhap"/>" class="btn btn-primary ms-auto me-3 order-1 order-lg-2 h-25">Đăng nhập</a>
+    </c:if>
+
 </nav>

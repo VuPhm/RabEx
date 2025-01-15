@@ -22,7 +22,8 @@ SELECT ss.id                AS ss_id,
        ss.details           AS ss_details,
        ss.image             AS ss_image,
        ss.expected_time     AS ss_expected_time,
-       ss.service_type      AS ss_type,
+       ss.service_type      AS ss_service_type,
+       ss.expected_day    AS ss_expected_day,
        ss.created_at        AS ss_created_at,
        ss.modified_at       AS ss_modified_at
 FROM shipping_services ss
@@ -123,6 +124,12 @@ FROM shipping_services ss
     @Override
     public List<ShippingServ> findAll() {
         return query(querySql(), rowMapper());
+    }
+
+    @Override
+    public Optional<ShippingServ> findById(RID id) {
+        String sql = "select * from shipping_services where id = ?";
+        return Optional.ofNullable(singleQuery(sql, new ShippingServMapper(""), id));
     }
 
     @Override

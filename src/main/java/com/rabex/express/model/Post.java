@@ -10,6 +10,7 @@ import java.sql.Timestamp;
 @Builder
 public class Post {
     private RID id;                // char(16)
+    private String title;
     private Address address;         // char(16)
     private String code;              // char(16)
     private String email;             // varchar(320)
