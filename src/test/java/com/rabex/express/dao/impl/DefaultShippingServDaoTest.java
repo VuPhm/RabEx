@@ -6,13 +6,11 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-class ShippingServDaoImplTest {
+class DefaultShippingServDaoTest {
 
     @Test
     void findByRequest() {
-        List<ShippingServ> res =  new ShippingServDaoImpl().findByRequest(92000, false);
+        List<ShippingServ> res =  new DefaultShippingServDao().findByRequest(92000, false);
         PricingTier tier = res.get(0).getPricingTiers().get(0);
         System.out.println();
     }

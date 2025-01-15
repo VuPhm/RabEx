@@ -9,4 +9,5 @@ import java.util.Optional;
 public interface ShippingServDao extends Dao<ShippingServ> {
     Optional<ShippingServ> findBySlug(String slug);
     List<ShippingServ> findByRequest(double weight, boolean isInProvince);
+    List<ShippingServ> findByRequest(boolean inProvince);
 }

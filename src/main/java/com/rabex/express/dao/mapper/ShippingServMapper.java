@@ -25,11 +25,11 @@ public class ShippingServMapper implements RowMapper<ShippingServ> {
                 .slug(resultSet.getString(prefix + "slug"))
                 .shortDescription(resultSet.getString(prefix + "short_description"))
                 .details(resultSet.getString(prefix + "details"))
-//                .image(resultSet.getString(prefix + "image"))
-//                .expectedTime(resultSet.getString(prefix + "expected_time"))
-//                .type(enumConvertor.convert(resultSet.getString(prefix + "type")))
-//                .createdAt(resultSet.getTimestamp(prefix + "created_at"))
-//                .modifiedAt(resultSet.getTimestamp(prefix + "modified_at"))
+                .image(resultSet.getString(prefix + "image"))
+                .expectedTime(resultSet.getString(prefix + "expected_time"))
+                .type(enumConvertor.convert(resultSet.getString(prefix + "type")))
+                .createdAt(resultSet.getTimestamp(prefix + "created_at"))
+                .modifiedAt(resultSet.getTimestamp(prefix + "modified_at"))
 
                 .build();
     }
