@@ -20,6 +20,7 @@ public class OrderMapper implements RowMapper<Order> {
     public Order mapRow(ResultSet resultSet, int row) throws SQLException {
         return Order.builder()
                 .id(idConvertor.convert(resultSet.getString(prefix + "id")))
+                // receiver_id sender_id receiver_address_id sender_address_id parcel_id delivery_failed_action_id shipping_service_id
                 .status(enumConvertor.convert(resultSet.getString(prefix + "status")))
                 .code(resultSet.getString(prefix + "code"))
                 .note(resultSet.getString(prefix + "note"))

@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
-
 <!-- Quick Action Start -->
 <div class="container-fluid pb-3 wow slideInDown">
     <div class="bg-light container-xxl p-5">
+
         <form action="tra-cuu-buu-pham" method="post">
             <div class="position-relative mx-auto mb-3">
                 <input name="code" class="form-control border-0 w-100 fs-4 py-5 ps-4 pe-5" type="text" style="height: 75px"
