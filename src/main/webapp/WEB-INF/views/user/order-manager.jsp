@@ -2,7 +2,7 @@
 <%@include file="../common/taglib.jsp" %>
 <html>
 <head>
-    <%@include file="/WEB-INF/views/common/user/head-link.jsp" %>
+    <%@include file="/WEB-INF/views/user/common/head-link.jsp" %>
     <title>lịch sử bưu phẩm</title>
     <style>
         .dt-search {
@@ -20,13 +20,13 @@
 </head>
 <body>
 <%-- Nav --%>
-<%@include file="../common/user/navbar.jsp" %>
+<%@include file="common/navbar.jsp" %>
 <%-- End Nav --%>
 
 
 <%--content--%>
 <main id="content">
-    <div class="container p-4 mt-5">
+    <div class="container p-4">
         <section class="mb-4">
             <div class="card shadow-0 shadow-0 mb-4 p-2 rounded-1">
                 <div class="card-header bg-white py-3">

@@ -3,7 +3,7 @@
 <%@include file="../common/taglib.jsp" %>
 <html>
 <head>
-    <%@include file="/WEB-INF/views/common/user/head-link.jsp" %>
+    <%@include file="/WEB-INF/views/user/common/head-link.jsp" %>
     <title>Địa chỉ</title>
     <style>
         .address-item {
@@ -42,14 +42,14 @@
 </head>
 <body>
 <%-- Nav --%>
-<%@include file="../common/user/navbar.jsp" %>
+<%@include file="common/navbar.jsp" %>
 <%-- End Nav --%>
 
 
 <!-- content  -->
 <main id="content">
-    <div class="container p-4 mt-5">
-        <section class="mt-4">
+    <div class="container p-4">
+        <section class="mb-4">
             <div class="card">
                 <div class="card-header bg-white">
                     <h5 style="font-size: 24px;">Quản lý địa chỉ</h5>
@@ -189,7 +189,7 @@
                                             <input type="hidden" name="addressDefault" value="false">
                                             <input class="form-check-input" type="checkbox"
                                                    id="default-address-edit" name="addressDefault"
-                                                   value="true" required>
+                                                   value="true">
                                             <label class="form-check-label" for="default-address-edit">
                                                 Đặt làm địa chỉ mặc định
                                             </label>
@@ -200,9 +200,11 @@
                                     <button type="button" class="btn btn-secondary"
                                             data-mdb-dismiss="modal">Đóng
                                     </button>
+                                    <form action="/nguoi-dung/dia-chi?action=edit" method="post">
                                     <button type="submit" class="btn btn-primary" id="save-address-edit">
                                         Lưu địa chỉ
                                     </button>
+                                    </form>
                                 </div>
                             </form>
                         </div>
@@ -224,17 +226,10 @@
                             </tr>
                             </thead>
                             <tbody id="address-container">
-                            <tr>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                            </tr>
                             <jsp:useBean id="customer" scope="request" type="com.rabex.express.model.Customer"/>
-                            <c:forEach var="address" items="${customer.addresses}">
+                            <c:forEach var="address" items="${customer.addresses}" varStatus="status">
                                 <tr>
-                                    <td>${1}</td>
+                                    <td>${status.index + 1}</td>
                                     <td>${address.personInfo.fullName}</td>
                                     <td>${address.personInfo.phoneNumber}</td>
                                     <td>${address.address.description},
@@ -257,27 +252,23 @@
                                         </c:choose>
                                     </td>
                                     <td>
-                                        <form action="/nguoi-dung/dia-chi?action=edit" method="post">
-                                            <button type="button"
-                                                    class="btn btn-sm btn-outline-primary edit-address"
-                                                    data-mdb-ripple-init
-                                                    data-mdb-modal-init
-                                                    data-mdb-target="#address-edit"
-                                                    data-id="${address.address.id}"
-                                                    data-person-info-id="${address.personInfo.id}"
-                                                    data-fullname="${address.personInfo.fullName}"
-                                                    data-phone="${address.personInfo.phoneNumber}"
-                                                    data-description="${address.address.description}"
-                                                    data-ward="${address.address.ward}"
-                                                    data-district="${address.address.district}"
-                                                    data-province="${address.address.province}"
-                                                    data-type="${address.address.addressType}"
-                                                    data-default="${customer.defaultAddressId == address.address.id}">
-                                                <i class="fas fa-edit me-1"></i>
-                                            </button>
-
-                                        </form>
-
+                                        <button type="button"
+                                                class="btn btn-sm btn-outline-primary edit-address"
+                                                data-mdb-ripple-init
+                                                data-mdb-modal-init
+                                                data-mdb-target="#address-edit"
+                                                data-id="${address.address.id}"
+                                                data-person-info-id="${address.personInfo.id}"
+                                                data-fullname="${address.personInfo.fullName}"
+                                                data-phone="${address.personInfo.phoneNumber}"
+                                                data-description="${address.address.description}"
+                                                data-ward="${address.address.ward}"
+                                                data-district="${address.address.district}"
+                                                data-province="${address.address.province}"
+                                                data-type="${address.address.addressType}"
+                                                data-default="${customer.defaultAddressId == address.address.id}">
+                                            <i class="fas fa-edit me-1"></i>
+                                        </button>
                                         <form action="/nguoi-dung/dia-chi?action=delete" method="post">
                                             <input hidden="hidden" name="addressId" value="${address.address.id}">
                                             <input hidden="hidden" name="personInfoId" value="${address.personInfo.id}">
@@ -445,11 +436,11 @@
     });
 
     // Thêm event listeners khi trang được load
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         // Gắn sự kiện cho tất cả các nút edit
         const editButtons = document.querySelectorAll('.edit-address');
         editButtons.forEach(button => {
-            button.addEventListener('click', function(e) {
+            button.addEventListener('click', function (e) {
                 e.preventDefault();
                 handleOpenEditModal(this);
             });
