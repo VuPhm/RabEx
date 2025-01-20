@@ -59,7 +59,7 @@ public class CostEstimateController extends HttpServlet {
         if (estimateRequest.isValid()) {
             System.out.println(estimateRequest);
             req.getSession().setAttribute("estimateRequest", estimateRequest);
-            resp.sendRedirect("/uoc-tinh-chi-phi");
+            resp.sendRedirect("/uoc-tinh-chi-phi?" + estimateRequest.toURI());
         } else {
             resp.sendRedirect("/uoc-tinh-chi-phi?error=invalid");
         }

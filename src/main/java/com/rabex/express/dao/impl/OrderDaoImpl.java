@@ -13,7 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-public class OrderDaoImpl extends TemplateDao<Order> implements OrderDao {
+public class OrderDaoImpl extends TemplateDao<Order> {
     @Inject
     private ShippingServDao shippingServDao;
 

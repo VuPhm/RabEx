@@ -58,4 +58,9 @@ public class DefaultOrderHistoryDao extends TemplateDao<Order> implements OrderD
         return "SELECT COUNT(*) FROM orders";
     }
 
+    @Override
+    public Order findByCode(String code) {
+        return null;
+    }
+
 }

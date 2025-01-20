@@ -12,7 +12,7 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
-@WebFilter(urlPatterns = {"/tai-khoan/*", "/nhan-vien/*", "/admin/*"}) // Áp dụng cho tất cả URL bắt đầu với /secured/
+//@WebFilter(urlPatterns = {"/tai-khoan/*", "/nhan-vien/*", "/admin/*"}) // Áp dụng cho tất cả URL bắt đầu với /secured/
 public class Auth implements Filter {
 
     @Override

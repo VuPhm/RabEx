@@ -36,4 +36,9 @@ public class CostEstimateRequest {
     public boolean isValid() {
         return !(getSenderAddress().equals("none") || getReceiverAddress().equals("none"));
     }
+
+    public String toURI(){
+        String range = isInProvince() ? "IN_PROVINCE" : "OUT_PROVINCE";
+        return "range=" + range + "&w=" + getOrTransformedWeight();
+    }
 }
