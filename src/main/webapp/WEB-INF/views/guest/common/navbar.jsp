@@ -10,7 +10,7 @@
 <%--<!-- Spinner End -->--%>
 
 
-<nav class="navbar navbar-expand-lg bg-white navbar-light shadow border-top border-5 border-primary sticky-top p-0" style="top: -100px;">
+<nav class="navbar navbar-expand-lg bg-white navbar-light shadow border-top border-5 border-primary sticky-top p-0 mb-5" style="top: -100px;">
     <a href="<c:url value="/"/>" class="navbar-brand bg-primary d-flex align-items-center px-4 px-lg-5 order-0">
         <h2 class="mb-2 text-white">RabEx</h2>
     </a>
