@@ -11,23 +11,6 @@ CREATE OR REPLACE TABLE address
     PRIMARY KEY (id)
 );
 
-CREATE OR REPLACE TABLE cod_details
-(
-    id             char(26)                 NOT NULL,
-    amount         decimal                  NOT NULL,
-    status         enum ('pending', 'paid') NOT NULL,
-    collected_date date                     NOT NULL,
-    PRIMARY KEY (id)
-);
-
-CREATE OR REPLACE TABLE delivery_failed_action
-(
-    id          char(26)    NOT NULL,
-    name        varchar(45) NOT NULL,
-    description text        NULL,
-    PRIMARY KEY (id)
-);
-
 CREATE OR REPLACE TABLE person_info
 (
     id           char(26)     NOT NULL,
@@ -37,25 +20,32 @@ CREATE OR REPLACE TABLE person_info
     PRIMARY KEY (id)
 );
 
-CREATE OR REPLACE TABLE posts
+CREATE OR REPLACE TABLE users
 (
-    id           char(26)                                                           NOT NULL,
-    address_id   char(26)                                                           NOT NULL,
-    title        varchar(45)                         DEFAULT 'Bưu cục chưa đặt tên' NULL,
-    code         varchar(45)                                                        NOT NULL,
-    email        varchar(128)                                                       NULL,
-    phone_number varchar(15)                                                        NOT NULL,
-    manager_id   char(26)                                                           NOT NULL,
-    status       enum ('AVAILABLE', 'NOT_AVAILABLE') DEFAULT 'AVAILABLE'            NOT NULL,
-    created_at   timestamp                           DEFAULT current_timestamp()    NOT NULL,
-    modified_at  timestamp                           DEFAULT current_timestamp()    NOT NULL ON UPDATE current_timestamp(),
+    id            char(26)                                         NOT NULL,
+    hash_password varchar(70)                                      NOT NULL,
+    full_name     varchar(64)                                      NOT NULL,
+    deleted       tinyint(1) DEFAULT 0                             NOT NULL,
+    status        enum ('active', 'inactive', 'banned', 'pending') NOT NULL,
+    email         varchar(128)                                     NOT NULL,
+    verified_at   timestamp                                        NULL,
+    refresh_token varchar(255)                                     NULL,
+    avatar        varchar(320)                                     NULL,
+    created_at    timestamp  DEFAULT current_timestamp()           NOT NULL,
+    modified_at   timestamp  DEFAULT current_timestamp()           NOT NULL ON UPDATE current_timestamp(),
     PRIMARY KEY (id),
-    CONSTRAINT posts_ibfk_1
-        FOREIGN KEY (address_id) REFERENCES address (id)
+    CONSTRAINT email
+        UNIQUE (email)
 );
 
-CREATE OR REPLACE INDEX address_id
-    ON posts (address_id);
+CREATE OR REPLACE TABLE cod_details
+(
+    id             char(26)                 NOT NULL,
+    amount         decimal                  NOT NULL,
+    status         enum ('pending', 'paid') NOT NULL,
+    collected_date date                     NOT NULL,
+    PRIMARY KEY (id)
+);
 
 CREATE OR REPLACE TABLE roles
 (
@@ -65,6 +55,20 @@ CREATE OR REPLACE TABLE roles
     modified_at timestamp DEFAULT current_timestamp() NOT NULL ON UPDATE current_timestamp(),
     PRIMARY KEY (id)
 );
+
+CREATE OR REPLACE TABLE users_roles
+(
+    user_id char(26) NOT NULL,
+    role_id char(26) NOT NULL,
+    PRIMARY KEY (user_id, role_id),
+    CONSTRAINT users_roles_ibfk_1
+        FOREIGN KEY (user_id) REFERENCES users (id),
+    CONSTRAINT users_roles_ibfk_2
+        FOREIGN KEY (role_id) REFERENCES roles (id)
+);
+
+CREATE OR REPLACE INDEX role_id
+    ON users_roles (role_id);
 
 CREATE OR REPLACE TABLE shipping_services
 (
@@ -104,22 +108,6 @@ CREATE OR REPLACE TABLE pricing_tiers
 CREATE OR REPLACE INDEX service_id
     ON pricing_tiers (service_id);
 
-CREATE OR REPLACE TABLE staffs
-(
-    id           char(26)                              NOT NULL,
-    post_id      char(26)                              NOT NULL,
-    position     varchar(45)                           NOT NULL,
-    phone_number varchar(15)                           NOT NULL,
-    created_at   timestamp DEFAULT current_timestamp() NOT NULL,
-    modified_at  timestamp DEFAULT current_timestamp() NOT NULL ON UPDATE current_timestamp(),
-    PRIMARY KEY (id),
-    CONSTRAINT staffs_ibfk_1
-        FOREIGN KEY (post_id) REFERENCES posts (id)
-);
-
-CREATE OR REPLACE INDEX post_id
-    ON staffs (post_id);
-
 CREATE OR REPLACE TABLE surcharge_tiers
 (
     id             char(26)                                               NOT NULL,
@@ -138,23 +126,42 @@ CREATE OR REPLACE TABLE surcharge_tiers
         FOREIGN KEY (service_id) REFERENCES shipping_services (id)
 );
 
-CREATE OR REPLACE TABLE users
+
+CREATE OR REPLACE TABLE posts
 (
-    id            char(26)                                         NOT NULL,
-    hash_password varchar(70)                                      NOT NULL,
-    full_name     varchar(64)                                      NOT NULL,
-    deleted       tinyint(1) DEFAULT 0                             NOT NULL,
-    status        enum ('active', 'inactive', 'banned', 'pending') NOT NULL,
-    email         varchar(128)                                     NOT NULL,
-    verified_at   timestamp                                        NULL,
-    refresh_token varchar(255)                                     NULL,
-    avatar        varchar(320)                                     NULL,
-    created_at    timestamp  DEFAULT current_timestamp()           NOT NULL,
-    modified_at   timestamp  DEFAULT current_timestamp()           NOT NULL ON UPDATE current_timestamp(),
+    id           char(26)                                                           NOT NULL,
+    address_id   char(26)                                                           NOT NULL,
+    title        varchar(45)                         DEFAULT 'Bưu cục chưa đặt tên' NULL,
+    code         varchar(45)                                                        NOT NULL,
+    email        varchar(128)                                                       NULL,
+    phone_number varchar(15)                                                        NOT NULL,
+    manager_id   char(26)                                                           NOT NULL,
+    status       enum ('AVAILABLE', 'NOT_AVAILABLE') DEFAULT 'AVAILABLE'            NOT NULL,
+    created_at   timestamp                           DEFAULT current_timestamp()    NOT NULL,
+    modified_at  timestamp                           DEFAULT current_timestamp()    NOT NULL ON UPDATE current_timestamp(),
     PRIMARY KEY (id),
-    CONSTRAINT email
-        UNIQUE (email)
+    CONSTRAINT posts_ibfk_1
+        FOREIGN KEY (address_id) REFERENCES address (id)
 );
+
+CREATE OR REPLACE INDEX address_id
+    ON posts (address_id);
+
+CREATE OR REPLACE TABLE staffs
+(
+    id           char(26)                              NOT NULL,
+    post_id      char(26)                              NOT NULL,
+    position     varchar(45)                           NOT NULL,
+    phone_number varchar(15)                           NOT NULL,
+    created_at   timestamp DEFAULT current_timestamp() NOT NULL,
+    modified_at  timestamp DEFAULT current_timestamp() NOT NULL ON UPDATE current_timestamp(),
+    PRIMARY KEY (id),
+    CONSTRAINT staffs_ibfk_1
+        FOREIGN KEY (post_id) REFERENCES posts (id)
+);
+
+CREATE OR REPLACE INDEX post_id
+    ON staffs (post_id);
 
 CREATE OR REPLACE TABLE customers
 (
@@ -171,23 +178,6 @@ CREATE OR REPLACE TABLE customers
         FOREIGN KEY (id) REFERENCES users (id)
 );
 
-CREATE OR REPLACE TABLE invoices
-(
-    id             char(26)                              NOT NULL,
-    cost           decimal                               NOT NULL,
-    converted_unit decimal                               NOT NULL,
-    status         enum ('pending', 'paid')              NOT NULL,
-    real_unit      decimal                               NOT NULL,
-    export_by      char(26)                              NULL,
-    created_at     timestamp DEFAULT current_timestamp() NOT NULL,
-    modified_at    timestamp DEFAULT current_timestamp() NOT NULL ON UPDATE current_timestamp(),
-    PRIMARY KEY (id),
-    CONSTRAINT invoices_ibfk_1
-        FOREIGN KEY (export_by) REFERENCES users (id)
-);
-
-CREATE OR REPLACE INDEX export_by
-    ON invoices (export_by);
 
 CREATE OR REPLACE TABLE parcels
 (
@@ -204,6 +194,16 @@ CREATE OR REPLACE TABLE parcels
     CONSTRAINT parcels_ibfk_1
         FOREIGN KEY (created_by) REFERENCES users (id)
 );
+
+
+CREATE OR REPLACE TABLE delivery_failed_action
+(
+    id          char(26)    NOT NULL,
+    name        varchar(45) NOT NULL,
+    description text        NULL,
+    PRIMARY KEY (id)
+);
+
 
 CREATE OR REPLACE TABLE orders
 (
@@ -322,19 +322,6 @@ CREATE OR REPLACE TABLE tracking_records
             ON UPDATE CASCADE ON DELETE SET NULL
 );
 
-CREATE OR REPLACE TABLE users_roles
-(
-    user_id char(26) NOT NULL,
-    role_id char(26) NOT NULL,
-    PRIMARY KEY (user_id, role_id),
-    CONSTRAINT users_roles_ibfk_1
-        FOREIGN KEY (user_id) REFERENCES users (id),
-    CONSTRAINT users_roles_ibfk_2
-        FOREIGN KEY (role_id) REFERENCES roles (id)
-);
-
-CREATE OR REPLACE INDEX role_id
-    ON users_roles (role_id);
 
 CREATE OR REPLACE TABLE users_tokens
 (
@@ -347,3 +334,20 @@ CREATE OR REPLACE TABLE users_tokens
 );
 
 
+CREATE OR REPLACE TABLE invoices
+(
+    id             char(26)                              NOT NULL,
+    cost           decimal                               NOT NULL,
+    converted_unit decimal                               NOT NULL,
+    status         enum ('pending', 'paid')              NOT NULL,
+    real_unit      decimal                               NOT NULL,
+    export_by      char(26)                              NULL,
+    created_at     timestamp DEFAULT current_timestamp() NOT NULL,
+    modified_at    timestamp DEFAULT current_timestamp() NOT NULL ON UPDATE current_timestamp(),
+    PRIMARY KEY (id),
+    CONSTRAINT invoices_ibfk_1
+        FOREIGN KEY (export_by) REFERENCES users (id)
+);
+
+CREATE OR REPLACE INDEX export_by
+    ON invoices (export_by);
