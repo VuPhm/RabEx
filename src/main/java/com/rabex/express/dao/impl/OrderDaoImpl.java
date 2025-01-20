@@ -13,11 +13,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-public class OrderDaoImpl extends TemplateDao<Order> implements OrderDao {
+public class OrderDaoImpl extends TemplateDao<Order> {
     @Inject
     private ShippingServDao shippingServDao;
-
-    private final String QUERY = "select * from orders";
 
     private final Convertor<String, RID> ridConvertor = new StringToRidConvertor()  ;
     private final Convertor<String, OrderStatus> enumConvertor = new StringToEnumConvertor<>(OrderStatus.class);
