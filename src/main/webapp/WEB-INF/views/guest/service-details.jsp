@@ -1,3 +1,4 @@
+<%--@elvariable id="service" type="com.rabex.express.model.ShippingServ"--%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@include file="/WEB-INF/views/common/taglib.jsp" %>
 <html>
@@ -20,7 +21,7 @@
     </p>
     <div class="h3 text-primary text-uppercase">II. BẢNG GIÁ DỊCH VỤ
     </div>
-    <img src="../../img/price.png" class="img-fluid" alt=""/>
+    <img src="${service.image}" class="img-fluid" alt=""/>
 </div>
 <!-- Service Detail End -->
 

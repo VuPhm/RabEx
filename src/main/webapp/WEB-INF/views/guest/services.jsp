@@ -22,6 +22,7 @@
             <h1 class="mb-5">Danh sách dịch vụ vận chuyển</h1>
         </div>
         <div class="row g-4">
+            <jsp:useBean id="services" scope="request" type="java.util.List"/>
             <c:forEach var="s" items="${services}">
                 <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.3s"
                      style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInUp;">
@@ -30,9 +31,7 @@
                             <img class="img-fluid" src="/static/img/service1.png" alt="">
                         </div>
                         <h4 class="mb-3">${s.name}</h4>
-                        <p>Là dịch vụ nhận gửi, vận chuyển và phát các loại thư, tài liệu, thư từ trong nước theo chỉ
-                            tiêu thời gian tiêu chuẩn. Không áp dụng với các đơn hàng có thu hộ COD.
-
+                        <p>${s.shortDescription}
                         </p>
                         <a class="btn-slide mt-2" href="<c:url value="dich-vu/${s.slug}"/>"><i class="fa fa-arrow-right"></i><span>Xem thêm</span></a>
                     </div>
