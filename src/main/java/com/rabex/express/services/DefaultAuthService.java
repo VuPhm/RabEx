@@ -4,6 +4,7 @@ import com.rabex.express.core.dao.RID;
 import com.rabex.express.dao.UserDao;
 import com.rabex.express.dao.UserTokenDao;
 import com.rabex.express.dto.RegisterRequest;
+import com.rabex.express.exceptions.BadCredentialsException;
 import com.rabex.express.exceptions.UnVerifyUserException;
 import com.rabex.express.model.Token;
 import com.rabex.express.model.User;
@@ -49,8 +50,7 @@ public class DefaultAuthService implements AuthService{
 
     private Authentication authenticate(User user, String password) {
         if (user.getVerifiedAt() == null) throw new UnVerifyUserException();
-//        if (user.getStatus() != UserStatus.ACTIVE) throw new UserDisabledException();
-//        if (!encoder.match(user.getHashPassword(), password))
+        if (!encoder.match(user.getHashPassword(), password)) throw new BadCredentialsException();
         return null;
     }
 
