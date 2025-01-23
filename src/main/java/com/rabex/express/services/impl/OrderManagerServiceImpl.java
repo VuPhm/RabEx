@@ -22,4 +22,5 @@ public class OrderManagerServiceImpl implements OrderManagerService {
     public Order getOrderDetails(RID oid) {
         return orderManagerDao.findById(oid).orElse(null);
     }
+
 }
