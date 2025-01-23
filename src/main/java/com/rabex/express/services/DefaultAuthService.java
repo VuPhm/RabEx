@@ -17,6 +17,7 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class DefaultAuthService implements AuthService{
@@ -58,10 +59,12 @@ public class DefaultAuthService implements AuthService{
     public boolean register(RegisterRequest request) {
         User user = User.builder()
                 .id(RID.fast())
+                .email(request.email())
+                .hashPassword(encoder.encode(request.password()))
                 .status(UserStatus.ACTIVE)
                 .build();
 
-        return false;
+        return userDao.insert(user);
     }
 
     @Override
