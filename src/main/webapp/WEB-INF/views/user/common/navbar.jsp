@@ -50,7 +50,7 @@
                          loading="lazy">
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
-                    <li><a class="dropdown-item " href="user-info.html">My profile</a></li>
+                    <li><a class="dropdown-item " href="<c:url value="/nguoi-dung/thong-tin-nguoi-dung"/>">My profile</a></li>
                     <li><a class="dropdown-item" href="#">Settings</a></li>
                     <li><a class="dropdown-item" href="/logout">Logout</a></li>
                 </ul>
@@ -77,23 +77,23 @@
             <span class="sidenav-subheading text-muted text-uppercase fw-bold">Dashboard</span>
         </li>
         <li class="sidenav-item">
-            <a class="sidenav-link ripple-surface" href="./../dashboard.html" data-mdb-ripple-initialized="true"
+            <a class="sidenav-link ripple-surface" href="<c:url value="/nguoi-dung/dia-chi"/>" data-mdb-ripple-initialized="true"
                tabindex="1">
-                <i class="fas fa-plus fa-fw me-3"></i><span>Dashboard</span></a>
+                <i class="fas fa-plus fa-fw me-3"></i><span>Địa chỉ</span></a>
         </li>
 
         <li class="sidenav-item pt-3">
-            <span class="sidenav-subheading text-muted text-uppercase fw-bold">Quản lý đơn hàng</span>
+            <span class="sidenav-subheading text-muted text-uppercase fw-bold">Quản lý bưu phẩm</span>
         </li>
         <li class="sidenav-item">
-            <a class="sidenav-link ripple-surface" href="order-manager.html" data-mdb-ripple-initialized="true"
+            <a class="sidenav-link ripple-surface" href="<c:url value="/nguoi-dung/quan-ly-buu-pham"/>" data-mdb-ripple-initialized="true"
                tabindex="1">
-                <i class="fas fa-cubes fa-fw me-3"></i><span>Theo dõi đơn hàng</span></a>
+                <i class="fas fa-cubes fa-fw me-3"></i><span>Theo dõi bưu phẩm</span></a>
         </li>
         <li class="sidenav-item">
-            <a class="sidenav-link ripple-surface" href="order-history.html" data-mdb-ripple-initialized="true"
+            <a class="sidenav-link ripple-surface" href="<c:url value="/nguoi-dung/lich-su-buu-pham"/>" data-mdb-ripple-initialized="true"
                tabindex="1">
-                <i class="fas fa-list-alt fa-fw me-3"></i><span>Lịch sử đơn hàng</span></a>
+                <i class="fas fa-list-alt fa-fw me-3"></i><span>Lịch sử bưu phẩm</span></a>
         </li>
 
     </ul>
