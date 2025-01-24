@@ -1,6 +1,7 @@
 package com.rabex.express.dao;
 
 import com.rabex.express.core.dao.RID;
+import com.rabex.express.model.PricingTier;
 import com.rabex.express.model.ShippingServ;
 
 import java.util.List;
@@ -15,4 +16,5 @@ public interface ShippingServDao {
     int countAll();
 
     List<ShippingServ> findAll();
+
 }

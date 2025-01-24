@@ -1,6 +1,8 @@
 package com.rabex.express.controllers.guest;
 
 import com.rabex.express.core.web.WebUtils;
+import com.rabex.express.dto.PricingTiersTable;
+import com.rabex.express.model.PricingTier;
 import com.rabex.express.model.ShippingServ;
 import com.rabex.express.services.ShippingServService;
 import jakarta.inject.Inject;
@@ -11,9 +13,10 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet(urlPatterns = {"/dich-vu", "/dich-vu/*"})
-public class ShippingServController extends HttpServlet {
+public class Service extends HttpServlet {
     @Inject
     ShippingServService shippingServService;
 
@@ -27,11 +30,14 @@ public class ShippingServController extends HttpServlet {
             ShippingServ service = shippingServService.findBySlug(slug);
 
             if (service != null) {
+                List<PricingTiersTable> tiers = shippingServService.findAllPricingTiers(service.getId());
+                req.setAttribute("tiers", tiers);
                 req.setAttribute("service", service);
                 req.getRequestDispatcher("/WEB-INF/views/guest/service-details.jsp").forward(req, resp);
             } else {
                 req.setAttribute("errorMessage", "Không tìm thấy dịch vụ");
-                req.getRequestDispatcher("/404.jsp").forward(req, resp);            }
+                req.getRequestDispatcher("/404.jsp").forward(req, resp);
+            }
             return;
         }
 

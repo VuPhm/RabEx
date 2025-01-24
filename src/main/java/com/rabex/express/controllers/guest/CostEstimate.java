@@ -2,7 +2,6 @@ package com.rabex.express.controllers.guest;
 
 import com.rabex.express.dto.CostEstimateRequest;
 import com.rabex.express.model.ShippingServ;
-import com.rabex.express.services.CostEstimateService;
 import com.rabex.express.services.ShippingServService;
 import jakarta.inject.Inject;
 import jakarta.servlet.ServletException;
@@ -18,7 +17,7 @@ import static com.rabex.express.core.web.WebUtils.getParameter;
 import static com.rabex.express.core.web.WebUtils.mapRequestBody;
 
 @WebServlet(urlPatterns = {"/uoc-tinh-chi-phi"})
-public class CostEstimateController extends HttpServlet {
+public class CostEstimate extends HttpServlet {
     @Inject
     private ShippingServService shippingServService;
 

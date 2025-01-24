@@ -5,12 +5,30 @@ import com.rabex.express.core.dao.RowMapper;
 import com.rabex.express.dao.PricingTierDao;
 import com.rabex.express.dao.TemplateDao;
 import com.rabex.express.dao.mapper.PricingTierMapper;
+import com.rabex.express.dao.mapper.PricingTierTableExtractor;
+import com.rabex.express.dto.PricingTiersTable;
 import com.rabex.express.model.PricingTier;
 import com.rabex.express.model.enumm.ShippingRange;
 
 import java.util.List;
 
 public class DefaultPricingTierDao extends TemplateDao<PricingTier> implements PricingTierDao {
+    private static final String FIND_BY_SERVICE_QUERY = """
+            SELECT pt.id AS pt_id,
+                   pt.service_id AS pt_service_id,
+                   pt.description AS pt_description,
+                   pt.weight_start AS pt_weight_start,
+                   pt.weight_end AS pt_weight_end,
+                   pt.step_increment AS pt_step_increment,
+                   pt.price_per_step AS pt_price_per_step,
+                   pt.base_price AS pt_base_price,
+                   pt.shipping_range AS pt_shipping_range,
+                   pt.created_at AS pt_created_at,
+                   pt.updated_at AS pt_updated_at
+            FROM pricing_tiers pt
+            WHERE pt.service_id = ?
+            ORDER BY pt.base_price;""";
+
     private static final String SQL_QUERY = """
             SELECT pt.service_id AS pt_service_id,
                    pt.description AS pt_description,
@@ -59,5 +77,10 @@ public class DefaultPricingTierDao extends TemplateDao<PricingTier> implements P
     public List<PricingTier> findByEstimateParam(double weight, boolean inProvince) {
         ShippingRange range = inProvince ? ShippingRange.IN_PROVINCE : ShippingRange.OUT_PROVINCE;
         return query(querySql(), rowMapper(), range, weight);
+    }
+
+    @Override
+    public List<PricingTiersTable> findByServiceId(RID sid) {
+        return query(FIND_BY_SERVICE_QUERY, new PricingTierTableExtractor(), sid);
     }
 }

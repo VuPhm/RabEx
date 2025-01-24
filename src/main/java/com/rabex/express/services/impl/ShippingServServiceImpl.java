@@ -1,8 +1,11 @@
 package com.rabex.express.services.impl;
 
 import com.rabex.express.core.dao.RID;
+import com.rabex.express.dao.PricingTierDao;
 import com.rabex.express.dao.ShippingServDao;
 import com.rabex.express.dto.CostEstimateRequest;
+import com.rabex.express.dto.PricingTiersTable;
+import com.rabex.express.model.PricingTier;
 import com.rabex.express.model.ShippingServ;
 import com.rabex.express.services.ShippingServService;
 import jakarta.inject.Inject;
@@ -12,6 +15,8 @@ import java.util.List;
 public class ShippingServServiceImpl implements ShippingServService {
     @Inject
     ShippingServDao shippingServDao;
+    @Inject
+    PricingTierDao pricingTierDao;
 
     @Override
     public ShippingServ findById(RID id) {
@@ -41,5 +46,10 @@ public class ShippingServServiceImpl implements ShippingServService {
             else return shippingServDao.findByRequest(request.getOrTransformedWeight(), request.isInProvince());
         }
         return shippingServDao.findByRequest(request.getOrTransformedWeight(), request.isInProvince());
+    }
+
+    @Override
+    public List<PricingTiersTable> findAllPricingTiers(RID sid) {
+        return pricingTierDao.findByServiceId(sid);
     }
 }

@@ -15,19 +15,19 @@ import java.util.Optional;
 
 public class DefaultShippingServDao extends TemplateDao<ShippingServ> implements ShippingServDao {
     private static final String QUERY_SQL = """
-SELECT ss.id                AS ss_id,
-       ss.name              AS ss_name,
-       ss.slug              AS ss_slug,
-       ss.short_description AS ss_short_description,
-       ss.details           AS ss_details,
-       ss.image             AS ss_image,
-       ss.expected_time     AS ss_expected_time,
-       ss.service_type      AS ss_service_type,
-       ss.expected_day    AS ss_expected_day,
-       ss.created_at        AS ss_created_at,
-       ss.modified_at       AS ss_modified_at
-FROM shipping_services ss
-""";
+            SELECT ss.id                AS ss_id,
+                   ss.name              AS ss_name,
+                   ss.slug              AS ss_slug,
+                   ss.short_description AS ss_short_description,
+                   ss.details           AS ss_details,
+                   ss.image             AS ss_image,
+                   ss.expected_time     AS ss_expected_time,
+                   ss.service_type      AS ss_service_type,
+                   ss.expected_day    AS ss_expected_day,
+                   ss.created_at        AS ss_created_at,
+                   ss.modified_at       AS ss_modified_at
+            FROM shipping_services ss
+            """;
     private static final String PRICING_SQL = """
             SELECT
                 ss.id                AS ss_id,
@@ -50,7 +50,7 @@ FROM shipping_services ss
                                ON ss.id = pt.service_id
                                    AND ? BETWEEN pt.weight_start AND pt.weight_end
                                    AND pt.shipping_range = ?
-
+            
             WHERE ss.service_type = 'delivery'
             ORDER BY pt.weight_start
             """;
