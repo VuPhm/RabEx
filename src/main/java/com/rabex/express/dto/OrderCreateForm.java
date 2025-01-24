@@ -13,12 +13,14 @@ public class OrderCreateForm {
     private String receiverPhoneNumber;
     private String receiverFullName;
     private String receiverCodePost;
-    private String receiverAddress;
-    private String instruction; // hướng dẫn giao hàng
+    private String receiverAddressDetail; // nguyên cái địa chỉ luôn :c
+    private String receiverAddress; // nguyên cái địa chỉ luôn :c
+    private String instruction; // hướng dẫn giao hàng: note trong db
     private String senderPhoneNumber;
     private String senderFullName;
     private String senderCodePost;
-    private String senderAddress;
+    private String senderAddressDetail; // nguyên cái địa chỉ luôn :c
+    private String senderAddress; // nguyên cái địa chỉ luôn :c
     private double weight;
     private double longg;
     private double high;
