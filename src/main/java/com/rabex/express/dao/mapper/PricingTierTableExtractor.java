@@ -7,6 +7,7 @@ import com.rabex.express.model.enumm.ShippingRange;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,7 +22,7 @@ public class PricingTierTableExtractor implements ResultSetExtractor<List<Pricin
         Map<Double, PricingTiersTable> tiers = new HashMap<>();
         int i = 0;
         while (resultSet.next()) {
-            double wStart = resultSet.getDouble("pt_" + "weight_start")*1000;
+            double wStart = resultSet.getDouble("pt_" + "weight_start") * 1000;
             PricingTiersTable tier = tiers.get(wStart);
             if (tier == null) {
                 tier = PricingTiersTable.builder()
@@ -35,7 +36,7 @@ public class PricingTierTableExtractor implements ResultSetExtractor<List<Pricin
                 tiers.put(wStart, tier);
             }
 
-            boolean isInProvince = tier.getStepIncrement() * 1000 == 0;
+            boolean isInProvince = rangeConvertor.convert(resultSet.getString("pt_shipping_range")) == ShippingRange.IN_PROVINCE;
             if (isInProvince) {
                 tier.setInPricePerStep(resultSet.getDouble("pt_" + "price_per_step"));
                 tier.setInProvinceBasePrice(resultSet.getDouble("pt_" + "base_price"));
@@ -46,6 +47,7 @@ public class PricingTierTableExtractor implements ResultSetExtractor<List<Pricin
 
             i++;
         }
-        return tiers.values().stream().toList();
+        return tiers.values()
+                .stream().sorted(Comparator.comparing(PricingTiersTable::getWeightStart)).toList();
     }
 }

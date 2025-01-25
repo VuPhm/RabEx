@@ -27,7 +27,7 @@ public class DefaultPricingTierDao extends TemplateDao<PricingTier> implements P
                    pt.updated_at AS pt_updated_at
             FROM pricing_tiers pt
             WHERE pt.service_id = ?
-            ORDER BY pt.base_price;""";
+            ORDER BY pt.weight_start;""";
 
     private static final String SQL_QUERY = """
             SELECT pt.service_id AS pt_service_id,

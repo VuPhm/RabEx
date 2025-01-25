@@ -51,10 +51,11 @@
                 </c:if>
                 <c:if test="${tier.stepIncrement*1000 != 0}">
                     <tr>
+                        <fmt:formatNumber var="wEnd" value="${tier.weightEnd/1000}" maxFractionDigits="1"/>
                         <fmt:formatNumber var="step" value="${tier.stepIncrement}" maxFractionDigits="0"/>
                         <fmt:formatNumber var="inPerStep" value="${tier.inPricePerStep}" maxFractionDigits="0"/>
                         <fmt:formatNumber var="outPerStep" value="${tier.outPricePerStep}" maxFractionDigits="0"/>
-                        <td>Mỗi ${step}gram tiếp theo</td>
+                        <td>Mỗi ${step}gram tiếp theo (đến ${wEnd}kg)</td>
                         <td>${inPerStep}</td>
                         <td>${outPerStep}</td>
                     </tr>
