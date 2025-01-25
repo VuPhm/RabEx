@@ -21,7 +21,7 @@ public class PricingTierTableExtractor implements ResultSetExtractor<List<Pricin
         Map<Double, PricingTiersTable> tiers = new HashMap<>();
         int i = 0;
         while (resultSet.next()) {
-            double wStart = resultSet.getDouble("pt_" + "weight_start");
+            double wStart = resultSet.getDouble("pt_" + "weight_start")*1000;
             PricingTiersTable tier = tiers.get(wStart);
             if (tier == null) {
                 tier = PricingTiersTable.builder()
