@@ -11,6 +11,9 @@ import com.rabex.express.model.User;
 import com.rabex.express.model.UserStatus;
 import com.rabex.express.model.UserToken;
 import com.rabex.express.security.Authentication;
+import com.rabex.express.security.DefaultAuthentication;
+import com.rabex.express.security.Principal;
+import com.rabex.express.security.UserPrincipal;
 import jakarta.inject.Inject;
 
 import java.sql.Timestamp;
@@ -44,9 +47,9 @@ public class DefaultAuthService implements AuthService{
     public Authentication authenticate(String email, String password) {
         User user = userDao.findByEmail(email).orElse(null);
         if (user == null) return null;
-        
+        Principal principal = new UserPrincipal();
 
-        return null;
+        return new DefaultAuthentication(principal);
     }
 
     private Authentication authenticate(User user, String password) {
