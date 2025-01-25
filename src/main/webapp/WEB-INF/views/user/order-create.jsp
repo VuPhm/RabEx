@@ -60,6 +60,7 @@
                                                     placeholder="Vui lòng nhập thông tin "
                                                     aria-label="Username"
                                                     aria-describedby="basic-addon11"
+                                                    name="senderPhoneNumber"
                                             />
                                         </div>
                                     </div>
@@ -74,6 +75,7 @@
                                                     placeholder="Vui lòng nhập thông tin "
                                                     aria-label="Username"
                                                     aria-describedby="basic-addon1"
+                                                    name="senderFullName"
                                             />
                                         </div>
                                     </div>
@@ -88,6 +90,7 @@
                                                     placeholder="Vui lòng nhập thông tin "
                                                     aria-label="senderAddress"
                                                     aria-describedby="basic-addon1"
+                                                    name="senderAddressDetail"
                                             />
                                         </div>
                                     </div>
@@ -102,6 +105,7 @@
                                                     placeholder="Vui lòng nhập thông tin "
                                                     aria-label="Username"
                                                     aria-describedby="basic-addon1"
+                                                    name="senderCodePost"
                                             />
                                         </div>
                                     </div>
@@ -114,7 +118,7 @@
                                         <label for="sender-name">Hướng dẫn giao hàng</label>
                                         <div class="input-group mb-3">
                                             <textarea class="form-control" id="textAreaExample1"
-                                                      placeholder="Vui lòng nhập thông tin " rows="3"></textarea>
+                                                      placeholder="Vui lòng nhập thông tin " rows="3" name="instruction"></textarea>
 
                                         </div>
                                     </div>
@@ -146,6 +150,7 @@
                                                     placeholder="Vui lòng nhập thông tin "
                                                     aria-label="Username"
                                                     aria-describedby="basic-addon1"
+                                                    name="receiverPhoneNumber"
                                             />
                                         </div>
                                     </div>
@@ -160,6 +165,7 @@
                                                     placeholder="Vui lòng nhập thông tin "
                                                     aria-label="Username"
                                                     aria-describedby="basic-addon1"
+                                                    name="receiverFullName"
                                             />
                                         </div>
                                     </div>
@@ -174,6 +180,7 @@
                                                     placeholder="Vui lòng nhập thông tin "
                                                     aria-label="receiverAddress"
                                                     aria-describedby="basic-addon1"
+                                                    name="receiverAddressDetail"
                                             />
                                         </div>
                                     </div>
@@ -189,6 +196,7 @@
                                                     placeholder="Vui lòng nhập thông tin "
                                                     aria-label="Username"
                                                     aria-describedby="basic-addon1"
+                                                    name="receiverCodePost"
                                             />
                                         </div>
                                     </div>
@@ -196,6 +204,7 @@
                                         <label for="address-receiver">Địa chỉ <span
                                                 class="text-danger">*</span></label>
                                         <div class="dropdown" id="address-receiver"></div>
+
                                     </div>
                                 </div>
                             </div>
@@ -211,9 +220,21 @@
                             <div class="card-header">Thông tin bưu kiện</div>
 
                             <div class="card-body p-3">
-                                <div class="row g-5 mt-3">
-
-                                    <div class="col-md-3 mt-1">
+                                <div class="row g-4 mt-1">
+                                    <div class="col-md-10">
+                                        <label for="receiver-name">Tên bưu kiện <span class="text-danger">*</span></label>
+                                        <div class="input-group">
+                                            <input
+                                                    type="text"
+                                                    class="form-control"
+                                                    placeholder="Vui lòng nhập thông tin"
+                                                    aria-label="Recipient's username"
+                                                    aria-describedby="basic-addon2"
+                                                    name="nameParcel"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 mt-3">
                                         <label for="receiver-name">Khối lương <span class="text-danger">*</span></label>
                                         <div class="input-group mb-3">
                                             <input
@@ -222,11 +243,12 @@
                                                     placeholder="Vui lòng nhập thông tin"
                                                     aria-label="Recipient's username"
                                                     aria-describedby="basic-addon2"
+                                                    name="weight"
                                             />
                                             <span class="input-group-text" id="basic-addon2">Kg</span>
                                         </div>
                                     </div>
-                                    <div class="col-md-9 mt-1 ">
+                                    <div class="col-md-9 mt-3 ">
                                         <label for="receiver-name">Kích thước <span class="text-danger">*</span></label>
                                         <div class="d-flex align-items-center justify-content-around">
                                             <div>
@@ -237,6 +259,7 @@
                                                             placeholder="Vui lòng nhập thông tin"
                                                             aria-label="Recipient's username"
                                                             aria-describedby="basic-addon2"
+                                                            name="longg"
                                                     />
                                                     <span class="input-group-text">cm</span>
                                                 </div>
@@ -250,6 +273,7 @@
                                                             placeholder="Vui lòng nhập thông tin"
                                                             aria-label="Recipient's username"
                                                             aria-describedby="basic-addon2"
+                                                            name="high"
                                                     />
                                                     <span class="input-group-text">cm</span>
                                                 </div>
@@ -263,6 +287,7 @@
                                                             placeholder="Vui lòng nhập thông tin"
                                                             aria-label="Recipient's username"
                                                             aria-describedby="basic-addon2"
+                                                            name="wide"
                                                     />
                                                     <span class="input-group-text">cm</span>
                                                 </div>
@@ -272,14 +297,14 @@
 
                                     </div>
                                     <div class="col-md-12 mt-1">
-                                        <label for="receiver-name">Thu Hộ <span class="text-danger">*</span></label>
+                                        <label for="receiver-name">Thu Hộ <span class="text-danger">*</span></label> <%--này chưa xử lý được thằng lồn. Mai tiếp tục làm xử lý load bằng script ditmethanglon--%>
                                         <div class="input-group">
                                             <div class="input-group-text">
                                                 <input class="form-check-input mt-0" type="radio" value=""
-                                                       aria-label="Radio button for following text input"/>
+                                                       aria-label="Radio button for following text input" name="collecter"/>
                                             </div>
                                             <input type="text" class="form-control"
-                                                   aria-label="Text input with radio button"/>
+                                                   aria-label="Text input with radio button" name="costCollecter"/>
                                             <div class="input-group-text">
                                                 đ
                                             </div>
@@ -289,7 +314,7 @@
                                     <div class="col-md-4 mt-4">
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" value=""
-                                                   id="flexCheckDefault"/>
+                                                   id="flexCheckDefault" name="fragile"/>
                                             <label class="form-check-label" for="flexCheckDefault">Dễ vỡ</label>
                                         </div>
                                     </div>
@@ -303,59 +328,34 @@
             </section>
 
             <section class="mb-1">
-                <div class="row ">
+                <div class="row">
                     <div class="col-md-12 mb-2">
-                        <div class="card shadow-0 shadow-0 mb-4 p-2 rounded-1">
+                        <div class="card shadow-0 mb-4 p-2 rounded-1">
                             <div class="card-header">Phương thức vận chuyển</div>
                             <div class="card-body p-3">
                                 <div class="row g-5">
-                                    <div class="col-md-4">
-                                        <div class="border-2 border-primary p-3 d-flex align-items-center gap-3">
-                                            <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                                   id="flexRadioDefault1"/>
-                                            <i class="fa fa-truck" style="font-size: 30px"></i>
-                                            <div>
-                                            <span class="text-uppercase fw-bold">
-                                                Vận Chuyển Nhanh
-                                            </span>
-                                                <br/>
-                                                <span class="text-muted">1 - 2 ngày</span>
+                                    <jsp:useBean id="services" type="java.util.List" scope="request"/>
+                                    <c:forEach var="service" items="${services}" varStatus="status">
+                                        <div class="col-md-3">
+                                            <div class="border-2 border-primary d-flex align-items-center gap-3">
+                                                <input class="form-check-input" type="radio"
+                                                       name="shippingService"
+                                                       id="shippingService${status.index}"
+                                                       value="${service.id}"/>
+                                                <i class="fa fa-truck" style="font-size: 30px"></i>
+                                                <div>
+                                        <span class="text-uppercase fw-bold">
+                                                ${service.name}
+                                        </span>
+                                                    <br/>
+                                                    <span class="text-muted">${service.expectedTime}</span>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="border-2 border-dark-subtle p-3 d-flex align-items-center gap-3">
-                                            <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                                   id="flexRadioDefault2"/>
-                                            <i class="fa fa-truck" style="font-size: 30px"></i>
-                                            <div>
-                                            <span class="text-uppercase fw-bold">
-                                                Vận Chuyển Hỏa tốc
-                                            </span>
-                                                <br/>
-                                                <span class="text-muted">5h - 24h</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="border-2 border-dark-subtle p-3 d-flex align-items-center gap-3">
-                                            <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                                   id="flexRadioDefault3"/>
-                                            <i class="fa fa-truck" style="font-size: 30px"></i>
-                                            <div>
-                                            <span class="text-uppercase fw-bold">
-                                                Vận Chuyển Tiêu Chuân
-                                            </span>
-                                                <br/>
-                                                <span class="text-muted">3d - 5d</span>
-                                            </div>
-                                        </div>
-                                    </div>
-
+                                    </c:forEach>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </section>
@@ -364,9 +364,11 @@
                 <div class="row ">
                     <div class="col-md-12 mb-2">
                         <div class="card shadow-0 shadow-0 mb-4 p-4 rounded-1">
-                            <button class="btn btn-primary w-auto">
+                            <form action="<c:url value="/nguoi-dung/tao-don"/>" method="post">
+                            <button type="submit" class="btn btn-primary w-auto">
                                 Tạo
                             </button>
+                            </form>
                         </div>
                     </div>
                 </div>
