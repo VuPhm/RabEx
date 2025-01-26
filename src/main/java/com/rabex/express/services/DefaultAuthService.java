@@ -48,7 +48,7 @@ public class DefaultAuthService implements AuthService{
         User user = userDao.findByEmail(email).orElse(null);
         if (user == null) return null;
         Principal principal = new UserPrincipal();
-
+//
         return new DefaultAuthentication(principal);
     }
 
