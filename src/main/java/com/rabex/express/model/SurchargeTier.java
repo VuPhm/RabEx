@@ -25,4 +25,18 @@ public class SurchargeTier {
     private UnitType unitType;
     private Timestamp createdAt;
     private Timestamp updatedAt;
+
+    public String displayInfo() {
+        int price;
+        if (unitType == UnitType.NONE) {
+            price = (int) basePrice;
+            return price > 0 ? price + "đ/bưu phẩm" : "Miễn phí";
+        } else if (unitType == UnitType.VNĐ) {
+            return ((pricePerStep / stepIncrement)*1000 > 0) ? (pricePerStep / stepIncrement) + "% giá trị kiện hàng" : "Miễn phí";
+        } else if (unitType == UnitType.KG) {
+            price = (int) (basePrice + pricePerStep);
+            return (price > 0) ? (price) + "đ/kg" : "Miễn phi";
+        }
+        return "";
+    }
 }

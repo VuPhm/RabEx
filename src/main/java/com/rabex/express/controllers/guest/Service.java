@@ -2,8 +2,9 @@ package com.rabex.express.controllers.guest;
 
 import com.rabex.express.core.web.WebUtils;
 import com.rabex.express.dto.PricingTiersTable;
-import com.rabex.express.model.PricingTier;
 import com.rabex.express.model.ShippingServ;
+import com.rabex.express.model.SurchargeTier;
+import com.rabex.express.model.enumm.ShippingServiceType;
 import com.rabex.express.services.ShippingServService;
 import jakarta.inject.Inject;
 import jakarta.servlet.ServletException;
@@ -30,8 +31,13 @@ public class Service extends HttpServlet {
             ShippingServ service = shippingServService.findBySlug(slug);
 
             if (service != null) {
-                List<PricingTiersTable> tiers = shippingServService.findAllPricingTiers(service.getId());
-                req.setAttribute("tiers", tiers);
+                if (service.getType() == ShippingServiceType.DELIVERY){
+                    List<PricingTiersTable> tiers = shippingServService.findPricingTiers(service.getId());
+                    req.setAttribute("tiers", tiers);
+                } else if (service.getType() == ShippingServiceType.ADD_ON) {
+                    List<SurchargeTier> tiers = shippingServService.findSurchargeTiers(service.getId());
+                    req.setAttribute("tiers", tiers);
+                }
                 req.setAttribute("service", service);
                 req.getRequestDispatcher("/WEB-INF/views/guest/service-details.jsp").forward(req, resp);
             } else {

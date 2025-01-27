@@ -3,10 +3,12 @@ package com.rabex.express.services.impl;
 import com.rabex.express.core.dao.RID;
 import com.rabex.express.dao.PricingTierDao;
 import com.rabex.express.dao.ShippingServDao;
+import com.rabex.express.dao.SurchargeTierDao;
 import com.rabex.express.dto.CostEstimateRequest;
 import com.rabex.express.dto.PricingTiersTable;
 import com.rabex.express.model.PricingTier;
 import com.rabex.express.model.ShippingServ;
+import com.rabex.express.model.SurchargeTier;
 import com.rabex.express.services.ShippingServService;
 import jakarta.inject.Inject;
 
@@ -17,6 +19,8 @@ public class ShippingServServiceImpl implements ShippingServService {
     ShippingServDao shippingServDao;
     @Inject
     PricingTierDao pricingTierDao;
+    @Inject
+    SurchargeTierDao surchargeTierDao;
 
     @Override
     public ShippingServ findById(RID id) {
@@ -49,7 +53,12 @@ public class ShippingServServiceImpl implements ShippingServService {
     }
 
     @Override
-    public List<PricingTiersTable> findAllPricingTiers(RID sid) {
+    public List<PricingTiersTable> findPricingTiers(RID sid) {
         return pricingTierDao.findByServiceId(sid);
+    }
+
+    @Override
+    public List<SurchargeTier> findSurchargeTiers(RID sid) {
+        return surchargeTierDao.findByServiceId(sid.toString());
     }
 }

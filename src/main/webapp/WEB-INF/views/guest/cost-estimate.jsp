@@ -210,7 +210,7 @@
 
                         <tr>
                             <td><i>Cân nặng bưu phẩm</i></td>
-                            <td><i>${weight}g</i></td>
+                            <td><i>${estimateRequest.orTransformedWeight}g</i></td>
                         </tr>
                         <c:forEach var="service" items="${result}">
                             <tr>
@@ -289,8 +289,7 @@
         // mang theo du lieu da nhap vao
         const form = document.getElementById("estimateForm");
         populateForm(estimateRequest, form);
-        const va = document.getElementById("SAtmp").value = '${estimateRequest.senderAddress}';
-        console.log(va);
+        document.getElementById("SAtmp").value = '${estimateRequest.senderAddress}';
         document.getElementById("SRtmp").value = '${estimateRequest.receiverAddress}';
     });
 
