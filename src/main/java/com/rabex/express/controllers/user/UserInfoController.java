@@ -20,23 +20,26 @@ public class UserInfoController extends HttpServlet {
     @Inject
     CustomerService customerService;
 
-    //    RID userId = RID.from("01HZY0M93WZXABCDEF12345715");
+    RID userId = RID.from("01HZY0M93WZXABCDEF12345713");
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String userId = req.getParameter("id");
-        if (userId != null && !userId.trim().isEmpty()) {
-            Customer customer = customerService.findById(RID.from(userId));
-            User user = userInfoService.findById(RID.from(userId));
-            if (user != null) {
-                req.setAttribute("customer", customer);
-                req.setAttribute("user", user);
-                req.getRequestDispatcher("/WEB-INF/views/user/user-info.jsp").forward(req, resp);
-            }
+//        String userId = req.getParameter("id");
+//        if (userId != null && !userId.trim().isEmpty()) {
+        Customer customer = customerService.findById(userId);
+        User user = userInfoService.findById(userId);
+        if (user != null) {
+            req.setAttribute("customer", customer);
+            req.setAttribute("user", user);
+            req.getRequestDispatcher("/WEB-INF/views/user/user-info.jsp").forward(req, resp);
         }
     }
 
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String userId = req.getParameter("id");
 
+        resp.sendRedirect("/nguoi-dung/thong-tin-nguoi-dung?id=" + userId);
     }
 }

@@ -17,8 +17,6 @@ public class OrderDaoImpl extends TemplateDao<Order> {
     @Inject
     private ShippingServDao shippingServDao;
 
-    private final String QUERY = "select * from orders";
-
     private final Convertor<String, RID> ridConvertor = new StringToRidConvertor()  ;
     private final Convertor<String, OrderStatus> enumConvertor = new StringToEnumConvertor<>(OrderStatus.class);
 
