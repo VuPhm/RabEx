@@ -49,6 +49,9 @@ public class DefaultAuthService implements AuthService{
         if (user == null) return null;
         Principal principal = new UserPrincipal();
 
+
+
+
         return new DefaultAuthentication(principal);
     }
 
